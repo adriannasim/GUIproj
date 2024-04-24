@@ -1,0 +1,14 @@
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+
+    label.checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        input {
+            margin: 5px;
+        }
+    }
+}
