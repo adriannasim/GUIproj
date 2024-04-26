@@ -1,0 +1,147 @@
+.bg-category {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+
+    .category-text {
+        color: white;
+        font-size: 30px;
+        font-weight: 500;
+        text-align: center;
+        text-shadow: 2px 2px 5px black;
+    }
+    
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+
+#graduation-attire {
+    background: url("/media/Graduation/graduation-attire.webp") no-repeat 50% 15%/cover;
+}
+
+#graduation-souvenir {
+    background: url("/media/Graduation/souvenir.avif") no-repeat 50% 20%/cover;
+}
+
+#graduation-flower {
+    background: url("/media/Graduation/flower.webp") no-repeat bottom/cover;
+}
+
+.product-img-container {
+    height: 200px;
+    width: 200px;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down; 
+}
+
+.view-button {
+    position: relative;
+    display: inline-block;
+    transition: color 0.4s ease; 
+    color: $primary; 
+}
+
+.view-button::before,
+.view-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px; 
+    background-color: $primary;
+    transition: width 0.4s ease; 
+}
+
+.view-button::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.view-button::after {
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.view-button:hover::before,
+.view-button:hover::after {
+    width: 100%; 
+}
+
+
+
+
+
+.cart-img-container {
+    width: 10%;
+    height: 10%;
+}
+
+[class~='ant-carousel'] {
+    [class~='slick-slider'] {
+      li button {
+            background-color: #000;
+          }
+       li.slick-active button {
+            background-color: $primary;
+          }
+    }
+   
+}
+
+#kt_login_signin_form, #kt_login_signup_form{
+    margin: 10vh auto;
+
+    .bg-white{
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+}
+
+.cart-number-container { 
+    display: flex; 
+    justify-content: space-evenly; 
+    margin: 2px;
+} 
+
+.cart-number-content { 
+    width: 17px; 
+    line-height: 17px; 
+    border-radius: 50%; 
+    text-align: center; 
+    background-color: $primary; 
+    color: white; 
+    font-size: 12px;
+} 
+
+.no-spinners {
+    -moz-appearance: textfield;
+    text-align: center;
+ }
+ 
+ .no-spinners::-webkit-outer-spin-button,
+ .no-spinners::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+ }
+
+ .cart-product-img-container {
+    height: 100px;
+    width: 100px;
+}
+
+.cart-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down; 
+}
+
+
