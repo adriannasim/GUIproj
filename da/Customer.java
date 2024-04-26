@@ -2,7 +2,7 @@ package da;
 
 import java.util.*;
 
-public class Customer {
+public class Customer extends User{
     private String firstName;
     private String lastName;
     private String custId;
@@ -10,13 +10,12 @@ public class Customer {
     private Date dateOfBirth;
     private String gender;
     private Address custAdd;
-    private User user;
     
     public Customer(){
 
     }
 
-    public Customer(String firstName, String lastName, String custId, int contactNo, Date dateOfBirth, String gender, Address custAdd, User user) {
+    public Customer(String firstName, String lastName, String custId, int contactNo, Date dateOfBirth, String gender, Address custAdd) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.custId = custId;
@@ -24,7 +23,6 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.custAdd = custAdd;
-        this.user = user;
     }
 
     // Getter methods
@@ -56,10 +54,6 @@ public class Customer {
         return custAdd;
     }
 
-    public User getUser() {
-        return user;
-    }
-
     // Setter methods
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -87,9 +81,5 @@ public class Customer {
 
     public void setCustAdd(Address custAdd) {
         this.custAdd = custAdd;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

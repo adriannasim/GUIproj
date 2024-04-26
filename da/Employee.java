@@ -1,26 +1,24 @@
 package da;
 
-public class Employee {
+public class Employee extends User{
     private String empId;
     private String empRole; // "Manager" or "Staff"
     private String firstName;
     private String lastName;
     private int contactNo;
     private String gender;
-    private User user;
 
     public Employee() {
 
     }
 
-    public Employee(String empId, String empRole, String firstName, String lastName, int contactNo, String gender, User user) {
+    public Employee(String empId, String empRole, String firstName, String lastName, int contactNo, String gender) {
         this.empId = empId;
         this.empRole = empRole;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNo = contactNo;
         this.gender = gender;
-        this.user = user;
     }
 
     // Getter methods
@@ -48,10 +46,6 @@ public class Employee {
         return gender;
     }
 
-    public User getUser() {
-        return user;
-    }
-
     // Setter methods
     public void setEmpId(String empId) {
         this.empId = empId;
@@ -75,10 +69,6 @@ public class Employee {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
 
