@@ -11,7 +11,7 @@
     <!--Servlet Declarations-->
     <servlet>
         <servlet-name>WebServlet</servlet-name>
-        <servlet-class>com.example.WebServlet</servlet-class>
+        <servlet-class>com.guiProj.servlets.WebServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>WebServlet</servlet-name>
