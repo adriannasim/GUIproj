@@ -1,4 +1,4 @@
-package da;
+package entity;
 
 public class Product{
     private String prodId;

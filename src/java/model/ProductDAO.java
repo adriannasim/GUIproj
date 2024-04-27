@@ -1,6 +1,6 @@
-package dao;
+package model;
 
-import da.Product;
+import entity.Product;
 
 public class ProductDAO{
     public Product searchProd(int productId) {

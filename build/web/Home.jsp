@@ -2,10 +2,7 @@
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%>
 
 <!DOCTYPE html>
-<%
-    ProductDAO productDAO = new ProductDAO();
-    ArrayList<Product> productList = productDAO.retrieveProd();
-%>
+
 
 <html>
     <head>
@@ -13,14 +10,7 @@
         <title>Home Page</title>
     </head>
     <body>
-        <h1>Products</h1>
-        <form action="Retrieveproduct" method="GET">
-            <%
-                for(Product product: productList){ %>
-                    <div><%=product.getProdName()%></div>
-                <%}
-            %>
-        </form>
+        <h1>Home</h1>
     </body>
 </html>
 
