@@ -9,7 +9,7 @@ public class WebServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Forwards request to home.jsp
-        RequestDispatcher dispatcher = request.getRequestDispatcher("web/home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("web/Home.jsp");
         dispatcher.forward(request, response);
     }
 }
