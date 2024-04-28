@@ -1,4 +1,4 @@
-package entity;
+package src.java.entity;
 
 public class Product{
     private String prodId;

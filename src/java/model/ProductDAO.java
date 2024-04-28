@@ -1,4 +1,4 @@
-package model;
+package src.java.model;
 
 import entity.Product;
 

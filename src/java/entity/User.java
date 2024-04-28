@@ -1,7 +1,6 @@
-package da;
+package src.java.entity;
 
 public class User {
-    private String userId;
     private String username;
     private String userPwd;
     private String email;
@@ -10,18 +9,13 @@ public class User {
 
     }
 
-    public User(String userId, String username, String userPwd, String email) {
-        this.userId = userId;
+    public User(String username, String userPwd, String email) {
         this.username = username;
         this.userPwd = userPwd;
         this.email = email;
     }
 
     // Getter methods
-    public String getUserId() {
-        return userId;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -35,10 +29,6 @@ public class User {
     }
 
     // Setter methods
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }

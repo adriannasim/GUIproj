@@ -1,4 +1,4 @@
-package da;
+package src.java.entity;
 
 import java.util.ArrayList;
 
@@ -52,4 +52,9 @@ public class Cart {
     public void setCartTotalPrice(double cartTotalPrice) {
         this.totalAmount = cartTotalPrice;
     }
+
+    public void addToCart(CartItem cartItem) {
+        itemList.add(cartItem);
+    }
+    
 }

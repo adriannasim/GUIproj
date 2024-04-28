@@ -1,4 +1,4 @@
-package da;
+package src.java.entity;
 
 public class PaymentInfo {
     private String paymentId;

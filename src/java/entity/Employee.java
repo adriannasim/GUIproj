@@ -1,4 +1,4 @@
-package da;
+package src.java.entity;
 
 public class Employee extends User{
     private String empId;

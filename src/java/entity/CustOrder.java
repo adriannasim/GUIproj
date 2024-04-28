@@ -1,19 +1,19 @@
-package da;
+package src.java.entity;
 
 import java.util.*;
 
-public class CartOrder {
+public class CustOrder {
     private String orderId;
     private String userId;
     private Date date;
     private String status;
     private Cart cart;
 
-    public CartOrder() {
+    public CustOrder() {
 
     }
 
-    public CartOrder(String orderId, String userId, Date date, String status, Cart cart) {
+    public CustOrder(String orderId, String userId, Date date, String status, Cart cart) {
         this.orderId = orderId;
         this.userId = userId;
         this.date = date;

@@ -1,4 +1,4 @@
-package da;
+package src.java.entity;
 
 import java.util.*;
 

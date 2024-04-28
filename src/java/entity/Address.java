@@ -1,4 +1,4 @@
-package da;
+package src.java.entity;
 
 //Shipping address & Billing address
 public class Address {
