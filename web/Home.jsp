@@ -11,6 +11,14 @@
     </head>
     <body>
         <h1>Home</h1>
+        <a href="SignUp.jsp"><button>Sign in/Sign up</button></a>
+        <button>All Artworks</button>
+        <h2>Latest Artworks</h2>
+        <div>
+            <img src="img.png"/>
+            Product name<br/>
+            Product price
+        </div>
     </body>
 </html>
 
