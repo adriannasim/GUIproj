@@ -12,12 +12,12 @@
         </session-timeout>
     </session-config>
     <!--Servlet Declarations-->
-    <servlet>
+    <!-- <servlet>
         <servlet-name>WebServlet</servlet-name>
         <servlet-class>com.guiProj.servlets.WebServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>WebServlet</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> -->
 </web-app>
