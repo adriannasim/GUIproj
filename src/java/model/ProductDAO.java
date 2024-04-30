@@ -20,5 +20,5 @@ public class ProductDAO{
 
     public void deleteProd(int productId) {
         // Database query to delete product
-    }
+    } 
 }
