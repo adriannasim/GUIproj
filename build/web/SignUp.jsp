@@ -1,4 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.DatabaseConn"%>
+
+<% DatabaseConn theconn = new DatabaseConn(); %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,6 +46,7 @@
             <input type="text"/><br/>
 
             <button type="submit">Sign Up</button>
+            <a href="SignIn.jsp"><button type="button">Back to sign in</button></a>
         </form>
     </body>
 </html>
