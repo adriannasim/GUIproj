@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class ProductDAO {
 
@@ -22,7 +24,7 @@ public class ProductDAO {
         conn = new DatabaseConn();
     }
 
-    public ArrayList<Product> showProd() {
+    public ArrayList<Product> getAllProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
 
         // Database query to retrieve product by ID
@@ -34,11 +36,27 @@ public class ProductDAO {
 
             while (rs.next()) {
                 String prodImgList = rs.getString("prodImg");
-                String[] prodImgArray = prodImgList.split(";");
-                String prodKeyList = rs.getString("prodKeywords");
-                String[] prodKeyArray = prodKeyList.split(";");
+                String[] prodImgArray = null;
+                if (prodImgList.contains(";")) {
+                    // If there are multiple images, split them
+                    prodImgArray = prodImgList.split(";");
+                } else {
+                    // If there's only one image, create an array with a single element
+                    prodImgArray = new String[]{prodImgList};
+                }
 
-                Product prod = new Product(rs.getString("prodId"), rs.getString("prodName"), rs.getString("prodDesc"), rs.getDouble("prodPrice"), rs.getInt("qtyAvailable"), prodImgArray, prodKeyArray);
+                String prodKeyList = rs.getString("prodKeywords");
+                String[] prodKeyArray = null;
+                if (prodKeyList.contains(";")) {
+                    // If there are multiple keywords, split them
+                    prodKeyArray = prodKeyList.split(";");
+                } else {
+                    // If there's only one keyword, create an array with a single element
+                    prodKeyArray = new String[]{prodKeyList};
+                }
+
+                Product prod = new Product(rs.getString("prodId"), rs.getString("prodName"), rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"), rs.getInt("qtyAvailable"), prodImgArray, prodKeyArray);
                 prodList.add(prod);
             }
         } catch (SQLException ex) {
@@ -48,7 +66,7 @@ public class ProductDAO {
         return prodList;
     }
 
-    public Product searchProd(String prodId) {
+    public Product getProductById(String prodId) {
         Product prod = null;
 
         // Database query to retrieve product by ID
@@ -65,7 +83,8 @@ public class ProductDAO {
                 String prodKeyList = rs.getString("prodKeywords");
                 String[] prodKeyArray = prodImgList.split(";");
 
-                prod = new Product(prodId, rs.getString("prodName"), rs.getString("prodDesc"), rs.getDouble("prodPrice"), rs.getInt("qtyAvailable"), prodImgArray, prodKeyArray);
+                prod = new Product(prodId, rs.getString("prodName"), rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"), rs.getInt("qtyAvailable"), prodImgArray, prodKeyArray);
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
@@ -84,5 +103,16 @@ public class ProductDAO {
 
     public void deleteProd(int productId) {
         // Database query to delete product
-    } 
+    }
+
+    public void closeConnection() {
+        try {
+            if (conn.returnConnection() != null) {
+                conn.shutDown();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.WARNING, null, ex);
+        }
+    }
+
 }
