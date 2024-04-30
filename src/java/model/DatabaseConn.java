@@ -36,7 +36,8 @@ public class DatabaseConn {
             System.out.println("Success: Connected to DB");
         } catch (SQLException ex) {
             System.err.println("Error occurred during connection to database: " + ex.getMessage());
-            ex.printStackTrace();
+            //ex.printStackTrace();
+            System.out.println("Not Connected to DB");
         }
     }
 
