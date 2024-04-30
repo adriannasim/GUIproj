@@ -13,7 +13,8 @@
 
             <label>Full Name</label>
             <input type="text"/><br/>
-
+            
+            <label>Gender</label>
             <input type="radio" id="male" name="gender" value="male">
             <label for="male">Male</label>
             <input type="radio" id="female" name="gender" value="female">

@@ -1,4 +1,5 @@
-package src.java.model;
+//package src.java.model;
+package model;
 
 import java.sql.*;
 

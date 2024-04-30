@@ -1,4 +1,5 @@
-package src.java.entity;
+//package src.java.entity;
+package entity;
 
 import java.util.*;
 
@@ -16,7 +17,8 @@ public class Customer extends User{
     }
 
     public Customer(String userId, String username, String userPwd, String email,String firstName, String lastName, String custId, int contactNo, Date dateOfBirth, String gender, Address custAdd) {
-        super(userId, username, userPwd, email);
+        //super(userId,username, userPwd, email);
+        super(username, userPwd, email);
         this.firstName = firstName;
         this.lastName = lastName;
         this.custId = custId;

@@ -1,4 +1,5 @@
-package src.java.entity;
+//package src.java.entity;
+package entity;
 
 //Shipping address & Billing address
 public class Address {

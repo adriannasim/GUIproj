@@ -1,6 +1,8 @@
-package src.java.model;
+//package src.java.model;
+package model;
 
-import src.java.entity.User;
+//import src.java.entity.User;
+import entity.User;
 import java.sql.*;
 
 public class UserDAO {
@@ -34,7 +36,7 @@ public class UserDAO {
         String queryStr = "SELECT * FROM " + tableName + " WHERE username=? AND password=?";
         User user = null;
         try {
-            stmt = dbConn.getConnection.prepareStatement(queryStr);
+            stmt = dbConn.getConnection().prepareStatement(queryStr);
             stmt.setString(1, username);
             stmt.setString(2, userPwd);
             ResultSet rs = stmt.executeQuery();
@@ -53,7 +55,7 @@ public class UserDAO {
         String queryStr = "SELECT * FROM " + tableName + " WHERE password=? AND email=?";
         User user = null;
         try {
-            stmt = dbConn.getConnection.prepareStatement(queryStr);
+            stmt = dbConn.getConnection().prepareStatement(queryStr);
             stmt.setString(1, userPwd);
             stmt.setString(2, email);
             ResultSet rs = stmt.executeQuery();
@@ -71,7 +73,7 @@ public class UserDAO {
     public void insertRecord(String username, String userPwd, String email) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?)";
         try {
-            stmt = conn.prepareStatement(queryStr);
+            stmt = dbConn.getConnection().prepareStatement(queryStr);
 
             stmt.setString(1, username);
             stmt.setString(2, userPwd);
@@ -87,7 +89,7 @@ public class UserDAO {
         String queryStr = "UPDATE " + tableName + " SET password=?, email=? WHERE username=?";
 
         try {
-            stmt = conn.prepareStatement(queryStr);
+            stmt = dbConn.getConnection().prepareStatement(queryStr);
             stmt.setString(1, userPwd);
             stmt.setString(2, email);
             stmt.setString(3, username);
@@ -100,7 +102,7 @@ public class UserDAO {
     public void deleteRecord(String username) {
         String queryStr = "DELETE FROM " + tableName + " WHERE username=?";
         try {
-            stmt = conn.prepareStatement(queryStr);
+            stmt = dbConn.getConnection().prepareStatement(queryStr);
             stmt.setString(1, username);
             stmt.execute();
         } catch (SQLException ex) {
