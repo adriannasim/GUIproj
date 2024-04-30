@@ -3,27 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GUIproj/src/java/entity/Customer.java</file>
-            <file>file:/D:/GUIproj/nbproject/build-impl.xml</file>
-            <file>file:/D:/GUIproj/web/Home.jsp</file>
-            <file>file:/D:/GUIproj/web/index.html</file>
-            <file>file:/D:/GUIproj/src/java/entity/Address.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/CustOrder.java</file>
-            <file>file:/D:/GUIproj/web/SignIn.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/SignUp.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/PaymentCard.java</file>
             <file>file:/D:/GUIproj/src/java/model/DatabaseConn.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Review.java</file>
             <file>file:/D:/GUIproj/web/SignUp.jsp</file>
-            <file>file:/D:/GUIproj/src/java/entity/PaymentInfo.java</file>
-            <file>file:/D:/GUIproj/src/java/model/UserDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/CartItem.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Cart.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Product.java</file>
-            <file>file:/D:/GUIproj/src/java/model/ProductDAO.java</file>
-            <file>file:/D:/GUIproj/web/WEB-INF/classes/com/guiProj/servlets/WebServlet.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/User.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Employee.java</file>
         </group>
     </open-files>
 </project-private>

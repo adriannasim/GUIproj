@@ -17,7 +17,12 @@ public class DatabaseConn {
     private String host = "jdbc:derby://localhost:1527/artGallerydb";
     private String user = "nbuser";
     private String password = "nbuser";
+<<<<<<< Updated upstream
     private static Connection conn;
+=======
+
+    private Connection conn;
+>>>>>>> Stashed changes
 
     public DatabaseConn() {
         // try {
