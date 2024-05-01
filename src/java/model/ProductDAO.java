@@ -93,16 +93,57 @@ public class ProductDAO {
         return prod;
     }
 
-    public void insertProd(Product product) {
-        // Database query to insert product
+    public void insertRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, String prodaddeddate) {
+        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?)";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodid);
+            stmt.setString(2, prodname);
+            stmt.setString(3, proddesc);
+            stmt.setDouble(4, prodprice);
+            stmt.setInt(5, qtyavailable);
+            stmt.setString(6, prodimg);
+            stmt.setString(7, prodkeywords);
+            stmt.setString(8, prodaddeddate);
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
     }
 
-    public void updateProd(Product product) {
-        // Database query to update product
+    public void updateRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, String prodaddeddate) {
+        String queryStr = "UPDATE " + tableName + " SET prodname=?,proddesc=?,prodprice=?,qtyavailable=?,prodimg=?,prodkeywords=?,prodaddeddate=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodname);
+            stmt.setString(2, proddesc);
+            stmt.setDouble(3, prodprice);
+            stmt.setInt(4, qtyavailable);
+            stmt.setString(5, prodimg);
+            stmt.setString(6, prodkeywords);
+            stmt.setString(7, prodaddeddate);
+            stmt.setString(8, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
     }
 
-    public void deleteProd(int productId) {
-        // Database query to delete product
+    public void deleteRecord(String username) {
+        String queryStr = "DELETE FROM " + tableName + " WHERE username=?";
+        try {
+            stmt = dbConn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, username);
+            stmt.execute();
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
     }
 
     public void closeConnection() {
