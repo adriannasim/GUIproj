@@ -4,19 +4,19 @@ package entity;
 public class PaymentInfo {
     private String paymentId;
     private String orderId;
+    private String custId;
     private String paymentType; // "cash" or "card"
     private PaymentCard paymentCard; // Optional, only if paymentType is "card"
-    private double payAmount;
     
     public PaymentInfo() {
 
     }
 
-    public PaymentInfo(String paymentId, String orderId, String paymentType, PaymentCard paymentCard, double payAmount) {
+    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard) {
         this.paymentId = paymentId;
         this.orderId = orderId;
+        this.custId = custId;
         this.paymentType = paymentType;
-        this.payAmount = payAmount;
     }
 
     // Getter methods
@@ -28,6 +28,10 @@ public class PaymentInfo {
         return orderId;
     }
 
+    public String getCustId() {
+        return custId;
+    }
+    
     public String getPaymentType() {
         return paymentType;
     }
@@ -35,18 +39,18 @@ public class PaymentInfo {
     public PaymentCard getPaymentCard() {
         return paymentCard;
     }
-    
-    public double getPayAmount() {
-        return payAmount;
-    }
 
     // Setter methods
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
 
-    public void setUserId(String userId) {
-        this.orderId = userId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+    
+    public void setCustId(String custId) {
+        this.custId = custId;
     }
 
     public void setPaymentType(String paymentType) {
@@ -55,10 +59,6 @@ public class PaymentInfo {
 
     public void setPaymentCard(PaymentCard paymentCard) {
         this.paymentCard = paymentCard;
-    }
-    
-    public void setPayAmount(double payAmount) {
-        this.payAmount = payAmount;
     }
 }
 

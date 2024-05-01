@@ -63,4 +63,14 @@ public class CustOrder {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
+    
+    // Calculate total order price
+    public double calculateTotalPrice(){
+        ArrayList<CartItem> orderItems = cart.getItemList();
+        double totalPrice = 0;
+        for (CartItem item : orderItems){
+            totalPrice += item.calculatePrice();
+        }
+        return totalPrice;
+    }
 }
