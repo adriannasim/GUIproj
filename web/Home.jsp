@@ -43,7 +43,7 @@
                 error: function (xhr, status, error) {
                   // Handle error response if needed
                   console.error("Error loading products:", error);
-                },
+                }
               });
             });
           </script>
