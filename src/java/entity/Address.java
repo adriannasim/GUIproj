@@ -4,7 +4,7 @@ package entity;
 //Shipping address & Billing address
 public class Address {
 
-    private String shippingAddId;
+    private String addId;
     private String address;
     private String country;
     private String city;
@@ -16,7 +16,7 @@ public class Address {
     }
 
     public Address(String shippingAddId, String address, String country, String city, String state, String postalCode) {
-        this.shippingAddId = shippingAddId;
+        this.addId = shippingAddId;
         this.address = address;
         this.country = country;
         this.city = city;
@@ -26,7 +26,7 @@ public class Address {
 
     // Getter methods
     public String getShippingAddId() {
-        return shippingAddId;
+        return addId;
     }
 
     public String getAddress() {
@@ -51,7 +51,7 @@ public class Address {
 
     // Setter methods
     public void setShippingAddId(String shippingAddId) {
-        this.shippingAddId = shippingAddId;
+        this.addId = shippingAddId;
     }
 
     public void setAddress(String address) {
