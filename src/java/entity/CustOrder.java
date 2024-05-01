@@ -66,11 +66,6 @@ public class CustOrder {
     
     // Calculate total order price
     public double calculateTotalPrice(){
-        ArrayList<CartItem> orderItems = cart.getItemList();
-        double totalPrice = 0;
-        for (CartItem item : orderItems){
-            totalPrice += item.calculatePrice();
-        }
-        return totalPrice;
+        return cart.calculateTotalPrice();
     }
 }
