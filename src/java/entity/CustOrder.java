@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CustOrder {
     private String orderId;
-    private String userId;
+    private String custId;
     private Date date;
     private String status;
     private Cart cart;
@@ -14,9 +14,9 @@ public class CustOrder {
 
     }
 
-    public CustOrder(String orderId, String userId, Date date, String status, Cart cart) {
+    public CustOrder(String orderId, String custId, Date date, String status, Cart cart) {
         this.orderId = orderId;
-        this.userId = userId;
+        this.custId = custId;
         this.date = date;
         this.status = status;
         this.cart = cart;
@@ -27,8 +27,8 @@ public class CustOrder {
         return orderId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getCustId() {
+        return custId;
     }
 
     public Date getDate() {
@@ -48,8 +48,8 @@ public class CustOrder {
         this.orderId = orderId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCustId(String custId) {
+        this.custId = custId;
     }
 
     public void setDate(Date date) {
