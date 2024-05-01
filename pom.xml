@@ -17,6 +17,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <version>4.8.2</version>
 <scope>test</scope>
 </dependency>
+ <dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.5.4</version>
+</dependency>
 </dependencies>
 <build>
     <plugins>

@@ -30,7 +30,6 @@ public class RetrieveProducts extends HttpServlet {
         if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
 
             prodId = request.getParameter("id");
-            ProductDAO productDAO = new ProductDAO();
             prodList.add(prodDA.getProductById(prodId));
 
         } else {
