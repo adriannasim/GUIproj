@@ -1,6 +1,8 @@
 //package src.java.entity;
 package entity;
 
+import java.time.LocalDate;
+
 public class Product {
 
     private String prodId;
@@ -10,12 +12,13 @@ public class Product {
     private int qtyAvailable;
     private String[] prodImg;
     private String[] prodKeywords;
+    private LocalDate prodAddedDate;
 
     public Product() {
 
     }
 
-    public Product(String prodId, String prodName, String prodDesc, double prodPrice, int qtyAvailable, String[] prodImg, String[] prodKeywords) {
+    public Product(String prodId, String prodName, String prodDesc, double prodPrice, int qtyAvailable, String[] prodImg, String[] prodKeywords, LocalDate prodAddedDate) {
         this.prodId = prodId;
         this.prodName = prodName;
         this.prodDesc = prodDesc;
@@ -23,6 +26,7 @@ public class Product {
         this.qtyAvailable = qtyAvailable;
         this.prodImg = prodImg;
         this.prodKeywords = prodKeywords;
+        this.prodAddedDate = prodAddedDate;
     }
 
     // Getter methods
@@ -36,6 +40,21 @@ public class Product {
 
     public String getProdDesc() {
         return prodDesc;
+    }
+
+    public String get30WordsDesc() {
+        int countWords = prodDesc.split("\\s").length;
+        String desc = null;
+        if (countWords <= 30) {
+            desc = prodDesc;
+        } else {
+            int index = 0;
+            for (int count = 0; count < 30; count++) {
+                index = prodDesc.indexOf(' ', index + 1);
+            }
+            desc = prodDesc.substring(0, index)+ " ...";
+        }
+        return desc;
     }
 
     public double getProdPrice() {
@@ -52,6 +71,10 @@ public class Product {
 
     public String[] getProdKeywords() {
         return prodKeywords;
+    }
+
+    public LocalDate getProdAddedDate() {
+        return prodAddedDate;
     }
 
     // Setter methods
@@ -74,13 +97,17 @@ public class Product {
     public void setQtyAvailable(int qtyAvailable) {
         this.qtyAvailable = qtyAvailable;
     }
-    
+
     public void setProdImg(String[] prodImg) {
         this.prodImg = prodImg;
     }
-    
+
     public void setProdKewords(String[] prodKeywords) {
         this.prodKeywords = prodKeywords;
+    }
+
+    public void setProdAddedDate(LocalDate prodAddedDate) {
+        this.prodAddedDate = prodAddedDate;
     }
 
 }

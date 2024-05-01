@@ -13,6 +13,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class ProductDAO {
 
@@ -27,7 +32,7 @@ public class ProductDAO {
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
 
-        // Database query to retrieve product by ID
+        // Database query to retrieve all the products
         String queryStr = "SELECT * FROM " + tableName;
 
         try {
@@ -42,7 +47,7 @@ public class ProductDAO {
                     prodImgArray = prodImgList.split(";");
                 } else {
                     // If there's only one image, create an array with a single element
-                    prodImgArray = new String[]{prodImgList};
+                    prodImgArray = new String[] { prodImgList };
                 }
 
                 String prodKeyList = rs.getString("prodKeywords");
@@ -52,11 +57,19 @@ public class ProductDAO {
                     prodKeyArray = prodKeyList.split(";");
                 } else {
                     // If there's only one keyword, create an array with a single element
-                    prodKeyArray = new String[]{prodKeyList};
+                    prodKeyArray = new String[] { prodKeyList };
                 }
 
-                Product prod = new Product(rs.getString("prodId"), rs.getString("prodName"), rs.getString("prodDesc"),
-                        rs.getDouble("prodPrice"), rs.getInt("qtyAvailable"), prodImgArray, prodKeyArray);
+                Product prod = new Product(
+                        rs.getString("prodId"),
+                        rs.getString("prodName"),
+                        rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"),
+                        rs.getInt("qtyAvailable"),
+                        prodImgArray,
+                        prodKeyArray,
+                        LocalDate.parse(rs.getString("prodAddedDate")));
+
                 prodList.add(prod);
             }
         } catch (SQLException ex) {
@@ -81,16 +94,187 @@ public class ProductDAO {
                 String prodImgList = rs.getString("prodImg");
                 String[] prodImgArray = prodImgList.split(";");
                 String prodKeyList = rs.getString("prodKeywords");
-                String[] prodKeyArray = prodImgList.split(";");
+                String[] prodKeyArray = prodKeyList.split(";");
 
-                prod = new Product(prodId, rs.getString("prodName"), rs.getString("prodDesc"),
-                        rs.getDouble("prodPrice"), rs.getInt("qtyAvailable"), prodImgArray, prodKeyArray);
+                prod = new Product(rs.getString("prodId"),
+                        rs.getString("prodName"),
+                        rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"),
+                        rs.getInt("qtyAvailable"),
+                        prodImgArray,
+                        prodKeyArray,
+                        LocalDate.parse(rs.getString("prodAddedDate")));
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
             ex.printStackTrace();
         }
         return prod;
+    }
+
+    public Product getMainProduct() {
+        Product prod = null;
+
+        // Database query to retrieve main product
+        String queryStr = "SELECT * FROM " + tableName + " WHERE main = 'T'";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String prodImgList = rs.getString("prodImg");
+                String[] prodImgArray = prodImgList.split(";");
+                String prodKeyList = rs.getString("prodKeywords");
+                String[] prodKeyArray = prodKeyList.split(";");
+
+                prod = new Product(rs.getString("prodId"),
+                        rs.getString("prodName"),
+                        rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"),
+                        rs.getInt("qtyAvailable"),
+                        prodImgArray,
+                        prodKeyArray,
+                        LocalDate.parse(rs.getString("prodAddedDate")));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error occurred retrieving product: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return prod;
+    }
+
+    public ArrayList<Product> getRecommendedProducts(String prodId) {
+        Product selectedProd = getProductById(prodId);
+        String[] keywords1 = selectedProd.getProdKeywords();
+
+        ArrayList<Product> allProdList = getAllProducts();
+        ArrayList<Product> filteredProdList = new ArrayList<Product>();
+        for (Product product : allProdList) {
+            if (!product.getProdId().equals(selectedProd.getProdId())) {
+                filteredProdList.add(product);
+            }
+        }
+
+        ArrayList<Product> matchedProducts = new ArrayList<>();
+
+        // Iterate through all products
+        for (Product product : filteredProdList) {
+            String[] keywords2 = product.getProdKeywords();
+
+            // Calculate the number of common keywords between the selected product and the
+            // current product
+            int commonKeywords = countCommonKeywords(keywords1, keywords2);
+
+            if (commonKeywords >= 1) {
+                matchedProducts.add(product);
+            }
+        }
+
+        // Sort the matched products based on the number of common keywords (descending
+        // order)
+        Collections.sort(matchedProducts, (p1, p2) -> {
+            int commonKeywords1 = countCommonKeywords(keywords1, p1.getProdKeywords());
+            int commonKeywords2 = countCommonKeywords(keywords1, p2.getProdKeywords());
+            return Integer.compare(commonKeywords2, commonKeywords1);
+        });
+
+        // Return the top 3 matches if available, otherwise shuffle and return others
+        if (matchedProducts.size() >= 3) {
+            return new ArrayList<>(matchedProducts.subList(0, 3));
+        } else if (matchedProducts.size() == 2) {
+            Iterator<Product> iterator = filteredProdList.iterator();
+            while (iterator.hasNext()) {
+                Product product = iterator.next();
+                if (product.getProdId().equals(matchedProducts.get(0).getProdId())
+                        || product.getProdId().equals(matchedProducts.get(1).getProdId())) {
+                    iterator.remove();
+                }
+            }
+            Collections.shuffle(filteredProdList);
+            matchedProducts.add(filteredProdList.get(0));
+            return matchedProducts;
+        } else if (matchedProducts.size() == 1) {
+            Iterator<Product> iterator = filteredProdList.iterator();
+            while (iterator.hasNext()) {
+                Product product = iterator.next();
+                if (product.getProdId().equals(matchedProducts.get(0).getProdId())) {
+                    iterator.remove();
+                }
+            }
+            Collections.shuffle(filteredProdList);
+            matchedProducts.add(filteredProdList.get(0));
+            matchedProducts.add(filteredProdList.get(1));
+            return matchedProducts;
+        } else {
+            Collections.shuffle(filteredProdList);
+            matchedProducts.add(filteredProdList.get(0));
+            matchedProducts.add(filteredProdList.get(1));
+            matchedProducts.add(filteredProdList.get(2));
+            return matchedProducts;
+        }
+    }
+
+    private int countCommonKeywords(String[] keywords1, String[] keywords2) {
+        HashSet<String> set = new HashSet<>(Arrays.asList(keywords1));
+        int commonKeywords = 0;
+        for (String keyword : keywords2) {
+            if (set.contains(keyword)) {
+                commonKeywords++;
+            }
+        }
+        return commonKeywords;
+    }
+
+    public ArrayList<Product> getLatestProducts() {
+        ArrayList<Product> prodList = new ArrayList<>();
+
+        // Database query to retrieve latest products
+        String queryStr = "SELECT * FROM " + tableName
+                + " WHERE prodAddedDate <= NOW() ORDER BY prodAddedDate DESC LIMIT 4";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String prodImgList = rs.getString("prodImg");
+                String[] prodImgArray = null;
+                if (prodImgList.contains(";")) {
+                    // If there are multiple images, split them
+                    prodImgArray = prodImgList.split(";");
+                } else {
+                    // If there's only one image, create an array with a single element
+                    prodImgArray = new String[] { prodImgList };
+                }
+
+                String prodKeyList = rs.getString("prodKeywords");
+                String[] prodKeyArray = null;
+                if (prodKeyList.contains(";")) {
+                    // If there are multiple keywords, split them
+                    prodKeyArray = prodKeyList.split(";");
+                } else {
+                    // If there's only one keyword, create an array with a single element
+                    prodKeyArray = new String[] { prodKeyList };
+                }
+
+                Product prod = new Product(
+                        rs.getString("prodId"),
+                        rs.getString("prodName"),
+                        rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"),
+                        rs.getInt("qtyAvailable"),
+                        prodImgArray,
+                        prodKeyArray,
+                        LocalDate.parse(rs.getString("prodAddedDate")));
+                prodList.add(prod);
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error occurred retrieving product: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return prodList;
     }
 
     public void insertProd(Product product) {
