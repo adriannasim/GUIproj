@@ -50,5 +50,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             </executions>
         </plugin>
     </plugins>
+    <resources>
+        <resource>
+            <!-- Include resources from the web directory -->
+            <directory>GUIproj/web</directory>
+            <includes>
+                <!-- Include all files and subdirectories -->
+                <include>**/*</include>
+            </includes>
+        </resource>
+    </resources>
 </build>
 </project>

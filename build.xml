@@ -13,12 +13,6 @@
     <target name="info">
       <echo>Hello World - Welcome to Apache Ant!</echo>
    </target>
-   <property name="lib.dir" value="lib"/>
-
-    <path id="classpath">
-        <fileset dir="${lib.dir}" includes="*.jar"/>
-        <pathelement location="lib/postgresql-42.5.4.jar"/>
-    </path>
 
     <!--
 
