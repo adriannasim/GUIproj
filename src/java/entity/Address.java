@@ -3,14 +3,15 @@ package entity;
 
 //Shipping address & Billing address
 public class Address {
-    private String shippingAddId;
-	private String address;
-    private String country;
-	private String city;
-	private String state;
-	private String postalCode;
 
-    public Address(){
+    private String shippingAddId;
+    private String address;
+    private String country;
+    private String city;
+    private String state;
+    private String postalCode;
+
+    public Address() {
 
     }
 
@@ -73,4 +74,3 @@ public class Address {
         this.postalCode = postalCode;
     }
 }
-
