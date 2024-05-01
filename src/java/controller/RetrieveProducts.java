@@ -21,22 +21,23 @@ public class RetrieveProducts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //initializations
         ProductDAO prodDA = new ProductDAO();
-
         String prodId;
-        ArrayList<Product> prodList = null;
+        ArrayList<Product> prodList = new ArrayList<>();
         HttpSession session = request.getSession();
 
+        //adding products to the arraylist prodList
         if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
-
             prodId = request.getParameter("id");
             prodList.add(prodDA.getProductById(prodId));
-
         } else {
             prodList = prodDA.getAllProducts();
         }
 
-        if (prodList != null) {
+        //if there's products in the arraylist prodList
+        if (prodList.isEmpty() == false) {
             session.setAttribute("prodList", prodList);
         } else {
             session.removeAttribute("prodList");
