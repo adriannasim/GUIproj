@@ -1,4 +1,4 @@
-package com.guiProj.servlets;
+package controller;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

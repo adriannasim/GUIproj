@@ -7,17 +7,15 @@ public class Cart {
     private String cartId;
     private String userId;
     private ArrayList<CartItem> itemList = new ArrayList<CartItem>();
-    private double totalAmount;
 
     public Cart() {
 
     }
 
-    public Cart(String cartId, String userId, ArrayList<CartItem> itemList, double totalAmount) {
+    public Cart(String cartId, String userId, ArrayList<CartItem> itemList) {
         this.cartId = cartId;
         this.userId = userId;
         this.itemList = itemList;
-        this.totalAmount = totalAmount;
     }
 
     // Getter methods
@@ -33,10 +31,6 @@ public class Cart {
         return itemList;
     }
 
-    public double getCartTotalPrice() {
-        return totalAmount;
-    }
-
     // Setter methods
     public void setCartId(String cartId) {
         this.cartId = cartId;
@@ -50,12 +44,16 @@ public class Cart {
         this.itemList = itemList;
     }
 
-    public void setCartTotalPrice(double cartTotalPrice) {
-        this.totalAmount = cartTotalPrice;
-    }
-
     public void addToCart(CartItem cartItem) {
         itemList.add(cartItem);
     }
     
+    // Calculate total price
+    public double calculateTotalPrice(){
+        double totalPrice = 0;
+        for (CartItem item : itemList){
+            totalPrice += item.calculatePrice();
+        }
+        return totalPrice;
+    }
 }

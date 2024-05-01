@@ -10,7 +10,7 @@ public class Customer extends User{
     private int contactNo;
     private Date dateOfBirth;
     private String gender;
-    private Address custAdd;
+    private ArrayList<Address> custAdd;
     
     public Customer(){
 
@@ -25,7 +25,7 @@ public class Customer extends User{
         this.contactNo = contactNo;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
-        this.custAdd = custAdd;
+        this.custAdd.add(custAdd);
     }
 
     // Getter methods
@@ -53,7 +53,7 @@ public class Customer extends User{
         return gender;
     }
 
-    public Address getCustAdd() {
+    public ArrayList<Address> getCustAdd() {
         return custAdd;
     }
 
@@ -82,7 +82,11 @@ public class Customer extends User{
         this.gender = gender;
     }
 
-    public void setCustAdd(Address custAdd) {
+    public void setCustAdd(ArrayList<Address> custAdd) {
         this.custAdd = custAdd;
+    }
+    
+    public void addCustAdd(Address custAdd) {
+        this.custAdd.add(custAdd);
     }
 }

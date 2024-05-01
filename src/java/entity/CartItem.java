@@ -3,10 +3,10 @@ package entity;
 
 public class CartItem {
     private String cartItemId;
-	private int itemQty;
-	private double itemPrice; 
+    private int itemQty;
+    private double itemPrice;
 
-    public CartItem(){
+    public CartItem() {
 
     }
 
@@ -40,5 +40,10 @@ public class CartItem {
 
     public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
+    }
+
+    // Calculate price for the item
+    public double calculatePrice() {
+        return itemQty * itemPrice;
     }
 }

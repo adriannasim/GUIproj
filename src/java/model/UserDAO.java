@@ -7,13 +7,12 @@ import java.sql.*;
 import java.util.*;
 
 /*
-1. Username must be unique. 
+1. Username must be unique and cannot be changed in the future. 
 2. Retrieve all users' record.
 3. Retrieve user record by username.
 4. Retrieve user record by email.
 5. Insert user record.
-6. Update user email.
-7. Update user password.
+6. Update user details.
 8. Delete user record.
 */
 public class UserDAO {
@@ -96,26 +95,14 @@ public class UserDAO {
         }
     }
 
-    public void updateRecordEmail(String username, String email) {
-        String queryStr = "UPDATE " + tableName + " SET email=? WHERE username=?";
+    public void updateRecordEmail(String username, String password, String email) {
+        String queryStr = "UPDATE " + tableName + " SET password=?,email=? WHERE username=?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, email);
-            stmt.setString(2, username);
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }
-    }
-
-    public void updateRecordPassword(String username, String userPwd) {
-        String queryStr = "UPDATE " + tableName + " SET password=? WHERE username=?";
-
-        try {
-            stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, userPwd);
-            stmt.setString(2, username);
+            stmt.setString(1, password);
+            stmt.setString(2, email);
+            stmt.setString(3, username);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.getMessage();
@@ -137,33 +124,26 @@ public class UserDAO {
         UserDAO userDAO = new UserDAO();
 
         // Inserting records: can run
-        //userDAO.insertRecord("user1", "pwd1", "user1@gmail.com");
-        //userDAO.insertRecord("user2", "pwd2", "user2@gmail.com");
+//        userDAO.insertRecord("user1", "pwd1", "user1@gmail.com");
+//        userDAO.insertRecord("user2", "pwd2", "user2@gmail.com");
         
         // Get record : can run
-        /*
-        ArrayList<User> users = userDAO.getAllRecord();
-        for (User user:users){
-            System.out.println(user.getUsername());
-        }
-        User usertest1 = userDAO.getRecordByEmail("user1@gmail.com", "pwd1");
-        System.out.println(usertest1.getUsername());
-        User usertest2 = userDAO.getRecordByUsername("user2", "pwd2");
-        System.out.println(usertest2.getUsername());
-         */
+//        ArrayList<User> users = userDAO.getAllRecord();
+//        for (User user:users){
+//            System.out.println(user.getUsername());
+//        }
+//        User usertest1 = userDAO.getRecordByEmail("user1@gmail.com", "pwd1");
+//        System.out.println(usertest1.getUsername());
+//        User usertest2 = userDAO.getRecordByUsername("user2", "pwd2");
+//        System.out.println(usertest2.getUsername());
         
         // Updating record : can run
-        /*
-        userDAO.updateRecordEmail("user1", "user1Change@gmail.com");
-        userDAO.updateRecordPassword("user2", "pwdChange");
-        User usertest1 = userDAO.getRecordByEmail("user1Change@gmail.com", "pwd1");
-        System.out.println(usertest1.getEmail());
-        User usertest2 = userDAO.getRecordByUsername("user2", "pwdChange");
-        System.out.println(usertest2.getUserPwd());
-         */
+//        userDAO.updateRecord("user1", "user1Change@gmail.com", "pwdChange");
+//        User usertest1 = userDAO.getRecordByEmail("user1Change@gmail.com", "pwd1");
+//        System.out.println(usertest1.getEmail());
         
         // Deleting records : can run
-        //userDAO.deleteRecord("user2");
+//        userDAO.deleteRecord("user2");
     }
 
 }

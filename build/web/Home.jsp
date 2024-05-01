@@ -1,11 +1,13 @@
 <%-- Begin: Page Declaration --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%@page import="entity.Product,java.util.ArrayList"%>
-<%-- End: Page Declaration --%>
+<!--tags-->
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%-- Begin: Access RetrieveProducts Servlet (This servlet will run automatically when the page is loaded) --%>
-<jsp:include page="/RetrieveProducts" />
-<%-- End: Access RetrieveProducts Servlet --%>
+<!--imports-->
+<%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
+
+<!--includes-->
+<jsp:include page="/RetrieveProducts"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
 <% 

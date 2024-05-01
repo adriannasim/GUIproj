@@ -3,17 +3,26 @@ package entity;
 
 public class PaymentInfo {
     private String paymentId;
-    private String userId;
+    private String orderId;
+    private String custId;
     private String paymentType; // "cash" or "card"
     private PaymentCard paymentCard; // Optional, only if paymentType is "card"
-
+    
     public PaymentInfo() {
 
     }
 
-    public PaymentInfo(String paymentId, String userId, String paymentType, PaymentCard paymentCard) {
+    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType) {
         this.paymentId = paymentId;
-        this.userId = userId;
+        this.orderId = orderId;
+        this.custId = custId;
+        this.paymentType = paymentType;
+    }
+    
+    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard) {
+        this.paymentId = paymentId;
+        this.orderId = orderId;
+        this.custId = custId;
         this.paymentType = paymentType;
         this.paymentCard = paymentCard;
     }
@@ -23,10 +32,14 @@ public class PaymentInfo {
         return paymentId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getOrderId() {
+        return orderId;
     }
 
+    public String getCustId() {
+        return custId;
+    }
+    
     public String getPaymentType() {
         return paymentType;
     }
@@ -40,8 +53,12 @@ public class PaymentInfo {
         this.paymentId = paymentId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+    
+    public void setCustId(String custId) {
+        this.custId = custId;
     }
 
     public void setPaymentType(String paymentType) {
