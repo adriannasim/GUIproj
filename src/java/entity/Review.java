@@ -6,7 +6,7 @@ import java.util.*;
 public class Review {
     private String reviewId;
     private String prodId;
-    private String userId;
+    private String username;
     private int rating; // 1-5 (star)
     private String comment;
     private Date date;
@@ -15,10 +15,10 @@ public class Review {
 
     }
 
-    public Review(String reviewId, String prodId, String userId, int rating, String comment, Date date) {
+    public Review(String reviewId, String prodId, String username, int rating, String comment, Date date) {
         this.reviewId = reviewId;
         this.prodId = prodId;
-        this.userId = userId;
+        this.username = username;
         this.rating = rating;
         this.comment = comment;
         this.date = date;
@@ -33,8 +33,8 @@ public class Review {
         return prodId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public int getRating() {
@@ -58,8 +58,8 @@ public class Review {
         this.prodId = prodId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setRating(int rating) {
