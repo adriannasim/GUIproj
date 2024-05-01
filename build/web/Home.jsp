@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
-<jsp:include page="/RetrieveProducts"/>
+
 
 <% ArrayList<Product> sessProdList = new ArrayList<Product>(); 
     if (session.getAttribute("prodList") != null) 
