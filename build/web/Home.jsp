@@ -29,24 +29,6 @@
             integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
             crossorigin="anonymous"
           ></script>
-          <script>
-            // Wait for the DOM to be ready
-            $(document).ready(function () {
-              // Make an AJAX GET request to RetrieveProducts servlet
-              $.ajax({
-                url: "RetrieveProducts",
-                type: "GET",
-                success: function (data) {
-                  // Handle success response if needed
-                  console.log("Products loaded successfully.");
-                },
-                error: function (xhr, status, error) {
-                  // Handle error response if needed
-                  console.error("Error loading products:", error);
-                },
-              });
-            });
-          </script>
         </head>
         <body class="text-center">
           <h1>Home</h1>
