@@ -16,7 +16,7 @@ import java.util.logging.Level;
 
 public class ProductDAO {
 
-    private String tableName = "Product";
+    private String tableName = "public.Product";
     private DatabaseConn conn;
     private PreparedStatement stmt;
 
@@ -135,11 +135,11 @@ public class ProductDAO {
         }
     }
 
-    public void deleteRecord(String username) {
-        String queryStr = "DELETE FROM " + tableName + " WHERE username=?";
+    public void deleteRecord(String prodid) {
+        String queryStr = "DELETE FROM " + tableName + " WHERE prodid=?";
         try {
-            stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, username);
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, prodid);
             stmt.execute();
         } catch (SQLException ex) {
             ex.getMessage();
