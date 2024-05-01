@@ -12,11 +12,19 @@ public class PaymentInfo {
 
     }
 
+    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType) {
+        this.paymentId = paymentId;
+        this.orderId = orderId;
+        this.custId = custId;
+        this.paymentType = paymentType;
+    }
+    
     public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.custId = custId;
         this.paymentType = paymentType;
+        this.paymentCard = paymentCard;
     }
 
     // Getter methods
