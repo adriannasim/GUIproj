@@ -65,7 +65,7 @@ public class CustOrder {
     }
     
     // Calculate total order price
-    public double calculateTotalPrice(){
+    public double getTotalPrice(){
         return cart.calculateTotalPrice();
     }
 }
