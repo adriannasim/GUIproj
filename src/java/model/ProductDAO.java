@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -91,6 +92,34 @@ public class ProductDAO {
             ex.printStackTrace();
         }
         return prod;
+    }
+    
+    public List<String> matchProductByName(String query) 
+    {
+        //Initializing a list to store all matching result
+        List<String> matches = null;
+        
+        //Database query to retrieve product by ID
+        String queryStr = "SELECT * FROM " + tableName + " WHERE LOWER(prodName) LIKE ?";
+
+        try 
+        {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, "%" + query + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            //Add all result to list
+            while (rs.next())
+            {
+                matches.add(rs.getString("prodName"));
+            }
+        } 
+        catch (SQLException ex) 
+        {
+            System.err.println("Error occurred retrieving product: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return matches;
     }
 
     public void insertProd(Product product) {

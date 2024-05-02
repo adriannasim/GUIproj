@@ -1,11 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<!--tags-->
+<%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<!--imports-->
+<%--imports--%>
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
 
-<!--includes-->
+<%--includes--%>
 <jsp:include page="/RetrieveProducts"/>
 
 <% ArrayList<Product> sessProdList = new ArrayList<Product>(); 
@@ -21,13 +21,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Home Page</title>
 
-        <!-- Include commonFiles.tag -->
+        <%-- Include commonFiles.tag --%>
         <custom:commonFiles />
         
-        <!-- script to load RetrieveProducts servlet -->
         <script>
-          // Wait for the DOM to be ready
-          $(document).ready(function () {
+        // Wait for the DOM to be ready
+        $(document).ready(function () {
             // Make an AJAX GET request to RetrieveProducts servlet
             $.ajax({
               url: "RetrieveProducts",
@@ -41,13 +40,13 @@
                 console.error("Error loading products:", error);
               }
             });
-          });
+        });
         </script>
     </head>
     
     <body class="text-center">
-        <!--header-->
-        <jsp:include page="header.jsp" />
+        <%--header--%>
+        <jsp:include page="components/header.jsp" />
     
         <!--start of content-->
         <h1>Home</h1>
@@ -73,7 +72,7 @@
         <% } %>
         <!--end of content-->
         
-        <!--footer-->
-        <jsp:include page="footer.jsp" />
+        <%--footer--%>
+        <jsp:include page="components/footer.jsp" />
     </body>
 </html>

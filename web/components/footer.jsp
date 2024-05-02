@@ -1,17 +1,14 @@
-<%-- 
-    Document   : footer
-    Created on : May 1, 2024, 5:43:24 PM
-    Author     : adria
---%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<!--tags-->
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--imports--%>
+
+<%--includes--%>
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+        <!--Start of footer-->
+        <footer>
+            <h1>Footer</h1>
+        </footer>
+        <!--End of footer-->
