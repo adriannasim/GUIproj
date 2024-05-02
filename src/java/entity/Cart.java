@@ -49,11 +49,11 @@ public class Cart {
     }
     
     // Calculate total price
-    public double calculateTotalPrice(){
-        double totalPrice = 0;
-        for (CartItem item : itemList){
-            totalPrice += item.calculatePrice();
-        }
-        return totalPrice;
-    }
+    //public double calculateTotalPrice(){
+    //    double totalPrice = 0;
+    //    for (CartItem item : itemList){
+    //        totalPrice += item.calculatePrice();
+    //    }
+    //    return totalPrice;
+    //}
 }

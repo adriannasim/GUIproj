@@ -73,6 +73,21 @@
                     <% String keywords = String.join(" , ", product.getProdKeywords());%>
                     <%= keywords%>
                 </div>
+                <div class="btns">
+                    <button class="btn btn-link">
+                        -
+                    </button>
+                    <input
+                        min="0"
+                        name="quantity"
+                        value="1"
+                        type="number"
+                        class="form-control form-control-sm no-spinners mx-2"
+                        />
+                    <button class="btn btn-link">
+                        +
+                    </button>
+                </div>
                 <button> Add to Cart </button>
             </div>
         </div> 

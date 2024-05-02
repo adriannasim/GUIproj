@@ -4,16 +4,16 @@ package entity;
 public class CartItem {
     private String cartItemId;
     private int itemQty;
-    private double itemPrice;
+    private String prodId;
 
     public CartItem() {
 
     }
 
-    public CartItem(String cartItemId, int itemQty, double itemPrice) {
+    public CartItem(String cartItemId, int itemQty, String prodId) {
         this.cartItemId = cartItemId;
         this.itemQty = itemQty;
-        this.itemPrice = itemPrice;
+        this.prodId = prodId;
     }
 
     // Getter methods
@@ -25,8 +25,8 @@ public class CartItem {
         return itemQty;
     }
 
-    public double getItemPrice() {
-        return itemPrice;
+    public String getProdId() {
+        return prodId;
     }
 
     // Setter methods
@@ -38,12 +38,12 @@ public class CartItem {
         this.itemQty = itemQty;
     }
 
-    public void setItemPrice(double itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setProdId(String prodId) {
+        this.prodId = prodId;
     }
 
     // Calculate price for the item
-    public double calculatePrice() {
-        return itemQty * itemPrice;
-    }
+    //public double calculatePrice() {
+    //    return itemQty * itemPrice;
+    //}
 }
