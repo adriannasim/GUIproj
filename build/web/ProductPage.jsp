@@ -1,11 +1,13 @@
-<%-- Begin: Page Declaration --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="entity.Product,java.util.ArrayList"%> 
-<%-- End: Page Declaration --%>
 
-<%-- Begin: Access RetrieveProducts Servlet (This servlet will run automatically when the page is loaded) --%>
+<%--imports--%>
+<%@page import="entity.Product,java.util.ArrayList"%> 
+
+<%--tags--%>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+
+<%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
 <jsp:include page="/RetrieveProducts"/>
-<%-- End: Access RetrieveProducts Servlet --%>
 
 <%-- Begin: Retrieve Product List and Main Product From Session (prodList & mainProduct) --%>
 <%
@@ -26,6 +28,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Products</title>
+        <!-- Include commonFiles.tag -->
+        <custom:commonFiles/>
         <!-- Begin: Import Bootstrap Libraries -->
         <link
             rel="stylesheet"
@@ -46,14 +50,17 @@
         ></script>
         <!-- End: Import Bootstrap Libraries -->
     </head>
-    
+
     <body class="text-center">
-        <h1>Artworks</h1>
+         <!--header-->
+        <jsp:include page="components/header.jsp" />
         
+        <h1>Artworks</h1>
+
         <!-- Begin: Main Product Section (This part will display the main product in the store based on database settings of main=T) -->
         <div class="d-flex flex-row align-items-center">
             <div>
-                <%  
+                <%
                     if (sessMainProduct != null) {
                         String imageSrc = request.getContextPath() + sessMainProduct.getProdImg()[0];
                 %>
@@ -70,11 +77,11 @@
                 </a>
             </div>
         </div>
-        <!-- End: Main Product Section (This part will display the main product in the store based on database settings of main=T) -->
+        <!-- End: Main Product Section -->
 
         <!-- Begin: All Products Section (This part will display all the products available in the store) -->
         <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
-            <% 
+            <%
                 Product product = null;
                 for (int i = 0; i < sessProdList.size(); i++) {
                     product = sessProdList.get(i);
@@ -86,7 +93,7 @@
                             src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>"
                             width="200px"
                             height="auto"
-                        />
+                            />
                     </div>
                     <div><%= product.getProdName()%></div>
                     <div><%= product.get30WordsDesc()%></div>
@@ -95,6 +102,9 @@
             </a>
             <% }%>
         </div>
-        <!-- End: All Products Section (This part will display all the products available in the store) -->
+        <!-- End: All Products Section -->
+        
+        <!--footer-->
+        <jsp:include page="components/footer.jsp" />
     </body>
 </html>

@@ -31,18 +31,20 @@ public class RetrieveProducts extends HttpServlet {
         Product mainProduct = new Product();
         HttpSession session = request.getSession();
 
-        //adding products to the lists or set the product
+        //If need retrieve specific product details and other recommended products
         if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
             prodId = request.getParameter("id");
             prodList.add(prodDA.getProductById(prodId));
             suggestionList = prodDA.getRecommendedProducts(prodId);
-        } else if (request.getParameter("all") != null && !request.getParameter("all").equals("")) {
+        } //If need retrieve all products and main product
+        else if (request.getParameter("all") != null && !request.getParameter("all").equals("")) {
             viewAll = request.getParameter("all");
             if (viewAll.equalsIgnoreCase("t")) {
                 prodList = prodDA.getAllProducts();
                 mainProduct = prodDA.getMainProduct();
             }
-        } else {
+        } //Else, for main page latest products
+        else {
             prodList = prodDA.getLatestProducts();
         }
 
@@ -52,7 +54,7 @@ public class RetrieveProducts extends HttpServlet {
         } else {
             session.removeAttribute("prodList");
         }
-        
+
         //if there's products in the arraylist suggestionList
         if (suggestionList.isEmpty() == false) {
             session.setAttribute("suggestionList", suggestionList);

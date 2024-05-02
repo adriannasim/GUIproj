@@ -1,14 +1,16 @@
-<%-- Begin: Page Declaration --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%@page import="entity.Product,java.util.ArrayList"%> 
-<%-- End: Page Declaration --%>
 
-<%-- Begin: Access RetrieveProducts Servlet (This servlet will run automatically when the page is loaded) --%>
+<%--imports--%>
+<%@page import="entity.Product,java.util.ArrayList"%> 
+
+<%--tags--%>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+
+<%--includes RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
 <jsp:include page="/RetrieveProducts"/>
-<%-- End: Access RetrieveProducts Servlet --%>
 
 <%-- Begin: Retrieve Product List & Suggested Product List From Session (prodList & suggestionList) --%>
-<% 
+<%
     ArrayList<Product> sessProdList = new ArrayList<Product>();
     if (session.getAttribute("prodList") != null) {
         sessProdList = (ArrayList<Product>) session.getAttribute("prodList");
@@ -26,6 +28,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product Details</title>
+        <!-- Include commonFiles.tag -->
+        <custom:commonFiles/>
         <!-- Begin: Import Bootstrap Libraries -->
         <link
             rel="stylesheet"
@@ -46,10 +50,12 @@
         ></script>
         <!-- End: Import Bootstrap Libraries -->
     </head>
-    
+
     <body class="text-center">
-        
-      <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
+        <!--header-->
+        <jsp:include page="components/header.jsp" />
+
+        <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
         <% Product product = sessProdList.get(0);%>
         <h1><%= product.getProdName()%></h1>
         <div class="d-flex flex-row align-items-center justify-content-center">
@@ -70,9 +76,9 @@
                 <button> Add to Cart </button>
             </div>
         </div> 
-      <!-- End: Product Details Section -->
+        <!-- End: Product Details Section -->
 
-      <!-- Begin: Recommended Artworks Section (This section will display 3 recommended artworks based on keywords) -->
+        <!-- Begin: Recommended Artworks Section (This section will display 3 recommended artworks based on keywords) -->
         <h3>You may also like</h3>
         <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
             <% Product suggestedProd = null;
@@ -85,7 +91,7 @@
                             src="${pageContext.request.contextPath}<%= suggestedProd.getProdImg()[0]%>"
                             width="200px"
                             height="auto"
-                        />
+                            />
                     </div>
                     <div><%= suggestedProd.getProdName()%></div>
                     <div><%= suggestedProd.get30WordsDesc()%></div>
@@ -95,5 +101,8 @@
             <% }%>
         </div>
         <!-- End: Recommended Artworks Section -->
+
+        <!--footer-->
+        <jsp:include page="components/footer.jsp" />
     </body>
 </html>

@@ -22,13 +22,13 @@
     
     <body class="text-center">
         <!--header-->
-        <jsp:include page="header.jsp" />
+        <jsp:include page="components/header.jsp" />
     
         <!--start of content-->
 
         <!--end of content-->
         
         <!--footer-->
-        <jsp:include page="footer.jsp" />
+        <jsp:include page="components/footer.jsp" />
     </body>
 </html>

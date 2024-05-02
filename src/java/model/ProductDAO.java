@@ -29,10 +29,10 @@ public class ProductDAO {
         conn = new DatabaseConn();
     }
 
+    // Retrieve all products
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
 
-        // Database query to retrieve all the products
         String queryStr = "SELECT * FROM " + tableName;
 
         try {
@@ -47,7 +47,7 @@ public class ProductDAO {
                     prodImgArray = prodImgList.split(";");
                 } else {
                     // If there's only one image, create an array with a single element
-                    prodImgArray = new String[] { prodImgList };
+                    prodImgArray = new String[]{prodImgList};
                 }
 
                 String prodKeyList = rs.getString("prodKeywords");
@@ -57,7 +57,7 @@ public class ProductDAO {
                     prodKeyArray = prodKeyList.split(";");
                 } else {
                     // If there's only one keyword, create an array with a single element
-                    prodKeyArray = new String[] { prodKeyList };
+                    prodKeyArray = new String[]{prodKeyList};
                 }
 
                 Product prod = new Product(
@@ -79,10 +79,10 @@ public class ProductDAO {
         return prodList;
     }
 
+    // Retrieve specific product by product id 
     public Product getProductById(String prodId) {
         Product prod = null;
 
-        // Database query to retrieve product by ID
         String queryStr = "SELECT * FROM " + tableName + " WHERE prodId = ?";
 
         try {
@@ -112,10 +112,10 @@ public class ProductDAO {
         return prod;
     }
 
+    // Retrieve the main product
     public Product getMainProduct() {
         Product prod = null;
 
-        // Database query to retrieve main product
         String queryStr = "SELECT * FROM " + tableName + " WHERE main = 'T'";
 
         try {
@@ -145,6 +145,7 @@ public class ProductDAO {
         return prod;
     }
 
+    // Retrieve recommended products by comparing the keywords
     public ArrayList<Product> getRecommendedProducts(String prodId) {
         Product selectedProd = getProductById(prodId);
         String[] keywords1 = selectedProd.getProdKeywords();
@@ -163,8 +164,7 @@ public class ProductDAO {
         for (Product product : filteredProdList) {
             String[] keywords2 = product.getProdKeywords();
 
-            // Calculate the number of common keywords between the selected product and the
-            // current product
+            // Calculate the number of common keywords between the selected product and the current product
             int commonKeywords = countCommonKeywords(keywords1, keywords2);
 
             if (commonKeywords >= 1) {
@@ -172,8 +172,7 @@ public class ProductDAO {
             }
         }
 
-        // Sort the matched products based on the number of common keywords (descending
-        // order)
+        // Sort the matched products based on the number of common keywords (descending order)
         Collections.sort(matchedProducts, (p1, p2) -> {
             int commonKeywords1 = countCommonKeywords(keywords1, p1.getProdKeywords());
             int commonKeywords2 = countCommonKeywords(keywords1, p2.getProdKeywords());
@@ -216,6 +215,7 @@ public class ProductDAO {
         }
     }
 
+    // method to calculate common keywords
     private int countCommonKeywords(String[] keywords1, String[] keywords2) {
         HashSet<String> set = new HashSet<>(Arrays.asList(keywords1));
         int commonKeywords = 0;
@@ -227,10 +227,10 @@ public class ProductDAO {
         return commonKeywords;
     }
 
+    // Retrieve latest 4 products
     public ArrayList<Product> getLatestProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
 
-        // Database query to retrieve latest products
         String queryStr = "SELECT * FROM " + tableName
                 + " WHERE prodAddedDate <= NOW() ORDER BY prodAddedDate DESC LIMIT 4";
 
@@ -246,7 +246,7 @@ public class ProductDAO {
                     prodImgArray = prodImgList.split(";");
                 } else {
                     // If there's only one image, create an array with a single element
-                    prodImgArray = new String[] { prodImgList };
+                    prodImgArray = new String[]{prodImgList};
                 }
 
                 String prodKeyList = rs.getString("prodKeywords");
@@ -256,7 +256,7 @@ public class ProductDAO {
                     prodKeyArray = prodKeyList.split(";");
                 } else {
                     // If there's only one keyword, create an array with a single element
-                    prodKeyArray = new String[] { prodKeyList };
+                    prodKeyArray = new String[]{prodKeyList};
                 }
 
                 Product prod = new Product(
@@ -277,6 +277,7 @@ public class ProductDAO {
         return prodList;
     }
 
+    // Add product
     public void insertRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, String prodaddeddate) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?)";
 
@@ -298,6 +299,7 @@ public class ProductDAO {
         }
     }
 
+    // Update product
     public void updateRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, String prodaddeddate) {
         String queryStr = "UPDATE " + tableName + " SET prodname=?,proddesc=?,prodprice=?,qtyavailable=?,prodimg=?,prodkeywords=?,prodaddeddate=? WHERE prodid=?";
 
@@ -319,6 +321,7 @@ public class ProductDAO {
         }
     }
 
+    // Delete Product
     public void deleteRecord(String prodid) {
         String queryStr = "DELETE FROM " + tableName + " WHERE prodid=?";
         try {
@@ -330,6 +333,7 @@ public class ProductDAO {
         }
     }
 
+    // Close DB conncetion
     public void closeConnection() {
         try {
             if (conn.returnConnection() != null) {
@@ -339,5 +343,4 @@ public class ProductDAO {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.WARNING, null, ex);
         }
     }
-
 }
