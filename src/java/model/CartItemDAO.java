@@ -1,7 +1,10 @@
 package model;
 
+import entity.CartItem;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +16,25 @@ public class CartItemDAO {
 
     public CartItemDAO() {
         dbConn = new DatabaseConn();
+    }
+    
+    
+    public ArrayList<CartItem> retrieveItemInCart(String cartItemId) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE cartItemId=?";
+        ArrayList<CartItem> items = new ArrayList<CartItem>();
+        try {
+            stmt = dbConn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, cartItemId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                items.add(new CartItem(rs.getString(1), rs.getInt(4), rs.getString(3)));
+            }
+            
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return items;
     }
     
     public void addItemToCart(String cartId, String prodId, int itemQty) {

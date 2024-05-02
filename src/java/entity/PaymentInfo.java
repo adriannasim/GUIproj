@@ -1,30 +1,35 @@
 //package src.java.entity;
 package entity;
 
+import java.time.LocalDate;
+
 public class PaymentInfo {
     private String paymentId;
     private String orderId;
     private String custId;
     private String paymentType; // "cash" or "card"
     private PaymentCard paymentCard; // Optional, only if paymentType is "card"
+    private LocalDate paymentDate;
     
     public PaymentInfo() {
 
     }
 
-    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType) {
+    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, LocalDate paymentDate) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.custId = custId;
         this.paymentType = paymentType;
+        this.paymentDate = paymentDate;
     }
     
-    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard) {
+    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard, LocalDate paymentDate) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.custId = custId;
         this.paymentType = paymentType;
         this.paymentCard = paymentCard;
+        this.paymentDate = paymentDate;
     }
 
     // Getter methods
@@ -47,6 +52,10 @@ public class PaymentInfo {
     public PaymentCard getPaymentCard() {
         return paymentCard;
     }
+    
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
 
     // Setter methods
     public void setPaymentId(String paymentId) {
@@ -67,6 +76,10 @@ public class PaymentInfo {
 
     public void setPaymentCard(PaymentCard paymentCard) {
         this.paymentCard = paymentCard;
+    }
+    
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }
 
