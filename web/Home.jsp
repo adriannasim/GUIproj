@@ -1,13 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-
 <%--tags--%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--imports--%>
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
 
-<%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
+<%--includes--%>
 <jsp:include page="/RetrieveProducts"/>
 <jsp:include page="/RetrieveCart"/>
 
@@ -25,32 +23,36 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Home Page</title>
-        <!-- Include commonFiles.tag -->
-        <custom:commonFiles/>
-        <!-- Begin: Import Bootstrap Libraries -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-            rel="nofollow"
-            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-            crossorigin="anonymous"
-            />
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-            crossorigin="anonymous"
-        ></script>
-        <!-- End: Import Bootstrap Libraries -->
+
+        <%-- Include commonFiles.tag --%>
+        <custom:commonFiles />
+        
+        <script>
+        // Wait for the DOM to be ready
+        $(document).ready(function () {
+            // Make an AJAX GET request to RetrieveProducts servlet
+            $.ajax({
+              url: "RetrieveProducts",
+              type: "GET",
+              success: function (data) {
+                // Handle success response if needed
+                console.log("Products loaded successfully.");
+              },
+              error: function (xhr, status, error) {
+                // Handle error response if needed
+                console.error("Error loading products:", error);
+              }
+            });
+        });
+        </script>
     </head>
 
     <body class="text-center">
-        <!--header-->
+        <%--header--%>
         <jsp:include page="components/header.jsp" />
+    
+        <!--start of content-->
+        <h1>Home</h1>
 
         <!-- Sign In/Up Button -->
         <a href="SignUp.jsp"><button>Sign in/Sign up</button></a>
@@ -86,9 +88,10 @@
             </a>
             <% }%>
         </div>
-        <!-- End: Latest Artwork Section -->
-
-        <!--footer-->
+        <% } %>
+        <!--end of content-->
+        
+        <%--footer--%>
         <jsp:include page="components/footer.jsp" />
     </body>
 </html>
