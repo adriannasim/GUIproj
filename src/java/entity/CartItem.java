@@ -2,46 +2,47 @@
 package entity;
 
 public class CartItem {
-    private String cartItemId;
-    private int itemQty;
+    private String cartId;
     private String prodId;
+    private int itemQty;
 
     public CartItem() {
 
     }
 
-    public CartItem(String cartItemId, int itemQty, String prodId) {
-        this.cartItemId = cartItemId;
-        this.itemQty = itemQty;
+    public CartItem(String cartId, String prodId, int itemQty) {
+        this.cartId = cartId;
         this.prodId = prodId;
+         this.itemQty = itemQty;
     }
 
     // Getter methods
-    public String getCartItemId() {
-        return cartItemId;
+    public String getCartId() {
+        return cartId;
+    }
+    
+    public String getProdId() {
+        return prodId;
     }
 
     public int getItemQty() {
         return itemQty;
     }
 
-    public String getProdId() {
-        return prodId;
-    }
-
     // Setter methods
-    public void setCartItemId(String cartItemId) {
-        this.cartItemId = cartItemId;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
+    
+    public void setProdId(String prodId) {
+        this.prodId = prodId;
     }
 
     public void setItemQty(int itemQty) {
         this.itemQty = itemQty;
     }
 
-    public void setProdId(String prodId) {
-        this.prodId = prodId;
-    }
-
+   
     // Calculate price for the item
     //public double calculatePrice() {
     //    return itemQty * itemPrice;

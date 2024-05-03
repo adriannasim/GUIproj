@@ -9,6 +9,7 @@
 
 <%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
 <jsp:include page="/RetrieveProducts"/>
+<jsp:include page="/RetrieveCart"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
 <%
@@ -56,6 +57,9 @@
 
         <!-- Link to All Products Page Button -->
         <a href="ProductPage.jsp?all=t"><button>All Artworks</button></a>
+        
+        <!-- Cart Button -->
+        <a href="Cart.jsp"><button>Cart</button></a>
 
         <!-- Begin: Latest Artwork Section (This part will display the 4 recently added artworks) -->
         <h2>Latest Artworks</h2>

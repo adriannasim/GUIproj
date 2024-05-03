@@ -2,6 +2,7 @@
 package entity;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Cart {
     private String cartId;
@@ -9,7 +10,7 @@ public class Cart {
     private ArrayList<CartItem> itemList = new ArrayList<CartItem>();
 
     public Cart() {
-
+        this.cartId = UUID.randomUUID().toString();
     }
 
     public Cart(String cartId, String userId, ArrayList<CartItem> itemList) {

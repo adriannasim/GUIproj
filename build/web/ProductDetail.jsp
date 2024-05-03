@@ -73,22 +73,27 @@
                     <% String keywords = String.join(" , ", product.getProdKeywords());%>
                     <%= keywords%>
                 </div>
-                <div class="btns">
-                    <button class="btn btn-link">
-                        -
-                    </button>
-                    <input
-                        min="0"
-                        name="quantity"
-                        value="1"
-                        type="number"
-                        class="form-control form-control-sm no-spinners mx-2"
-                        />
-                    <button class="btn btn-link">
-                        +
-                    </button>
-                </div>
-                <button> Add to Cart </button>
+                <form action="AddToCart" method="post">
+                    <div class="btns">
+                        <!--<button class="btn btn-link">
+                            -
+                        </button>-->
+                        <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
+                        <input
+                            min="1"
+                            value="1"
+                            name="itemQty"
+                            type="number"
+                            class=""
+                            />
+                        <!--
+                        <button class="btn btn-link">
+                            +
+                        </button>
+                        -->
+                    </div>
+                    <button type="submit"> Add to Cart </button>
+                </form>
             </div>
         </div> 
         <!-- End: Product Details Section -->

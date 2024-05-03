@@ -5,11 +5,17 @@
         <group>
             <file>file:/D:/GUIproj/web/ProductDetail.jsp</file>
             <file>file:/D:/GUIproj/web/Home.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/DatabaseConn.java</file>
+            <file>file:/D:/GUIproj/web/template.jsp</file>
+            <file>file:/D:/GUIproj/src/java/entity/CartItem.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/AddToCart.java</file>
+            <file>file:/D:/GUIproj/src/java/entity/Cart.java</file>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveProducts.java</file>
             <file>file:/D:/GUIproj/src/java/model/ProductDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Product.java</file>
-            <file>file:/D:/GUIproj/src/java/model/DatabaseConn.java</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
             <file>file:/D:/GUIproj/web/ProductPage.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCart.java</file>
         </group>
     </open-files>
 </project-private>
