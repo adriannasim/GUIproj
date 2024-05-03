@@ -52,7 +52,7 @@ public class Product {
             for (int count = 0; count < 30; count++) {
                 index = prodDesc.indexOf(' ', index + 1);
             }
-            desc = prodDesc.substring(0, index)+ " ...";
+            desc = prodDesc.substring(0, index) + " ...";
         }
         return desc;
     }
@@ -109,5 +109,4 @@ public class Product {
     public void setProdAddedDate(LocalDate prodAddedDate) {
         this.prodAddedDate = prodAddedDate;
     }
-
 }

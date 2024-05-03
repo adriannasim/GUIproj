@@ -8,18 +8,18 @@ public class CustOrder {
     private String custId;
     private Date date;
     private String status;
-    private Cart cart;
+    private ArrayList<Product> orderItems = new ArrayList<Product>(); 
 
     public CustOrder() {
 
     }
 
-    public CustOrder(String orderId, String custId, Date date, String status, Cart cart) {
+    public CustOrder(String orderId, String custId, Date date, String status, ArrayList<Product> orderItems) {
         this.orderId = orderId;
         this.custId = custId;
         this.date = date;
         this.status = status;
-        this.cart = cart;
+        this.orderItems = orderItems;
     }
 
     // Getter methods
@@ -39,8 +39,8 @@ public class CustOrder {
         return status;
     }
 
-    public Cart getCart() {
-        return cart;
+    public ArrayList<Product> getOrderItems() {
+        return orderItems;
     }
 
     // Setter methods
@@ -60,12 +60,7 @@ public class CustOrder {
         this.status = status;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setOrderItems(ArrayList<Product> orderItems) {
+        this.orderItems = orderItems;
     }
-    
-    // Calculate total order price
-    //public double getTotalPrice(){
-    //    return cart.calculateTotalPrice();
-    //}
 }

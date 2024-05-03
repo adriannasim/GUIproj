@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<<<<<<< HEAD
 
 <%--tags--%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
@@ -8,6 +9,15 @@
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
 
 <%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
+=======
+<%--tags--%>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+
+<%--imports--%>
+<%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
+
+<%--includes--%>
+>>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
 <jsp:include page="/RetrieveProducts"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
@@ -24,6 +34,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Home Page</title>
+<<<<<<< HEAD
         <!-- Include commonFiles.tag -->
         <custom:commonFiles/>
         <!-- Begin: Import Bootstrap Libraries -->
@@ -45,11 +56,43 @@
             crossorigin="anonymous"
         ></script>
         <!-- End: Import Bootstrap Libraries -->
+=======
+
+        <%-- Include commonFiles.tag --%>
+        <custom:commonFiles />
+        
+        <script>
+        // Wait for the DOM to be ready
+        $(document).ready(function () {
+            // Make an AJAX GET request to RetrieveProducts servlet
+            $.ajax({
+              url: "RetrieveProducts",
+              type: "GET",
+              success: function (data) {
+                // Handle success response if needed
+                console.log("Products loaded successfully.");
+              },
+              error: function (xhr, status, error) {
+                // Handle error response if needed
+                console.error("Error loading products:", error);
+              }
+            });
+        });
+        </script>
+>>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
     </head>
 
     <body class="text-center">
+<<<<<<< HEAD
         <!--header-->
         <jsp:include page="components/header.jsp" />
+=======
+        <%--header--%>
+        <jsp:include page="components/header.jsp" />
+    
+        <!--start of content-->
+        <h1>Home</h1>
+>>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
 
         <!-- Sign In/Up Button -->
         <a href="SignUp.jsp"><button>Sign in/Sign up</button></a>
@@ -82,9 +125,16 @@
             </a>
             <% }%>
         </div>
+<<<<<<< HEAD
         <!-- End: Latest Artwork Section -->
 
         <!--footer-->
+=======
+        <% } %>
+        <!--end of content-->
+        
+        <%--footer--%>
+>>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
         <jsp:include page="components/footer.jsp" />
     </body>
 </html>

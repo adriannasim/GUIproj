@@ -112,29 +112,24 @@ public class ProductDAO {
         }
         return prod;
     }
-    
-    public List<String> matchProductByName(String query) 
-    {
+
+    public List<String> matchProductByName(String query) {
         //Initializing a list to store all matching result
         List<String> matches = null;
-        
+
         //Database query to retrieve product by ID
         String queryStr = "SELECT * FROM " + tableName + " WHERE LOWER(prodName) LIKE ?";
 
-        try 
-        {
+        try {
             stmt = conn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, "%" + query + "%");
             ResultSet rs = stmt.executeQuery();
 
             //Add all result to list
-            while (rs.next())
-            {
+            while (rs.next()) {
                 matches.add(rs.getString("prodName"));
             }
-        } 
-        catch (SQLException ex) 
-        {
+        } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
             ex.printStackTrace();
         }

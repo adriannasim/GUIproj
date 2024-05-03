@@ -31,8 +31,8 @@ public class CartDAO {
             ex.getMessage();
         }
     }
-    
-     // Retrieve CartItems from CartItem table to CartItem ArrayList in Cart Object
+
+    // Retrieve CartItems from CartItem table to CartItem ArrayList in Cart Object
     public ArrayList<CartItem> retrieveItemInCart(String cartId) {
         String queryStr = "SELECT * FROM " + "public.cartitem" + " WHERE cartId=?";
         ArrayList<CartItem> items = new ArrayList<CartItem>();
@@ -44,7 +44,7 @@ public class CartDAO {
             if (rs.next()) {
                 items.add(new CartItem(rs.getString(1), rs.getInt(4), rs.getString(3)));
             }
-            
+
         } catch (SQLException ex) {
             ex.getMessage();
         }
