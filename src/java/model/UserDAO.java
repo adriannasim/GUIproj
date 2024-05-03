@@ -6,15 +6,6 @@ import entity.User;
 import java.sql.*;
 import java.util.*;
 
-/*
-1. Username must be unique and cannot be changed in the future. 
-2. Retrieve all users' record.
-3. Retrieve user record by username.
-4. Retrieve user record by email.
-5. Insert user record.
-6. Update user details.
-8. Delete user record.
- */
 public class UserDAO {
 
     private DatabaseConn dbConn;
