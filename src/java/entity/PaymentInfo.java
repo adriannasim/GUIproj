@@ -8,7 +8,7 @@ public class PaymentInfo {
     private String orderId;
     private String custId;
     private String paymentType; // "cash" or "card"
-    private PaymentCard paymentCard; // Optional, only if paymentType is "card"
+//    private PaymentCard paymentCard; // Optional, only if paymentType is "card"
     private LocalDate paymentDate;
     
     public PaymentInfo() {
@@ -23,14 +23,14 @@ public class PaymentInfo {
         this.paymentDate = paymentDate;
     }
     
-    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard, LocalDate paymentDate) {
-        this.paymentId = paymentId;
-        this.orderId = orderId;
-        this.custId = custId;
-        this.paymentType = paymentType;
-        this.paymentCard = paymentCard;
-        this.paymentDate = paymentDate;
-    }
+//    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard, LocalDate paymentDate) {
+//        this.paymentId = paymentId;
+//        this.orderId = orderId;
+//        this.custId = custId;
+//        this.paymentType = paymentType;
+//        this.paymentCard = paymentCard;
+//        this.paymentDate = paymentDate;
+//    }
 
     // Getter methods
     public String getPaymentId() {
@@ -49,9 +49,9 @@ public class PaymentInfo {
         return paymentType;
     }
 
-    public PaymentCard getPaymentCard() {
-        return paymentCard;
-    }
+//    public PaymentCard getPaymentCard() {
+//        return paymentCard;
+//    }
     
     public LocalDate getPaymentDate() {
         return paymentDate;
@@ -74,9 +74,9 @@ public class PaymentInfo {
         this.paymentType = paymentType;
     }
 
-    public void setPaymentCard(PaymentCard paymentCard) {
-        this.paymentCard = paymentCard;
-    }
+//    public void setPaymentCard(PaymentCard paymentCard) {
+//        this.paymentCard = paymentCard;
+//    }
     
     public void setPaymentDate(LocalDate paymentDate) {
         this.paymentDate = paymentDate;

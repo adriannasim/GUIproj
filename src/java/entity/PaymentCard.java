@@ -7,14 +7,14 @@ public class PaymentCard {
     private int dateMonth;
     private int dateYear;
     private String cardNumber;
-    private int cvv;
+    private String cvv;
     private String custId;
 
     public PaymentCard() {
 
     }
 
-    public PaymentCard(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber, int cvv, String custId) {
+    public PaymentCard(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
         this.cardId = cardId;
         this.cardName = cardName;
         this.dateMonth = dateMonth;
@@ -44,7 +44,7 @@ public class PaymentCard {
         return cardNumber;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
     
@@ -73,7 +73,7 @@ public class PaymentCard {
         this.cardNumber = cardNumber;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
     
