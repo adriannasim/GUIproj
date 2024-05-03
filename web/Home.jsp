@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%--tags--%>
+
+<%-- tags --%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%--imports--%>
+<%-- imports --%>
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
 
-<%--includes--%>
+<%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
-<jsp:include page="/RetrieveCart"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
 <%
@@ -48,7 +48,7 @@
     </head>
 
     <body class="text-center">
-        <%--header--%>
+        <%-- header --%>
         <jsp:include page="components/header.jsp" />
     
         <!--start of content-->
@@ -88,10 +88,10 @@
             </a>
             <% }%>
         </div>
-        <% } %>
+   
         <!--end of content-->
         
-        <%--footer--%>
+        <%-- footer --%>
         <jsp:include page="components/footer.jsp" />
     </body>
 </html>

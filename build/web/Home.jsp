@@ -1,25 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<<<<<<< HEAD
 
-<%--tags--%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="custom" tagdir="/WEB-INF/tags" %>
-
-<%--imports--%>
-<%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
-
-<%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
-=======
-<%--tags--%>
+<%-- tags --%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%--imports--%>
+<%-- imports --%>
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
 
-<%--includes--%>
->>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
+<%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
-<jsp:include page="/RetrieveCart"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
 <%
@@ -35,29 +23,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Home Page</title>
-<<<<<<< HEAD
-        <!-- Include commonFiles.tag -->
-        <custom:commonFiles/>
-        <!-- Begin: Import Bootstrap Libraries -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-            rel="nofollow"
-            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-            crossorigin="anonymous"
-            />
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-            crossorigin="anonymous"
-        ></script>
-        <!-- End: Import Bootstrap Libraries -->
-=======
 
         <%-- Include commonFiles.tag --%>
         <custom:commonFiles />
@@ -80,20 +45,14 @@
             });
         });
         </script>
->>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
     </head>
 
     <body class="text-center">
-<<<<<<< HEAD
-        <!--header-->
-        <jsp:include page="components/header.jsp" />
-=======
-        <%--header--%>
+        <%-- header --%>
         <jsp:include page="components/header.jsp" />
     
         <!--start of content-->
         <h1>Home</h1>
->>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
 
         <!-- Sign In/Up Button -->
         <a href="SignUp.jsp"><button>Sign in/Sign up</button></a>
@@ -129,16 +88,10 @@
             </a>
             <% }%>
         </div>
-<<<<<<< HEAD
-        <!-- End: Latest Artwork Section -->
-
-        <!--footer-->
-=======
-        <% } %>
+   
         <!--end of content-->
         
-        <%--footer--%>
->>>>>>> e66f0154e2b4debafb26a219c008d59e88e1b956
+        <%-- footer --%>
         <jsp:include page="components/footer.jsp" />
     </body>
 </html>

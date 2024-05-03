@@ -33,7 +33,7 @@ public class CartDAO {
     }
 
     // Retrieve CartItems from CartItem table to CartItem ArrayList in Cart Object
-    public ArrayList<CartItem> retrieveItemInCart(String cartId) {
+    /*public ArrayList<CartItem> retrieveItemInCart(String cartId) {
         String queryStr = "SELECT * FROM " + "public.cartitem" + " WHERE cartId=?";
         ArrayList<CartItem> items = new ArrayList<CartItem>();
         try {
@@ -49,8 +49,8 @@ public class CartDAO {
             ex.getMessage();
         }
         return items;
-    }
-
+    }*/
+    
     public void createCartWithoutUserId(String cartId) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?)";
 
