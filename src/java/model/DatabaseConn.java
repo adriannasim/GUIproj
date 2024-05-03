@@ -20,13 +20,12 @@ public class DatabaseConn {
     private Connection conn;
 
     public DatabaseConn() {
-        // try {
-        //     Class.forName("org.postgresql.Driver");
-        // } catch (ClassNotFoundException e) {
-        //     // Handle the exception (e.g., print an error message)
-        //     e.printStackTrace();
-        // }
-
+         try {
+             Class.forName("org.postgresql.Driver");
+         } catch (ClassNotFoundException e) {
+             // Handle the exception (e.g., print an error message)
+             e.printStackTrace();
+         }
         createConnection();
     }
 
@@ -35,15 +34,6 @@ public class DatabaseConn {
     }
 
     private void createConnection() {
-        //load the postgre driver
-        try {
-            Class.forName("org.postgresql.Driver");
-            System.out.println("PostgreSQL JDBC Driver loaded successfully");
-        } catch (ClassNotFoundException e) {
-            System.out.println("PostgreSQL JDBC Driver not found");
-            e.printStackTrace();
-        }
-
         try {
             conn = DriverManager.getConnection(host, user, password);
             System.out.println("Success: Connected to DB");
