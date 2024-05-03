@@ -1,11 +1,11 @@
-<!-- This file is a guideline for all individual jsp files -->
+<%-- This file is a guideline for all individual jsp files --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<!--tags-->
+<%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<!--imports-->
+<%--imports-->%
 
-<!--includes-->
+<%--includes--%>
       
 <!DOCTYPE html>
 <html>
@@ -15,20 +15,17 @@
 
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
-        
-        <!-- script to load servlet -->
 
     </head>
     
     <body class="text-center">
-        <!--header-->
+        <%--header--%>
         <jsp:include page="components/header.jsp" />
     
         <!--start of content-->
 
         <!--end of content-->
-        
-        <!--footer-->
-        <jsp:include page="components/footer.jsp" />
     </body>
+    <%--footer--%>
+    <jsp:include page="components/footer.jsp" />
 </html>

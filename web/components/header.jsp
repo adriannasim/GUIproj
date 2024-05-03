@@ -1,17 +1,42 @@
-<%-- 
-    Document   : header
-    Created on : May 1, 2024, 5:43:16 PM
-    Author     : adria
---%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%--tags--%>
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+<%--imports--%>
+<%@page import="java.util.List"%> 
+
+<%--includes--%>
+<jsp:include page="/SearchBar"/>
+
+        <% 
+        List<String> matches = null;
+        if (session.getAttribute("matches") != null)
+        { 
+            matches = (List<String>) session.getAttribute("matches"); 
+        } 
+        %>
+
+        <!--Start of header-->
         <h1>Header</h1>
-    </body>
-</html>
+        <!--Search Bar-->
+        <form id="searchBarForm" method="Get" action="SearchBar">
+            <input type="search" id="search-input-dropdown" name="query" class="form-control" placeholder="Search..." aria-label="Search" />
+        </form>
+        <%
+        if (matches != null)
+        {
+        %>
+        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+            <%
+            for (int i = 0; i < matches.size(); i++)
+            {
+            %>
+            <li><a class="dropdown-item" href="#"><%= matches.get(i) %></a></li>
+            <%
+            }
+            %>
+        </ul>
+        <%
+        }
+        %>
+        <!--End of header-->
