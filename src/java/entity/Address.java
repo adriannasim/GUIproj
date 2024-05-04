@@ -1,7 +1,6 @@
 //package src.java.entity;
 package entity;
 
-//Shipping address & Billing address
 public class Address {
 
     private String address;
@@ -14,7 +13,7 @@ public class Address {
 
     }
 
-    public Address(String address, String country, String city, String state, String postalCode) {
+    public Address(String address, String city, String state, String postalCode, String country) {
         this.address = address;
         this.country = country;
         this.city = city;

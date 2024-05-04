@@ -2,7 +2,6 @@
 package entity;
 
 public class PaymentCard {
-    private String cardId;
     private String cardName;
     private int dateMonth;
     private int dateYear;
@@ -14,8 +13,7 @@ public class PaymentCard {
 
     }
 
-    public PaymentCard(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
-        this.cardId = cardId;
+    public PaymentCard(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
         this.cardName = cardName;
         this.dateMonth = dateMonth;
         this.dateYear = dateYear;
@@ -24,10 +22,6 @@ public class PaymentCard {
     }
 
     // Getter methods
-    public String getCardId() {
-        return cardId;
-    }
-    
     public String getCardName() {
         return cardName;
     }
@@ -53,10 +47,6 @@ public class PaymentCard {
     }
 
     // Setter methods
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
-    }
-    
     public void setCardName(String cardName) {
         this.cardName = cardName;
     }
