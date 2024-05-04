@@ -24,7 +24,9 @@ public class PaymentInfoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                paymentInfo.add(new PaymentInfo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5).toLocalDate()
+                paymentInfo.add(new PaymentInfo(rs.getString(1), 
+                        rs.getString(2), rs.getString(3), rs.getString(4),  
+                        rs.getDate(5).toLocalDate(), rs.getDouble(6)
                 ));
             }
         } catch (SQLException ex) {
@@ -44,7 +46,9 @@ public class PaymentInfoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                paymentInfo = new PaymentInfo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5).toLocalDate()
+                paymentInfo = new PaymentInfo(rs.getString(1), 
+                        rs.getString(2), rs.getString(3), rs.getString(4),  
+                        rs.getDate(5).toLocalDate(), rs.getDouble(6)
                 );
             }
         } catch (SQLException ex) {
@@ -64,7 +68,9 @@ public class PaymentInfoDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                paymentInfo.add(new PaymentInfo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5).toLocalDate()
+                paymentInfo.add(new PaymentInfo(rs.getString(1), rs.getString(2), 
+                        rs.getString(3), rs.getString(4), 
+                        rs.getDate(5).toLocalDate(), rs.getDouble(6)
                 ));
             }
         } catch (SQLException ex) {
@@ -74,8 +80,9 @@ public class PaymentInfoDAO {
         return paymentInfo;
     }
 
-    public void insertRecord(String paymentId, String orderId, String custId, String paymentType, LocalDate paymentDate) {
-        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?)";
+    public void insertRecord(String paymentId, String orderId, String custId, String paymentType, 
+            LocalDate paymentDate, double paymentAmount) {
+        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?)";
         
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -86,6 +93,7 @@ public class PaymentInfoDAO {
             stmt.setString(4, paymentType);
             java.sql.Date sqlDate = java.sql.Date.valueOf(paymentDate);
             stmt.setDate(5, sqlDate);
+            stmt.setDouble(6, paymentAmount);
             stmt.execute();
 
         } catch (SQLException ex) {
@@ -93,8 +101,9 @@ public class PaymentInfoDAO {
         }
     }
 
-    public void updateRecord(String paymentId, String orderId, String custId, String paymentType, LocalDate paymentDate) {
-        String queryStr = "UPDATE " + tableName + " SET orderid=?,custid=?,paymenttype=?,paymentdate=? WHERE paymentid=?";
+    public void updateRecord(String paymentId, String orderId, String custId, String paymentType, 
+            LocalDate paymentDate, double paymentAmount) {
+        String queryStr = "UPDATE " + tableName + " SET orderid=?,custid=?,paymenttype=?,paymentdate=?,paymentamount=? WHERE paymentid=?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -103,7 +112,8 @@ public class PaymentInfoDAO {
             stmt.setString(3, paymentType);
             java.sql.Date sqlDate = java.sql.Date.valueOf(paymentDate);
             stmt.setDate(4, sqlDate);
-            stmt.setString(5, paymentId);
+            stmt.setDouble(5, paymentAmount);
+            stmt.setString(6, paymentId);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.getMessage();
@@ -125,15 +135,15 @@ public class PaymentInfoDAO {
     public static void main(String[] args) {
         PaymentInfoDAO dao = new PaymentInfoDAO();
 
-        // Insert record : can run
-//        dao.insertRecord("pid", "oid", "cid", "card", LocalDate.now());
-//          Get record : can run
+//      Insert record 
+//        dao.insertRecord("pid", "oid", "cid", "card", LocalDate.now(), 10.5);
+//      Get record 
 //        ArrayList<PaymentInfo> infos = dao.getAllRecord();
 //        for (PaymentInfo info : infos) {
 //            System.out.println(info.getPaymentDate());
 //        }
-        // Delete record : can run
-//        dao.deleteRecord("pid");
+//      Delete record 
+//      dao.deleteRecord("pid");
     }
 
 }

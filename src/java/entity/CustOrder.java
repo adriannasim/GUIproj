@@ -1,12 +1,13 @@
 //package src.java.entity;
 package entity;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class CustOrder {
     private String orderId;
     private String custId;
-    private Date date;
+    private LocalDate orderdate;
     private String status;
     private ArrayList<Product> orderItems = new ArrayList<Product>(); 
 
@@ -14,15 +15,15 @@ public class CustOrder {
 
     }
 
-    public CustOrder(String orderId, String custId, Date date, String status, ArrayList<Product> orderItems) {
+    public CustOrder(String orderId, String custId, LocalDate orderdate, String status, ArrayList<Product> orderItems) {
         this.orderId = orderId;
         this.custId = custId;
-        this.date = date;
+        this.orderdate = orderdate;
         this.status = status;
         this.orderItems = orderItems;
     }
 
-    // Getter methods
+//  Getter methods
     public String getOrderId() {
         return orderId;
     }
@@ -31,8 +32,8 @@ public class CustOrder {
         return custId;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDate getOrderDate() {
+        return orderdate;
     }
 
     public String getStatus() {
@@ -43,7 +44,7 @@ public class CustOrder {
         return orderItems;
     }
 
-    // Setter methods
+//  Setter methods
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
@@ -52,8 +53,8 @@ public class CustOrder {
         this.custId = custId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(LocalDate orderdate) {
+        this.orderdate = orderdate;
     }
 
     public void setStatus(String status) {
