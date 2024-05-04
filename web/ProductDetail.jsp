@@ -49,11 +49,39 @@
             crossorigin="anonymous"
         ></script>
         <!-- End: Import Bootstrap Libraries -->
+        
     </head>
 
     <body class="text-center">
         <!--header-->
         <jsp:include page="components/header.jsp" />
+
+        <%
+            // Retrieve the message from session
+            String message = (String) session.getAttribute("message");
+            // Check if a message exists and is not empty
+            if (message != null && !message.isEmpty()) {
+        %>
+        <div id="message" class="message">
+            <%= message%>
+        </div>
+        <%
+            // Clear the session attribute after 5 seconds
+        %>
+        <script>
+            setTimeout(function () {
+                var messageDiv = document.getElementById("message");
+                if (messageDiv) {
+                    messageDiv.style.display = "none";
+                }
+            }, 5000); // 5000 milliseconds = 5 seconds
+        </script>
+        <%
+                // Clear the session attribute after displaying the message
+                session.removeAttribute("message");
+            }
+        %>
+
 
         <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
         <% Product product = sessProdList.get(0);%>
@@ -75,22 +103,23 @@
                 </div>
                 <form action="AddToCart" method="post">
                     <div class="btns">
-                        <!--<button class="btn btn-link">
+                        <button class="btn" type="button" onclick="decrementValue('itemQty',1)">
                             -
-                        </button>-->
+                        </button>
                         <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
                         <input
                             min="1"
                             value="1"
+                            max="<%=product.getQtyAvailable()%>"
                             name="itemQty"
                             type="number"
                             class=""
+                            id="itemQty"
                             />
-                        <!--
-                        <button class="btn btn-link">
+                        
+                        <button class="btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>)">
                             +
                         </button>
-                        -->
                     </div>
                     <button type="submit"> Add to Cart </button>
                 </form>

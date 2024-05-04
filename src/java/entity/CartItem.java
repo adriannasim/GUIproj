@@ -3,16 +3,16 @@ package entity;
 
 public class CartItem {
     private String cartId;
-    private String prodId;
+    private Product prod;
     private int itemQty;
 
     public CartItem() {
 
     }
 
-    public CartItem(String cartId, String prodId, int itemQty) {
+    public CartItem(String cartId, Product prod, int itemQty) {
         this.cartId = cartId;
-        this.prodId = prodId;
+        this.prod = prod;
          this.itemQty = itemQty;
     }
 
@@ -21,8 +21,8 @@ public class CartItem {
         return cartId;
     }
     
-    public String getProdId() {
-        return prodId;
+    public Product getProd() {
+        return prod;
     }
 
     public int getItemQty() {
@@ -34,8 +34,8 @@ public class CartItem {
         this.cartId = cartId;
     }
     
-    public void setProdId(String prodId) {
-        this.prodId = prodId;
+    public void setProdId(Product prod) {
+        this.prod = prod;
     }
 
     public void setItemQty(int itemQty) {

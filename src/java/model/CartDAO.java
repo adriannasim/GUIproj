@@ -13,23 +13,30 @@ public class CartDAO {
 
     private DatabaseConn dbConn;
     private PreparedStatement stmt;
-    private String tableName = "public.cart";
+    //private String tableName = "public.cart";
+    
+    private String tableName = "cart";
 
     public CartDAO() {
         dbConn = new DatabaseConn();
     }
 
-    public void getCart(String cartId) {
+    public boolean getCart(String cartId) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE cartId = ?";
-
+        ResultSet rs;
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, cartId);
-            stmt.executeQuery();
+            rs = stmt.executeQuery();
+            
+            if (rs.next()){
+                return true;
+            }
 
         } catch (SQLException ex) {
             ex.getMessage();
         }
+        return false;
     }
 
     // Retrieve CartItems from CartItem table to CartItem ArrayList in Cart Object
@@ -52,7 +59,7 @@ public class CartDAO {
     }*/
     
     public void createCartWithoutUserId(String cartId) {
-        String queryStr = "INSERT INTO " + tableName + " VALUES (?)";
+        String queryStr = "INSERT INTO " + tableName + " (cartId) VALUES (?)";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);

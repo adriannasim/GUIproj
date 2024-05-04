@@ -13,6 +13,10 @@
         <!-- Include JS files -->
         <!-- <script src="js/<filename>.js"></script> -->
         <script src="js/SearchBar.js"></script>
+        <script src="js/SaveSessionCartData.js"></script>
+        <script src="js/SpinnerButton.js"></script>
+        <script src="js/UpdateCartSession.js"></script>
+        <script src="js/DeleteCartItem.js"></script>
         
         <!-- Include Bootstrap JS and Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -21,4 +25,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
                 integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
                 crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!--End of Common Files-->
