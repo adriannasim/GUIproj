@@ -1,7 +1,9 @@
 package controller;
 
+import com.google.gson.Gson;
 import model.ProductDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,29 +21,29 @@ public class SearchBar extends HttpServlet
         System.out.print("SERVLET INVOKED");
         //Initializations
         ProductDAO prodDAO = new ProductDAO(); //product model
-        List<String> matches = null; //list of matches
-        HttpSession session = request.getSession();
+        List<String> matches; //list of matches
                 
         //Get search result
         String query = request.getParameter("query");
         
         //If query is not empty
-        if (query != null) 
+        if (!query.isEmpty()) 
         {
             //Try to match the query to the product names in the db
             matches = prodDAO.matchProductByName(query.toLowerCase());
-            System.out.print("Got search result");
-            //Send the list to the user session
-            session.setAttribute("matches", matches);
+            System.out.print("Have search result");
+            //Send the list to JS file (so that we can use AJAX to update the page dynamically instead of sending request to server every single time)
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(new Gson().toJson(matches));
+            return;
         }
+        //No result
         else
         {
-            matches = null;
             System.out.print("No search result");
-            session.removeAttribute("matches");
         }
-        System.out.println(request.getContextPath());
         prodDAO.closeConnection();
-        response.sendRedirect("components/header.jsp");
+        response.sendRedirect("Home.jsp");
     }
 }
