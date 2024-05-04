@@ -4,25 +4,13 @@
 
 <%--imports--%>
 <%@page import="java.util.List"%> 
-
-<%--includes--%>
-<jsp:include page="/SearchBar"/>
-
-        <% 
-        List<String> matches = null;
-        if (session.getAttribute("matches") != null)
-        { 
-            matches = (List<String>) session.getAttribute("matches"); 
-        } 
-        %>
-
         <!--Start of header-->
         <h1>Header</h1>
         <!--Search Bar-->
-        <form id="searchBarForm" method="Get" action="SearchBar">
-            <input type="search" id="search-input-dropdown" name="query" class="form-control" placeholder="Search..." aria-label="Search" />
+        <form id="searchBar" method="Get" action="SearchBar">
+            <input type="search" id="search-input-dropdown" name="query" class="form-control" placeholder="Search..." aria-label="Search" />  
         </form>
-        <%
+        <%--<%
         if (matches != null)
         {
         %>
@@ -38,5 +26,11 @@
         </ul>
         <%
         }
-        %>
+        %>--%>
+        <!-- Cart Button -->
+        <a href="Cart.jsp"><button>Cart</button></a>
+        <!--End of header-->
+        <div id="searchBar-dropdown">
+            <ul id="searchBar-dropdown-list"></ul>
+        </div>
         <!--End of header-->

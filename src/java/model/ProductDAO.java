@@ -115,8 +115,8 @@ public class ProductDAO {
 
     public List<String> matchProductByName(String query) {
         //Initializing a list to store all matching result
-        List<String> matches = null;
-
+        List<String> matches = new ArrayList<>();
+        
         //Database query to retrieve product by ID
         String queryStr = "SELECT * FROM " + tableName + " WHERE LOWER(prodName) LIKE ?";
 

@@ -8,6 +8,7 @@
 
 <%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
+<jsp:include page="/RetrieveCart"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
 <%
@@ -27,7 +28,7 @@
         <%-- Include commonFiles.tag --%>
         <custom:commonFiles />
         
-        <script>
+        <!-- <script>
         // Wait for the DOM to be ready
         $(document).ready(function () {
             // Make an AJAX GET request to RetrieveProducts servlet
@@ -44,7 +45,7 @@
               }
             });
         });
-        </script>
+        </script> -->
     </head>
 
     <body class="text-center">
@@ -59,9 +60,6 @@
 
         <!-- Link to All Products Page Button -->
         <a href="ProductPage.jsp?all=t"><button>All Artworks</button></a>
-        
-        <!-- Cart Button -->
-        <a href="Cart.jsp"><button>Cart</button></a>
 
         <!-- Begin: Latest Artwork Section (This part will display the 4 recently added artworks) -->
         <h2>Latest Artworks</h2>
@@ -77,7 +75,7 @@
                 <div class="p-2">
                     <div>
                         <img
-                            src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>"
+                            src="<%= request.getContextPath() + product.getProdImg()[0]%>"
                             width="200px"
                             height="auto"
                             />

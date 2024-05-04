@@ -13,9 +13,9 @@ public class DatabaseConn {
     private String user = "u360o6893j7kpa";
     private String password = "p0875af3ec2b5e5331ed90fa98e5b014008f67d63411fa4ff661312557111c573";
 
-    // private String host = "jdbc:derby://localhost:1527/artGallerydb";
-    // private String user = "nbuser";
-    // private String password = "nbuser";
+    //private String host = "jdbc:derby://localhost:1527/artGallerydb";
+    //private String user = "nbuser";
+    //private String password = "nbuser";
 
     private Connection conn;
 
