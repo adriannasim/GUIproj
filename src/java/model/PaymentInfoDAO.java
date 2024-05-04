@@ -54,13 +54,13 @@ public class PaymentInfoDAO {
         return paymentInfo;
     }
 
-    public ArrayList<PaymentInfo> getRecordByPaymentType(String paymentType) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE paymenttype=?";
+    public ArrayList<PaymentInfo> searchRecordByPaymentType(String paymentType) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE paymenttype LIKE ?";
         ArrayList<PaymentInfo> paymentInfo = null;
         
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, paymentType);
+            stmt.setString(1, "%" + paymentType +"%");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -76,6 +76,7 @@ public class PaymentInfoDAO {
 
     public void insertRecord(String paymentId, String orderId, String custId, String paymentType, LocalDate paymentDate) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?)";
+        
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
 
@@ -111,6 +112,7 @@ public class PaymentInfoDAO {
 
     public void deleteRecord(String paymentId) {
         String queryStr = "DELETE FROM " + tableName + " WHERE paymentId=?";
+        
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, paymentId);
@@ -125,7 +127,7 @@ public class PaymentInfoDAO {
 
         // Insert record : can run
 //        dao.insertRecord("pid", "oid", "cid", "card", LocalDate.now());
-        // Get record : can run
+//          Get record : can run
 //        ArrayList<PaymentInfo> infos = dao.getAllRecord();
 //        for (PaymentInfo info : infos) {
 //            System.out.println(info.getPaymentDate());

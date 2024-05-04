@@ -13,7 +13,7 @@ public class PaymentCardDAO {
     public ArrayList<PaymentCard> getAllRecord() {
         String queryStr = "SELECT * FROM " + tableName;
         ArrayList<PaymentCard> paymentcard = new ArrayList<PaymentCard>();
-        
+
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             ResultSet rs = stmt.executeQuery();
@@ -33,7 +33,7 @@ public class PaymentCardDAO {
     public PaymentCard getRecordByCardId(String cardId) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE cardid=?";
         PaymentCard paymentcard = null;
-        
+
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, cardId);
@@ -50,11 +50,11 @@ public class PaymentCardDAO {
 
         return paymentcard;
     }
-    
+
     public ArrayList<PaymentCard> getRecordByCustId(String custid) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE custid=?";
         ArrayList<PaymentCard> paymentcard = new ArrayList<PaymentCard>();
-        
+
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             ResultSet rs = stmt.executeQuery();
@@ -70,11 +70,11 @@ public class PaymentCardDAO {
 
         return paymentcard;
     }
-    
-    public void insertRecord(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber, 
+
+    public void insertRecord(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber,
             String cvv, String custId) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?)";
-        
+
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
 
@@ -92,9 +92,9 @@ public class PaymentCardDAO {
         }
     }
 
-    public void updateRecord(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber, 
+    public void updateRecord(String cardId, String cardName, int dateMonth, int dateYear, String cardNumber,
             String cvv, String custId) {
-        String queryStr = "UPDATE " + tableName 
+        String queryStr = "UPDATE " + tableName
                 + " SET cardname=?,datemonth=?,dateyear=?,cardnumber=?,cvv=?,custid=? WHERE cardid=?";
 
         try {
@@ -114,7 +114,7 @@ public class PaymentCardDAO {
 
     public void deleteRecord(String cardId) {
         String queryStr = "DELETE FROM " + tableName + " WHERE cardid=?";
-        
+
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, cardId);
