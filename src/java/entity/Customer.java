@@ -15,8 +15,20 @@ public class Customer extends User{
     public Customer(){
 
     }
+    
+    public Customer(String firstName, String lastName, String custId, int contactNo, Date dateOfBirth, 
+            String gender, Address custAdd) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.custId = custId;
+        this.contactNo = contactNo;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.custAdd.add(custAdd);
+    }
 
-    public Customer(String userId, String username, String userPwd, String email,String firstName, String lastName, String custId, int contactNo, Date dateOfBirth, String gender, Address custAdd) {
+    public Customer(String username, String userPwd, String email, String firstName, 
+            String lastName, String custId, int contactNo, Date dateOfBirth, String gender, Address custAdd) {
         //super(userId,username, userPwd, email);
         super(username, userPwd, email);
         this.firstName = firstName;
