@@ -18,7 +18,7 @@ public class CustOrderDAO {
         dbConn = new DatabaseConn();
     }
 
-    // Retrieve all records from CustOrder table and OrderItem table
+//  RETRIEVE RECORDS : ALL, BY ORDER ID, BY CUST ID
     public ArrayList<CustOrder> getAllRecord() {
         String queryStr = "SELECT * FROM " + tableName;
         
@@ -55,7 +55,6 @@ public class CustOrderDAO {
         return orders;
     }
 
-    // Retrieve all records from CustOrder table and OrderItem table by order id
     public CustOrder getRecordByOrderId(String orderid) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE orderid=?";
         
@@ -93,6 +92,7 @@ public class CustOrderDAO {
         return custOrder;
     }
 
+//  FILTER RECORDS BY CUSTID
     public ArrayList<CustOrder> searchRecordByCustId(String custId) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE custid LIKE ?";
         
@@ -129,6 +129,7 @@ public class CustOrderDAO {
         return orders;
     }
 
+//  INSERTING RECORD   
     public void insertRecord(String orderId, LocalDate orderdate, String status, String custId, Address shippingAdd,
             ArrayList<Product> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -159,6 +160,7 @@ public class CustOrderDAO {
         }
     }
 
+//  UPDATING RECORD    
     public void updateRecord(String orderId, LocalDate orderdate, String status, String custId, Address shippingAdd,
             ArrayList<Product> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery) {
         String queryStr = "UPDATE " + tableName
@@ -190,6 +192,7 @@ public class CustOrderDAO {
         }
     }
 
+//  DELETING RECORD    
     public void deleteRecord(String orderid) {
         String queryStr = "DELETE FROM " + tableName + " WHERE orderid=?";
 

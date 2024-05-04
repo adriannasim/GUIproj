@@ -18,6 +18,7 @@ public class OrderItemDAO {
         dbConn = new DatabaseConn();
     }
 
+//  RETRIEVE RECORD BY ORDERID    
     public ArrayList<OrderItem> getRecord(String orderid) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE orderid=?";
         
@@ -39,7 +40,8 @@ public class OrderItemDAO {
 
         return items;
     }
-
+    
+//  INSERTING RECORD
     public void insertRecord(String orderid, String prodid, int itemqty) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?)";
 
@@ -55,7 +57,8 @@ public class OrderItemDAO {
             ex.getMessage();
         }
     }
-
+    
+//  UPDATING RECORD
     public void updateRecord(String orderid, String prodid, int itemqty) {
         String queryStr = "UPDATE " + tableName + " SET itemqty=? WHERE orderid=? AND prodid=?";
 
@@ -69,7 +72,8 @@ public class OrderItemDAO {
             ex.getMessage();
         }
     }
-
+    
+//  DELETING RECORD
     public void deleteRecord(String orderid, String prodid) {
         String queryStr = "DELETE FROM " + tableName + " WHERE orderid=? AND prodid=?";
 
