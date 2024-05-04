@@ -48,6 +48,7 @@ public class SaveSessionCartDataServlet extends HttpServlet {
                 cartDAO.createCartWithoutUserId(cartId);
             }
 
+            // Update cart item
             for (CartItem cartItem : cartItemList) {
                 if (cartItemDAO.retrieveSpecificCartItem(cartId, cartItem.getProd().getProdId()) == true) {
                     cartItemDAO.updateItemInCart(cartId, cartItem.getProd().getProdId(), cartItem.getItemQty());
@@ -56,6 +57,7 @@ public class SaveSessionCartDataServlet extends HttpServlet {
                 }
             }
 
+            // Delete those no longer exist
             ArrayList<CartItem> oriCartItemList = cartItemDAO.retrieveCartItem(cartId);
             if (oriCartItemList != null) {
                 for (CartItem oriCartItem : oriCartItemList) {

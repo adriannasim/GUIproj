@@ -69,13 +69,13 @@ public class DeleteCartItem extends HttpServlet {
         if (cartItemList.isEmpty() == false) {
             for (CartItem cartItem : cartItemList) {
                 if (cartItem.getCartId().equals(cartId) && cartItem.getProd().getProdId().equals(prodId)) {
-                    cartItemList.remove(cartItem);
+                    cartItemList.remove(cartItem); // remove cart item specified
                     break;
                 }
             }
         }
 
-        // Update the cartItemList in the session after modification (adding)
+        // Update the cartItemList in the session after modification (deletion)
         session.setAttribute("cartItemList", cartItemList);
 
         response.sendRedirect("Cart.jsp");

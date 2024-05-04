@@ -75,7 +75,7 @@ public class UpdateCart extends HttpServlet {
             }
         }
 
-        // Update the cartItemList in the session after modification (adding)
+        // Update the cartItemList in the session after modification (adding or subtracting)
         session.setAttribute("cartItemList", cartItemList);
 
         response.sendRedirect("Cart.jsp");
