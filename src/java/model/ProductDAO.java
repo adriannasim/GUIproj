@@ -22,8 +22,7 @@ import java.util.Iterator;
 
 public class ProductDAO {
 
-    private String tableName = "Product";
-    //private String tableName = "public.Product";
+    private String tableName = "public.Product";
     private DatabaseConn conn;
     private PreparedStatement stmt;
 

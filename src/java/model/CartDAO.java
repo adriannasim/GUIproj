@@ -13,9 +13,7 @@ public class CartDAO {
 
     private DatabaseConn dbConn;
     private PreparedStatement stmt;
-    //private String tableName = "public.cart";
-    
-    private String tableName = "cart";
+    private String tableName = "public.cart";
 
     public CartDAO() {
         dbConn = new DatabaseConn();

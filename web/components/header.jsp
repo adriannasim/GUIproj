@@ -10,7 +10,7 @@
         <form id="searchBar" method="Get" action="SearchBar">
             <input type="search" id="search-input-dropdown" name="query" class="form-control" placeholder="Search..." aria-label="Search" />  
         </form>
-        <%
+        <%--<%
         if (matches != null)
         {
         %>
@@ -26,7 +26,7 @@
         </ul>
         <%
         }
-        %>
+        %>--%>
         <!-- Cart Button -->
         <a href="Cart.jsp"><button>Cart</button></a>
         <!--End of header-->
