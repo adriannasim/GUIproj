@@ -21,6 +21,7 @@ public class RetrieveCart extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
         // Initialization
         CartDAO cartDAO = new CartDAO();
         CartItemDAO cartItemDAO = new CartItemDAO();
@@ -60,7 +61,7 @@ public class RetrieveCart extends HttpServlet {
                 System.out.println("Cookie newly added is: " + cartId);
                 Cookie newCookie = new Cookie("cart_id", cartId); // Create a new one
                 newCookie.setMaxAge(30 * 24 * 60 * 60); // Set to 30 days validity
-                response.addCookie(newCookie); // Set the new one
+                response.addCookie(newCookie); // Add the new one
             }
         }
 
