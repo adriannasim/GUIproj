@@ -155,7 +155,7 @@ public class EmployeeDAO {
     }
 
     public static void main(String[] args) {
-        UserDAO userDAO = new UserDAO();
+        EmployeeDAO dao = new EmployeeDAO();
 
 //        // Inserting records: can run
 //        userDAO.insertRecord("user1", "pwd1", "user1@gmail.com");
