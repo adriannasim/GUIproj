@@ -6,15 +6,15 @@ public class Employee extends User{
     private String empRole; // "Manager" or "Staff"
     private String firstName;
     private String lastName;
-    private int contactNo;
+    private String contactNo;
     private String gender;
 
     public Employee() {
 
     }
 
-    public Employee(String username, String userPwd, String email, String empId, String empRole, 
-            String firstName, String lastName, int contactNo, String gender) {
+    public Employee(String username, String userPwd, String email, String empId, String firstName, 
+            String lastName, String contactNo, String gender, String empRole) {
         //super(userId,username, userPwd, email);
         super(username, userPwd, email);
         this.empId = empId;
@@ -42,7 +42,7 @@ public class Employee extends User{
         return lastName;
     }
 
-    public int getContactNo() {
+    public String getContactNo() {
         return contactNo;
     }
 
@@ -67,7 +67,7 @@ public class Employee extends User{
         this.lastName = lastName;
     }
 
-    public void setContactNo(int contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 

@@ -114,16 +114,16 @@
 }
 
 .profile-button:hover {
-    background: #FFE3C2 !important;
+    background: #fdad50 !important;
 }
 
 .profile-button:focus {
-    background: #FFE3C2 !important;
+    background: #fdad50 !important;
     box-shadow: none !important;
 }
 
 .profile-button:active {
-    background: #FFE3C2 !important;
+    background: #fdad50 !important;
     box-shadow: none !important;
 }
 
