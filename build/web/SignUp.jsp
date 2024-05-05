@@ -19,10 +19,6 @@
             }
         </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <link
-            href="https://fonts.googleapis.com/css?family=Roboto:400,500"
-            rel="stylesheet"
-            />
     </head>
     <body>
         <h1>Sign Up</h1>
@@ -59,11 +55,11 @@
             <div id="signup-contactNo-error" class="signup-error-message"></div><br>
 
             <label>Password</label>
-            <input name="signup-userPwd" id="signup-userPwd" type="text"/><br/>
+            <input name="signup-userPwd" id="signup-userPwd" type="password"/><br/>
             <div id="signup-userPwd-error" class="signup-error-message"></div><br>
 
             <label>Confirm Password</label>
-            <input name="signup-confirmPwd" id="signup-confirmPwd" type="text"/><br/>
+            <input name="signup-confirmPwd" id="signup-confirmPwd" type="password"/><br/>
             <div id="signup-confirmPwd-error" class="signup-error-message"></div><br>
 
             <label>Date of Birth</label>
@@ -111,7 +107,6 @@
             <a href="SignIn.jsp"><button type="button">Back to sign in</button></a>
         </form>
         <script>
-
             function validateUsername() {
                 var username = document.getElementById("signup-username").value;
                 var errorDiv = document.getElementById("signup-username-error");
@@ -173,14 +168,14 @@
 
             function validateFirstName() {
                 var firstname = document.getElementById("signup-firstname").value;
-                var nameFormat = /^[a-zA-Z]+$/;
+                var nameFormat = /^[a-zA-Z\s]+$/;
                 var errorDiv = document.getElementById("signup-firstname-error");
                 if (!firstname) {
                     errorDiv.textContent = "First Name is required.";
                 } else if (firstname.length < 2) {
                     errorDiv.textContent = "First Name must be at least 2 characters long.";
                 } else if (!firstname.match(nameFormat)) {
-                    errorDiv.textContent = "First Name should only consists of alphabets.";
+                    errorDiv.textContent = "First Name should only consists of alphabets and spaces.";
                 } else {
                     errorDiv.textContent = "";
                 }
@@ -188,14 +183,14 @@
 
             function validateLastName() {
                 var lastname = document.getElementById("signup-lastname").value;
-                var nameFormat = /^[a-zA-Z]+$/;
+                var nameFormat = /^[a-zA-Z\s]+$/;
                 var errorDiv = document.getElementById("signup-lastname-error");
                 if (!lastname) {
                     errorDiv.textContent = "Last Name is required.";
                 } else if (lastname.length < 2) {
                     errorDiv.textContent = "Last Name must be at least 2 characters long.";
                 } else if (!lastname.match(nameFormat)) {
-                    errorDiv.textContent = "First Name should only consists of alphabets.";
+                    errorDiv.textContent = "First Name should only consists of alphabets and spaces.";
                 } else {
                     errorDiv.textContent = "";
                 }
@@ -218,10 +213,13 @@
                 var errorDiv = document.getElementById("signup-gender-error");
                 if (!document.getElementById('male').checked &&
                         !document.getElementById('female').checked &&
-                        !document.getElementById('undefined')) {
+                        !document.getElementById('undefined').checked) {
                     errorDiv.textContent = "Gender is required.";
+                } else {
+                    errorDiv.textContent = ""; 
                 }
             }
+
 
             function validateDateOfBirth() {
                 var dateOfBirth = document.getElementById("signup-dateOfBirth").value;
@@ -248,7 +246,6 @@
                 var postcode = postalField.value.trim();
                 var country = document.querySelector("#country").value.trim();
                 var errorDiv = document.getElementById("ship-address-error");
-                console.log("postcode is :" + postcode);
                 if (!address && !locality && !state && !postcode && !country) {
                     errorDiv.textContent = "Address is required.";
                 } else if (!address || !locality || !state || !postcode || !country) {
@@ -268,34 +265,68 @@
             document.getElementById("signup-contactNo").addEventListener("input", validateContactNo);
             document.getElementById("signup-dateOfBirth").addEventListener("input", validateDateOfBirth);
             document.getElementById("ship-address").addEventListener("input", validateAddress);
+
+            function validateAllFields() {
+                // Trigger validation for all fields
+                validateUsername();
+                validateUserPwd();
+                validateConfirmPwd();
+                validateEmail();
+                validateFirstName();
+                validateLastName();
+                validateContactNo();
+                validateGender();
+                validateDateOfBirth();
+                validateAddress();
+            }
+
             function hasValidationError() {
+                // Validation error flags for each field
+                var usernameError = document.getElementById("signup-username-error").textContent;
+                var userPwdError = document.getElementById("signup-userPwd-error").textContent;
+                var confirmPwdError = document.getElementById("signup-confirmPwd-error").textContent;
+                var emailError = document.getElementById("signup-email-error").textContent;
+                var firstNameError = document.getElementById("signup-firstname-error").textContent;
+                var lastNameError = document.getElementById("signup-lastname-error").textContent;
+                var contactNoError = document.getElementById("signup-contactNo-error").textContent;
+                var dobError = document.getElementById("signup-dateOfBirth-error").textContent;
+                var genderError = document.getElementById("signup-gender-error").textContent;
+                var addressError = document.getElementById("ship-address-error").textContent;
+
+                // Check if any validation error exists
                 return (
-                        document.getElementById("signup-username-error").textContent ||
-                        document.getElementById("signup-userPwd-error").textContent ||
-                        document.getElementById("signup-confirmPwd-error").textContent ||
-                        document.getElementById("signup-email-error").textContent ||
-                        document.getElementById("signup-firstname-error").textContent ||
-                        document.getElementById("signup-lastname-error").textContent ||
-                        document.getElementById("signup-contactNo-error").textContent ||
-                        document.getElementById("signup-dateOfBirth-error").textContent ||
-                        document.getElementById("signup-gender-error").textContent ||
-                        document.getElementById("ship-address-error").textContent
+                        usernameError ||
+                        userPwdError ||
+                        confirmPwdError ||
+                        emailError ||
+                        firstNameError ||
+                        lastNameError ||
+                        contactNoError ||
+                        dobError ||
+                        genderError ||
+                        addressError
                         );
             }
 
-            // Function to enable or disable the submit button based on validation errors
-            function updateSubmitButton() {
-                var submitButton = document.getElementById("signup-submit-button");
-                if (hasValidationError()) {
-                    submitButton.disabled = true;
+            document.getElementById("signup-submit-button").addEventListener("click", function (event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                validateAllFields();
+                // Perform your form validation here
+                if (!hasValidationError()) {
+                    // If there are no validation errors, submit the form
+                    document.getElementById("signup-form").submit();
                 } else {
-                    submitButton.disabled = false;
+                    // If there are validation errors, display them and prevent form submission
+                    // You can optionally display an error message or highlight the fields with errors
+                    alert("Please correct the validation errors before submitting the form.");
                 }
-            }
+            });
+
         </script>
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
-            defer
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
         ></script>
     </body>
 </html>

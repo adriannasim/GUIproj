@@ -188,10 +188,10 @@ public class CustomerDAO {
             stmt.setString(6, contactNo);
             stmt.setDate(7, new java.sql.Date(dateOfBirth.getTime()));
             stmt.setString(8, gender);
-            stmt.setString(9, custAdd.getCountry());
-            stmt.setString(10, custAdd.getCountry());
-            stmt.setString(11, custAdd.getCountry());
-            stmt.setString(12, custAdd.getCountry());
+            stmt.setString(9, custAdd.getAddress());
+            stmt.setString(10, custAdd.getCity());
+            stmt.setString(11, custAdd.getState());
+            stmt.setString(12, custAdd.getPostalCode());
             stmt.setString(13, custAdd.getCountry());
             stmt.execute();
 
