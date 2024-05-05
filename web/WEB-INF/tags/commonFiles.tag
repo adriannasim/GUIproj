@@ -17,6 +17,7 @@
         <script src="js/SpinnerButton.js"></script>
         <script src="js/UpdateCartSession.js"></script>
         <script src="js/DeleteCartItem.js"></script>
+        <script src="js/GoogleAutocomplete.js"></script>
         
         <!-- Include Bootstrap JS and Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

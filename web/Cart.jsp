@@ -10,6 +10,8 @@
             cartItemList
                     = (ArrayList<CartItem>) session.getAttribute("cartItemList");
         }
+        
+        Double total = 0.0;
     %> 
     <%-- End: Retrieve Product List From Session (prodList) --%>
 
@@ -56,10 +58,18 @@
                             +
                         </button>
                     </div>
-                    <button type="button" onclick="deleteCartItem('<%= cartItem.getProd().getProdId()%>')">Delete</button>
+                    <button type="button" onclick="deleteCartItem('<%= cartItem.getProd().getProdId()%>')">Delete</button
+                    <div>
+                        Subtotal: RM <%=cartItem.getProd().getProdPrice()*cartItem.getItemQty()%>
+                    </div>
                 </div>
+                        <%
+                            total+=cartItem.getProd().getProdPrice()*cartItem.getItemQty();
+                        %>
                 <% }%>
-            </div>
+                <div> 
+                    <div> Total = RM <%=total%>
+                </div>
             <!--end of content-->
 
             <!--footer-->
