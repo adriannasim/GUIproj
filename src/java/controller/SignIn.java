@@ -14,6 +14,7 @@ import java.util.Date;
 import java.text.ParseException;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Cookie;
+import javax.servlet.RequestDispatcher;
 
 @WebServlet(name = "signin", urlPatterns = {"/signin"})
 public class SignIn extends HttpServlet {
@@ -41,6 +42,7 @@ public class SignIn extends HttpServlet {
                 matched = Password.checkPassword(userPwd, custByUsername.getUserPwd());
                 if (matched) {
                     session.setAttribute("username", custByUsername.getUsername());
+                    session.removeAttribute("cartId");
                     Cookie cartIdToRemove = new Cookie("cart_id", "");
                     cartIdToRemove.setMaxAge(0);
                     response.addCookie(cartIdToRemove);
@@ -50,6 +52,7 @@ public class SignIn extends HttpServlet {
                 matched = Password.checkPassword(userPwd, custByEmail.getUserPwd());
                 if (matched) {
                     session.setAttribute("username", custByEmail.getUsername());
+                    session.removeAttribute("cartId");
                     Cookie cartIdToRemove = new Cookie("cart_id", "");
                     cartIdToRemove.setMaxAge(0);
                     response.addCookie(cartIdToRemove);

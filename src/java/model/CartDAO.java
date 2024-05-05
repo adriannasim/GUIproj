@@ -58,7 +58,7 @@ public class CartDAO {
     }
     
     public Cart getCartIByUsername(String username) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE username = ?";
+        String queryStr = "SELECT * FROM " + tableName + " WHERE username = ? ";
         ResultSet rs;
         Cart cart = null;
         
