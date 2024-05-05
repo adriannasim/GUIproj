@@ -1,0 +1,193 @@
+/* ORDER TRACKING CSS */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.bold{
+    font-weight: 600;
+}
+
+.small{
+    font-size: 12px !important;
+    letter-spacing: 0.5px !important;
+}
+
+.Today{
+    color: rgb(83, 83, 83);
+}
+
+.btn-outline-primary{
+    background-color: #fff !important;
+    color:#fed09a !important;
+    border:1.3px solid #fed09a !important;
+    font-size: 12px;
+    border-radius: 0.4em !important;
+}
+
+.btn-outline-primary:hover{
+    background-color:#fed09a  !important;
+    color:#fff !important;
+    border:1.3px solid #fed09a;
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #fed09a !important;
+}
+
+.card-orderstatus {
+    background-color: #fff ;
+    box-shadow: 2px 4px 15px 0px #FFE3C2;
+    z-index: 0;
+}
+
+.a {
+    justify-content: space-between !important;
+}
+
+.border-line {
+    border-right: 1px solid rgb(226, 206, 226)
+}
+
+.card-footer img{
+    opacity: 0.3;
+}
+
+.card-footer h5{
+    font-size: 1.1em;
+    color: #8C9EFF;
+    cursor: pointer;
+}
+
+/* A Hover Effect */
+.aSetting {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.aSetting::before,
+.aSetting::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+.aSetting::before {
+    background-color: #FFE3C2;
+    height: 2px;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.aSetting::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+    color: #FFE3C2;
+}
+
+.aSetting:hover::before {
+    transform-origin: 0% 50%;
+    transform: scaleX(1);
+}
+.aSetting:hover::after {
+    transform: translate3d(0, 0, 0);
+}
+
+/* Edit Profile */
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: #FFE3C2 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.profile-button:hover {
+    background: #FFE3C2 !important;
+}
+
+.profile-button:focus {
+    background: #FFE3C2 !important;
+    box-shadow: none !important;
+}
+
+.profile-button:active {
+    background: #FFE3C2 !important;
+    box-shadow: none !important;
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+.sidebar-heading .sidebar-heading-a{
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar-heading .sidebar-heading-a:hover {
+    color: #FFE3C2;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#sidebar-wrapper #sidebar-list-group .list-group-a:hover{
+    background-color: #FFE3C2 !important;
+    color: white !important;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
