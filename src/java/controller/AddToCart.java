@@ -61,7 +61,7 @@ public class AddToCart extends HttpServlet {
 
         // Set the success message to the user
         String message = "Item(s) added successfully.";
-        session.setAttribute("message", message);
+        session.setAttribute("cart-message", message);
 
         response.sendRedirect("ProductDetail.jsp?id=" + prodId);
     }

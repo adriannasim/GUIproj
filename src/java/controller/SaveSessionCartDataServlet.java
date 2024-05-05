@@ -31,6 +31,7 @@ public class SaveSessionCartDataServlet extends HttpServlet {
             // Retrieve cartId from session
             String cartId = (String) session.getAttribute("cartId");
 
+            // If the cartId does not exist in DB, then create a new cart
             if (cartDAO.getCart(cartId) != true) {
                 cartDAO.createCartWithoutUserId(cartId);
             }

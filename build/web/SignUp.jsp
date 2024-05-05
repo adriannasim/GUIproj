@@ -20,7 +20,10 @@
         </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     </head>
-    <body>
+    <body class="text-center">
+        <!--header-->
+        <jsp:include page="components/header.jsp" />
+        
         <h1>Sign Up</h1>
 
         <form action="signup" method="post" id="signup-form">
@@ -328,5 +331,7 @@
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
         ></script>
+        <!--footer-->
+        <jsp:include page="components/footer.jsp" />
     </body>
 </html>
