@@ -36,6 +36,46 @@ public class CartDAO {
         }
         return false;
     }
+    
+    public Cart getCartInfo(String cartId) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE cartId = ?";
+        ResultSet rs;
+        Cart cart = null;
+        
+        try {
+            stmt = dbConn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, cartId);
+            rs = stmt.executeQuery();
+            
+            if (rs.next()){
+                cart = new Cart(rs.getString("cartId"),rs.getString("username"));
+            }
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return cart;
+    }
+    
+    public Cart getCartIByUsername(String username) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE username = ?";
+        ResultSet rs;
+        Cart cart = null;
+        
+        try {
+            stmt = dbConn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+            
+            if (rs.next()){
+                cart = new Cart(rs.getString("cartId"),rs.getString("username"));
+            }
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return cart;
+    }
 
     // Retrieve CartItems from CartItem table to CartItem ArrayList in Cart Object
     /*public ArrayList<CartItem> retrieveItemInCart(String cartId) {
@@ -83,12 +123,12 @@ public class CartDAO {
         }
     }
 
-    public void assignCartToUser(String cartId, String userId) {
-        String queryStr = "UPDATE " + tableName + " SET userId = ? WHERE cartId = ?";
+    public void assignCartToUser(String cartId, String username) {
+        String queryStr = "UPDATE " + tableName + " SET username = ? WHERE cartId = ?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, userId);
+            stmt.setString(1, username);
             stmt.setString(2, cartId);
             stmt.executeUpdate();
 

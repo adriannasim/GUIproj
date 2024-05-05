@@ -8,13 +8,17 @@
 
 <%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
-<jsp:include page="/RetrieveCart"/>
 
 <%-- Begin: Retrieve Product List From Session (prodList) --%>
 <%
     ArrayList<Product> sessProdList = new ArrayList<Product>();
     if (session.getAttribute("prodList") != null) {
         sessProdList = (ArrayList<Product>) session.getAttribute("prodList");
+    }
+    String cartId = (String) session.getAttribute("cartId");
+    if (cartId == null) {
+        // Cart items don't exist in session, call RetrieveCart servlet
+        request.getRequestDispatcher("/RetrieveCart").include(request, response);
     }
 %>
 <%-- End: Retrieve Product List From Session (prodList) --%>
@@ -54,9 +58,6 @@
     
         <!--start of content-->
         <h1>Home</h1>
-
-        <!-- Sign In/Up Button -->
-        <a href="SignUp.jsp"><button>Sign in/Sign up</button></a>
 
         <!-- Link to All Products Page Button -->
         <a href="ProductPage.jsp?all=t"><button>All Artworks</button></a>

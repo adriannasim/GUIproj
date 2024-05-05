@@ -49,8 +49,8 @@ public class CustomerDAO {
         return custs;
     }
 
-    public Customer getRecordByUsername(String username, String userPwd) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE username=? AND userpwd=?";
+    public Customer getRecordByUsername(String username) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE username=?";
 
         Address address = new Address();
         Customer cust = null;
@@ -58,7 +58,6 @@ public class CustomerDAO {
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, username);
-            stmt.setString(2, userPwd);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -80,16 +79,15 @@ public class CustomerDAO {
         return cust;
     }
 
-    public Customer getRecordByEmail(String email, String userPwd) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE userpwd=? AND email=?";
+    public Customer getRecordByEmail(String email) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE email=?";
 
         Address address = new Address();
         Customer cust = null;
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, userPwd);
-            stmt.setString(2, email);
+            stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -188,10 +186,10 @@ public class CustomerDAO {
             stmt.setString(6, contactNo);
             stmt.setDate(7, new java.sql.Date(dateOfBirth.getTime()));
             stmt.setString(8, gender);
-            stmt.setString(9, custAdd.getCountry());
-            stmt.setString(10, custAdd.getCountry());
-            stmt.setString(11, custAdd.getCountry());
-            stmt.setString(12, custAdd.getCountry());
+            stmt.setString(9, custAdd.getAddress());
+            stmt.setString(10, custAdd.getCity());
+            stmt.setString(11, custAdd.getState());
+            stmt.setString(12, custAdd.getPostalCode());
             stmt.setString(13, custAdd.getCountry());
             stmt.execute();
 

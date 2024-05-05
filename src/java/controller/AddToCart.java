@@ -1,19 +1,13 @@
 package controller;
 
-import entity.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
-import java.util.UUID;
-import entity.CartItem;
 import javax.servlet.http.HttpSession;
-import entity.Cart;
 import entity.CartItem;
 import model.CartDAO;
 import model.CartItemDAO;
@@ -30,9 +24,9 @@ public class AddToCart extends HttpServlet {
         CartItemDAO cartItemDAO = new CartItemDAO();
         ProductDAO prodDAO = new ProductDAO();
         HttpSession session = request.getSession();
-        Cookie[] cookies = request.getCookies();
-        String cookieName = "cart_id";
-        String cartId = null;
+        
+        // Retrieve cartId from session
+        String cartId = (String) session.getAttribute("cartId");
 
         // Retrieve cartItemList from session
         ArrayList<CartItem> cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
@@ -45,27 +39,6 @@ public class AddToCart extends HttpServlet {
         String prodId = request.getParameter("prodId");
         int itemQty = Integer.parseInt(request.getParameter("itemQty"));
 
-        // If the cart id cookie exists, then get the cart id
-        boolean cartExists = false;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("cart_id".equals(cookie.getName())) {
-                    cartId = cookie.getValue();
-                    cartExists = true;
-                    break;
-                }
-            }
-        }
-
-        // If the cartid cookie does not exist, then create a cart
-        if (!cartExists) {
-            Cart cart = new Cart();
-            cartId = cart.getCartId();
-            Cookie newCookie = new Cookie("cart_id", cartId);
-            newCookie.setMaxAge(30 * 24 * 60 * 60); // 30 days validity
-            response.addCookie(newCookie);
-        }
-
         // If the same item found in the same cart, then we add the quantity
         boolean found = false;
         if (cartItemList.isEmpty() == false) {
@@ -76,10 +49,9 @@ public class AddToCart extends HttpServlet {
                     break;
                 }
             }
-
         }
 
-        // If the item not found, then just add to the cart
+        // If the item not found, then just add the item to the cart
         if (!found) {
             cartItemList.add(new CartItem(cartId, prodDAO.getProductById(prodId), itemQty));
         }
@@ -89,7 +61,7 @@ public class AddToCart extends HttpServlet {
 
         // Set the success message to the user
         String message = "Item(s) added successfully.";
-        session.setAttribute("message", message);
+        session.setAttribute("cart-message", message);
 
         response.sendRedirect("ProductDetail.jsp?id=" + prodId);
     }

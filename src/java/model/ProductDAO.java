@@ -2,14 +2,9 @@
 package model;
 
 import entity.Product;
-import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
-import java.sql.*;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -33,7 +28,6 @@ public class ProductDAO {
     // Retrieve all products
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
-
         String queryStr = "SELECT * FROM " + tableName;
 
         try {
@@ -83,7 +77,6 @@ public class ProductDAO {
     // Retrieve specific product by product id 
     public Product getProductById(String prodId) {
         Product prod = null;
-
         String queryStr = "SELECT * FROM " + tableName + " WHERE prodId = ?";
 
         try {
@@ -116,7 +109,6 @@ public class ProductDAO {
     public List<String> matchProductByName(String query) {
         //Initializing a list to store all matching result
         List<String> matches = new ArrayList<>();
-        
         //Database query to retrieve product by ID
         String queryStr = "SELECT * FROM " + tableName + " WHERE LOWER(prodName) LIKE ?";
 
@@ -139,12 +131,10 @@ public class ProductDAO {
     // Retrieve the main product
     public Product getMainProduct() {
         Product prod = null;
-
         String queryStr = "SELECT * FROM " + tableName + " WHERE main = 'T'";
 
         try {
             stmt = conn.returnConnection().prepareStatement(queryStr);
-
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -254,7 +244,6 @@ public class ProductDAO {
     // Retrieve latest 4 products
     public ArrayList<Product> getLatestProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
-
         String queryStr = "SELECT * FROM " + tableName
                 + " WHERE prodAddedDate <= NOW() ORDER BY prodAddedDate DESC LIMIT 4";
 

@@ -33,7 +33,7 @@
     </head>
 
     <body class="text-center">
-         <!--header-->
+        <!--header-->
         <jsp:include page="components/header.jsp" />
         
         <h1>Artworks</h1>
