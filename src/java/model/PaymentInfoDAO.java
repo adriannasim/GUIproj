@@ -15,6 +15,7 @@ public class PaymentInfoDAO {
         dbConn = new DatabaseConn();
     }
 
+//  RETRIEVE RECORDS : ALL, BY PAYMENT ID    
     public ArrayList<PaymentInfo> getAllRecord() {
         String queryStr = "SELECT * FROM " + tableName;
         ArrayList<PaymentInfo> paymentInfo = new ArrayList<PaymentInfo>();
@@ -58,6 +59,7 @@ public class PaymentInfoDAO {
         return paymentInfo;
     }
 
+//  FILTER RECORDS BY PAYMENT METHOD    
     public ArrayList<PaymentInfo> searchRecordByPaymentType(String paymentType) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE paymenttype LIKE ?";
         ArrayList<PaymentInfo> paymentInfo = null;
@@ -80,6 +82,7 @@ public class PaymentInfoDAO {
         return paymentInfo;
     }
 
+//  INSERTING RECORD    
     public void insertRecord(String paymentId, String orderId, String custId, String paymentType, 
             LocalDate paymentDate, double paymentAmount) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?)";
@@ -101,9 +104,11 @@ public class PaymentInfoDAO {
         }
     }
 
+//  UPDATING RECORD    
     public void updateRecord(String paymentId, String orderId, String custId, String paymentType, 
             LocalDate paymentDate, double paymentAmount) {
-        String queryStr = "UPDATE " + tableName + " SET orderid=?,custid=?,paymenttype=?,paymentdate=?,paymentamount=? WHERE paymentid=?";
+        String queryStr = "UPDATE " + tableName + " SET orderid=?,custid=?,paymenttype=?,paymentdate=?,paymentamount=?"
+                + " WHERE paymentid=?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -120,6 +125,7 @@ public class PaymentInfoDAO {
         }
     }
 
+//  DELETING RECORD    
     public void deleteRecord(String paymentId) {
         String queryStr = "DELETE FROM " + tableName + " WHERE paymentId=?";
         

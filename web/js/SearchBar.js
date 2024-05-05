@@ -1,14 +1,16 @@
 $(document).ready(function() {
+    var loading;
     $('#search-input-dropdown').keyup(function() {
-        
         var query = $(this).val();
         
         //If nothing is inside the search bar
         if (query === '') {
             clearResults();
+            var loading = false;
         }
         else
         {
+            loading = true;
             loadingResults();
         }
         
@@ -28,18 +30,23 @@ $(document).ready(function() {
     });
     
     function displayResults(suggestions) {
+        loading = false;
         clearResults();
         if (suggestions !== "")
         {
             //Add the suggestion results to a droplist
             suggestions.forEach(function(suggestion) {
-                $('#searchBar-dropdown-list').append('<li><a class="searchBar-dropdown-list-item" href="'+ suggestion +'">' + suggestion + '</a></li>');
+                var link = suggestions.replaceAll(" ", "-");
+                $('#searchBar-dropdown-list').append('<li><a class="searchBar-dropdown-list-item" href="'+ link +'">' + suggestion + '</a></li>');
             });
         }
     }
     
     function loadingResults() {
-        $('#searchBar-dropdown-list').append('<li>Loading Results...</li>');
+        if (loading != true)
+        {
+            $('#searchBar-dropdown-list').append('<li>Loading Results...</li>'); 
+        }
     }
     
     function clearResults() {
