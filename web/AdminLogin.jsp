@@ -1,4 +1,3 @@
-<%-- This file is a guideline for all individual jsp files --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
@@ -15,7 +14,7 @@
         <title>Template</title>
 
         <!-- Include commonFiles.tag -->
-        <custom:commonFiles />
+        <custom:commonFilesAdm />
 
     </head>
     
@@ -25,6 +24,16 @@
     
         <!--start of content-->
         <h1>Sign In</h1>
+        <div id="errorMsg">
+            <% if ((String) request.getAttribute("errMsg") != null) 
+            {
+            %>
+            <div id="login-errorMsg">
+                <p><%= request.getAttribute("errMsg") %></p>
+            </div>
+            <%
+            }
+            %>
         <form action="signup" method="post">
             <label>Username/Email</label>
             <input name="username" type="text"/><br/>
