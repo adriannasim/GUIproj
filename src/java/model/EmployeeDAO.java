@@ -2,7 +2,6 @@
 package model;
 
 //import src.java.entity.User;
-import entity.Employee;
 import entity.User;
 import java.sql.*;
 import java.util.*;
@@ -11,139 +10,73 @@ public class EmployeeDAO {
 
     private DatabaseConn dbConn;
     private PreparedStatement stmt;
-    private String tableName = "public.employee";
+    private String tableName = "public.Employee";
 
     public EmployeeDAO() {
         dbConn = new DatabaseConn();
     }
 
-//  RETRIEVE RECORD : ALL, BY USERNAME, BY EMAIL, BY EMPID   
-    public ArrayList<Employee> getAllRecord() {
+    public ArrayList<User> getAllRecord() {
         String queryStr = "SELECT * FROM " + tableName;
-
-//        Address address = new Address();
-        ArrayList<Employee> emps = new ArrayList<Employee>();
+        ArrayList<User> user = new ArrayList<User>();
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-//                address.setAddress(rs.getString(9));
-//                address.setCity(rs.getString(10));
-//                address.setState(rs.getString(11));
-//                address.setPostalCode(rs.getString(12));
-//                address.setCountry(rs.getString(13));
-
-                emps.add(new Employee(rs.getString(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9))
-                );
+                user.add(new User(rs.getString("username"), rs.getString("password"), rs.getString("email")));
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
 
-        return emps;
+        return user;
     }
 
-    public Employee getRecordByUsername(String username) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE username=?";
-
-//        Address address = new Address();
-        Employee emp = null;
+    public User getRecordByUsername(String username, String userPwd) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE username=? AND password=?";
+        User user = null;
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, username);
+            stmt.setString(2, userPwd);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-//                address.setAddress(rs.getString(9));
-//                address.setCity(rs.getString(10));
-//                address.setState(rs.getString(11));
-//                address.setPostalCode(rs.getString(12));
-//                address.setCountry(rs.getString(13));
-
-                emp = new Employee(rs.getString(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9));
+                user = new User(username, userPwd, rs.getString("email"));
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
 
-        return emp;
+        return user;
     }
 
-    public Employee getRecordByEmail(String email) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE email=?";
-
-//        Address address = new Address();
-        Employee emp = null;
+    public User getRecordByEmail(String email, String userPwd) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE password=? AND email=?";
+        User user = null;
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, email);
+            stmt.setString(1, userPwd);
+            stmt.setString(2, email);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-//                address.setAddress(rs.getString(9));
-//                address.setCity(rs.getString(10));
-//                address.setState(rs.getString(11));
-//                address.setPostalCode(rs.getString(12));
-//                address.setCountry(rs.getString(13));
-
-                emp = new Employee(rs.getString(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9));
+                user = new User(rs.getString("username"), userPwd, email);
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
 
-        return emp;
+        return user;
     }
 
-    public Employee getRecordByEmpId(String empid) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE empid=?";
-
-//        Address address = new Address();
-        Employee emp = null;
-
-        try {
-            stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, empid);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-//                address.setAddress(rs.getString(9));
-//                address.setCity(rs.getString(10));
-//                address.setState(rs.getString(11));
-//                address.setPostalCode(rs.getString(12));
-//                address.setCountry(rs.getString(13));
-
-                emp = new Employee(rs.getString(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9));
-            }
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }
-
-        return emp;
-    }
-
-//  FILTER RECORD : BY USERNAME, BY EMAIL    
-    public Employee searchUsername(String username) {
+    public User searchUsername(String username) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE username LIKE ?";
-
-//        Address address = new Address();
-        Employee emp = null;
+        User user = null;
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -151,58 +84,36 @@ public class EmployeeDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-//                address.setAddress(rs.getString(9));
-//                address.setCity(rs.getString(10));
-//                address.setState(rs.getString(11));
-//                address.setPostalCode(rs.getString(12));
-//                address.setCountry(rs.getString(13));
-
-                emp = new Employee(rs.getString(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9));
+                user = new User(username, rs.getString("password"), rs.getString("email"));
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
 
-        return emp;
+        return user;
     }
 
-    public Employee searchEmail(String email) {
+    public User searchEmail(String email) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE email LIKE ?";
-
-//        Address address = new Address();
-        Employee emp = null;
+        User user = null;
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(2, "%" + email + "%");
+            stmt.setString(2, "%" + email +"%");
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-//                address.setAddress(rs.getString(9));
-//                address.setCity(rs.getString(10));
-//                address.setState(rs.getString(11));
-//                address.setPostalCode(rs.getString(12));
-//                address.setCountry(rs.getString(13));
-
-                emp = new Employee(rs.getString(1),
-                        rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9));
+                user = new User(rs.getString("username"), rs.getString("password"), email);
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
 
-        return emp;
+        return user;
     }
 
-//  INSERTING RECORD    
-    public void insertRecord(String username, String userPwd, String email, String empid, String firstName,
-            String lastName, String contactNo, String gender, String emprole) {
-        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?,?)";
+    public void insertRecord(String username, String userPwd, String email) {
+        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?)";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -210,12 +121,6 @@ public class EmployeeDAO {
             stmt.setString(1, username);
             stmt.setString(2, userPwd);
             stmt.setString(3, email);
-            stmt.setString(4, empid);
-            stmt.setString(5, firstName);
-            stmt.setString(6, lastName);
-            stmt.setString(7, contactNo);
-            stmt.setString(8, gender);
-            stmt.setString(9, emprole);
             stmt.execute();
 
         } catch (SQLException ex) {
@@ -223,32 +128,20 @@ public class EmployeeDAO {
         }
     }
 
-//  UPDATING RECORD 
-    public void updateRecord(String username, String userPwd, String email, String empid, String firstName,
-            String lastName, String contactNo, String gender, String emprole) {
-        String queryStr = "UPDATE " + tableName + " SET userpwd=?,email=?,empid=?,firstname=?,lastname=?,contactno=?,"
-                + "gender=?,emprole=?"
-                + " WHERE username=?";
+    public void updateRecord(String username, String password, String email) {
+        String queryStr = "UPDATE " + tableName + " SET password=?,email=? WHERE username=?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, userPwd);
+            stmt.setString(1, password);
             stmt.setString(2, email);
-            stmt.setString(3, empid);
-            stmt.setString(4, firstName);
-            stmt.setString(5, lastName);
-            stmt.setString(6, contactNo);
-            stmt.setString(7, gender);
-            stmt.setString(8, emprole);
-            stmt.setString(9, username);
+            stmt.setString(3, username);
             stmt.executeUpdate();
-
         } catch (SQLException ex) {
             ex.getMessage();
         }
     }
 
-//  DELETING RECORD    
     public void deleteRecord(String username) {
         String queryStr = "DELETE FROM " + tableName + " WHERE username=?";
 
@@ -262,7 +155,27 @@ public class EmployeeDAO {
     }
 
     public static void main(String[] args) {
-        CustomerDAO dao = new CustomerDAO();
+        UserDAO userDAO = new UserDAO();
+
+//        // Inserting records: can run
+//        userDAO.insertRecord("user1", "pwd1", "user1@gmail.com");
+//        userDAO.insertRecord("user2", "pwd2", "user2@gmail.com");
+        // Get record : can run
+//        ArrayList<User> users = userDAO.getAllRecord();
+//        for (User user:users){
+//            System.out.println(user.getUsername());
+//        }
+//        User usertest1 = userDAO.getRecordByEmail("user1@gmail.com", "pwd1");
+//        System.out.println(usertest1.getUsername());
+//        User usertest2 = userDAO.getRecordByUsername("user2", "pwd2");
+//        System.out.println(usertest2.getUsername());
+        // Updating record : can run
+//        userDAO.updateRecord("user1", "user1Change@gmail.com", "pwdChange");
+//        User usertest1 = userDAO.getRecordByEmail("user1Change@gmail.com", "pwd1");
+//        System.out.println(usertest1.getEmail());
+        // Deleting records : can run
+//        userDAO.deleteRecord("user1");
+//        userDAO.deleteRecord("user2");
     }
 
 }

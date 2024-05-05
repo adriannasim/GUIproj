@@ -13,6 +13,7 @@ public class Product {
     private String[] prodImg;
     private String[] prodKeywords;
     private LocalDate prodAddedDate;
+    private byte [] productImgBytes;
 
     public Product() {
 
