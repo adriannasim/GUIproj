@@ -2,33 +2,10 @@ package controller;
 
 import entity.*;
 import model.*;
-import controller.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.nio.file.Paths;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.ByteArrayOutputStream;
-//import java.util.logging.Logger;
-import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.annotation.MultipartConfig;
-import javax.transaction.UserTransaction;
-import org.jboss.logging.Logger;
 import java.io.IOException;
-import java.util.Date;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,8 +22,10 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Create a session
         HttpSession session = request.getSession();
-        // Record the parameter values
+        
+        // Record the parameter values passed from the signup form
         String username = request.getParameter("signup-username");
         String userPwd = request.getParameter("signup-userPwd");
         String email = request.getParameter("signup-email");
@@ -74,8 +53,7 @@ public class SignUp extends HttpServlet {
             
             // Contrsuct Date object
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = null;
-            date = sdf.parse(dateOfBirth);
+            Date date = sdf.parse(dateOfBirth);
             
             // Hashing the password before storing into DB
             String hashPassword = Password.hashPassword(userPwd);
@@ -83,15 +61,20 @@ public class SignUp extends HttpServlet {
             // Insert Customer Record into DB
             CustomerDAO custDAO = new CustomerDAO();
             custDAO.insertRecord(username, hashPassword, email, firstname, lastname, contactNo, date, gender, add);
+            
         } catch (ParseException e) {
             e.printStackTrace();
+            
         } catch (Exception e){
             e.printStackTrace();
         }
         
-        // Set the success message to the user
+        // Set the signup success message to the user
         String message = "Your account has registered successfully.";
         session.setAttribute("signup-message", message);
+        
+        // Save username in session
+        session.setAttribute("username",username);
         
         response.sendRedirect("SignIn.jsp");
     }

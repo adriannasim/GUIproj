@@ -1,13 +1,10 @@
 package controller;
 
-import entity.Cart;
 import entity.CartItem;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,31 +21,21 @@ public class SaveSessionCartDataServlet extends HttpServlet {
 
         // Initialization
         CartDAO cartDAO = new CartDAO();
-        ArrayList<CartItem> cartItemList = new ArrayList<CartItem>();
         CartItemDAO cartItemDAO = new CartItemDAO();
         HttpSession session = request.getSession();
-        Cookie[] cookies = request.getCookies();
-        String cartId = null;
-        boolean cartExists = false;
 
         // Retrieve cartItemList from session
         if (session.getAttribute("cartItemList") != null) {
-            cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
+            ArrayList<CartItem> cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
 
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if ("cart_id".equals(cookie.getName())) {
-                        cartId = cookie.getValue();
-                        break;
-                    }
-                }
-            }
+            // Retrieve cartId from session
+            String cartId = (String) session.getAttribute("cartId");
 
             if (cartDAO.getCart(cartId) != true) {
                 cartDAO.createCartWithoutUserId(cartId);
             }
 
-            // Update cart item
+            // Update cart item qty if necessary (Update Cart Item Qty // Add Cart Item)
             for (CartItem cartItem : cartItemList) {
                 if (cartItemDAO.retrieveSpecificCartItem(cartId, cartItem.getProd().getProdId()) == true) {
                     cartItemDAO.updateItemInCart(cartId, cartItem.getProd().getProdId(), cartItem.getItemQty());
@@ -57,14 +44,14 @@ public class SaveSessionCartDataServlet extends HttpServlet {
                 }
             }
 
-            // Delete those no longer exist
+            // Delete those cart item that no longer exist
             ArrayList<CartItem> oriCartItemList = cartItemDAO.retrieveCartItem(cartId);
             if (oriCartItemList != null) {
                 for (CartItem oriCartItem : oriCartItemList) {
                     boolean found = false;
                     for (CartItem currentCartItem : cartItemList) {
                         if (oriCartItem.getProd().getProdId().equals(currentCartItem.getProd().getProdId())) {
-                            // Item found in current cartItemList, mark as found and break inner loop
+                            // Item found in current cartItemList
                             found = true;
                             break;
                         }
@@ -76,9 +63,9 @@ public class SaveSessionCartDataServlet extends HttpServlet {
                 }
             }
 
+            // Close DB connection
             cartDAO.closeConnection();
             cartItemDAO.closeConnection();
         }
     }
-
 }

@@ -2,9 +2,7 @@ package controller;
 
 import entity.Cart;
 import entity.CartItem;
-import entity.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.CartDAO;
 import model.CartItemDAO;
-import model.ProductDAO;
 
 @WebServlet(name = "RetrieveCart", urlPatterns = {"/RetrieveCart"})
 public class RetrieveCart extends HttpServlet {
@@ -27,8 +24,9 @@ public class RetrieveCart extends HttpServlet {
         // Initialization
         CartDAO cartDAO = new CartDAO();
         CartItemDAO cartItemDAO = new CartItemDAO();
-        ArrayList<CartItem> cartItemList = new ArrayList<>();
         HttpSession session = request.getSession();
+        
+        // Retrieve cartId from cookie
         Cookie[] cookies = request.getCookies();
         String cartId = null;
         boolean cartExists = false;
@@ -37,30 +35,30 @@ public class RetrieveCart extends HttpServlet {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if ("cart_id".equals(cookie.getName())) {
-                    cartId = cookie.getValue();
+                    cartId = cookie.getValue(); // cartId = cookie's value
                     cartExists = true;
                     break;
                 }
             }
         }
 
-        // If cart ID cookie doesn't exist (means user didn't create cart before, then create a new one 
+        // If cart ID cookie doesn't exist (means user didn't create cart before, then create a new one) 
         if (!cartExists) {
             Cart cart = new Cart();
             cartId = cart.getCartId();
-            Cookie newCookie = new Cookie("cart_id", cartId);
+            Cookie newCookie = new Cookie("cart_id", cartId); // Create a new one
             newCookie.setMaxAge(30 * 24 * 60 * 60); // Set to 30 days validity
-            response.addCookie(newCookie);
-            System.out.println("New cart created with ID: " + cartId);
-        } else {
-            System.out.println("Existing cart found with ID: " + cartId);
-        }
+            response.addCookie(newCookie); // Set the new one
+        } 
         
-        // Retrieve cart items from database by referring to the cart ID
-        cartItemList = cartItemDAO.retrieveCartItem(cartId);
+        // Retrieve cart items from database by referring to the cartId
+        ArrayList<CartItem> cartItemList = cartItemDAO.retrieveCartItem(cartId);
         
         // Put the cart items into the session
         session.setAttribute("cartItemList", cartItemList);
+        
+        // Put the cart id into the session
+        session.setAttribute("cartId", cartId);
         
         cartDAO.closeConnection();
         cartItemDAO.closeConnection();
