@@ -4,7 +4,7 @@ package entity;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Cart {
+public class Cart implements java.io.Serializable{
     private String cartId;
     private String username;
     private ArrayList<CartItem> itemList = new ArrayList<CartItem>();

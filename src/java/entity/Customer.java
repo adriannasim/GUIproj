@@ -3,7 +3,7 @@ package entity;
 
 import java.util.*;
 
-public class Customer extends User{
+public class Customer extends User implements java.io.Serializable{
     private String firstName;
     private String lastName;
 //    private String custId;
