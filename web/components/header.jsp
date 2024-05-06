@@ -16,16 +16,6 @@
         <ul id="searchBar-dropdown-list"></ul>
     </div>
 
-    <!-- Cart Button -->
-    <div>
+        <!-- Cart Button -->
         <a href="Cart.jsp"><button>Cart</button></a>
-    </div>
-
-    <!-- User Profile Button -->
-    <div>
-        <a href="<%= session.getAttribute("username") == null ? "SignIn.jsp" : "Profile.jsp"%>">
-            <button><%= session.getAttribute("username") == null ? "Sign in / Sign up" : "Profile"%></button>
-        </a>
-    </div>
-    <!--End of header-->
-</div>
+        <!--End of header-->
