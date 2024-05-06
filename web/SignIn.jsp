@@ -61,13 +61,34 @@
         <%
             }
         %>
+        <%
+       // Check if sign-up was successful
+       Boolean signupSuccess = (Boolean) request.getSession().getAttribute("signup-success");
+       if (signupSuccess != null && signupSuccess) {
+        %>
+        <script>
+            // Use AJAX to call RetrieveCart servlet in the background
+            function retrieveCartInBackground() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'RetrieveCart', true);
+                xhr.send();
+            }
+
+            // Call the function to retrieve cart data in the background
+            retrieveCartInBackground();
+        </script>
+        <%
+                // Reset the attribute to avoid invoking RetrieveCart multiple times
+                request.getSession().removeAttribute("signup-success");
+            }
+        %>
         <h1>Sign In</h1>
         <form action="signin" method="post" id="signin-form">
             <label>Username/Email</label>
             <input type="text" name="signin-username/email" id="signin-username/email"/><br/><br/>
 
             <label>Password</label>
-            <input type="text" name="signin-password" id="signin-password"/><br/><br/>
+            <input type="password" name="signin-password" id="signin-password"/><br/><br/>
 
             <button type="submit">Sign In</button>
             <a href="SignUp.jsp"><button type="button">Don't have account? Go to Sign Up</button></a>

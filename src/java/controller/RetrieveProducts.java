@@ -3,11 +3,7 @@ package controller;
 import entity.Product;
 import model.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,10 +20,10 @@ public class RetrieveProducts extends HttpServlet {
 
         //initializations
         ProductDAO prodDA = new ProductDAO();
-        String prodId;
-        String viewAll;
         ArrayList<Product> prodList = new ArrayList<>();
         ArrayList<Product> suggestionList = new ArrayList<>();
+        String prodId;
+        String viewAll;
         Product mainProduct = new Product();
         HttpSession session = request.getSession();
 
@@ -36,14 +32,16 @@ public class RetrieveProducts extends HttpServlet {
             prodId = request.getParameter("id");
             prodList.add(prodDA.getProductById(prodId));
             suggestionList = prodDA.getRecommendedProducts(prodId);
-        } //If need retrieve all products and main product
+        } 
+        //If need retrieve all products and main product
         else if (request.getParameter("all") != null && !request.getParameter("all").equals("")) {
             viewAll = request.getParameter("all");
             if (viewAll.equalsIgnoreCase("t")) {
                 prodList = prodDA.getAllProducts();
                 mainProduct = prodDA.getMainProduct();
             }
-        } //Else, for main page latest products
+        } 
+        //Else, for main page latest products
         else {
             prodList = prodDA.getLatestProducts();
         }
@@ -69,6 +67,7 @@ public class RetrieveProducts extends HttpServlet {
             session.removeAttribute("mainProduct");
         }
 
+        // close DB Connection
         prodDA.closeConnection();
 
         response.sendRedirect("Home.jsp");

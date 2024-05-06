@@ -1,7 +1,5 @@
 package controller;
 
-import entity.Cart;
-import entity.CartItem;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -11,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import entity.Cart;
+import entity.CartItem;
 import model.CartDAO;
 import model.CartItemDAO;
 
@@ -20,9 +20,8 @@ public class RetrieveCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setHeader("Content-Type", "text/html");
+        //response.setHeader("Content-Type", "text/html");
 
-        
         // Initialization
         CartDAO cartDAO = new CartDAO();
         CartItemDAO cartItemDAO = new CartItemDAO();
@@ -48,7 +47,6 @@ public class RetrieveCart extends HttpServlet {
                 for (Cookie cookie : cookies) {
                     if ("cart_id".equals(cookie.getName())) {
                         cartId = cookie.getValue(); // cartId = cookie's value
-                        System.out.println("Cookie existed is: " + cartId);
                         cartExists = true;
                         break;
                     }
@@ -59,10 +57,9 @@ public class RetrieveCart extends HttpServlet {
             if (!cartExists) {
                 Cart cart = new Cart();
                 cartId = cart.getCartId();
-                System.out.println("Cookie newly added is: " + cartId);
                 Cookie newCookie = new Cookie("cart_id", cartId); // Create a new one
                 newCookie.setMaxAge(30 * 24 * 60 * 60); // Set to 30 days validity
-                response.addCookie(newCookie); // Set the new one
+                response.addCookie(newCookie); // Add the new one
             }
         }
 
@@ -75,6 +72,7 @@ public class RetrieveCart extends HttpServlet {
         // Put the cart id into the session
         session.setAttribute("cartId", cartId);
 
+        // Close the DB connection
         cartDAO.closeConnection();
         cartItemDAO.closeConnection();
     }
