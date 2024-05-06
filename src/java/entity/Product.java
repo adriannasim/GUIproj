@@ -13,7 +13,6 @@ public class Product {
     private String[] prodImg;
     private String[] prodKeywords;
     private LocalDate prodAddedDate;
-    private byte [] productImgBytes;
 
     public Product() {
 
@@ -108,6 +107,10 @@ public class Product {
     }
 
     public void setProdAddedDate(LocalDate prodAddedDate) {
+        this.prodAddedDate = prodAddedDate;
+    }
+    
+    public void setProdSlug(LocalDate prodAddedDate) {
         this.prodAddedDate = prodAddedDate;
     }
 }
