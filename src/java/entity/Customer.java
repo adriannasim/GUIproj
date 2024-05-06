@@ -6,38 +6,36 @@ import java.util.*;
 public class Customer extends User{
     private String firstName;
     private String lastName;
-    private String custId;
-    private int contactNo;
+//    private String custId;
+    private String contactNo;
     private Date dateOfBirth;
     private String gender;
-    private ArrayList<Address> custAdd;
+    private Address custAdd;
     
     public Customer(){
 
     }
     
-    public Customer(String firstName, String lastName, String custId, int contactNo, Date dateOfBirth, 
-            String gender, Address custAdd) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.custId = custId;
-        this.contactNo = contactNo;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.custAdd.add(custAdd);
-    }
+//    public Customer(String firstName, String lastName, int contactNo, Date dateOfBirth, 
+//            String gender, Address custAdd) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.contactNo = contactNo;
+//        this.dateOfBirth = dateOfBirth;
+//        this.gender = gender;
+//        this.custAdd.add(custAdd);
+//    }
 
     public Customer(String username, String userPwd, String email, String firstName, 
-            String lastName, String custId, int contactNo, Date dateOfBirth, String gender, Address custAdd) {
+            String lastName, String contactNo, Date dateOfBirth, String gender, Address custAdd) {
         //super(userId,username, userPwd, email);
         super(username, userPwd, email);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.custId = custId;
         this.contactNo = contactNo;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
-        this.custAdd.add(custAdd);
+        this.custAdd = custAdd;
     }
 
     // Getter methods
@@ -49,11 +47,11 @@ public class Customer extends User{
         return lastName;
     }
 
-    public String getCustId() {
-        return custId;
-    }
+//    public String getCustId() {
+//        return custId;
+//    }
 
-    public int getContactNo() {
+    public String getContactNo() {
         return contactNo;
     }
 
@@ -65,7 +63,7 @@ public class Customer extends User{
         return gender;
     }
 
-    public ArrayList<Address> getCustAdd() {
+    public Address getCustAdd() {
         return custAdd;
     }
 
@@ -78,11 +76,11 @@ public class Customer extends User{
         this.lastName = lastName;
     }
 
-    public void setCustId(String custId) {
-        this.custId = custId;
-    }
+//    public void setCustId(String custId) {
+//        this.custId = custId;
+//    }
 
-    public void setContactNo(int contactNo) {
+    public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
 
@@ -94,11 +92,11 @@ public class Customer extends User{
         this.gender = gender;
     }
 
-    public void setCustAdd(ArrayList<Address> custAdd) {
+    public void setCustAdd(Address custAdd) {
         this.custAdd = custAdd;
     }
     
-    public void addCustAdd(Address custAdd) {
-        this.custAdd.add(custAdd);
-    }
+    //public void addCustAdd(Address custAdd) {
+    //    this.custAdd.add(custAdd);
+    //}
 }

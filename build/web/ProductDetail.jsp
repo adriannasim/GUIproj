@@ -38,27 +38,23 @@
 
         <%
             // Retrieve the message from session
-            String message = (String) session.getAttribute("message");
+            String msg = (String) session.getAttribute("cart-message");
+            session.removeAttribute("cart-message");
             // Check if a message exists and is not empty
-            if (message != null && !message.isEmpty()) {
+            if (msg != null && !msg.isEmpty()) {
         %>
-        <div id="message" class="message">
-            <%= message%>
+        <div id="msg" class="message">
+            <%= msg%>
         </div>
-        <%
-            // Clear the session attribute after 5 seconds
-        %>
         <script>
             setTimeout(function () {
-                var messageDiv = document.getElementById("message");
+                var messageDiv = document.getElementById("msg");
                 if (messageDiv) {
                     messageDiv.style.display = "none";
                 }
             }, 5000); // 5000 milliseconds = 5 seconds
         </script>
         <%
-                // Clear the session attribute after displaying the message
-                session.removeAttribute("message");
             }
         %>
 
@@ -83,7 +79,7 @@
                 </div>
                 <form action="AddToCart" method="post">
                     <div class="btns">
-                        <button class="btn" type="button" onclick="decrementValue('itemQty',1)">
+                        <button class="btn" type="button" onclick="decrementValue('itemQty', 1)">
                             -
                         </button>
                         <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
@@ -96,7 +92,7 @@
                             class=""
                             id="itemQty"
                             />
-                        
+
                         <button class="btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>)">
                             +
                         </button>

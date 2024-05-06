@@ -10,6 +10,7 @@ public class PaymentCardDAO {
     private PreparedStatement stmt;
     private String tableName = "public.paymentcard";
 
+//  RETRIEVE RECORD : ALL, BY CARD NUMBER & CARD NAME, BY CUSTID    
     public ArrayList<PaymentCard> getAllRecord() {
         String queryStr = "SELECT * FROM " + tableName;
         ArrayList<PaymentCard> paymentcard = new ArrayList<PaymentCard>();
@@ -72,6 +73,7 @@ public class PaymentCardDAO {
         return paymentcard;
     }
 
+//  INSERTING RECORD    
     public void insertRecord(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?)";
 
@@ -91,6 +93,7 @@ public class PaymentCardDAO {
         }
     }
 
+//  UPDATING RECORD    
     public void updateRecord(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
         String queryStr = "UPDATE " + tableName 
                 + " SET datemonth=?,dateyear=?,cvv=?,custid=? WHERE cardname=? AND cardnumber=?";
@@ -109,6 +112,7 @@ public class PaymentCardDAO {
         }
     }
 
+//  DELETING RECORD    
     public void deleteRecord(String cardname, String cardnumber) {
         String queryStr = "DELETE FROM " + tableName + " WHERE cardname=? AND cardnumber=?";
 
