@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 @WebServlet(name = "UpdateCart", urlPatterns = {"/UpdateCart"})
 public class UpdateCart extends HttpServlet {
 
@@ -20,10 +19,10 @@ public class UpdateCart extends HttpServlet {
 
         // Initialization
         HttpSession session = request.getSession();
-       
+
         // Retrieve cartId from session
         String cartId = (String) session.getAttribute("cartId");
-        
+
         // Retrieve cartItemList from session
         ArrayList<CartItem> cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
 
@@ -47,6 +46,10 @@ public class UpdateCart extends HttpServlet {
         // Update the cartItemList in the session after modification (adding or subtracting the qty)
         session.setAttribute("cartItemList", cartItemList);
 
+        //response.setContentType("text/plain");
+        //response.setCharacterEncoding("UTF-8");
+        //response.getWriter().write("Item updated.");
+        
         response.sendRedirect("Cart.jsp");
     }
 }

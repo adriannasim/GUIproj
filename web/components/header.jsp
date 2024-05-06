@@ -24,7 +24,7 @@
     <!-- User Profile Button -->
     <div>
         <a href="<%= session.getAttribute("username") == null ? "SignIn.jsp" : "Profile.jsp"%>">
-            <button><%= session.getAttribute("username") == null ? "Sign in/Sign up" : "Profile"%></button>
+            <button><%= session.getAttribute("username") == null ? "Sign in / Sign up" : "Profile"%></button>
         </a>
     </div>
     <!--End of header-->

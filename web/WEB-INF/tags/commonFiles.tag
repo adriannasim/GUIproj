@@ -14,9 +14,6 @@
         <!-- <script src="js/<filename>.js"></script> -->
         <script src="js/SearchBar.js"></script>
         <script src="js/SaveSessionCartData.js"></script>
-        <script src="js/SpinnerButton.js"></script>
-        <script src="js/UpdateCartSession.js"></script>
-        <script src="js/DeleteCartItem.js"></script>
         <script src="js/GoogleAutocomplete.js"></script>
         
         <!-- Include Bootstrap JS and Popper.js -->

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 
 <%--imports--%>
-<%@page import="entity.Product,java.util.ArrayList"%> 
+<%@page import="entity.Product,java.util.ArrayList,java.text.DecimalFormat"%> 
 
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
@@ -36,28 +36,7 @@
         <!--header-->
         <jsp:include page="components/header.jsp" />
 
-        <%
-            // Retrieve the message from session
-            String msg = (String) session.getAttribute("cart-message");
-            session.removeAttribute("cart-message");
-            // Check if a message exists and is not empty
-            if (msg != null && !msg.isEmpty()) {
-        %>
-        <div id="msg" class="message">
-            <%= msg%>
-        </div>
-        <script>
-            setTimeout(function () {
-                var messageDiv = document.getElementById("msg");
-                if (messageDiv) {
-                    messageDiv.style.display = "none";
-                }
-            }, 5000); // 5000 milliseconds = 5 seconds
-        </script>
-        <%
-            }
-        %>
-
+        <div id="message-box"></div>
 
         <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
         <% Product product = sessProdList.get(0);%>
@@ -70,35 +49,42 @@
                     height="auto"
                     />
             </div>
+
             <div>
-                <h2>RM <%= product.getProdPrice()%></h2>
+                <%
+                    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+                    String formattedPrice = decimalFormat.format(product.getProdPrice());
+                %>
+                <h2 id="totalPrice">RM <%=formattedPrice%></h2>
                 <div><%= product.getProdDesc()%></div>
                 <div>
                     <% String keywords = String.join(" , ", product.getProdKeywords());%>
                     <%= keywords%>
                 </div>
-                <form action="AddToCart" method="post">
+                <div>
                     <div class="btns">
-                        <button class="btn" type="button" onclick="decrementValue('itemQty', 1)">
+                        <button class="btn" type="button" onclick="decrementValue('itemQty', 1,<%= product.getProdPrice()%>)">
                             -
                         </button>
                         <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
                         <input
                             min="1"
                             value="1"
-                            max="<%=product.getQtyAvailable()%>"
+                            max="<%= product.getQtyAvailable()%>"
                             name="itemQty"
                             type="number"
                             class=""
                             id="itemQty"
+                            readonly
                             />
-
-                        <button class="btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>)">
+                        <button class="btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>,<%= product.getProdPrice()%>)">
                             +
                         </button>
                     </div>
-                    <button type="submit"> Add to Cart </button>
-                </form>
+                    <button type="button" onclick="addToCart('<%= product.getProdId()%>', document.getElementById('itemQty').value)"> Add to Cart </button>
+
+                    <div id="msg" class="message"></div>
+                </div>
             </div>
         </div> 
         <!-- End: Product Details Section -->
@@ -129,5 +115,63 @@
 
         <!--footer-->
         <jsp:include page="components/footer.jsp" />
+
+        <script>
+            function incrementValue(inputId, maxValue, price) {
+                var inputElement = document.getElementById(inputId);
+                var value = parseInt(inputElement.value, 10);
+                // Check if the current value is already at the maximum
+                if (value >= maxValue) {
+                    var messageDiv = document.getElementById("msg");
+                    messageDiv.innerHTML = "Maximum quantity reached";
+                    messageDiv.style.display = "block";
+                    setTimeout(function () {
+                        messageDiv.style.display = "none";
+                    }, 3000); // Hide the message after 3 seconds
+                    return; // Exit the function early
+                }
+                if (value < maxValue) {
+                    inputElement.value = value + 1;
+                    updateTotalPrice(price);
+                }
+            }
+
+            function decrementValue(inputId, minValue, price) {
+                var inputElement = document.getElementById(inputId);
+                var value = parseInt(inputElement.value, 10);
+                if (value > minValue) {
+                    inputElement.value = value - 1;
+                    updateTotalPrice(price);
+                }
+            }
+
+            function updateTotalPrice(price) {
+                var quantity = document.getElementById('itemQty').value;
+                var totalPrice = quantity * price;
+                var formattedTotalPrice = totalPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                document.getElementById('totalPrice').innerHTML = 'RM ' + formattedTotalPrice;
+            }
+        </script>
+        <script>
+            function addToCart(prodId, itemQty) {
+                // Display "Loading..." message
+                document.getElementById('message-box').innerHTML = "Processing...";
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "AddToCart", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var response = xhr.responseText;
+                        document.getElementById('message-box').innerHTML = response;
+                        setTimeout(function () {
+                            document.getElementById('message-box').innerHTML = "";
+                        }, 5000);
+                    }
+                };
+                xhr.send("prodId=" + encodeURIComponent(prodId) + "&itemQty=" + encodeURIComponent(itemQty));
+            }
+        </script>
+
     </body>
 </html>
