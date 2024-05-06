@@ -22,6 +22,19 @@
             <file>file:/D:/GUIproj/src/java/entity/User.java</file>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCart.java</file>
             <file>file:/D:/GUIproj/src/java/entity/Employee.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustPaymentCard.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustAddressBook.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustChangePassword.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustEditProfile.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
         </group>
         <group>
             <file>file:/D:/GUIproj/web/Cart.jsp</file>
