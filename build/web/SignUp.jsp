@@ -20,13 +20,30 @@
                 <!--header-->
                 <jsp:include page="components/header.jsp" />
 
+                <%
+                    String message = (String) session.getAttribute("message");
+                    if (message != null) {
+                %>
+                <div id="messageDiv"><%= message%></div>
+                <script>
+                    setTimeout(function () {
+                        var messageDiv = document.getElementById("messageDiv");
+                        messageDiv.style.display = "none";
+                    }, 5000); 
+                </script>
+                <%
+                        session.removeAttribute("message");
+                    }
+                %>
+
+
                 <h1>Sign Up</h1>
 
                 <form action="signup" method="post" id="signup-form">
                     <label>Username</label>
                     <input name="signup-username" id="signup-username" type="text" required
                            value="<%= (request.getParameter("signup-username") != null)
-              ? request.getParameter("signup-username") : ""%>" /><br />
+                                   ? request.getParameter("signup-username") : ""%>" /><br />
                     <div id="signup-username-error" class="signup-error-message"></div>
                     <div id="signup-username-status" class="signup-status-message"></div>
                     <br />
@@ -34,24 +51,24 @@
                     <label>First Name</label>
                     <input name="signup-firstname" id="signup-firstname" type="text"
                            value="<%= (request.getParameter("signup-firstname") != null)
-              ? request.getParameter("signup-firstname") : ""%>"/><br />
+                                   ? request.getParameter("signup-firstname") : ""%>"/><br />
                     <div id="signup-firstname-error" class="signup-error-message"></div>
                     <br />
 
                     <label>Last Name</label>
                            <input name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
-              ? request.getParameter("signup-lastname") : ""%>"/><br />
+                                   ? request.getParameter("signup-lastname") : ""%>"/><br />
                     <div id="signup-lastname-error" class="signup-error-message"></div>
                     <br />
 
                     <label>Gender</label>
-                           <input type="radio" id="male" name="signup-gender" value="M" <% if ("M".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
+                    <input type="radio" id="male" name="signup-gender" value="M" <% if ("M".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
                            />
                     <label for="male">Male</label>
-                           <input type="radio" id="female" name="signup-gender" value="F" <% if ("F".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
+                    <input type="radio" id="female" name="signup-gender" value="F" <% if ("F".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
                            />
                     <label for="female">Female</label>
-                           <input type="radio" id="undefined" name="signup-gender" value="-" <% if ("-".equals(request.getParameter("signup-gender"))) { %> checked <% }%>
+                    <input type="radio" id="undefined" name="signup-gender" value="-" <% if ("-".equals(request.getParameter("signup-gender"))) { %> checked <% }%>
                            />
                     <label for="undefined">Prefer not to say</label>
                     <br />
@@ -60,7 +77,7 @@
 
                     <label>Email</label>
                            <input name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
-              ? request.getParameter("signup-email") : ""%>"/><br />
+                                   ? request.getParameter("signup-email") : ""%>"/><br />
                     <div id="signup-email-error" class="signup-error-message"></div>
                     <div id="signup-email-status" class="signup-status-message"></div>
                     <br />
@@ -68,7 +85,7 @@
                     <label>Contact No</label>
                     <input name="signup-contactNo" id="signup-contactNo" type="text"
                            value="<%= (request.getParameter("signup-contactNo") != null)
-              ? request.getParameter("signup-contactNo") : ""%>"/><br />
+                                   ? request.getParameter("signup-contactNo") : ""%>"/><br />
                     <div id="signup-contactNo-error" class="signup-error-message"></div>
                     <br />
 
@@ -89,7 +106,7 @@
                     <label>Date of Birth</label>
                     <input name="signup-dateOfBirth" id="signup-dateOfBirth" type="date"
                            value="<%= (request.getParameter("signup-dateOfBirth") != null)
-              ? request.getParameter("signup-dateOfBirth") : ""%>" /><br />
+                                   ? request.getParameter("signup-dateOfBirth") : ""%>" /><br />
                     <div id="signup-dateOfBirth-error" class="signup-error-message"></div>
                     <br />
 
@@ -98,36 +115,36 @@
                             <span class="form-label">Address</span>
                             <input id="ship-address" name="ship-address" required
                                    autocomplete="off" value="<%= (request.getParameter("ship-address")
-                  != null) ? request.getParameter("ship-address") : ""%>" />
+                                           != null) ? request.getParameter("ship-address") : ""%>" />
                         </label>
                         <label class="full-field">
                             <span class="form-label"
                                   >Apartment, unit, suite, or floor (optional)</span
                             >
                                    <input id="address2" name="address2" value="<%=(request.getParameter("address2") != null)
-                  ? request.getParameter("address2") : ""%>" readonly/>
+                                           ? request.getParameter("address2") : ""%>" readonly/>
                         </label>
                         <br /><br />
                         <label class="full-field">
                             <span class="form-label">City</span>
                                    <input id="locality" name="locality" value="<%=(request.getParameter("locality") != null)
-                  ? request.getParameter("locality") : ""%>" required readonly />
+                                           ? request.getParameter("locality") : ""%>" required readonly />
                         </label>
                         <label class="slim-field-start">
                             <span class="form-label">State</span>
                                    <input id="state" name="state" required value="<%=(request.getParameter("state") != null)
-                  ? request.getParameter("state") : ""%>" readonly />
+                                           ? request.getParameter("state") : ""%>" readonly />
                         </label>
                         <br /><br />
                         <label class="slim-field-end" for="postal_code">
                             <span class="form-label">Postal code</span>
                                    <input id="postcode" name="postcode" required value="<%=(request.getParameter("postcode") != null)
-                  ? request.getParameter("postcode") : ""%>" readonly />
+                                           ? request.getParameter("postcode") : ""%>" readonly />
                         </label>
                         <label class="full-field">
                             <span class="form-label">Country</span>
                                    <input id="country" name="country" value="<%=(request.getParameter("country") != null)
-                  ? request.getParameter("country") : ""%>" required readonly />
+                                           ? request.getParameter("country") : ""%>" required readonly />
                         </label>
                         <br /><br />
                     </form>
@@ -231,8 +248,8 @@
 
                     function validateEmail() {
 
-                       
-                        
+
+
                         if (!email) {
                             errorDiv.textContent = "Email is required.";
                         } else if (!email.match(emailFormat)) {
@@ -450,7 +467,7 @@
                                 ).textContent;
                         var emailError =
                                 document.getElementById("signup-email-error").textContent;
-                                var emailStatus = document.getElementById(
+                        var emailStatus = document.getElementById(
                                 "signup-email-status"
                                 ).textContent;
                         var firstNameError = document.getElementById(

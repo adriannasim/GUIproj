@@ -3,6 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/web/Payment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCart.java</file>
             <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/js/AddProducts.js</file>
             <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/AddProducts.java</file>
             <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/AddProducts.jsp</file>

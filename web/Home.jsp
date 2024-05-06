@@ -94,7 +94,8 @@
                             />
                     </div>
                     <div><%= product.getProdName()%></div>
-                    <div><%= product.getProdPrice()%></div>
+                    <% String formattedPrice = String.format("%.2f", product.getProdPrice()); %>
+                    <div>RM<%= formattedPrice%></div>
                 </div>
             </a>
             <% }%>

@@ -13,7 +13,7 @@ import model.CartDAO;
 import model.CartItemDAO;
 import model.ProductDAO;
 
-@WebServlet(name = "AddToCart", urlPatterns = {"/AddToCart"})
+@WebServlet(name = "AddToCart", urlPatterns = { "/AddToCart" })
 public class AddToCart extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -24,7 +24,7 @@ public class AddToCart extends HttpServlet {
         CartItemDAO cartItemDAO = new CartItemDAO();
         ProductDAO prodDAO = new ProductDAO();
         HttpSession session = request.getSession();
-        
+
         // Retrieve cartId from session
         String cartId = (String) session.getAttribute("cartId");
 
@@ -41,10 +41,27 @@ public class AddToCart extends HttpServlet {
 
         // If the same item found in the same cart, then we add the quantity
         boolean found = false;
-        if (cartItemList.isEmpty() == false) {
+        if (!cartItemList.isEmpty()) {
             for (CartItem cartItem : cartItemList) {
                 if (cartItem.getCartId().equals(cartId) && cartItem.getProd().getProdId().equals(prodId)) {
-                    cartItem.setItemQty(cartItem.getItemQty() + itemQty);
+                    // Calculate the total quantity after adding the new quantity
+                    int totalQuantity = cartItem.getItemQty() + itemQty;
+
+                    // Check if the total quantity exceeds the available quantity
+                    if (totalQuantity > cartItem.getProd().getQtyAvailable()) {
+                        // Notify the customer that they can only purchase up to the available quantity
+                        response.setContentType("text/plain");
+                        response.setCharacterEncoding("UTF-8");
+                        response.getWriter().write("Exceeded quantity available.");
+                    } else {
+                        // Update the quantity normally
+                        cartItem.setItemQty(totalQuantity);
+                        // Set the success message to the user
+                        response.setContentType("text/plain");
+                        response.setCharacterEncoding("UTF-8");
+                        response.getWriter().write("Item(s) added successfully.");
+                    }
+
                     found = true;
                     break;
                 }
@@ -54,15 +71,14 @@ public class AddToCart extends HttpServlet {
         // If the item not found, then just add the item to the cart
         if (!found) {
             cartItemList.add(new CartItem(cartId, prodDAO.getProductById(prodId), itemQty));
+            // Set the success message to the user
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Item(s) added successfully.");
         }
 
         // Update the cartItemList in the session after modification (adding)
         session.setAttribute("cartItemList", cartItemList);
 
-        // Set the success message to the user
-        String message = "Item(s) added successfully.";
-        session.setAttribute("cart-message", message);
-
-        response.sendRedirect("ProductDetail.jsp?id=" + prodId);
     }
 }
