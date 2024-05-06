@@ -353,6 +353,21 @@ public class ProductDAO {
             ex.getMessage();
         }
     }
+    
+    public void updateRecordProdslugCol(String prodid, String prodslug) {
+        String queryStr = "UPDATE " + tableName + " SET prodslug=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodslug);
+            stmt.setString(2, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
 
     // Delete Product
     public void deleteRecord(String prodid) {

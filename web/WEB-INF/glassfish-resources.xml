@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.postgresql.ds.PGSimpleDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="post-gre-sql_d1tskl6d9ofiqf_u360o6893j7kpaPool" non-transactional-connections="false" pool-resize-quantity="2" res-type="javax.sql.DataSource" statement-timeout-in-seconds="-1" steady-pool-size="8" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="serverName" value="c8lcd8bq1mia7p.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="d1tskl6d9ofiqf"/>
+        <property name="User" value="u360o6893j7kpa"/>
+        <property name="Password" value="p0875af3ec2b5e5331ed90fa98e5b014008f67d63411fa4ff661312557111c573"/>
+        <property name="URL" value="jdbc:postgresql://c8lcd8bq1mia7p.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d1tskl6d9ofiqf?ssl=true&amp;sslmode=require&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+        <property name="driverClass" value="org.postgresql.Driver"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/art-gallery" object-type="user" pool-name="post-gre-sql_d1tskl6d9ofiqf_u360o6893j7kpaPool"/>
+</resources>
