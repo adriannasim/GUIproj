@@ -29,8 +29,6 @@
                 crossorigin="anonymous">
         </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- <script src="js/<filename>.js"></script> -->
-        <script src="js/SearchBar.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!--End of Common Files-->
