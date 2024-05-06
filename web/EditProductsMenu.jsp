@@ -1,4 +1,3 @@
-<%-- This file is a guideline for all individual jsp files --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
@@ -6,12 +5,13 @@
 <%--imports-->%
 
 <%--includes--%>
+<jsp:include page="/RetriveProducts" />
       
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Edit Product</title>
+        <title>Edit Product Menu</title>
 
         <!-- Include commonFiles.tag -->
         <custom:commonFilesAdm />

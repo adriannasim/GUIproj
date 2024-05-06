@@ -2,6 +2,7 @@ package controller;
 
 import entity.Product;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 import javax.persistence.*;
 import javax.servlet.ServletException;
@@ -29,22 +30,6 @@ public class AddProducts extends HttpServlet
         
         //Keywords
         String[] keywords = request.getParameterValues("prodkeyword");
-        String keywordsAttached = "";
-        if (keywords != null)
-        {
-            for (int i = 0; i < keywords.length; i++)
-            {
-                if (i == keywords.length - 1)
-                {
-                    //Last keyword don't need the ;
-                    keywordsAttached = keywordsAttached.concat(keywords[i]);
-                }
-                else
-                {
-                    keywordsAttached = keywordsAttached.concat(keywords[i] + ";");
-                }
-            }
-        }
         
         //Product image
         //Get all files
@@ -88,15 +73,17 @@ public class AddProducts extends HttpServlet
         prod.setProdDesc(desc);
         prod.setProdPrice(price);
         prod.setQtyAvailable(qty);
-        prod.setProdImg(imgUrls);
-        prod.setKeywords(keywords);
+        prod.concatImg(imgUrls);
+        prod.concatKeywords(keywords);
+        prod.setProdAddedDate(LocalDate.now());
+        prod.setProdSlug(name);
         
+        //Insert into db using JPA
         em.getTransaction().begin();
-        em.persist(product);
+        em.persist(prod);
         em.getTransaction().commit();
 
         em.close();
         emf.close();
-        //empDAO.closeConnection();
     }
 }

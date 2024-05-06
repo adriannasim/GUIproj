@@ -30,18 +30,18 @@ public class AdminLogin extends HttpServlet
             //empList = empdao.getAllRecord();
             for (int i = 0; i < empList.size(); i++)
             {
-//                if (empList.getUsername().equals(username) && empList.getPassword().equals(password))
-//                {
-//                    //Login successful
-//                    request.getSession().setAttribute("username", username);
-//                    response.sendRedirect("AdminPage.jsp");
-//                }
-//                else
-//                {
-//                    //Wrong password or username
-//                    request.setAttribute("errMsg", "Invalid username or password.");
-//                    request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
-//                }
+                if ((empList.get(i).getUsername()).equals(username) && (empList.get(i).getUserPwd()).equals(password))
+                {
+                    //Login successful
+                    request.getSession().setAttribute("username", username);
+                    response.sendRedirect("AdminPage.jsp");
+                }
+                else
+                {
+                    //Wrong password or username
+                    request.setAttribute("errMsg", "Invalid username or password.");
+                    request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
+                }
             }
             //No record found
             request.setAttribute("errMsg", "No record found");

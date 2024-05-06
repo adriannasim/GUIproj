@@ -2,7 +2,9 @@ package controller;
 
 import entity.Product;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.*;
@@ -18,45 +20,71 @@ public class EditProducts extends HttpServlet
         //Initializations
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("productUnit");
         EntityManager em = emf.createEntityManager();
+        Product prod = new Product();
+        int imgCount = 0;
         
         String id = request.getParameter("prodid");
         String name = request.getParameter("prodname");
-        String desc = request.getParameter("proddesc");
-        String price = request.getParameter("prodprice");
-        String qty = request.getParameter("qtyavailable");
-        String keywords = request.getParameter("prodkeywords");
+        String desc = request.getParameter("prodesc");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int qty = Integer.parseInt(request.getParameter("qtyavailable"));
         
-        //Processing the image input
-        Part imgPart = request.getPart("prodimg");
-        InputStream imgInputStream = imgPart.getInputStream();
-        //Convert the input stream into a ByteArrayOutputStream
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead;
-        while ((bytesRead = imgInputStream.read(buffer)) != -1)
+        //Keywords
+        String[] keywords = request.getParameterValues("prodkeyword");
+        
+        //Product image
+        //Get all files
+        Collection<Part> imgs = request.getParts();
+        //Directory to store the image files
+        String imgDir = getServletContext().getRealPath("/img/prodImg");
+        //Array of file urls
+        String[] imgUrls = null;
+        for (Part img : imgs) 
         {
-            outputStream.write(buffer, 0, bytesRead);
+            //Check if the file is an image
+            if (img.getContentType() != null && img.getContentType().startsWith("image")) 
+            {
+                //Set filename
+                String filename = id + "-" + imgCount + ".jpeg";
+                //Store image directly to server image directory
+                img.write(imgDir + File.separator + filename);
+                //Set file url
+                imgUrls[imgCount] = imgDir + "/" + filename;
+                
+                //Convert image to bytes to store in db
+//                InputStream imageInputStream = img.getInputStream();
+//        
+//                //Change input stream to output stream
+//                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//                byte[] buffer = new byte[4096];
+//                int bytesRead;
+//                while ((bytesRead = imageInputStream.read(buffer)) != -1) {
+//                    outputStream.write(buffer, 0, bytesRead);
+//                }
+//                byte[] imgbytes = outputStream.toByteArray();
+                
+                //Add imgcount
+                imgCount++;
+            }
         }
-        byte[] imageData = outputStream.toByteArray();
         
-        Product prod = new Product();
-        
-        //Setting all values to be added to product table
+        //Setting varibles into product entity
         prod.setProdID(id);
         prod.setProdName(name);
         prod.setProdDesc(desc);
-//        prod.setProdPrice(price);
-//        prod.setQtyAvailable(qty);
-//        prod.setProdKewords(keywords);
-        //prod.setProdImgBytes(price);
+        prod.setProdPrice(price);
+        prod.setQtyAvailable(qty);
+        prod.concatImg(imgUrls);
+        prod.concatKeywords(keywords);
+        prod.setProdAddedDate(LocalDate.now());
+        prod.setProdSlug(name);
         
-        //Save everything to db
+        //Insert into db using JPA
         em.getTransaction().begin();
         em.persist(prod);
         em.getTransaction().commit();
-        
+
         em.close();
         emf.close();
-        //empDAO.closeConnection();
     }
 }

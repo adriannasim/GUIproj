@@ -49,8 +49,6 @@
                     <input type="text" name="prodkeyword">
                 </div>
             </div>
-            <label>Show at main page?</label>
-            <input type="checkbox" name="main"><br/>
             <input type="submit" value="Add Product">
         </form>
         <!--end of content-->

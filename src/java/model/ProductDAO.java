@@ -63,8 +63,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
-
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
                 prodList.add(prod);
             }
         } catch (SQLException ex) {
@@ -97,7 +98,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
@@ -150,7 +153,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
@@ -280,7 +285,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
                 prodList.add(prod);
             }
         } catch (SQLException ex) {
