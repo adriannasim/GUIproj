@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustOrderDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/OrderItem.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/CustOrder.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/OrderItemDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/UserDAO.java</file>
+            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/js/AddProducts.js</file>
+            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/model/ProductDAO.java</file>
+            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/AddProducts.java</file>
+            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/AddProducts.jsp</file>
+            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/entity/Product.java</file>
         </group>
     </open-files>
 </project-private>

@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <script src="js/ProductKeywords.js"></script>
+        <script src="js/AddProducts.js"></script>
         <title>Add Products</title>
 
         <!-- Include commonFiles.tag -->
@@ -35,8 +35,13 @@
             <input type="text" name="prodprice"><br/>
             <label>Quantity Available:</label>
             <input type="text" name="qtyavailable"><br/>
-            <label>Product Image:</label>
-            <input type="file" name="prodimg"><br/>
+            <div id="images">
+                <label>Product Image:</label>
+                <button type="button" id="add-image">Add Images +</button>
+                <div id="image-col">
+                    <input type="file" name="prodimg" accept="image/*">
+                </div>
+            </div>
             <div id="keywords">
                 <label>Product Keywords:</label>
                 <button type="button" id="add-keyword">Add Keywords +</button>
@@ -44,9 +49,10 @@
                     <input type="text" name="prodkeyword">
                 </div>
             </div>
+            <label>Show at main page?</label>
+            <input type="checkbox" name="main"><br/>
             <input type="submit" value="Add Product">
         </form>
-
         <!--end of content-->
     </body>
 </html>
