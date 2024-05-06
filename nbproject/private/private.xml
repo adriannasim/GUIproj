@@ -10,11 +10,9 @@
             <file>file:/D:/GUIproj/src/java/controller/AddToCart.java</file>
         </group>
         <group>
-            <file>file:/D:/GUIproj/web/Home.jsp</file>
-            <file>file:/D:/GUIproj/src/java/model/CartDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCart.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/AddToCart.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
         </group>
     </open-files>
 </project-private>

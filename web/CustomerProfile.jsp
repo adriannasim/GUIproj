@@ -62,27 +62,28 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <p class="mb-0">
-                                            <a href="#" class="aSetting"
+                                            <a href="CustAddressBook.jsp" class="aSetting"
                                                style="text-decoration:none;color:black;">Address book</a>
                                         </p>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <p class="mb-0">
-                                            <a href="#" class="aSetting"
+                                            <a href="CustChangePassword.jsp" class="aSetting"
                                                style="text-decoration:none;color:black;">Change my password</a>
                                         </p>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <p class="mb-0"><a href="#" class="aSetting"
+                                        <p class="mb-0"><a href="CustPaymentCard.jsp" class="aSetting"
                                                            style="text-decoration:none;color:black;">
                                                 My credit/debit cards</a>
                                         </p>
                                     </li>
                                 </ul>
                             </div>
-                            <!-- User Profile : Profile Setting -->
-
                         </div>
+                        <!-- User Profile : Profile Setting -->
+                        
+                        
                     </div>
 
 
