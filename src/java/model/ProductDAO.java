@@ -290,53 +290,69 @@ public class ProductDAO {
         return prodList;
     }
 
-//    // Add product
-//    public void insertRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate, String main) {
-//        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?,?)";
-//
-//        try {
-//            stmt = conn.returnConnection().prepareStatement(queryStr);
-//
-//            stmt.setString(1, prodid);
-//            stmt.setString(2, prodname);
-//            stmt.setString(3, proddesc);
-//            stmt.setDouble(4, prodprice);
-//            stmt.setInt(5, qtyavailable);
-//            stmt.setString(6, prodimg);
-//            stmt.setString(7, prodkeywords);
-//            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
-//            stmt.setDate(8, sqlDate);
-//            stmt.setString(9, main);
-//            stmt.execute();
-//
-//        } catch (SQLException ex) {
-//            ex.getMessage();
-//        }
-//    }
-//
-//    // Update product
-//    public void updateRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate, String main) {
-//        String queryStr = "UPDATE " + tableName + " SET prodname=?,proddesc=?,prodprice=?,qtyavailable=?,prodimg=?,prodkeywords=?,prodaddeddate=?,main=? WHERE prodid=?";
-//
-//        try {
-//            stmt = conn.returnConnection().prepareStatement(queryStr);
-//
-//            stmt.setString(1, prodname);
-//            stmt.setString(2, proddesc);
-//            stmt.setDouble(3, prodprice);
-//            stmt.setInt(4, qtyavailable);
-//            stmt.setString(5, prodimg);
-//            stmt.setString(6, prodkeywords);
-//            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
-//            stmt.setDate(7, sqlDate);
-//            stmt.setString(8, main);
-//            stmt.setString(9, prodid);
-//            stmt.executeUpdate();
-//
-//        } catch (SQLException ex) {
-//            ex.getMessage();
-//        }
-//    }
+    // Add product
+    public void insertRecord(String prodid, String prodname, String proddesc, double prodprice, 
+            int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate) {
+        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?)";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodid);
+            stmt.setString(2, prodname);
+            stmt.setString(3, proddesc);
+            stmt.setDouble(4, prodprice);
+            stmt.setInt(5, qtyavailable);
+            stmt.setString(6, prodimg);
+            stmt.setString(7, prodkeywords);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
+            stmt.setDate(8, sqlDate);
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+
+    // Update product
+    public void updateRecord(String prodid, String prodname, String proddesc, double prodprice, 
+            int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate) {
+        String queryStr = "UPDATE " + tableName + " SET prodname=?,proddesc=?,prodprice=?,qtyavailable=?,prodimg=?,"
+                + "prodkeywords=?,prodaddeddate=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodname);
+            stmt.setString(2, proddesc);
+            stmt.setDouble(3, prodprice);
+            stmt.setInt(4, qtyavailable);
+            stmt.setString(5, prodimg);
+            stmt.setString(6, prodkeywords);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
+            stmt.setDate(7, sqlDate);
+            stmt.setString(9, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+
+    public void updateRecordMainProd(String prodid, String main) {
+        String queryStr = "UPDATE " + tableName + " SET main=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, main);
+            stmt.setString(2, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
 
     // Delete Product
     public void deleteRecord(String prodid) {

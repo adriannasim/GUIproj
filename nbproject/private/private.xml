@@ -3,36 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GUIproj/web/Home.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveProducts.java</file>
-            <file>file:/D:/GUIproj/web/components/header.jsp</file>
-            <file>file:/D:/GUIproj/src/java/model/CartDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
-            <file>file:/D:/GUIproj/src/java/model/EmployeeDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/SearchBar.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCart.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/AddToCart.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustPaymentCard.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustAddressBook.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustChangePassword.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustEditProfile.jsp</file>
         </group>
         <group>
-            <file>file:/D:/GUIproj/src/java/entity/Customer.java</file>
-            <file>file:/D:/GUIproj/web/SignUpConfirmation.jsp</file>
-            <file>file:/D:/GUIproj/web/Home.jsp</file>
-            <file>file:/D:/GUIproj/src/java/entity/CustOrder.java</file>
-            <file>file:/D:/GUIproj/web/SignIn.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/SignUp.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/PaymentCard.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Review.java</file>
-            <file>file:/D:/GUIproj/web/SignUp.jsp</file>
-            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/PaymentInfo.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/OrderItem.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveProducts.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Product.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/CheckDuplicateUsernameServlet.java</file>
-            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/User.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCart.java</file>
-            <file>file:/D:/GUIproj/src/java/entity/Employee.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
         </group>
     </open-files>
 </project-private>
