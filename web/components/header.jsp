@@ -19,3 +19,4 @@
         <!-- Cart Button -->
         <a href="Cart.jsp"><button>Cart</button></a>
         <!--End of header-->
+</div>
