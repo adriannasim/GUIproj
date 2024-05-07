@@ -66,47 +66,49 @@
             <div id="page-content-wrapper">
                 <!-- Page content-->
 
-                <!-- Edit Address -->
-                <div class="col-md-5" style="padding-left:180px;width:70%;">
-                    <div class="p-3"style="padding-top:10px;">
+                <form action="">
+                    <!-- Change Password -->
+                    <div class="col-md-5" style="padding-left:180px;width:70%;">
+                        <div class="p-3"style="padding-top:10px;">
 
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Change Password</h4>
-                        </div>
-
-                        <div class="row mt-2">
-
-                            <div class="col-md-12"><label class="labels">Current Password</label>
-                                <input type="text" class="form-control" placeholder="" value="">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Change Password</h4>
                             </div>
 
-                            <div class="col-md-12 mt-2" style="font-size:11px;color:#C0C2C9;">
-                                <p>PASSWORD REQUIREMENTS HERE</p>
+                            <div class="row mt-2">
+
+                                <div class="col-md-12"><label class="labels">Current Password</label>
+                                    <input type="text" class="form-control" placeholder="" value="">
+                                </div>
+
+                                <div class="col-md-12 mt-2" style="font-size:11px;color:#C0C2C9;">
+                                    <p>PASSWORD REQUIREMENTS HERE</p>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <p><a href="#" class="changepwd-forgotpwd-a">Forgot your password?</a></p>
+                                </div>
+
+                            </div>
+                            <div class="row mt-3">
+
+                                <div class="col-md-6"><label class="labels">New Password</label>
+                                    <input type="text" class="form-control" placeholder="" value="">
+                                </div>
+
+                                <div class="col-md-6"><label class="labels">Confirm Password</label>
+                                    <input type="text" class="form-control" value="" placeholder="">
+                                </div>
+
                             </div>
 
-                            <div class="col-md-12">
-                                <p><a href="#" class="changepwd-forgotpwd-a">Forgot your password?</a></p>
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit">Save</button>
                             </div>
-
-                        </div>
-                        <div class="row mt-3">
-
-                            <div class="col-md-6"><label class="labels">New Password</label>
-                                <input type="text" class="form-control" placeholder="" value="">
-                            </div>
-
-                            <div class="col-md-6"><label class="labels">Confirm Password</label>
-                                <input type="text" class="form-control" value="" placeholder="">
-                            </div>
-
-                        </div>
-
-                        <div class="mt-5 text-center">
-                            <button class="btn btn-primary profile-button" type="button">Save</button>
                         </div>
                     </div>
-                </div>
-                <!-- Edit Address -->
+                    <!-- Change Password -->
+                </form>
 
             </div>
             <!-- Page content wrapper-->

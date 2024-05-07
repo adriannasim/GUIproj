@@ -30,6 +30,11 @@
         <group>
             <file>file:/D:/GUIproj/web/Payment.jsp</file>
             <file>file:/D:/GUIproj/web/SignUp.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/ProductDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Product.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/entity/Employee.java</file>
         </group>
     </open-files>
 </project-private>
