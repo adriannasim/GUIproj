@@ -53,8 +53,8 @@ public class PaymentCardDAO {
         return paymentcard;
     }
 
-    public ArrayList<PaymentCard> getRecordByCustId(String custid) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE custid=?";
+    public ArrayList<PaymentCard> getRecordByUsername(String username) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE username=?";
         ArrayList<PaymentCard> paymentcard = new ArrayList<PaymentCard>();
 
         try {
@@ -74,7 +74,7 @@ public class PaymentCardDAO {
     }
 
 //  INSERTING RECORD    
-    public void insertRecord(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
+    public void insertRecord(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String username) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?)";
 
         try {
@@ -85,7 +85,7 @@ public class PaymentCardDAO {
             stmt.setInt(3, dateYear);
             stmt.setString(4, cardNumber);
             stmt.setString(5, cvv);
-            stmt.setString(6, custId);
+            stmt.setString(6, username);
             stmt.execute();
 
         } catch (SQLException ex) {
@@ -94,16 +94,16 @@ public class PaymentCardDAO {
     }
 
 //  UPDATING RECORD    
-    public void updateRecord(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
+    public void updateRecord(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String username) {
         String queryStr = "UPDATE " + tableName 
-                + " SET datemonth=?,dateyear=?,cvv=?,custid=? WHERE cardname=? AND cardnumber=?";
+                + " SET datemonth=?,dateyear=?,cvv=?,username=? WHERE cardname=? AND cardnumber=?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setInt(1, dateMonth);
             stmt.setInt(2, dateYear);
             stmt.setString(3, cvv);
-            stmt.setString(4, custId);
+            stmt.setString(4, username);
             stmt.setString(5, cardName);
             stmt.setString(6, cardNumber);
             stmt.executeUpdate();
