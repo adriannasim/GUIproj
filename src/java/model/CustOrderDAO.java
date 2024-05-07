@@ -21,10 +21,10 @@ public class CustOrderDAO {
 //  RETRIEVE RECORDS : ALL, BY ORDER ID, BY CUST ID
     public ArrayList<CustOrder> getAllRecord() {
         String queryStr = "SELECT * FROM " + tableName;
-        
+
         Address address = new Address();
         ArrayList<CustOrder> orders = new ArrayList<CustOrder>();
-        
+
         OrderItemDAO orderItemDao = new OrderItemDAO();
         ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 
@@ -58,10 +58,10 @@ public class CustOrderDAO {
 
     public CustOrder getRecordByOrderId(String orderid) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE orderid=?";
-        
+
         CustOrder custOrder = null;
         Address address = new Address();
-        
+
         OrderItemDAO orderItemDao = new OrderItemDAO();
         ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 
@@ -97,10 +97,10 @@ public class CustOrderDAO {
 //  FILTER RECORDS BY CUSTID
     public ArrayList<CustOrder> searchRecordByCustId(String custId) {
         String queryStr = "SELECT * FROM " + tableName + " WHERE custid LIKE ?";
-        
+
         Address address = new Address();
         ArrayList<CustOrder> orders = new ArrayList<CustOrder>();
-        
+
         OrderItemDAO orderItemDao = new OrderItemDAO();
         ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 
@@ -114,9 +114,9 @@ public class CustOrderDAO {
                 address.setState(rs.getString(7));
                 address.setPostalCode(rs.getString(8));
                 address.setCountry(rs.getString(9));
-                
+
                 orderItems = orderItemDao.getRecord(rs.getString(1));
-                
+
                 orders.add(new CustOrder(rs.getString(1), rs.getDate(2).toLocalDate(),
                         rs.getString(3), rs.getString(4), address, orderItems,
                         rs.getDate(10).toLocalDate(),
@@ -132,13 +132,21 @@ public class CustOrderDAO {
         return orders;
     }
 
-//  INSERTING RECORD   
+//  INSERTING RECORD 
     public void insertRecord(String orderId, LocalDate orderdate, String status, String custId, Address shippingAdd,
-            ArrayList<Product> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery) {
-        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            ArrayList<OrderItem> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery,
+            String name, String contactno, String remark) {
+        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        OrderItemDAO orderItemDAO = new OrderItemDAO();
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
+
+            for (OrderItem orderItem : orderItems) {
+                orderItemDAO.insertRecord(orderId, orderItem.getOrderItems().getProdId(),
+                        orderItem.getOrderItemQty());
+            }
 
             stmt.setString(1, orderId);
             java.sql.Date orderSqlDate = java.sql.Date.valueOf(orderdate);
@@ -156,6 +164,9 @@ public class CustOrderDAO {
             stmt.setDate(11, shippingSqlDate);
             java.sql.Date deliverySqlDate = java.sql.Date.valueOf(delivery);
             stmt.setDate(12, deliverySqlDate);
+            stmt.setString(13, name);
+            stmt.setString(14, contactno);
+            stmt.setString(15, remark);
             stmt.execute();
 
         } catch (SQLException ex) {
@@ -163,44 +174,98 @@ public class CustOrderDAO {
         }
     }
 
-//  UPDATING RECORD    
+//  UPDATING RECORD WITHOUT UPDATING ORDER ITEM TABLE 
     public void updateRecord(String orderId, LocalDate orderdate, String status, String custId, Address shippingAdd,
-            ArrayList<Product> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery) {
+            LocalDate packaging, LocalDate shipping, LocalDate delivery,
+            String name, String contactno, String remark) {
         String queryStr = "UPDATE " + tableName
                 + " SET orderid=?,orderdate=?,status=?,custid=?,address=?,city=?,state=?,postalcode=?,country=?,"
-                + "packaging=?,shipping=?,delivery=?"
+                + "packaging=?,shipping=?,delivery=?,name=?,contactno=?,remark=?"
                 + " WHERE username=?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
-            stmt.setString(1, orderId);
+
             java.sql.Date orderSqlDate = java.sql.Date.valueOf(orderdate);
-            stmt.setDate(2, orderSqlDate);
-            stmt.setString(3, status);
-            stmt.setString(4, custId);
-            stmt.setString(5, shippingAdd.getAddress());
-            stmt.setString(6, shippingAdd.getCity());
-            stmt.setString(7, shippingAdd.getState());
-            stmt.setString(8, shippingAdd.getPostalCode());
-            stmt.setString(9, shippingAdd.getCountry());
+            stmt.setDate(1, orderSqlDate);
+            stmt.setString(2, status);
+            stmt.setString(3, custId);
+            stmt.setString(4, shippingAdd.getAddress());
+            stmt.setString(5, shippingAdd.getCity());
+            stmt.setString(6, shippingAdd.getState());
+            stmt.setString(7, shippingAdd.getPostalCode());
+            stmt.setString(8, shippingAdd.getCountry());
             java.sql.Date packagingSqlDate = java.sql.Date.valueOf(packaging);
-            stmt.setDate(10, packagingSqlDate);
+            stmt.setDate(9, packagingSqlDate);
             java.sql.Date shippingSqlDate = java.sql.Date.valueOf(shipping);
-            stmt.setDate(11, shippingSqlDate);
+            stmt.setDate(10, shippingSqlDate);
             java.sql.Date deliverySqlDate = java.sql.Date.valueOf(delivery);
-            stmt.setDate(12, deliverySqlDate);
+            stmt.setDate(11, deliverySqlDate);
+            stmt.setString(12, name);
+            stmt.setString(13, contactno);
+            stmt.setString(14, remark);
+            stmt.setString(15, orderId);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.getMessage();
         }
     }
 
-//  DELETING RECORD    
-    public void deleteRecord(String orderid) {
-        String queryStr = "DELETE FROM " + tableName + " WHERE orderid=?";
+    // UPDATING RECORD AND UPDATING ORDER ITEM TABLE AT THE SAME TIME
+    public void updateRecordInBothTbl(String orderId, LocalDate orderdate, String status, String custId, Address shippingAdd,
+            ArrayList<OrderItem> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery,
+            String name, String contactno, String remark) {
+        String queryStr = "UPDATE " + tableName
+                + " SET orderid=?,orderdate=?,status=?,custid=?,address=?,city=?,state=?,postalcode=?,country=?,"
+                + "packaging=?,shipping=?,delivery=?,name=?,contactno=?,remark=?"
+                + " WHERE username=?";
+
+        OrderItemDAO orderItemDAO = new OrderItemDAO();
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
+
+            for (OrderItem orderItem : orderItems) {
+                orderItemDAO.updateRecord(orderId, orderItem.getOrderItems().getProdId(),
+                        orderItem.getOrderItemQty());
+            }
+
+            java.sql.Date orderSqlDate = java.sql.Date.valueOf(orderdate);
+            stmt.setDate(1, orderSqlDate);
+            stmt.setString(2, status);
+            stmt.setString(3, custId);
+            stmt.setString(4, shippingAdd.getAddress());
+            stmt.setString(5, shippingAdd.getCity());
+            stmt.setString(6, shippingAdd.getState());
+            stmt.setString(7, shippingAdd.getPostalCode());
+            stmt.setString(8, shippingAdd.getCountry());
+            java.sql.Date packagingSqlDate = java.sql.Date.valueOf(packaging);
+            stmt.setDate(9, packagingSqlDate);
+            java.sql.Date shippingSqlDate = java.sql.Date.valueOf(shipping);
+            stmt.setDate(10, shippingSqlDate);
+            java.sql.Date deliverySqlDate = java.sql.Date.valueOf(delivery);
+            stmt.setDate(11, deliverySqlDate);
+            stmt.setString(12, name);
+            stmt.setString(13, contactno);
+            stmt.setString(14, remark);
+            stmt.setString(15, orderId);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+
+//  DELETING RECORD : WILL ALSO DELETE THE ORDER ITEM WITH SAME ORDER ID IN ORDER ITEM TABLE
+    public void deleteRecord(String orderid) {
+        String queryStr = "DELETE FROM " + tableName + " WHERE orderid=?";
+
+        OrderItemDAO orderItemDAO = new OrderItemDAO();
+
+        try {
+            stmt = dbConn.returnConnection().prepareStatement(queryStr);
+
+            orderItemDAO.deleteEntireOrderRecord(orderid);
+
             stmt.setString(1, orderid);
             stmt.execute();
         } catch (SQLException ex) {

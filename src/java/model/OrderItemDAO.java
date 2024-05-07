@@ -86,4 +86,16 @@ public class OrderItemDAO {
             ex.getMessage();
         }
     }
+    
+        public void deleteEntireOrderRecord(String orderid) {
+        String queryStr = "DELETE FROM " + tableName + " WHERE orderid=?";
+
+        try {
+            stmt = dbConn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, orderid);
+            stmt.execute();
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
 }
