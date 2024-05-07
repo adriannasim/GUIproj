@@ -5,7 +5,7 @@
 package jpaEntity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Custorder.findByOrderid", query = "SELECT c FROM Custorder c WHERE c.orderid = :orderid"),
     @NamedQuery(name = "Custorder.findByOrderdate", query = "SELECT c FROM Custorder c WHERE c.orderdate = :orderdate"),
     @NamedQuery(name = "Custorder.findByStatus", query = "SELECT c FROM Custorder c WHERE c.status = :status"),
-    @NamedQuery(name = "Custorder.findByCustid", query = "SELECT c FROM Custorder c WHERE c.custid = :custid"),
+    @NamedQuery(name = "Custorder.findByUsername", query = "SELECT c FROM Custorder c WHERE c.username = :username"),
     @NamedQuery(name = "Custorder.findByAddress", query = "SELECT c FROM Custorder c WHERE c.address = :address"),
     @NamedQuery(name = "Custorder.findByCity", query = "SELECT c FROM Custorder c WHERE c.city = :city"),
     @NamedQuery(name = "Custorder.findByState", query = "SELECT c FROM Custorder c WHERE c.state = :state"),
@@ -54,13 +54,13 @@ public class Custorder implements Serializable
     private String orderid;
     @Column(name = "orderdate")
     @Temporal(TemporalType.DATE)
-    private Date orderdate;
+    private LocalDate orderdate;
     @Size(max = 15)
     @Column(name = "status")
     private String status;
-    @Size(max = 15)
-    @Column(name = "custid")
-    private String custid;
+    @Size(max = 50)
+    @Column(name = "username")
+    private String username;
     @Size(max = 200)
     @Column(name = "address")
     private String address;
@@ -78,13 +78,22 @@ public class Custorder implements Serializable
     private String country;
     @Column(name = "packaging")
     @Temporal(TemporalType.DATE)
-    private Date packaging;
+    private LocalDate packaging;
     @Column(name = "shipping")
     @Temporal(TemporalType.DATE)
-    private Date shipping;
+    private LocalDate shipping;
     @Column(name = "delivery")
     @Temporal(TemporalType.DATE)
-    private Date delivery;
+    private LocalDate delivery;
+    @Size(max = 50)
+    @Column(name = "name")
+    private String name;
+    @Size(max = 11)
+    @Column(name = "contactno")
+    private String contactno;
+    @Size(max = 500)
+    @Column(name = "remark")
+    private String remark;
 
     public Custorder()
     {
@@ -105,12 +114,12 @@ public class Custorder implements Serializable
         this.orderid = orderid;
     }
 
-    public Date getOrderdate()
+    public LocalDate getOrderdate()
     {
         return orderdate;
     }
 
-    public void setOrderdate(Date orderdate)
+    public void setOrderdate(LocalDate orderdate)
     {
         this.orderdate = orderdate;
     }
@@ -125,14 +134,14 @@ public class Custorder implements Serializable
         this.status = status;
     }
 
-    public String getCustid()
+    public String getUsername()
     {
-        return custid;
+        return username;
     }
 
-    public void setCustid(String custid)
+    public void setUsername(String username)
     {
-        this.custid = custid;
+        this.username = username;
     }
 
     public String getAddress()
@@ -185,34 +194,64 @@ public class Custorder implements Serializable
         this.country = country;
     }
 
-    public Date getPackaging()
+    public LocalDate getPackaging()
     {
         return packaging;
     }
 
-    public void setPackaging(Date packaging)
+    public void setPackaging(LocalDate packaging)
     {
         this.packaging = packaging;
     }
 
-    public Date getShipping()
+    public LocalDate getShipping()
     {
         return shipping;
     }
 
-    public void setShipping(Date shipping)
+    public void setShipping(LocalDate shipping)
     {
         this.shipping = shipping;
     }
 
-    public Date getDelivery()
+    public LocalDate getDelivery()
     {
         return delivery;
     }
 
-    public void setDelivery(Date delivery)
+    public void setDelivery(LocalDate delivery)
     {
         this.delivery = delivery;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    
+    public String getContactno()
+    {
+        return contactno;
+    }
+    
+    public void setContactno(String contactno)
+    {
+        this.contactno = contactno;
+    }
+    
+    public String getRemark()
+    {
+        return remark;
+    }
+    
+    public void setRemark(String remark)
+    {
+        this.remark = remark;
     }
 
     @Override

@@ -43,10 +43,11 @@ public class CustOrderDAO {
 
                 orders.add(new CustOrder(rs.getString(1), rs.getDate(2).toLocalDate(),
                         rs.getString(3), rs.getString(4), address, orderItems,
-                        rs.getDate(5).toLocalDate(),
-                        rs.getDate(6).toLocalDate(),
-                        rs.getDate(7).toLocalDate())
-                );
+                        rs.getDate(10).toLocalDate(),
+                        rs.getDate(11).toLocalDate(),
+                        rs.getDate(12).toLocalDate(),
+                        rs.getString(13), rs.getString(14), rs.getString(15)
+                ));
             }
         } catch (SQLException ex) {
             ex.getMessage();
@@ -82,7 +83,8 @@ public class CustOrderDAO {
                         rs.getString(3), rs.getString(4), address, orderItems,
                         rs.getDate(10).toLocalDate(),
                         rs.getDate(11).toLocalDate(),
-                        rs.getDate(12).toLocalDate()
+                        rs.getDate(12).toLocalDate(),
+                        rs.getString(13), rs.getString(14), rs.getString(15)
                 );
             }
         } catch (SQLException ex) {
@@ -119,8 +121,9 @@ public class CustOrderDAO {
                         rs.getString(3), rs.getString(4), address, orderItems,
                         rs.getDate(10).toLocalDate(),
                         rs.getDate(11).toLocalDate(),
-                        rs.getDate(12).toLocalDate())
-                );
+                        rs.getDate(12).toLocalDate(),
+                        rs.getString(13), rs.getString(14), rs.getString(15)
+                ));
             }
         } catch (SQLException ex) {
             ex.getMessage();

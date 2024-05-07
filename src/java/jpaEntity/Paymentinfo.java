@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Paymentinfo.findAll", query = "SELECT p FROM Paymentinfo p"),
     @NamedQuery(name = "Paymentinfo.findByPaymentid", query = "SELECT p FROM Paymentinfo p WHERE p.paymentid = :paymentid"),
     @NamedQuery(name = "Paymentinfo.findByOrderid", query = "SELECT p FROM Paymentinfo p WHERE p.orderid = :orderid"),
-    @NamedQuery(name = "Paymentinfo.findByCustid", query = "SELECT p FROM Paymentinfo p WHERE p.custid = :custid"),
+    @NamedQuery(name = "Paymentinfo.findByusername", query = "SELECT p FROM Paymentinfo p WHERE p.username = :username"),
     @NamedQuery(name = "Paymentinfo.findByPaymenttype", query = "SELECT p FROM Paymentinfo p WHERE p.paymenttype = :paymenttype"),
     @NamedQuery(name = "Paymentinfo.findByPaymentdate", query = "SELECT p FROM Paymentinfo p WHERE p.paymentdate = :paymentdate"),
     @NamedQuery(name = "Paymentinfo.findByPaymentamount", query = "SELECT p FROM Paymentinfo p WHERE p.paymentamount = :paymentamount")
@@ -55,8 +55,8 @@ public class Paymentinfo implements Serializable
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
-    @Column(name = "custid")
-    private String custid;
+    @Column(name = "username")
+    private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
@@ -77,11 +77,11 @@ public class Paymentinfo implements Serializable
         this.paymentid = paymentid;
     }
 
-    public Paymentinfo(String paymentid, String orderid, String custid, String paymenttype)
+    public Paymentinfo(String paymentid, String orderid, String username, String paymenttype)
     {
         this.paymentid = paymentid;
         this.orderid = orderid;
-        this.custid = custid;
+        this.username = username;
         this.paymenttype = paymenttype;
     }
 
@@ -105,14 +105,14 @@ public class Paymentinfo implements Serializable
         this.orderid = orderid;
     }
 
-    public String getCustid()
+    public String getusername()
     {
-        return custid;
+        return username;
     }
 
-    public void setCustid(String custid)
+    public void setusername(String username)
     {
-        this.custid = custid;
+        this.username = username;
     }
 
     public String getPaymenttype()

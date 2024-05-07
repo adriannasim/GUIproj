@@ -35,6 +35,8 @@ public class Orderitem implements Serializable
     protected OrderitemPK orderitemPK;
     @Column(name = "itemqty")
     private Integer itemqty;
+    @Column(name = "prodprice")
+    private Double prodprice;
 
     public Orderitem()
     {
@@ -68,6 +70,16 @@ public class Orderitem implements Serializable
     public void setItemqty(Integer itemqty)
     {
         this.itemqty = itemqty;
+    }
+    
+    public Double getProdPrice()
+    {
+        return prodprice;
+    }
+
+    public void setProdPrice(Double prodprice)
+    {
+        this.prodprice = prodprice;
     }
 
     @Override

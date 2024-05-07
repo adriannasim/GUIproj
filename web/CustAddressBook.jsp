@@ -21,7 +21,6 @@
 
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
-
     </head>
 
     <body>

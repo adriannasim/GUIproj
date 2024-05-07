@@ -7,7 +7,7 @@ public class PaymentInfo {
 
     private String paymentId;
     private String orderId;
-    private String custId;
+    private String username;
     private String paymentType; // "cash" or "card"
 //    private PaymentCard paymentCard; // Optional, only if paymentType is "card"
     private LocalDate paymentDate;
@@ -17,19 +17,19 @@ public class PaymentInfo {
 
     }
 
-    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, LocalDate paymentDate, double paymentAmount) {
+    public PaymentInfo(String paymentId, String orderId, String username, String paymentType, LocalDate paymentDate, double paymentAmount) {
         this.paymentId = paymentId;
         this.orderId = orderId;
-        this.custId = custId;
+        this.username = username;
         this.paymentType = paymentType;
         this.paymentDate = paymentDate;
         this.paymentAmount = paymentAmount;
     }
 
-//    public PaymentInfo(String paymentId, String orderId, String custId, String paymentType, PaymentCard paymentCard, LocalDate paymentDate) {
+//    public PaymentInfo(String paymentId, String orderId, String username, String paymentType, PaymentCard paymentCard, LocalDate paymentDate) {
 //        this.paymentId = paymentId;
 //        this.orderId = orderId;
-//        this.custId = custId;
+//        this.username = username;
 //        this.paymentType = paymentType;
 //        this.paymentCard = paymentCard;
 //        this.paymentDate = paymentDate;
@@ -44,8 +44,8 @@ public class PaymentInfo {
         return orderId;
     }
 
-    public String getCustId() {
-        return custId;
+    public String getusername() {
+        return username;
     }
 
     public String getPaymentType() {
@@ -73,8 +73,8 @@ public class PaymentInfo {
         this.orderId = orderId;
     }
 
-    public void setCustId(String custId) {
-        this.custId = custId;
+    public void setusername(String username) {
+        this.username = username;
     }
 
     public void setPaymentType(String paymentType) {

@@ -495,14 +495,10 @@
                     document
                             .getElementById("signup-submit-button")
                             .addEventListener("click", function (event) {
-                                // Prevent the default form submission behavior
                                 event.preventDefault();
 
                                 validateAllFields();
-                                // Perform your form validation here
                                 if (hasValidationError()) {
-                                    // If there are validation errors, display them and prevent form submission
-                                    // You can optionally display an error message or highlight the fields with errors
                                     alert(
                                             "Please correct the validation errors before submitting the form."
                                             );
