@@ -56,6 +56,7 @@
             <div id="page-content-wrapper">
                 <!-- Page content-->
 
+
                 <!-- ADD Payment Card -->
                 <div class="col-md-5" style="padding-left:180px;width:70%;">
                     <div class="p-3"style="padding-top:10px;">
@@ -108,7 +109,7 @@
                                 </div>
                             </div>
                             <!-- PAYMENT CARD LOOPING END HERE -->
-                            
+
                             <div class="mt-1 text-center">
                                 <button class="btn btn-primary profile-button" id="btn-addcard" 
                                         type="button" onclick="CardFunction()" style="margin-bottom:10px;">Add Payment Card</button>
@@ -118,42 +119,46 @@
                         <!-- WHEN THERE IS PAYMENT CARD REGISTERED -->
 
 
-                        <!-- REGISTER PAYMENT CARD -->
-                        <div id="AddCardDiv" style="display:none;">
-                            <div class="row mt-2">
+                        <form action="">
+                            <!-- REGISTER PAYMENT CARD -->
+                            <div id="AddCardDiv" style="display:none;">
+                                <div class="row mt-2">
 
-                                <div class="col-md-6"><label class="labels">Card Name</label>
-                                    <input type="text" class="form-control" placeholder="" value="">
+                                    <div class="col-md-6"><label class="labels">Card Name</label>
+                                        <input type="text" class="form-control" placeholder="" value="">
+                                    </div>
+
+                                    <div class="col-md-6"><label class="labels">Card Number</label>
+                                        <input type="text" class="form-control" placeholder="12345678435678" value="">
+                                    </div>
+
                                 </div>
 
-                                <div class="col-md-6"><label class="labels">Card Number</label>
-                                    <input type="text" class="form-control" placeholder="12345678435678" value="">
+                                <div class="row mt-2">
+
+                                    <div class="col-md-6"><label class="labels">Date Month / Year</label>
+                                        <input type="text" class="form-control px-0" placeholder="MM/YYYY">
+                                    </div>
+
+                                    <div class="col-md-6"><label class="labels">CVV</label>
+                                        <input type="text" class="form-control" placeholder="***" value="">
+                                    </div>
+
                                 </div>
 
+                                <div class="mt-5 text-center">
+                                    <button class="btn btn-primary profile-button" 
+                                            type="submit" onclick="CardFunction()">Save</button>
+                                </div>
                             </div>
-
-                            <div class="row mt-2">
-
-                                <div class="col-md-6"><label class="labels">Date Month / Year</label>
-                                    <input type="text" class="form-control px-0" placeholder="MM/YYYY">
-                                </div>
-
-                                <div class="col-md-6"><label class="labels">CVV</label>
-                                    <input type="text" class="form-control" placeholder="***" value="">
-                                </div>
-
-                            </div>
-
-                            <div class="mt-5 text-center">
-                                <button class="btn btn-primary profile-button" 
-                                        type="button" onclick="CardFunction()">Save</button>
-                            </div>
-                        </div>
-                        <!-- REGISTER PAYMENT CARD -->
-
+                            <!-- REGISTER PAYMENT CARD -->
+                        </form>
+                        
+                        
                     </div>
                 </div>
-                <!-- Edit Address -->
+                <!-- Add Payment Card -->
+
 
             </div>
             <!-- Page content wrapper-->

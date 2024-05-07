@@ -7,7 +7,7 @@
 <%--imports-->%
 
 <%--includes--%>
-      
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,17 +23,17 @@
         <custom:commonFiles />
 
     </head>
-    
+
     <body>
         <header class="text-center">
-        <%--header--%>
-        <jsp:include page="components/header.jsp" />
+            <%--header--%>
+            <jsp:include page="components/header.jsp" />
         </header>
-    
+
         <!--start of content-->
         <div class="d-flex" id="wrapper">
-            
-            
+
+
             <!-- Sidebar-->
             <div class="border-end border-right bg-white text-center" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light"> 
@@ -50,64 +50,66 @@
                        href="CustPaymentCard.jsp">My credit/debit cards</a>
                 </div>
             </div>
-            
-            
+
+
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Page content-->
-                
-                <!-- Edit Profile -->
-                <div class="col-md-5" style="padding-left:180px;width:70%;">
-                    <div class="p-3"style="padding-top:10px;">
-                        
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Edit Profile</h4>
-                        </div>
-                        
-                        <div class="row mt-2">
-                            
-                            <div class="col-md-6">
-                                <label class="labels text-right">First Name</label>
-                                <input type="text" class="form-control" placeholder="first name" value="">
+
+                <form action="">
+                    <!-- Edit Profile -->
+                    <div class="col-md-5" style="padding-left:180px;width:70%;">
+                        <div class="p-3"style="padding-top:10px;">
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Edit Profile</h4>
                             </div>
-                            
-                            <div class="col-md-6">
-                                <label class="labels">Last Name</label>
-                                <input type="text" class="form-control" value="" placeholder="last name">
+
+                            <div class="row mt-2">
+
+                                <div class="col-md-6">
+                                    <label class="labels text-right">First Name</label>
+                                    <input type="text" class="form-control" placeholder="first name" value="">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="labels">Last Name</label>
+                                    <input type="text" class="form-control" value="" placeholder="last name">
+                                </div>
+
                             </div>
-                            
-                        </div>
-                        
-                        <div class="row mt-3">
-                            
-                            <div class="col-md-12"><label class="labels">Contact Number</label>
-                                <input type="text" class="form-control" placeholder="contact number" value="">
+
+                            <div class="row mt-3">
+
+                                <div class="col-md-12"><label class="labels">Contact Number</label>
+                                    <input type="text" class="form-control" placeholder="contact number" value="">
+                                </div>
+
                             </div>
-                            
-                        </div>
-                        
-                        <div class="row mt-3">
-                            
-                            <div class="col-md-6"><label class="labels">Email</label>
-                                <input type="text" class="form-control" placeholder="email" value="">
+
+                            <div class="row mt-3">
+
+                                <div class="col-md-6"><label class="labels">Email</label>
+                                    <input type="text" class="form-control" placeholder="email" value="">
+                                </div>
+
+                                <div class="col-md-6"><label class="labels">Date Of Birth</label>
+                                    <input type="date" class="form-control" value="">
+                                </div>
+
                             </div>
-                            
-                            <div class="col-md-6"><label class="labels">Date Of Birth</label>
-                                <input type="date" class="form-control" value="">
+
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
                             </div>
-                            
-                        </div>
-                        
-                        <div class="mt-5 text-center">
-                            <button class="btn btn-primary profile-button" type="button">Save Profile</button>
                         </div>
                     </div>
-                </div>
-                <!-- Edit Profile -->
-                
+                    <!-- Edit Profile -->
+                </form>
+
             </div>
             <!-- Page content wrapper-->
-            
+
         </div>
         <!--end of content-->
     </body>
