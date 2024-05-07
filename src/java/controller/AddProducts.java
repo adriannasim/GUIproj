@@ -17,7 +17,7 @@ public class AddProducts extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         //Initializations
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("productUnit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
         EntityManager em = emf.createEntityManager();
         Product prod = new Product();
         int imgCount = 0;

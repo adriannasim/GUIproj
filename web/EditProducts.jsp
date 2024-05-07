@@ -1,56 +1,102 @@
-<%-- This file is a guideline for all individual jsp files --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%--imports--%>
+<%@page import="jpaEntity.Product,java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%--imports-->%
+<%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
+<jsp:include page="/RetrieveProductsAdm"/>
 
-<%--includes--%>
-      
+<%-- End: Retrieve Product List and Main Product From Session (prodList & mainProduct) --%>
+
+<% 
+//Get the result from servlet
+Product prod = (Product) request.getAttribute("prod");
+String[] imgs = (String[]) request.getAttribute("imgs");
+String[] keys = (String[]) request.getAttribute("keys");
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Edit Product</title>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Edit Products Menu</title>
         <!-- Include commonFiles.tag -->
-        <custom:commonFilesAdm />
-
+        <custom:commonFilesAdm/>
     </head>
-    
+
     <body class="text-center">
-        <%--header--%>
+        <!--header-->
         <jsp:include page="components/adminheader.jsp" />
-    
-        <!--start of content-->
-        <h1>Add Products Page</h1>
-        <form action="addProduct" method="post" enctype="multipart/form-data">
-            <label>Product ID:</label>
-            <input type="text" name="prodid"><br/>
-            <label>Product Name:</label>
-            <input type="text" name="prodname"><br/>
-            <label>Description:</label>
-            <textarea name="proddesc"></textarea><br/>
-            <label>Price:</label>
-            <input type="text" name="prodprice"><br/>
-            <label>Quantity Available:</label>
-            <input type="text" name="qtyavailable"><br/>
-            <div id="images">
-                <label>Product Image:</label>
-                <button type="button" id="add-image">Add Images +</button>
-                <div id="image-col">
-                    <input type="file" name="prodimg" accept="image/*">
-                </div>
-            </div>
-            <div id="keywords">
-                <label>Product Keywords:</label>
-                <button type="button" id="add-keyword">Add Keywords +</button>
-                <div id="keyword-col">
-                    <input type="text" name="prodkeyword">
-                </div>
-            </div>
-            <input type="submit" value="Add Product">
+        
+        <h1>Edit Products <%= prod.getProdname()%></h1>
+        <p>Added on: <%= prod.getProdaddeddate()%></p>
+        <form>
+            <table border="1">
+            <tr>
+                <th>ID</th>
+                <td><%= prod.getProdid()%></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td><input type="text" value="<%= prod.getProdname()%>"</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="textarea" value="<%= prod.getProddesc()%>"</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td><input type="text" value="<%= prod.getProdprice()%>"</td>
+            </tr>
+            <tr>
+                <th>Qty Available</th>
+                <td><input type="text" value="<%= prod.getQtyavailable()%>"</td>
+            </tr>
+            <tr>
+                <th>Product Images</th>
+                <td>
+                    <table>
+                        <tr>
+                        <% 
+                        for (int i = 0; i < imgs.length; i++)
+                        {
+                        %>
+                            <td>
+                                <img src="<%= imgs[i] %>" alt="Product Image" width="100" height="100"><br/>
+                                <button type="button">Delete</button>
+                            </td>
+                        <%
+                        }
+                        %>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Product Keywords</th>
+            </tr>
+            <tr>
+                <th>Make it a main product ?</th>
+                <td>
+                    <input type="checkbox"
+                        <% 
+                        if (prod.getMain() == 'T')
+                        {
+                        %> checked
+                        <%
+                        }
+                        %> 
+                    />
+                </td>
+            </tr>
+            <%
+                }
+            } 
+            %>
+            </table>
         </form>
-        <!--end of content-->
     </body>
 </html>
