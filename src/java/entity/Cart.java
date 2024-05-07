@@ -4,18 +4,23 @@ package entity;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Cart {
+public class Cart implements java.io.Serializable{
     private String cartId;
-    private String userId;
+    private String username;
     private ArrayList<CartItem> itemList = new ArrayList<CartItem>();
 
     public Cart() {
         this.cartId = UUID.randomUUID().toString();
     }
-
-    public Cart(String cartId, String userId, ArrayList<CartItem> itemList) {
+    
+    public Cart(String cartId, String username){
         this.cartId = cartId;
-        this.userId = userId;
+        this.username = username;
+    }
+
+    public Cart(String cartId, String username, ArrayList<CartItem> itemList) {
+        this.cartId = cartId;
+        this.username = username;
         this.itemList = itemList;
     }
 
@@ -24,8 +29,8 @@ public class Cart {
         return cartId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public ArrayList<CartItem> getItemList() {
@@ -37,8 +42,8 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setItemList(ArrayList<CartItem> itemList) {

@@ -1,7 +1,7 @@
 //package src.java.entity;
 package entity;
 
-public class CartItem {
+public class CartItem implements java.io.Serializable {
     private String cartId;
     private Product prod;
     private int itemQty;

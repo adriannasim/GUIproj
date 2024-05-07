@@ -2,14 +2,9 @@
 package model;
 
 import entity.Product;
-import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
-import java.sql.*;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -33,7 +28,6 @@ public class ProductDAO {
     // Retrieve all products
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
-
         String queryStr = "SELECT * FROM " + tableName;
 
         try {
@@ -69,8 +63,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
-
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
                 prodList.add(prod);
             }
         } catch (SQLException ex) {
@@ -83,7 +78,6 @@ public class ProductDAO {
     // Retrieve specific product by product id 
     public Product getProductById(String prodId) {
         Product prod = null;
-
         String queryStr = "SELECT * FROM " + tableName + " WHERE prodId = ?";
 
         try {
@@ -104,7 +98,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
@@ -116,7 +112,6 @@ public class ProductDAO {
     public List<String> matchProductByName(String query) {
         //Initializing a list to store all matching result
         List<String> matches = new ArrayList<>();
-        
         //Database query to retrieve product by ID
         String queryStr = "SELECT * FROM " + tableName + " WHERE LOWER(prodName) LIKE ?";
 
@@ -139,12 +134,10 @@ public class ProductDAO {
     // Retrieve the main product
     public Product getMainProduct() {
         Product prod = null;
-
         String queryStr = "SELECT * FROM " + tableName + " WHERE main = 'T'";
 
         try {
             stmt = conn.returnConnection().prepareStatement(queryStr);
-
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -160,7 +153,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());
@@ -254,7 +249,6 @@ public class ProductDAO {
     // Retrieve latest 4 products
     public ArrayList<Product> getLatestProducts() {
         ArrayList<Product> prodList = new ArrayList<>();
-
         String queryStr = "SELECT * FROM " + tableName
                 + " WHERE prodAddedDate <= NOW() ORDER BY prodAddedDate DESC LIMIT 4";
 
@@ -291,7 +285,9 @@ public class ProductDAO {
                         rs.getInt("qtyAvailable"),
                         prodImgArray,
                         prodKeyArray,
-                        LocalDate.parse(rs.getString("prodAddedDate")));
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
                 prodList.add(prod);
             }
         } catch (SQLException ex) {
@@ -301,53 +297,84 @@ public class ProductDAO {
         return prodList;
     }
 
-//    // Add product
-//    public void insertRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate, String main) {
-//        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?,?)";
-//
-//        try {
-//            stmt = conn.returnConnection().prepareStatement(queryStr);
-//
-//            stmt.setString(1, prodid);
-//            stmt.setString(2, prodname);
-//            stmt.setString(3, proddesc);
-//            stmt.setDouble(4, prodprice);
-//            stmt.setInt(5, qtyavailable);
-//            stmt.setString(6, prodimg);
-//            stmt.setString(7, prodkeywords);
-//            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
-//            stmt.setDate(8, sqlDate);
-//            stmt.setString(9, main);
-//            stmt.execute();
-//
-//        } catch (SQLException ex) {
-//            ex.getMessage();
-//        }
-//    }
-//
-//    // Update product
-//    public void updateRecord(String prodid, String prodname, String proddesc, double prodprice, int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate, String main) {
-//        String queryStr = "UPDATE " + tableName + " SET prodname=?,proddesc=?,prodprice=?,qtyavailable=?,prodimg=?,prodkeywords=?,prodaddeddate=?,main=? WHERE prodid=?";
-//
-//        try {
-//            stmt = conn.returnConnection().prepareStatement(queryStr);
-//
-//            stmt.setString(1, prodname);
-//            stmt.setString(2, proddesc);
-//            stmt.setDouble(3, prodprice);
-//            stmt.setInt(4, qtyavailable);
-//            stmt.setString(5, prodimg);
-//            stmt.setString(6, prodkeywords);
-//            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
-//            stmt.setDate(7, sqlDate);
-//            stmt.setString(8, main);
-//            stmt.setString(9, prodid);
-//            stmt.executeUpdate();
-//
-//        } catch (SQLException ex) {
-//            ex.getMessage();
-//        }
-//    }
+    // Add product
+    public void insertRecord(String prodid, String prodname, String proddesc, double prodprice, 
+            int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate) {
+        String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?)";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodid);
+            stmt.setString(2, prodname);
+            stmt.setString(3, proddesc);
+            stmt.setDouble(4, prodprice);
+            stmt.setInt(5, qtyavailable);
+            stmt.setString(6, prodimg);
+            stmt.setString(7, prodkeywords);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
+            stmt.setDate(8, sqlDate);
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+
+    // Update product
+    public void updateRecord(String prodid, String prodname, String proddesc, double prodprice, 
+            int qtyavailable, String prodimg, String prodkeywords, LocalDate prodaddeddate) {
+        String queryStr = "UPDATE " + tableName + " SET prodname=?,proddesc=?,prodprice=?,qtyavailable=?,prodimg=?,"
+                + "prodkeywords=?,prodaddeddate=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodname);
+            stmt.setString(2, proddesc);
+            stmt.setDouble(3, prodprice);
+            stmt.setInt(4, qtyavailable);
+            stmt.setString(5, prodimg);
+            stmt.setString(6, prodkeywords);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(prodaddeddate);
+            stmt.setDate(7, sqlDate);
+            stmt.setString(9, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+
+    public void updateRecordMainProd(String prodid, String main) {
+        String queryStr = "UPDATE " + tableName + " SET main=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, main);
+            stmt.setString(2, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
+    
+    public void updateRecordProdslugCol(String prodid, String prodslug) {
+        String queryStr = "UPDATE " + tableName + " SET prodslug=? WHERE prodid=?";
+
+        try {
+            stmt = conn.returnConnection().prepareStatement(queryStr);
+
+            stmt.setString(1, prodslug);
+            stmt.setString(2, prodid);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }
 
     // Delete Product
     public void deleteRecord(String prodid) {

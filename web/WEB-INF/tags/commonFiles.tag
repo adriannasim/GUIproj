@@ -14,9 +14,7 @@
         <!-- <script src="js/<filename>.js"></script> -->
         <script src="js/SearchBar.js"></script>
         <script src="js/SaveSessionCartData.js"></script>
-        <script src="js/SpinnerButton.js"></script>
-        <script src="js/UpdateCartSession.js"></script>
-        <script src="js/DeleteCartItem.js"></script>
+        <script src="js/GoogleAutocomplete.js"></script>
         
         <!-- Include Bootstrap JS and Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -28,8 +26,6 @@
                 crossorigin="anonymous">
         </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- <script src="js/<filename>.js"></script> -->
-        <script src="js/SearchBar.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!--End of Common Files-->

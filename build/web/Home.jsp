@@ -8,16 +8,49 @@
 
 <%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
-<jsp:include page="/RetrieveCart"/>
 
-<%-- Begin: Retrieve Product List From Session (prodList) --%>
+<%-- Begin: Retrieve Product List From Session & Retrieve the cart if cart haven't retrieve yet --%>
 <%
     ArrayList<Product> sessProdList = new ArrayList<Product>();
     if (session.getAttribute("prodList") != null) {
         sessProdList = (ArrayList<Product>) session.getAttribute("prodList");
     }
+
+    String cartId = (String) session.getAttribute("cartId");
+    if (cartId == null) {
 %>
-<%-- End: Retrieve Product List From Session (prodList) --%>
+<script>
+    // Use AJAX to call RetrieveCart servlet in the background
+    function retrieveCartInBackground() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'RetrieveCart', true);
+
+        // Add event listener to handle response
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Request was successful, hide loading indicator
+                document.getElementById('loadingMessage').style.display = 'none';
+            } else {
+                // Request failed, handle error if needed
+                console.error('Failed to retrieve cart');
+            }
+        };
+
+        xhr.send();
+
+        // Show loading message or spinner
+        document.getElementById('loadingMessage').style.display = 'block';
+    }
+
+    window.onload = function () {
+        retrieveCartInBackground();
+    };
+</script>
+
+<%
+    }
+%>
+<%-- End: Retrieve Product List From Session & Retrieve the cart --%>
 
 <!DOCTYPE html>
 <html>
@@ -27,36 +60,16 @@
 
         <%-- Include commonFiles.tag --%>
         <custom:commonFiles />
-        
-        <!-- <script>
-        // Wait for the DOM to be ready
-        $(document).ready(function () {
-            // Make an AJAX GET request to RetrieveProducts servlet
-            $.ajax({
-              url: "RetrieveProducts",
-              type: "GET",
-              success: function (data) {
-                // Handle success response if needed
-                console.log("Products loaded successfully.");
-              },
-              error: function (xhr, status, error) {
-                // Handle error response if needed
-                console.error("Error loading products:", error);
-              }
-            });
-        });
-        </script> -->
     </head>
 
     <body class="text-center">
         <%-- header --%>
         <jsp:include page="components/header.jsp" />
-    
+
         <!--start of content-->
         <h1>Home</h1>
 
-        <!-- Sign In/Up Button -->
-        <a href="SignUp.jsp"><button>Sign in/Sign up</button></a>
+        <div id="loadingMessage" style="display: none;">Retrieving cart...</div>
 
         <!-- Link to All Products Page Button -->
         <a href="ProductPage.jsp?all=t"><button>All Artworks</button></a>
@@ -81,14 +94,14 @@
                             />
                     </div>
                     <div><%= product.getProdName()%></div>
-                    <div><%= product.getProdPrice()%></div>
+                    <% String formattedPrice = String.format("%.2f", product.getProdPrice()); %>
+                    <div>RM<%= formattedPrice%></div>
                 </div>
             </a>
             <% }%>
         </div>
-   
         <!--end of content-->
-        
+
         <%-- footer --%>
         <jsp:include page="components/footer.jsp" />
     </body>
