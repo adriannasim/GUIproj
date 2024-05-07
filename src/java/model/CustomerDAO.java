@@ -3,6 +3,8 @@ package model;
 
 //import src.java.entity.User;
 import entity.Address;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import entity.Customer;
 import entity.User;
 import java.sql.*;
@@ -237,6 +239,17 @@ public class CustomerDAO {
             stmt.execute();
         } catch (SQLException ex) {
             ex.getMessage();
+        }
+    }
+
+    // Close DB conncetion
+    public void closeConnection() {
+        try {
+            if (dbConn.returnConnection() != null) {
+                dbConn.shutDown();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.WARNING, null, ex);
         }
     }
 

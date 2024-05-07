@@ -28,11 +28,12 @@ public class SignIn extends HttpServlet {
         // Record the parameter values passed from the signin form
         String userAcc = request.getParameter("signin-username/email");
         String userPwd = request.getParameter("signin-password");
+        
+        CustomerDAO custDAO = new CustomerDAO();
 
         try {
             // Checking Customer Record from DB
-            CustomerDAO custDAO = new CustomerDAO();
-
+           
             // Search the user record by using the user entered username//email
             Customer custByUsername = custDAO.getRecordByUsername(userAcc);
             Customer custByEmail = custDAO.getRecordByEmail(userAcc);
@@ -70,6 +71,8 @@ public class SignIn extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            custDAO.closeConnection();
         }
     }
 }

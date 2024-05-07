@@ -43,17 +43,17 @@ public class Paymentinfo implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 50)
     @Column(name = "paymentid")
     private String paymentid;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 50)
     @Column(name = "orderid")
     private String orderid;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 50)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)

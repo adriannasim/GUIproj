@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +12,10 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.servlet.RequestDispatcher;
 import javax.transaction.UserTransaction;
 import jpaEntity.*;
 import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @WebServlet(name = "OrderCreation", urlPatterns = {"/OrderCreation"})
@@ -45,21 +43,14 @@ public class OrderCreation extends HttpServlet {
         String contactNo = (String) session.getAttribute("contactNo");
         String remark = (String) session.getAttribute("remark");
 
-        // Retrieve the payment method & details
-        String paymentMethod = (String) session.getAttribute("paymentMethod");
-
-        if (paymentMethod.equals("card")) {
-            String holderName = request.getParameter("name");
-            String cardNumber = request.getParameter("cardnumber");
-            String expirationDate = request.getParameter("expirationdate");
-            String cvv = request.getParameter("securitycode");
-        }
-
         // Retrieve username
         String username = (String) session.getAttribute("username");
 
         // Retrieve the cart item list
         ArrayList<CartItem> cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
+        
+        // Retrieve the payment method 
+        String paymentMethod = (String) session.getAttribute("paymentMethod");
 
         // Generate an order id
         String orderId = generateRandomID();
@@ -107,9 +98,8 @@ public class OrderCreation extends HttpServlet {
                 rollbackEx.printStackTrace();
             }
             ex.printStackTrace();
-            // Handle exception
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-        }
+        } 
 
         // Save order into orderitem DB
         double subtotal = 0.0;
@@ -147,13 +137,13 @@ public class OrderCreation extends HttpServlet {
                     rollbackEx.printStackTrace();
                 }
                 ex.printStackTrace();
-                // Handle exception
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-            }
+            } 
         }
 
         // Amount calculation
         double shippingFee;
+        
         if (subtotal > 1000) {
             shippingFee = 0.0;
         } else {
@@ -176,11 +166,11 @@ public class OrderCreation extends HttpServlet {
 
         try {
             // Begin transaction
-            //utx.begin();
+             utx.begin();
             // Add the record
-            //em.persist(pyminfo);
+             em.persist(pyminfo);
             // Commit transaction
-            //utx.commit();
+             utx.commit();
 
         } catch (Exception ex) {
             // Rollback transaction if an exception occurs
@@ -192,9 +182,8 @@ public class OrderCreation extends HttpServlet {
                 rollbackEx.printStackTrace();
             }
             ex.printStackTrace();
-            // Handle exception
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-        }
+        } 
 
         // If use card, then save card into paymentcard DB
         if (paymentMethod.equals("card")) {
@@ -202,13 +191,20 @@ public class OrderCreation extends HttpServlet {
             String cardNumber = request.getParameter("cardnumber");
             String expirationDate = request.getParameter("expirationdate");
             String cvv = request.getParameter("securitycode");
-            System.out.println("Name is : " + holderName);
-            System.out.println("card no is : " + cardNumber);
-            System.out.println("expiration is : " + expirationDate);
-            System.out.println("CVV is : " + cvv);
-            String[] cvvParts = splitCVV(cvv);
-            int month = Integer.parseInt(cvvParts[0]);
-            int year = Integer.parseInt(cvvParts[1]);
+
+            String[] expirationDateParts = null;
+            int month = 0;
+            int year = 0;
+            if (expirationDate != null && expirationDate.contains("/")) {
+                expirationDateParts = splitExp(expirationDate);
+            }
+
+            if (expirationDateParts != null && expirationDateParts.length >= 2) {
+                month = Integer.parseInt(expirationDateParts[0]);
+                year = Integer.parseInt(expirationDateParts[1]);
+            } else {
+                // Handle the case where CVV is missing or not in the expected format
+            }
 
             PaymentcardPK pymcardPK = new PaymentcardPK();
             pymcardPK.setCardname(holderName);
@@ -239,21 +235,21 @@ public class OrderCreation extends HttpServlet {
                     rollbackEx.printStackTrace();
                 }
                 ex.printStackTrace();
-                // Handle exception
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-            }
+            } 
         }
+        response.sendRedirect("SuccessPayment.jsp");
     }
 
     public static String generateRandomID() {
-        Date date = new Date();
-        String creationDate = date.toString().replaceAll("-", "").substring(2);
+        LocalDate localDate = LocalDate.now();
+        String creationDate = String.format("%ty%tm%td", localDate, localDate, localDate);
         String randomUUID = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 20);
         return creationDate + "-" + randomUUID;
     }
 
-    public static String[] splitCVV(String cvv) {
-        return cvv.split("/");
+    public static String[] splitExp(String expirationDate) {
+        return expirationDate.split("/");
     }
 
 }

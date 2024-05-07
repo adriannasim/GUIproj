@@ -31,9 +31,6 @@
             <file>file:/D:/GUIproj/src/java/entity/OrderItem.java</file>
             <file>file:/D:/GUIproj/src/java/jpaEntity/Paymentinfo.java</file>
             <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/OrderitemPK.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
-            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
             <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
         </group>
         <group>
@@ -53,6 +50,29 @@
             <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/RetrieveProducts.java</file>
             <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/EditProducts.java</file>
             <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/EditProductsMenu.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/SaveSessionCartDataServlet.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/AddProducts.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/src/java/controller/SaveSessionCartDataServlet.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/SignIn.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/SignUp.java</file>
+            <file>file:/D:/GUIproj/src/java/model/DatabaseConn.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/AddProducts.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/D:/GUIproj/web/SignUp.jsp</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/src/java/controller/SaveSessionCartDataServlet.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/SignIn.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/SignUp.java</file>
+            <file>file:/D:/GUIproj/src/java/model/DatabaseConn.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/AddProducts.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/D:/GUIproj/web/SignUp.jsp</file>
         </group>
     </open-files>
 </project-private>
