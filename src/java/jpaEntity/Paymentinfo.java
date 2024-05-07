@@ -5,7 +5,6 @@
 package jpaEntity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -66,7 +65,13 @@ public class Paymentinfo implements Serializable
     @Temporal(TemporalType.DATE)
     private Date paymentdate;
     @Column(name = "paymentamount")
-    private BigInteger paymentamount;
+    private double paymentamount;
+    @Column(name = "shippingfee")
+    private double shippingfee;
+    @Column(name = "salestax")
+    private double salestax;
+    @Column(name = "charges")
+    private double charges;
 
     public Paymentinfo()
     {
@@ -105,12 +110,12 @@ public class Paymentinfo implements Serializable
         this.orderid = orderid;
     }
 
-    public String getusername()
+    public String getUsername()
     {
         return username;
     }
 
-    public void setusername(String username)
+    public void setUsername(String username)
     {
         this.username = username;
     }
@@ -135,14 +140,44 @@ public class Paymentinfo implements Serializable
         this.paymentdate = paymentdate;
     }
 
-    public BigInteger getPaymentamount()
+    public double getPaymentamount()
     {
         return paymentamount;
     }
 
-    public void setPaymentamount(BigInteger paymentamount)
+    public void setPaymentamount(double paymentamount)
     {
         this.paymentamount = paymentamount;
+    }
+    
+    public double getShippingfee()
+    {
+        return shippingfee;
+    }
+
+    public void setShippingfee(double shippingfee)
+    {
+        this.shippingfee = shippingfee;
+    }
+    
+    public double getSalestax()
+    {
+        return salestax;
+    }
+
+    public void setSalestax(double salestax)
+    {
+        this.salestax = salestax;
+    }
+    
+    public double getCharges()
+    {
+        return charges;
+    }
+
+    public void setCharges(double charges)
+    {
+        this.charges = charges;
     }
 
     @Override

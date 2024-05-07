@@ -27,7 +27,7 @@ public class PaymentInfoDAO {
             while (rs.next()) {
                 paymentInfo.add(new PaymentInfo(rs.getString(1), 
                         rs.getString(2), rs.getString(3), rs.getString(4),  
-                        rs.getDate(5).toLocalDate(), rs.getDouble(6)
+                        rs.getDate(5), rs.getDouble(6)
                 ));
             }
         } catch (SQLException ex) {
@@ -49,7 +49,7 @@ public class PaymentInfoDAO {
             while (rs.next()) {
                 paymentInfo = new PaymentInfo(rs.getString(1), 
                         rs.getString(2), rs.getString(3), rs.getString(4),  
-                        rs.getDate(5).toLocalDate(), rs.getDouble(6)
+                        rs.getDate(5), rs.getDouble(6)
                 );
             }
         } catch (SQLException ex) {
@@ -72,7 +72,7 @@ public class PaymentInfoDAO {
             while (rs.next()) {
                 paymentInfo.add(new PaymentInfo(rs.getString(1), rs.getString(2), 
                         rs.getString(3), rs.getString(4), 
-                        rs.getDate(5).toLocalDate(), rs.getDouble(6)
+                        rs.getDate(5), rs.getDouble(6)
                 ));
             }
         } catch (SQLException ex) {

@@ -1,7 +1,7 @@
 //package src.java.entity;
 package entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class PaymentInfo {
 
@@ -10,14 +10,17 @@ public class PaymentInfo {
     private String username;
     private String paymentType; // "cash" or "card"
 //    private PaymentCard paymentCard; // Optional, only if paymentType is "card"
-    private LocalDate paymentDate;
+    private Date paymentDate;
     private double paymentAmount;
+    private double shippingFee;
+    private double salesTax;
+    private double charges;
 
     public PaymentInfo() {
 
     }
 
-    public PaymentInfo(String paymentId, String orderId, String username, String paymentType, LocalDate paymentDate, double paymentAmount) {
+    public PaymentInfo(String paymentId, String orderId, String username, String paymentType, Date paymentDate, double paymentAmount) {
         this.paymentId = paymentId;
         this.orderId = orderId;
         this.username = username;
@@ -26,7 +29,7 @@ public class PaymentInfo {
         this.paymentAmount = paymentAmount;
     }
 
-//    public PaymentInfo(String paymentId, String orderId, String username, String paymentType, PaymentCard paymentCard, LocalDate paymentDate) {
+//    public PaymentInfo(String paymentId, String orderId, String username, String paymentType, PaymentCard paymentCard, Date paymentDate) {
 //        this.paymentId = paymentId;
 //        this.orderId = orderId;
 //        this.username = username;
@@ -60,9 +63,22 @@ public class PaymentInfo {
 //        return paymentCard;
 //    }
     
-    public LocalDate getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
+    
+    public double getShippingFee() {
+        return shippingFee;
+    }
+    
+    public double getSaleTax() {
+        return salesTax;
+    }
+    
+    public double getCharges() {
+        return charges;
+    }
+    
 
 //  Setter methods
     public void setPaymentId(String paymentId) {
@@ -85,11 +101,23 @@ public class PaymentInfo {
 //        this.paymentCard = paymentCard;
 //    }
     
-    public void setPaymentDate(LocalDate paymentDate) {
+    public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
     
     public void setPaymentAmount(double paymentAmount) {
         this.paymentAmount = paymentAmount;
+    }
+    
+    public void setShippingFee(double shippingFee) {
+        this.shippingFee = shippingFee;
+    }
+    
+    public void setSalesTax(double salesTax) {
+        this.salesTax = salesTax;
+    }
+    
+    public void setCharges(double charges) {
+        this.charges = charges;
     }
 }

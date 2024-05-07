@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Paymentcard.findByDateyear", query = "SELECT p FROM Paymentcard p WHERE p.dateyear = :dateyear"),
     @NamedQuery(name = "Paymentcard.findByCardnumber", query = "SELECT p FROM Paymentcard p WHERE p.paymentcardPK.cardnumber = :cardnumber"),
     @NamedQuery(name = "Paymentcard.findByCvv", query = "SELECT p FROM Paymentcard p WHERE p.cvv = :cvv"),
-    @NamedQuery(name = "Paymentcard.findByCustid", query = "SELECT p FROM Paymentcard p WHERE p.custid = :custid")
+    @NamedQuery(name = "Paymentcard.findByUsername", query = "SELECT p FROM Paymentcard p WHERE p.username = :username")
 })
 public class Paymentcard implements Serializable
 {
@@ -45,8 +45,8 @@ public class Paymentcard implements Serializable
     @Column(name = "cvv")
     private String cvv;
     @Size(max = 15)
-    @Column(name = "custid")
-    private String custid;
+    @Column(name = "username")
+    private String username;
 
     public Paymentcard()
     {
@@ -102,14 +102,14 @@ public class Paymentcard implements Serializable
         this.cvv = cvv;
     }
 
-    public String getCustid()
+    public String getUsername()
     {
-        return custid;
+        return username;
     }
 
-    public void setCustid(String custid)
+    public void setUsername(String username)
     {
-        this.custid = custid;
+        this.username = username;
     }
 
     @Override

@@ -41,11 +41,11 @@ public class CustOrderDAO {
 
                 orderItems = orderItemDao.getRecord(rs.getString(1));
 
-                orders.add(new CustOrder(rs.getString(1), rs.getDate(2).toLocalDate(),
+                orders.add(new CustOrder(rs.getString(1), rs.getDate(2),
                         rs.getString(3), rs.getString(4), address, orderItems,
-                        rs.getDate(10).toLocalDate(),
-                        rs.getDate(11).toLocalDate(),
-                        rs.getDate(12).toLocalDate(),
+                        rs.getDate(10),
+                        rs.getDate(11),
+                        rs.getDate(12),
                         rs.getString(13), rs.getString(14), rs.getString(15)
                 ));
             }
@@ -79,11 +79,11 @@ public class CustOrderDAO {
 
                 orderItems = orderItemDao.getRecord(rs.getString(1));
 
-                custOrder = new CustOrder(rs.getString(1), rs.getDate(2).toLocalDate(),
+                custOrder = new CustOrder(rs.getString(1), rs.getDate(2),
                         rs.getString(3), rs.getString(4), address, orderItems,
-                        rs.getDate(10).toLocalDate(),
-                        rs.getDate(11).toLocalDate(),
-                        rs.getDate(12).toLocalDate(),
+                        rs.getDate(10),
+                        rs.getDate(11),
+                        rs.getDate(12),
                         rs.getString(13), rs.getString(14), rs.getString(15)
                 );
             }
@@ -117,11 +117,11 @@ public class CustOrderDAO {
                 
                 orderItems = orderItemDao.getRecord(rs.getString(1));
                 
-                orders.add(new CustOrder(rs.getString(1), rs.getDate(2).toLocalDate(),
+                orders.add(new CustOrder(rs.getString(1), rs.getDate(2),
                         rs.getString(3), rs.getString(4), address, orderItems,
-                        rs.getDate(10).toLocalDate(),
-                        rs.getDate(11).toLocalDate(),
-                        rs.getDate(12).toLocalDate(),
+                        rs.getDate(10),
+                        rs.getDate(11),
+                        rs.getDate(12),
                         rs.getString(13), rs.getString(14), rs.getString(15)
                 ));
             }

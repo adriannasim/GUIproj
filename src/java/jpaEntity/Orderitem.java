@@ -29,7 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 })
 public class Orderitem implements Serializable
 {
-
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected OrderitemPK orderitemPK;
@@ -72,12 +71,12 @@ public class Orderitem implements Serializable
         this.itemqty = itemqty;
     }
     
-    public Double getProdPrice()
+    public Double getProdprice()
     {
         return prodprice;
     }
 
-    public void setProdPrice(Double prodprice)
+    public void setProdprice(Double prodprice)
     {
         this.prodprice = prodprice;
     }

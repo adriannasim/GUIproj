@@ -5,7 +5,7 @@
 package jpaEntity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,12 +49,12 @@ public class Custorder implements Serializable
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 50)
     @Column(name = "orderid")
     private String orderid;
     @Column(name = "orderdate")
     @Temporal(TemporalType.DATE)
-    private LocalDate orderdate;
+    private Date orderdate;
     @Size(max = 15)
     @Column(name = "status")
     private String status;
@@ -77,14 +77,14 @@ public class Custorder implements Serializable
     @Column(name = "country")
     private String country;
     @Column(name = "packaging")
-    @Temporal(TemporalType.DATE)
-    private LocalDate packaging;
+    //@Temporal(TemporalType.DATE)
+    private Date packaging;
     @Column(name = "shipping")
-    @Temporal(TemporalType.DATE)
-    private LocalDate shipping;
+    //@Temporal(TemporalType.DATE)
+    private Date shipping;
     @Column(name = "delivery")
-    @Temporal(TemporalType.DATE)
-    private LocalDate delivery;
+    //@Temporal(TemporalType.DATE)
+    private Date delivery;
     @Size(max = 50)
     @Column(name = "name")
     private String name;
@@ -114,12 +114,12 @@ public class Custorder implements Serializable
         this.orderid = orderid;
     }
 
-    public LocalDate getOrderdate()
+    public Date getOrderdate()
     {
         return orderdate;
     }
 
-    public void setOrderdate(LocalDate orderdate)
+    public void setOrderdate(Date orderdate)
     {
         this.orderdate = orderdate;
     }
@@ -194,32 +194,32 @@ public class Custorder implements Serializable
         this.country = country;
     }
 
-    public LocalDate getPackaging()
+    public Date getPackaging()
     {
         return packaging;
     }
 
-    public void setPackaging(LocalDate packaging)
+    public void setPackaging(Date packaging)
     {
         this.packaging = packaging;
     }
 
-    public LocalDate getShipping()
+    public Date getShipping()
     {
         return shipping;
     }
 
-    public void setShipping(LocalDate shipping)
+    public void setShipping(Date shipping)
     {
         this.shipping = shipping;
     }
 
-    public LocalDate getDelivery()
+    public Date getDelivery()
     {
         return delivery;
     }
 
-    public void setDelivery(LocalDate delivery)
+    public void setDelivery(Date delivery)
     {
         this.delivery = delivery;
     }

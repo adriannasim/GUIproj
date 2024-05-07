@@ -7,18 +7,18 @@ public class PaymentCard {
     private int dateYear;
     private String cardNumber;
     private String cvv;
-    private String custId;
+    private String username;
 
     public PaymentCard() {
 
     }
 
-    public PaymentCard(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String custId) {
+    public PaymentCard(String cardName, int dateMonth, int dateYear, String cardNumber, String cvv, String username) {
         this.cardName = cardName;
         this.dateMonth = dateMonth;
         this.dateYear = dateYear;
         this.cardNumber = cardNumber;
-        this.custId = custId;
+        this.username = username;
     }
 
     // Getter methods
@@ -42,8 +42,8 @@ public class PaymentCard {
         return cvv;
     }
     
-    public String getCustId() {
-        return custId;
+    public String getUsername() {
+        return username;
     }
 
     // Setter methods
@@ -67,7 +67,7 @@ public class PaymentCard {
         this.cvv = cvv;
     }
     
-    public void setCustId(String custId) {
-        this.custId = custId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

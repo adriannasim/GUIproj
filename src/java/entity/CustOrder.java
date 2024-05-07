@@ -1,20 +1,20 @@
 //package src.java.entity;
 package entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.*;
 
 public class CustOrder {
 
     private String orderId;
     private String username;
-    private LocalDate orderdate;
+    private Date orderdate;
     private String status;
     private ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
     Address shippingAdd;
-    private LocalDate packaging;
-    private LocalDate shipping;
-    private LocalDate delivery;
+    private Date packaging;
+    private Date shipping;
+    private Date delivery;
     private String name;
     private String contactno;
     private String remark;
@@ -23,8 +23,8 @@ public class CustOrder {
 
     }
 
-    public CustOrder(String orderId, LocalDate orderdate, String status, String username, Address shippingAdd, 
-            ArrayList<OrderItem> orderItems, LocalDate packaging, LocalDate shipping, LocalDate delivery, String name, 
+    public CustOrder(String orderId, Date orderdate, String status, String username, Address shippingAdd, 
+            ArrayList<OrderItem> orderItems, Date packaging, Date shipping, Date delivery, String name, 
             String contactno, String remark) {
         this.orderId = orderId;
         this.username = username;
@@ -40,8 +40,8 @@ public class CustOrder {
         this.remark = remark;
     }
 
-//    public CustOrder(String orderId, LocalDate orderdate, String status, String username, Address shippingAdd, 
-//            LocalDate packaging, LocalDate shipping, LocalDate delivery) {
+//    public CustOrder(String orderId, Date orderdate, String status, String username, Address shippingAdd, 
+//            Date packaging, Date shipping, Date delivery) {
 //        this.orderId = orderId;
 //        this.username = username;
 //        this.orderdate = orderdate;
@@ -61,7 +61,7 @@ public class CustOrder {
         return username;
     }
 
-    public LocalDate getOrderDate() {
+    public Date getOrderDate() {
         return orderdate;
     }
 
@@ -77,15 +77,15 @@ public class CustOrder {
         return shippingAdd;
     }
     
-    public LocalDate getPackaging() {
+    public Date getPackaging() {
         return packaging;
     }
     
-    public LocalDate getShipping() {
+    public Date getShipping() {
         return shipping;
     }
     
-    public LocalDate getDelivery() {
+    public Date getDelivery() {
         return delivery;
     }
     
@@ -110,7 +110,7 @@ public class CustOrder {
         this.username = username;
     }
 
-    public void setOrderDate(LocalDate orderdate) {
+    public void setOrderDate(Date orderdate) {
         this.orderdate = orderdate;
     }
 
@@ -130,15 +130,15 @@ public class CustOrder {
         orderItems.add(orderItem);
     }
     
-    public void setPackaging(LocalDate packaging) {
+    public void setPackaging(Date packaging) {
         this.packaging = packaging;
     }
     
-    public void setShipping(LocalDate shipping) {
+    public void setShipping(Date shipping) {
         this.shipping = shipping;
     }
     
-    public void setDelivery(LocalDate delivery) {
+    public void setDelivery(Date delivery) {
         this.delivery = delivery;
     }
     

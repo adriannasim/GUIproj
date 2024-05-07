@@ -57,14 +57,23 @@ public class PaymentMethod extends HttpServlet {
         String paymentMethod = request.getParameter("paymentMethod");
         session.setAttribute("paymentMethod",paymentMethod);
         
-        if (paymentMethod.equals("card")){
-            response.sendRedirect("CardPayment.jsp");
-        } else if (paymentMethod.equals("fpx")){
-            response.sendRedirect("FPXPayment.jsp");
-        } else if (paymentMethod.equals("ewallet")){
-            response.sendRedirect("EWalletPayment.jsp");
+        if (paymentMethod != null) {
+            session.setAttribute("paymentMethod", paymentMethod);
+            System.out.println("Payment method is: " + paymentMethod);
+            
+            if (paymentMethod.equals("card")) {
+                response.sendRedirect("CardPayment.jsp");
+            } else if (paymentMethod.equals("fpx")) {
+                response.sendRedirect("FPXPayment.jsp");
+            } else if (paymentMethod.equals("ewallet")) {
+                response.sendRedirect("EWalletPayment.jsp");
+            } else {
+                // Error Handling here
+            }
         } else {
-            // Error Handling here
+            // Handle case where paymentMethod parameter is missing
+            // Redirect user to an error page or display an error message
         }
+    
     }
 }
