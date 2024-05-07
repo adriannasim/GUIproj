@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
-
+<%@ include file="css/bootstrapStyles.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -82,16 +82,46 @@
                 request.getSession().removeAttribute("signup-success");
             }
         %>
-        <h1>Sign In</h1>
+        <h2 class="si_title">Sign In</h2>
         <form action="signin" method="post" id="signin-form">
-            <label>Username/Email</label>
-            <input type="text" name="signin-username/email" id="signin-username/email"/><br/><br/>
-
-            <label>Password</label>
-            <input type="password" name="signin-password" id="signin-password"/><br/><br/>
-
-            <button type="submit">Sign In</button>
-            <a href="SignUp.jsp"><button type="button">Don't have account? Go to Sign Up</button></a>
+            <div class="container"> 
+                <div class="row justify-content-md-end">
+                    <div class="col-2">
+                        <label>Username/Email</label>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control form-control-lg" type="text" name="signin-username/email" id="signin-username/email"/><br/><br/>
+                    </div>
+                    <div class="row justify-content-md-end">
+                    <div class="col-2">
+                        <label>Password</label> 
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control form-control-lg" type="password" name="signin-password" id="signin-password"/><br/><br/>
+                    </div>
+                    </div>
+                    <div class="col-2 si_item-padding">
+                        <label></label> 
+                    </div>
+                    <div class="col-2 si_item-padding">
+                        <input type="checkbox"/>&nbsp;&nbsp;
+                        <label>Remember Me</label> 
+                    </div>
+                    <div class="col-2 si_btn-pd">
+                       <button type="submit" class="btn btn-outline-success btn-block">Sign In</button> 
+                    </div>
+                </div>
+                <div class="row justify-content-md-end">
+                    <div class="col-2 si_link">
+                        <a href="FgtPw.jsp" class="si_backlink">Forgot Password</a>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2 si_link">
+                        <a href="SignUp.jsp" class="si_backlink">Don't have an account? Sign up here</a>
+                    </div>
+                </div>
+                </div>
         </form>
 
         <!--footer-->

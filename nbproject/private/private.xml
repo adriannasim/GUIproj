@@ -4,6 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/GUIproj/web/Payment.jsp</file>
+<<<<<<< Updated upstream
+=======
+            <file>file:/D:/GUIproj/web/SignUp.jsp</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/web/Payment.jsp</file>
+>>>>>>> Stashed changes
             <file>file:/D:/GUIproj/src/java/controller/AddProducts.java</file>
             <file>file:/D:/GUIproj/web/SignUp.jsp</file>
         </group>
@@ -13,6 +20,7 @@
             <file>file:/D:/GUIproj/web/SignUp.jsp</file>
             <file>file:/D:/GUIproj/src/java/controller/AddToCart.java</file>
         </group>
+<<<<<<< Updated upstream
         <group>
             <file>file:/D:/GUIproj/src/java/entity/CustOrder.java</file>
             <file>file:/D:/GUIproj/src/java/jpaEntity/PaymentcardPK.java</file>
@@ -73,6 +81,15 @@
             <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
             <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
             <file>file:/D:/GUIproj/web/SignUp.jsp</file>
+=======
+        <group/>
+        <group>
+            <file>file:/C:/Users/wynnt/OneDrive/Documents/NetBeansProjects/GUIproj/web/SignIn.jsp</file>
+            <file>file:/C:/Users/wynnt/OneDrive/Documents/NetBeansProjects/GUIproj/web/SignUp.jsp</file>
+            <file>file:/C:/Users/wynnt/OneDrive/Documents/NetBeansProjects/GUIproj/web/css/bootstrapStyles.jsp</file>
+            <file>file:/C:/Users/wynnt/OneDrive/Documents/NetBeansProjects/GUIproj/web/components/footer.jsp</file>
+            <file>file:/C:/Users/wynnt/OneDrive/Documents/NetBeansProjects/GUIproj/web/components/header.jsp</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
