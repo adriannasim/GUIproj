@@ -10,6 +10,7 @@
         cartItemList
                 = (ArrayList<CartItem>) session.getAttribute("cartItemList");
     }
+    int totalQty = 0;
     Double subtotal = 0.0;
     Double shippingFee = 0.0;
     Double salesTax = 0.0;
@@ -81,6 +82,7 @@
                     </div>
                 </div>
                 <%
+                    totalQty += cartItem.getItemQty();
                     subtotal += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
                 %>
                 <% }%>
@@ -92,6 +94,7 @@
                     <%
                         String formattedSubtotal = decimalFormat.format(subtotal);
                     %>
+                    <b>Total item(s) : <%=totalQty%> pcs</b>&nbsp; &nbsp;
                     <b>Subtotal : RM <%=formattedSubtotal%></b><br/>
                     <hr/>
                     <%
@@ -108,7 +111,7 @@
                         String formattedSalesTax = decimalFormat.format(salesTax);
                         String formattedTotal = decimalFormat.format(total);
                     %>
-                    <small> Shipping Fee : RM <%=formattedShippingFee%> <br/><span style="font-size: 10px;"><%=(subtotal < 1000) ? "(Free shipping if purchase over RM1,000)" : ""%></span></small><br/>
+                    <small> Shipping Fee : RM <%=formattedShippingFee%> <br/><span style="font-size: 10px;">(Free shipping if purchase over RM1,000)</span></small><br/>
                     <small> Sales Tax (10%) : RM <%=formattedSalesTax%> <br/></small>
                     <b>Total: <%=formattedTotal%></b><br/>
                     <hr/>

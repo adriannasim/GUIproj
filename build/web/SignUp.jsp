@@ -246,19 +246,6 @@
                         }
                     }
 
-                    function validateEmail() {
-
-
-
-                        if (!email) {
-                            errorDiv.textContent = "Email is required.";
-                        } else if (!email.match(emailFormat)) {
-                            errorDiv.textContent = "Invalid email format.";
-                        } else {
-                            errorDiv.textContent = "";
-                        }
-                    }
-
                     var lastCheckedEmail = ""; // Variable to store the last checked email
 
                     function validateEmail() {
