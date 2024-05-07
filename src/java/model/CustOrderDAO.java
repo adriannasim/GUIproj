@@ -117,7 +117,7 @@ public class CustOrderDAO {
 
                 orderItems = orderItemDao.getRecord(rs.getString(1));
 
-                orders.add(new CustOrder(rs.getString(1), rs.getDate(2).toLocalDate(),
+                orders.add(new CustOrder(rs.getString(1), rs.getDate(2),
                         rs.getString(3), rs.getString(4), address, orderItems,
                         rs.getDate(10),
                         rs.getDate(11),

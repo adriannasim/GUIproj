@@ -28,7 +28,7 @@
                 <div class="form-container">
                     <div class="field-container">
                         <label for="name">Card Holder Name</label>
-                        <input id="name" maxlength="20" type="text" />
+                        <input name="name" id="name" maxlength="20" type="text" />
                     </div>
                     <div id="payment-name-error" class="payment-error-message"></div>
                     <br/>
@@ -37,6 +37,7 @@
                         <label for="cardnumber">Card Number</label>
                         <input
                             id="cardnumber"
+                            name="cardnumber"
                             type="text"
                             pattern="[0-9]*"
                             inputmode="numeric"
@@ -49,6 +50,7 @@
                         <label for="expirationdate">Expiration (mm/yy)</label>
                         <input
                             id="expirationdate"
+                            name="expirationdate"
                             type="text"
                             pattern="[0-9]*"
                             inputmode="numeric"
@@ -60,6 +62,7 @@
                         <label for="securitycode">CVV</label>
                         <input
                             id="securitycode"
+                            name="securitycode"
                             type="text"
                             pattern="[0-9]*"
                             inputmode="numeric"

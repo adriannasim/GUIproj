@@ -148,6 +148,8 @@ public class SignUp extends HttpServlet {
 
             // Set attribute to indicate successful sign-up
             request.getSession().setAttribute("signup-success", true);
+                    
+            custDAO.closeConnection();
 
             response.sendRedirect("SignIn.jsp");
         } else {
