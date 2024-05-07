@@ -3,8 +3,8 @@
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%--imports-->%
-
+<%--imports--%>
+<%@ include file="bootstrap_styles.jsp" %>
 <%--includes--%>
       
 <!DOCTYPE html>
