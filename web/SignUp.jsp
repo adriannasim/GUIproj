@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-4">
                            <input class="form-control" name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
-                                   ? request.getParameter("signup-email") : ""%>"/>
+                                ? request.getParameter("signup-email") : ""%>"/>
                         <div id="signup-email-error" class="signup-error-message"></div>
                         <div id="signup-email-status" class="signup-status-message"></div>
                     </div>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-4">
                            <input class="form-control" name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
-                                   ? request.getParameter("signup-lastname") : ""%>"/>
+                                ? request.getParameter("signup-lastname") : ""%>"/>
                         <div id="signup-lastname-error" class="signup-error-message"></div><br/><br/>
                     </div>
                 </div>
@@ -236,20 +236,18 @@
                 </form>
                 <!-- End of address from -->
 
-
-                <div class="col-3">
-                </div>
-
                 <!-- Start of Submit Button -->
-                <div class="col-2">
-                    <div class="justify-content-md-end">
-                        <button type="submit" id="signup-submit-button" class="btn btn-outline-success btn-block text-dark">Sign Up</button> 
+                <div class="row justify-content-md-end">
+                    <div class="col-3">
+                        <div class="justify-content-md-end">
+                            <button type="submit" id="signup-submit-button" class="btn btn-outline-success btn-block text-dark">Sign Up</button> 
+                        </div>
                     </div>
                 </div>
                 <!-- End of Submit Button -->
 
                 <!-- Start of Sign In Button -->
-                <div class="row justify-content-md-end">
+                <div class="row justify-content-md-start">
                     <div class="col-2 so_backlink">
                         <a href="SignIn.jsp" class="so_backlink">Back to Sign In</a>
                     </div>
@@ -271,11 +269,11 @@
 
                 if (!username) {
                     errorDiv.textContent = "Username is required.";
-                    return; 
+                    return;
                 }
-               
+
                 if (username !== lastCheckedUsername) {
-                    lastCheckedUsername = username; 
+                    lastCheckedUsername = username;
 
                     if (username.length < 2) {
                         errorDiv.textContent = "Username must be at least 2 characters long.";
@@ -283,7 +281,7 @@
                         errorDiv.textContent = "Username should only consist of alphabets and numbers.";
                     } else {
                         errorDiv.textContent = "";
-                        statusDiv.textContent = "Searching..."; 
+                        statusDiv.textContent = "Searching...";
 
                         var xhr = new XMLHttpRequest();
                         xhr.open(
@@ -293,7 +291,7 @@
                                 );
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState === 4) {
-                                statusDiv.textContent = ""; 
+                                statusDiv.textContent = "";
                                 if (xhr.status === 200) {
                                     var response = xhr.responseText;
                                     if (response === "duplicate") {
@@ -347,7 +345,7 @@
                 }
             }
 
-            var lastCheckedEmail = ""; 
+            var lastCheckedEmail = "";
 
             function validateEmail() {
                 var email = document.getElementById("signup-email").value;
@@ -357,17 +355,17 @@
 
                 if (!email) {
                     errorDiv.textContent = "Email is required.";
-                    return; 
+                    return;
                 }
 
                 if (email !== lastCheckedEmail) {
-                    lastCheckedEmail = email; 
+                    lastCheckedEmail = email;
 
                     if (!email.match(emailFormat)) {
                         errorDiv.textContent = "Invalid email format.";
                     } else {
                         errorDiv.textContent = "";
-                        statusDiv.textContent = "Searching..."; 
+                        statusDiv.textContent = "Searching...";
 
                         var xhr = new XMLHttpRequest();
                         xhr.open(
