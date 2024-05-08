@@ -27,17 +27,17 @@ public class OrderitemPK implements Serializable
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
-    @Column(name = "productid")
-    private String productid;
+    @Column(name = "prodid")
+    private String prodid;
 
     public OrderitemPK()
     {
     }
 
-    public OrderitemPK(String orderid, String productid)
+    public OrderitemPK(String orderid, String prodid)
     {
         this.orderid = orderid;
-        this.productid = productid;
+        this.prodid = prodid;
     }
 
     public String getOrderid()
@@ -50,14 +50,14 @@ public class OrderitemPK implements Serializable
         this.orderid = orderid;
     }
 
-    public String getProductid()
+    public String getProdid()
     {
-        return productid;
+        return prodid;
     }
 
-    public void setProductid(String productid)
+    public void setProdid(String prodid)
     {
-        this.productid = productid;
+        this.prodid = prodid;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class OrderitemPK implements Serializable
     {
         int hash = 0;
         hash += (orderid != null ? orderid.hashCode() : 0);
-        hash += (productid != null ? productid.hashCode() : 0);
+        hash += (prodid != null ? prodid.hashCode() : 0);
         return hash;
     }
 
@@ -82,7 +82,7 @@ public class OrderitemPK implements Serializable
         {
             return false;
         }
-        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid)))
+        if ((this.prodid == null && other.prodid != null) || (this.prodid != null && !this.prodid.equals(other.prodid)))
         {
             return false;
         }
@@ -92,7 +92,7 @@ public class OrderitemPK implements Serializable
     @Override
     public String toString()
     {
-        return "jpaEntity.OrderitemPK[ orderid=" + orderid + ", productid=" + productid + " ]";
+        return "jpaEntity.OrderitemPK[ orderid=" + orderid + ", prodid=" + prodid + " ]";
     }
     
 }

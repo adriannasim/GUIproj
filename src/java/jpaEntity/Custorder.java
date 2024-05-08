@@ -6,6 +6,7 @@ package jpaEntity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -94,6 +96,8 @@ public class Custorder implements Serializable
     @Size(max = 500)
     @Column(name = "remark")
     private String remark;
+    @OneToMany(mappedBy = "custorder")
+    private List<Orderitem> orderitems;
 
     public Custorder()
     {
@@ -252,6 +256,14 @@ public class Custorder implements Serializable
     public void setRemark(String remark)
     {
         this.remark = remark;
+    }
+
+    public List<Orderitem> getOrderitems() {
+        return orderitems;
+    }
+
+    public void setOrderitems(List<Orderitem> orderitems) {
+        this.orderitems = orderitems;
     }
 
     @Override

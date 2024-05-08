@@ -4,9 +4,22 @@
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%--imports-->%
+<%--imports--%>
+<%@page import="jpaEntity.*, java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date"%> 
 
 <%--includes--%>
+
+<%
+    Customer customer = new Customer();
+    if (session.getAttribute("customer") != null) {
+        customer = (Customer) session.getAttribute("customer");
+    }
+    ArrayList<Custorder> orderList = new ArrayList<Custorder>();
+    if (session.getAttribute("orderList") != null) {
+        orderList = (ArrayList<Custorder>) session.getAttribute("orderList");
+        System.out.println(orderList);
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +28,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Customer Profile</title>=
+        <title>Customer Profile</title>
         <!-- Core theme CSS (includes Bootstrap) for Customer Profile ONLY -->
         <link href="css/profilestyles.css" rel="stylesheet" />
 
@@ -26,10 +39,12 @@
 
     <body>
         <header class="text-center">
-        <%--header--%>
-        <jsp:include page="components/header.jsp" />
+            <%--header--%>
+            <jsp:include page="components/header.jsp" />
         </header>
-
+        <form id="logoutForm" action="Logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
         <!--start of content-->
         <section style="background-color: #f7f7f7;padding:10px;">
             <div class="container py-5">
@@ -42,8 +57,8 @@
                             <div class="card-body text-center">
                                 <img src="img/Animal-Paint-1.jpg" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;height: 140px;">
-                                <h5 class="my-3">Customer Name</h5>
-                                <p class="text-muted mb-1">Contact No</p>
+                                <h5 class="my-3"><%=customer.getFirstname()%> <%=customer.getLastname()%></h5>
+                                <p class="text-muted mb-1"><%=customer.getContactno()%></p>
                             </div>
                         </div>
                         <!-- User Profile : Upper Avatar Card -->
@@ -82,8 +97,8 @@
                             </div>
                         </div>
                         <!-- User Profile : Profile Setting -->
-                        
-                        
+
+
                     </div>
 
 
@@ -96,7 +111,7 @@
                                         <p class="mb-0">Full Name</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Customer Name</p>
+                                        <p class="text-muted mb-0"><%=customer.getFirstname()%> <%=customer.getLastname()%></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -105,7 +120,7 @@
                                         <p class="mb-0">Email</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">example@example.com</p>
+                                        <p class="text-muted mb-0"><%=customer.getCustomerPK().getEmail()%></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -114,7 +129,7 @@
                                         <p class="mb-0">Country</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Example Country</p>
+                                        <p class="text-muted mb-0"><%=customer.getCountry()%></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -123,7 +138,7 @@
                                         <p class="mb-0">Address</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Example Address, PostalCode, City</p>
+                                        <p class="text-muted mb-0"><%=customer.getAddress()%>, <%=customer.getPostalcode()%>, <%=customer.getCity()%></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -132,7 +147,7 @@
                                         <p class="mb-0">State</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Example State</p>
+                                        <p class="text-muted mb-0"><%=customer.getState()%></p>
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +207,9 @@
                                     <div class="order my-3">
 
 
+                                        <% for (Custorder custorder : orderList) {%>
+
+
                                         <!-- FILTERED ORDER INFO LOOPING HERE -->
                                         <div class="container-fluid d-sm-flex justify-content-center" 
                                              style="width:100%;margin:5px;">
@@ -200,24 +218,29 @@
                                                     <div class="row justify-content-between">
                                                         <div class="col">
                                                             <p class="text-muted"> Order ID  
-                                                                <span class="font-weight-bold text-dark">[ORDER ID]</span>
+                                                                <span class="font-weight-bold text-dark"><%=custorder.getOrderid()%></span>
                                                             </p> 
+                                                            <%
+                                                                Date orderDate = custorder.getOrderdate();
+                                                                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                                                                String formattedDate = sdf.format(orderDate);
+                                                            %>
                                                             <p class="text-muted"> Place On 
-                                                                <span class="font-weight-bold text-dark">[ORDER DATE]</span> 
+                                                                <span class="font-weight-bold text-dark"><%=formattedDate%></span> 
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
 
-
+                                                <% for (Orderitem orderitem : custorder.getOrderitems()) {%>
                                                 <!-- ORDER PRODUCTS LOOPING HERE -->
                                                 <div class="card-body">
                                                     <div class="media flex-column flex-sm-row">
                                                         <div class="media-body ">
-                                                            <h5 class="bold">[PRODUCT NAME]</h5>
-                                                            <p class="text-muted"> Qt: [ORDER ITEM QTY]</p>
+                                                            <h5 class="bold"><%=orderitem.getProduct().getProdname()%></h5>
+                                                            <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
                                                             <h4 class="mt-3 mb-4 bold">
-                                                                <span class="mt-5">RM</span> [PRODUCT PRICE]
+                                                                <span class="mt-5">RM</span> <%=orderitem.getProdprice()%>
                                                             </h4>
                                                             <p class="text-muted">Order Status on: 
                                                                 <span class="Today">
@@ -230,15 +253,17 @@
                                                         </div>
                                                         <!-- Product Img HERE -->
                                                         <img class="align-self-center img-fluid" 
-                                                             src="https://i.imgur.com/bOcHdBa.jpg" width="180 " height="180">
+                                                             src="<%=request.getContextPath() + orderitem.getProduct().getProdimg()%>" width="180 " height="180">
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
+                                                <% } %>
 
 
                                             </div>
                                         </div>
                                         <!-- FILTERED ORDER INFO LOOPING END -->
+                                        <% }%>
 
 
                                     </div>
@@ -254,6 +279,26 @@
                 </div>
         </section>
         <!--end of content-->
+        <script>
+            // Function to make an AJAX request to the servlet
+            function callServlet() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "/RetrieveCustomerProfile", true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Optional: You can handle the response from the servlet here
+                        console.log("Servlet called successfully");
+                    }
+                };
+                xhr.send();
+            }
+
+            // Call the function when the page loads
+            window.onload = function () {
+                callServlet();
+            };
+        </script>
+
     </body>
 
     <%--footer--%>

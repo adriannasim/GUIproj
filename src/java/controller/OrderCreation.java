@@ -61,7 +61,8 @@ public class OrderCreation extends HttpServlet {
             Custorder custorder = new Custorder();
             custorder.setOrderid(orderId);
             custorder.setOrderdate(new Date());
-            custorder.setStatus("In Processing");
+            custorder.setStatus("Packaging");
+            custorder.setPackaging(new Date());
             custorder.setUsername(username);
 
             String addressLine;
@@ -113,7 +114,7 @@ public class OrderCreation extends HttpServlet {
 
                 OrderitemPK orderitemPK = new OrderitemPK();
                 orderitemPK.setOrderid(orderId);
-                orderitemPK.setProductid(id);
+                orderitemPK.setProdid(id);
 
                 Orderitem orderitem = new Orderitem();
                 orderitem.setOrderitemPK(orderitemPK);
@@ -145,7 +146,7 @@ public class OrderCreation extends HttpServlet {
             // Amount calculation
             double shippingFee;
 
-            if (subtotal > 1000) {
+            if (subtotal >= 1000) {
                 shippingFee = 0.0;
             } else {
                 shippingFee = 15.0;

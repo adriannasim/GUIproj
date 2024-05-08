@@ -7,12 +7,14 @@ package jpaEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -76,6 +78,8 @@ public class Product implements Serializable
     @Size(max = 255)
     @Column(name = "prodslug")
     private String prodslug;
+    @OneToMany(mappedBy = "product")
+    private List<Orderitem> orderitems;
 
     public Product()
     {
@@ -184,6 +188,16 @@ public class Product implements Serializable
     public void setProdslug(String prodslug)
     {
         this.prodslug = prodslug;
+    }
+    
+     public List<Orderitem> getOrderitems()
+    {
+        return orderitems;
+    }
+
+    public void setOrderitems(List<Orderitem> orderitems)
+    {
+        this.orderitems = orderitems;
     }
 
     @Override
