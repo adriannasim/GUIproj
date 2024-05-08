@@ -44,7 +44,7 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="img/navbar/user-icon.png" alt="User" width="40px" height="40px"/>
+            <img src="img/navbar/user-icon-white.png" alt="User" width="40px" height="40px"/>
         </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="CustomerProfile.jsp">Profile</a>

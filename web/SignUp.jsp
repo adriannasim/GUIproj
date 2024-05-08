@@ -187,7 +187,7 @@
                             </label>
                         </div>
                         <div class="col-4">
-                            <input class="form-control" id="address2" name="address2" value="<%=(request.getParameter("address2") != null) ? request.getParameter("address2") : ""%>" readonly/><br/><br/>
+                            <input class="form-control" id="address2" name="address2" value="<%=(request.getParameter("address2") != null) ? request.getParameter("address2") : ""%>"/><br/><br/>
                         </div>
                     </div>
                     <!-- First Row End -->
