@@ -2,7 +2,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 
 <%--imports--%> 
-<%@page import="entity.Product,java.util.ArrayList"%> <%--tags--%> 
+<%@page import="entity.Product,java.util.ArrayList"%> 
+
+<%--tags--%> 
 <%@ include file="css/bootstrapStyles.jsp" %>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
@@ -11,19 +13,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Sign Up</title>
-        
+
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
-        
+
         <style>
             .signup-error-message {
                 color: red;
             }
         </style>
-        
+
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     </head>
-    
+
     <body class="text-center">
         <!--header-->
         <jsp:include page="components/header.jsp" />
@@ -45,12 +47,12 @@
             }
         %>
         <!-- End of Message Div -->
-        
+
         <h2 class="so_title">Sign Up</h2>
-        
+
         <form action="signup" method="post" id="signup-form">
             <div class="container">
-                
+
                 <!-- Start of PK Row -->
                 <div class="row justify-content-md-center mt-4">
                     <div class="col-1">
@@ -67,14 +69,14 @@
                         <label>Email</label> 
                     </div>
                     <div class="col-4">
-                        <input class="form-control" name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
+                           <input class="form-control" name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
                                    ? request.getParameter("signup-email") : ""%>"/>
                         <div id="signup-email-error" class="signup-error-message"></div>
                         <div id="signup-email-status" class="signup-status-message"></div>
                     </div>
                 </div>
                 <!-- End of PK Row -->
-                
+
                 <!-- Start of Name Row -->
                 <div class="row justify-content-md-center">
                     <div class="col-1">
@@ -90,13 +92,13 @@
                         <label>Last Name</label> 
                     </div>
                     <div class="col-4">
-                        <input class="form-control" name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
+                           <input class="form-control" name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
                                    ? request.getParameter("signup-lastname") : ""%>"/>
                         <div id="signup-lastname-error" class="signup-error-message"></div><br/><br/>
                     </div>
                 </div>
                 <!-- End of Name Row --> 
-                
+
                 <!-- Start of Gender & Contact No Row -->
                 <div class="row justify-content-md-center">
                     <div class="col-1">
@@ -125,7 +127,7 @@
                     </div>
                 </div>
                 <!-- End of Gender & Contact No Row -->
-                
+
                 <!-- Start of Password Row -->
                 <div class="row justify-content-md-center">
                     <div class="col-1">
@@ -144,7 +146,7 @@
                     </div>
                 </div>
                 <!-- End of Password Row --> 
-                
+
                 <!-- Start of DOB Row -->
                 <div class="row justify-content-md-center">
                     <div class="col-1">
@@ -253,7 +255,7 @@
                     </div>
                 </div>
                 <!-- End of Sign In Button -->
-                
+
             </div>
         </form> 
 
@@ -263,29 +265,26 @@
 
             function validateUsername() {
                 var username = document.getElementById("signup-username").value;
+                var nameFormat = /^[a-zA-Z0-9]+$/;
+                var errorDiv = document.getElementById("signup-username-error");
+                var statusDiv = document.getElementById("signup-username-status");
 
-                // Check if the username has changed since the last validation
+                if (!username) {
+                    errorDiv.textContent = "Username is required.";
+                    return; 
+                }
+               
                 if (username !== lastCheckedUsername) {
-                    lastCheckedUsername = username; // Update the last checked username
+                    lastCheckedUsername = username; 
 
-                    var nameFormat = /^[a-zA-Z0-9]+$/;
-                    var errorDiv = document.getElementById("signup-username-error");
-                    var statusDiv = document.getElementById("signup-username-status");
-
-                    if (!username) {
-                        errorDiv.textContent = "Username is required.";
-                    } else if (username.length < 2) {
-                        errorDiv.textContent =
-                                "Username must be at least 2 characters long.";
+                    if (username.length < 2) {
+                        errorDiv.textContent = "Username must be at least 2 characters long.";
                     } else if (!username.match(nameFormat)) {
-                        errorDiv.textContent =
-                                "Username should only consist of alphabets and numbers.";
+                        errorDiv.textContent = "Username should only consist of alphabets and numbers.";
                     } else {
-                        // Clear previous error messages
                         errorDiv.textContent = "";
-                        statusDiv.textContent = "Searching..."; // Set status message here
+                        statusDiv.textContent = "Searching..."; 
 
-                        // Perform AJAX request to check if username is already taken
                         var xhr = new XMLHttpRequest();
                         xhr.open(
                                 "GET",
@@ -294,7 +293,7 @@
                                 );
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState === 4) {
-                                statusDiv.textContent = ""; // Clear status message
+                                statusDiv.textContent = ""; 
                                 if (xhr.status === 200) {
                                     var response = xhr.responseText;
                                     if (response === "duplicate") {
@@ -303,8 +302,7 @@
                                         errorDiv.textContent = "";
                                     }
                                 } else {
-                                    errorDiv.textContent =
-                                            "Error checking username availability. Please try again later.";
+                                    errorDiv.textContent = "Error checking username availability. Please try again later.";
                                 }
                             }
                         };
@@ -349,28 +347,28 @@
                 }
             }
 
-            var lastCheckedEmail = ""; // Variable to store the last checked email
+            var lastCheckedEmail = ""; 
 
             function validateEmail() {
                 var email = document.getElementById("signup-email").value;
                 var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                // Check if the email has changed since the last validation
+                var errorDiv = document.getElementById("signup-email-error");
+                var statusDiv = document.getElementById("signup-email-status");
+
+                if (!email) {
+                    errorDiv.textContent = "Email is required.";
+                    return; 
+                }
+
                 if (email !== lastCheckedEmail) {
-                    lastCheckedEmail = email; // Update the last checked email
-                    var errorDiv = document.getElementById("signup-email-error");
-                    var statusDiv = document.getElementById("signup-email-status");
+                    lastCheckedEmail = email; 
 
-                    if (!email) {
-                        errorDiv.textContent = "Email is required.";
-                    } else if (!email.match(emailFormat)) {
-                        errorDiv.textContent =
-                                "Invalid email format.";
+                    if (!email.match(emailFormat)) {
+                        errorDiv.textContent = "Invalid email format.";
                     } else {
-                        // Clear previous error messages
                         errorDiv.textContent = "";
-                        statusDiv.textContent = "Searching..."; // Set status message here
+                        statusDiv.textContent = "Searching..."; 
 
-                        // Perform AJAX request to check if username is already taken
                         var xhr = new XMLHttpRequest();
                         xhr.open(
                                 "GET",
@@ -379,7 +377,7 @@
                                 );
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState === 4) {
-                                statusDiv.textContent = ""; // Clear status message
+                                statusDiv.textContent = "";
                                 if (xhr.status === 200) {
                                     var response = xhr.responseText;
                                     if (response === "duplicate") {
@@ -388,8 +386,7 @@
                                         errorDiv.textContent = "";
                                     }
                                 } else {
-                                    errorDiv.textContent =
-                                            "Error checking email availability. Please try again later.";
+                                    errorDiv.textContent = "Error checking email availability. Please try again later.";
                                 }
                             }
                         };
@@ -452,7 +449,7 @@
                         !document.getElementById("male").checked &&
                         !document.getElementById("female").checked &&
                         !document.getElementById("undefined").checked
-                        ) 
+                        )
                 {
                     errorDiv.textContent = "Gender is required.";
                 } else {
@@ -470,8 +467,8 @@
                     var dob = new Date(dateOfBirth);
                     var difference = today - dob;
                     var age = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
-                    if (isNaN(age) || age < 1) {
-                        errorDiv.textContent = "Invalid Date of Birth.";
+                    if (isNaN(age) || age < 12) {
+                        errorDiv.textContent = "You must be at least 12 years old to sign up.";
                     } else {
                         errorDiv.textContent = "";
                     }
@@ -522,6 +519,15 @@
             document
                     .getElementById("ship-address")
                     .addEventListener("blur", validateAddress);
+            document
+                    .getElementById("male")
+                    .addEventListener("click", validateGender);
+            document
+                    .getElementById("female")
+                    .addEventListener("click", validateGender);
+            document
+                    .getElementById("undefined")
+                    .addEventListener("click", validateGender);
 
             function validateAllFields() {
                 // Trigger validation for all fields
@@ -558,8 +564,8 @@
                         ).textContent;
                 var emailError =
                         document.getElementById(
-                        "signup-email-error"
-                        ).textContent;
+                                "signup-email-error"
+                                ).textContent;
                 var emailStatus = document.getElementById(
                         "signup-email-status"
                         ).textContent;
@@ -580,8 +586,8 @@
                         ).textContent;
                 var addressError =
                         document.getElementById(
-                        "ship-address-error"
-                        ).textContent;
+                                "signup-address-error"
+                                ).textContent;
 
                 // Check if any validation error exists
                 return (
@@ -597,7 +603,7 @@
                         addressError ||
                         usernameStatus === "Searching..." ||
                         emailStatus === "Searching..."
-                );
+                        );
             }
 
             document.getElementById("signup-submit-button").addEventListener("click", function (event) {
@@ -615,6 +621,7 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
         ></script>
         <!--footer-->
-        <jsp:include page="components/footer.jsp" />
+
     </body>
+    <jsp:include page="components/footer.jsp" />
 </html>

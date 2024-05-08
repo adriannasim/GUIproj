@@ -8,6 +8,7 @@
 <%@page import="jpaEntity.*, java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date"%> 
 
 <%--includes--%>
+<jsp:include page="/RetrieveCustomerProfile" />
 
 <%
     Customer customer = new Customer();
@@ -232,7 +233,12 @@
                                                     </div>
                                                 </div>
 
+                                                <% if (custorder != null && custorder.getOrderitems() != null) { %>
                                                 <% for (Orderitem orderitem : custorder.getOrderitems()) {%>
+                                                <!-- Your code for order items here -->
+
+
+
                                                 <!-- ORDER PRODUCTS LOOPING HERE -->
                                                 <div class="card-body">
                                                     <div class="media flex-column flex-sm-row">
@@ -258,6 +264,7 @@
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
                                                 <% } %>
+                                                <% }%>
 
 
                                             </div>
@@ -279,25 +286,7 @@
                 </div>
         </section>
         <!--end of content-->
-        <script>
-            // Function to make an AJAX request to the servlet
-            function callServlet() {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "/RetrieveCustomerProfile", true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Optional: You can handle the response from the servlet here
-                        console.log("Servlet called successfully");
-                    }
-                };
-                xhr.send();
-            }
 
-            // Call the function when the page loads
-            window.onload = function () {
-                callServlet();
-            };
-        </script>
 
     </body>
 
