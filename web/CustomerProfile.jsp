@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Customer Profile</title>=
+        <title>Customer Profile</title>
         <!-- Core theme CSS (includes Bootstrap) for Customer Profile ONLY -->
         <link href="css/profilestyles.css" rel="stylesheet" />
 
@@ -40,7 +40,7 @@
                         <!-- User Profile : Upper Avatar Card -->
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="img/Animal-Paint-1.jpg" alt="avatar"
+                                <img src="img/navbar/user-icon-black.png" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;height: 140px;">
                                 <h5 class="my-3">Customer Name</h5>
                                 <p class="text-muted mb-1">Contact No</p>
