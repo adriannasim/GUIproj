@@ -13,7 +13,7 @@ import model.CartDAO;
 import model.CartItemDAO;
 import model.ProductDAO;
 
-@WebServlet(name = "AddToCart", urlPatterns = { "/AddToCart" })
+@WebServlet(name = "AddToCart", urlPatterns = {"/AddToCart"})
 public class AddToCart extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -68,13 +68,21 @@ public class AddToCart extends HttpServlet {
             }
         }
 
-        // If the item not found, then just add the item to the cart
+        // If the item not found, then add the item to the cart
         if (!found) {
-            cartItemList.add(new CartItem(cartId, prodDAO.getProductById(prodId), itemQty));
-            // Set the success message to the user
-            response.setContentType("text/plain");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("Item(s) added successfully.");
+
+            if (prodDAO.getProductById(prodId).getQtyAvailable() <= 0) {
+                // Notify the customer that product is out of stock
+                response.setContentType("text/plain");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write("Sorry. The product is out of stock.");
+            } else {
+                cartItemList.add(new CartItem(cartId, prodDAO.getProductById(prodId), itemQty));
+                // Set the success message to the user
+                response.setContentType("text/plain");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write("Item(s) added successfully.");
+            }
         }
 
         // Update the cartItemList in the session after modification (adding)

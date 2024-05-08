@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import entity.*;
+import entity.CartItem;
 import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -17,8 +17,9 @@ import jpaEntity.*;
 import java.util.Date;
 import java.time.LocalDate;
 import java.util.UUID;
+import javax.persistence.Query;
 
-@WebServlet(name = "OrderCreation", urlPatterns = {"/OrderCreation"})
+@WebServlet(name = "OrderCreation", urlPatterns = { "/OrderCreation" })
 public class OrderCreation extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
@@ -31,197 +32,61 @@ public class OrderCreation extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        // Retrieve customer shipping details
-        String firstname = (String) session.getAttribute("firstname");
-        String lastname = (String) session.getAttribute("lastname");
-        String address1 = (String) session.getAttribute("address1");
-        String address2 = (String) session.getAttribute("address2");
-        String city = (String) session.getAttribute("city");
-        String state = (String) session.getAttribute("state");
-        String postalcode = (String) session.getAttribute("postalcode");
-        String country = (String) session.getAttribute("country");
-        String contactNo = (String) session.getAttribute("contactNo");
-        String remark = (String) session.getAttribute("remark");
-
-        // Retrieve username
-        String username = (String) session.getAttribute("username");
-
-        // Retrieve the cart item list
-        ArrayList<CartItem> cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
-        
-        // Retrieve the payment method 
-        String paymentMethod = (String) session.getAttribute("paymentMethod");
-
-        // Generate an order id
-        String orderId = generateRandomID();
-
-        // Save order into custorder DB
-        Custorder custorder = new Custorder();
-        custorder.setOrderid(orderId);
-        custorder.setOrderdate(new Date());
-        custorder.setStatus("In Processing");
-        custorder.setUsername(username);
-
-        String addressLine;
-        if (address2 != null && !address2.isEmpty()) {
-            addressLine = address1 + ", " + address2;
-        } else {
-            addressLine = address1;
-        }
-
-        custorder.setAddress(addressLine);
-        custorder.setCity(city);
-        custorder.setState(state);
-        custorder.setPostalcode(postalcode);
-        custorder.setCountry(country);
-
-        String name = firstname + " " + lastname;
-        custorder.setName(name);
-        custorder.setContactno(contactNo);
-        custorder.setRemark(remark);
-
         try {
-            // Begin transaction
-            utx.begin();
-            // Add the record
-            em.persist(custorder);
-            // Commit transaction
-            utx.commit();
+            // Retrieve customer shipping details
+            String firstname = (String) session.getAttribute("firstname");
+            String lastname = (String) session.getAttribute("lastname");
+            String address1 = (String) session.getAttribute("address1");
+            String address2 = (String) session.getAttribute("address2");
+            String city = (String) session.getAttribute("city");
+            String state = (String) session.getAttribute("state");
+            String postalcode = (String) session.getAttribute("postalcode");
+            String country = (String) session.getAttribute("country");
+            String contactNo = (String) session.getAttribute("contactNo");
+            String remark = (String) session.getAttribute("remark");
 
-        } catch (Exception ex) {
-            // Rollback transaction if an exception occurs
-            try {
-                if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
-                    utx.rollback();
-                }
-            } catch (Exception rollbackEx) {
-                rollbackEx.printStackTrace();
-            }
-            ex.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-        } 
+            // Retrieve username
+            String username = (String) session.getAttribute("username");
 
-        // Save order into orderitem DB
-        double subtotal = 0.0;
+            // Retrieve the cart item list
+            ArrayList<CartItem> cartItemList = (ArrayList<CartItem>) session.getAttribute("cartItemList");
 
-        for (CartItem cartItem : cartItemList) {
-            String id = cartItem.getProd().getProdId();
-            int qty = cartItem.getItemQty();
-            Double price = cartItem.getProd().getProdPrice();
-            subtotal += price * qty;
+            // Retrieve the payment method
+            String paymentMethod = (String) session.getAttribute("paymentMethod");
 
-            OrderitemPK orderitemPK = new OrderitemPK();
-            orderitemPK.setOrderid(orderId);
-            orderitemPK.setProductid(id);
+            // Generate an order id
+            String orderId = generateRandomID();
 
-            Orderitem orderitem = new Orderitem();
-            orderitem.setOrderitemPK(orderitemPK);
-            orderitem.setItemqty(qty);
-            orderitem.setProdprice(price);
+            // Save order into custorder DB
+            Custorder custorder = new Custorder();
+            custorder.setOrderid(orderId);
+            custorder.setOrderdate(new Date());
+            custorder.setStatus("In Processing");
+            custorder.setUsername(username);
 
-            try {
-                // Begin transaction
-                utx.begin();
-                // Add the record
-                em.persist(orderitem);
-                // Commit transaction
-                utx.commit();
-
-            } catch (Exception ex) {
-                // Rollback transaction if an exception occurs
-                try {
-                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
-                        utx.rollback();
-                    }
-                } catch (Exception rollbackEx) {
-                    rollbackEx.printStackTrace();
-                }
-                ex.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-            } 
-        }
-
-        // Amount calculation
-        double shippingFee;
-        
-        if (subtotal > 1000) {
-            shippingFee = 0.0;
-        } else {
-            shippingFee = 15.0;
-        }
-
-        double salesTax = subtotal * 0.1;
-        double total = subtotal + shippingFee + salesTax;
-
-        // Save order into paymentinfo DB
-        Paymentinfo pyminfo = new Paymentinfo();
-        pyminfo.setPaymentid("P" + generateRandomID());
-        pyminfo.setOrderid(orderId);
-        pyminfo.setUsername(username);
-        pyminfo.setPaymenttype(paymentMethod);
-        pyminfo.setPaymentdate(new Date());
-        pyminfo.setPaymentamount(total);
-        pyminfo.setShippingfee(shippingFee);
-        pyminfo.setSalestax(salesTax);
-
-        try {
-            // Begin transaction
-             utx.begin();
-            // Add the record
-             em.persist(pyminfo);
-            // Commit transaction
-             utx.commit();
-
-        } catch (Exception ex) {
-            // Rollback transaction if an exception occurs
-            try {
-                if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
-                    utx.rollback();
-                }
-            } catch (Exception rollbackEx) {
-                rollbackEx.printStackTrace();
-            }
-            ex.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-        } 
-
-        // If use card, then save card into paymentcard DB
-        if (paymentMethod.equals("card")) {
-            String holderName = request.getParameter("name");
-            String cardNumber = request.getParameter("cardnumber");
-            String expirationDate = request.getParameter("expirationdate");
-            String cvv = request.getParameter("securitycode");
-
-            String[] expirationDateParts = null;
-            int month = 0;
-            int year = 0;
-            if (expirationDate != null && expirationDate.contains("/")) {
-                expirationDateParts = splitExp(expirationDate);
-            }
-
-            if (expirationDateParts != null && expirationDateParts.length >= 2) {
-                month = Integer.parseInt(expirationDateParts[0]);
-                year = Integer.parseInt(expirationDateParts[1]);
+            String addressLine;
+            if (address2 != null && !address2.isEmpty()) {
+                addressLine = address1 + ", " + address2;
             } else {
-                // Handle the case where CVV is missing or not in the expected format
+                addressLine = address1;
             }
 
-            PaymentcardPK pymcardPK = new PaymentcardPK();
-            pymcardPK.setCardname(holderName);
-            pymcardPK.setCardnumber(cardNumber);
+            custorder.setAddress(addressLine);
+            custorder.setCity(city);
+            custorder.setState(state);
+            custorder.setPostalcode(postalcode);
+            custorder.setCountry(country);
 
-            Paymentcard pymcard = new Paymentcard();
-            pymcard.setPaymentcardPK(pymcardPK);
-            pymcard.setDatemonth(month);
-            pymcard.setDateyear(year);
-            pymcard.setCvv(cvv);
-            pymcard.setUsername(username);
+            String name = firstname + " " + lastname;
+            custorder.setName(name);
+            custorder.setContactno(contactNo);
+            custorder.setRemark(remark);
 
             try {
                 // Begin transaction
                 utx.begin();
                 // Add the record
-                em.persist(pymcard);
+                em.persist(custorder);
                 // Commit transaction
                 utx.commit();
 
@@ -235,10 +100,192 @@ public class OrderCreation extends HttpServlet {
                     rollbackEx.printStackTrace();
                 }
                 ex.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
-            } 
+            }
+
+            // Save order into orderitem DB
+            double subtotal = 0.0;
+
+            for (CartItem cartItem : cartItemList) {
+                String id = cartItem.getProd().getProdId();
+                int qty = cartItem.getItemQty();
+                Double price = cartItem.getProd().getProdPrice();
+                subtotal += price * qty;
+
+                OrderitemPK orderitemPK = new OrderitemPK();
+                orderitemPK.setOrderid(orderId);
+                orderitemPK.setProductid(id);
+
+                Orderitem orderitem = new Orderitem();
+                orderitem.setOrderitemPK(orderitemPK);
+                orderitem.setItemqty(qty);
+                orderitem.setProdprice(price);
+
+                try {
+                    // Begin transaction
+                    utx.begin();
+                    // Add the record
+                    em.persist(orderitem);
+                    // Commit transaction
+                    utx.commit();
+
+                } catch (Exception ex) {
+                    // Rollback transaction if an exception occurs
+                    try {
+                        if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                            utx.rollback();
+                        }
+                    } catch (Exception rollbackEx) {
+                        rollbackEx.printStackTrace();
+                    }
+                    ex.printStackTrace();
+
+                }
+            }
+
+            // Amount calculation
+            double shippingFee;
+
+            if (subtotal > 1000) {
+                shippingFee = 0.0;
+            } else {
+                shippingFee = 15.0;
+            }
+
+            double salesTax = subtotal * 0.1;
+            double total = subtotal + shippingFee + salesTax;
+
+            // Save order into paymentinfo DB
+            Paymentinfo pyminfo = new Paymentinfo();
+            pyminfo.setPaymentid("P" + generateRandomID());
+            pyminfo.setOrderid(orderId);
+            pyminfo.setUsername(username);
+            pyminfo.setPaymenttype(paymentMethod);
+            pyminfo.setPaymentdate(new Date());
+            pyminfo.setPaymentamount(total);
+            pyminfo.setShippingfee(shippingFee);
+            pyminfo.setSalestax(salesTax);
+
+            try {
+                // Begin transaction
+                utx.begin();
+                // Add the record
+                em.persist(pyminfo);
+                // Commit transaction
+                utx.commit();
+
+            } catch (Exception ex) {
+                // Rollback transaction if an exception occurs
+                try {
+                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                        utx.rollback();
+                    }
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+                ex.printStackTrace();
+            }
+
+            // If use card, then save card into paymentcard DB
+            if (paymentMethod.equals("card")) {
+                String holderName = request.getParameter("name");
+                String cardNumber = request.getParameter("cardnumber");
+                String expirationDate = request.getParameter("expirationdate");
+                String cvv = request.getParameter("securitycode");
+
+                String[] expirationDateParts = null;
+                int month = 0;
+                int year = 0;
+                if (expirationDate != null && expirationDate.contains("/")) {
+                    expirationDateParts = splitExp(expirationDate);
+                }
+
+                if (expirationDateParts != null && expirationDateParts.length >= 2) {
+                    month = Integer.parseInt(expirationDateParts[0]);
+                    year = Integer.parseInt(expirationDateParts[1]);
+                } 
+
+                PaymentcardPK pymcardPK = new PaymentcardPK();
+                pymcardPK.setCardname(holderName);
+                pymcardPK.setCardnumber(cardNumber);
+
+                Paymentcard pymcard = new Paymentcard();
+                pymcard.setPaymentcardPK(pymcardPK);
+                pymcard.setDatemonth(month);
+                pymcard.setDateyear(year);
+                pymcard.setCvv(cvv);
+                pymcard.setUsername(username);
+
+                try {
+                    // Begin transaction
+                    utx.begin();
+                    // Add the record
+                    em.persist(pymcard);
+                    // Commit transaction
+                    utx.commit();
+
+                } catch (Exception ex) {
+                    // Rollback transaction if an exception occurs
+                    try {
+                        if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                            utx.rollback();
+                        }
+                    } catch (Exception rollbackEx) {
+                        rollbackEx.printStackTrace();
+                    }
+                    ex.printStackTrace();
+
+                }
+            }
+
+            // Update the qty remaining for each product
+            try {
+                utx.begin();
+                for (CartItem cartItem : cartItemList) {
+                    String id = cartItem.getProd().getProdId();
+
+                    // Retrieve cart items based on cartid using named query
+                    Query query = em.createNamedQuery("Product.findByProdid");
+                    query.setParameter("prodid", id);
+                    Product prod = (Product) query.getSingleResult();
+
+                    // Update product quantity
+                    prod.setQtyavailable(prod.getQtyavailable() - cartItem.getItemQty());
+
+                    // Persist the updated product
+                    em.merge(prod);
+                }
+
+                // Commit transaction after the loop
+                utx.commit();
+
+            } catch (Exception ex) {
+                // Rollback transaction if an exception occurs
+                try {
+                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                        utx.rollback();
+                    }
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+                ex.printStackTrace();
+            }
+
+            // Clear the session data
+            clearTheSessionData(session);
+
+            // Clear the cart
+            String cartId = (String) session.getAttribute("cartId");
+            clearTheCart(cartId, em, utx);
+
+            // Redirect to success payment page
+            response.sendRedirect("SuccessPayment.jsp");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+           
+            // Redirect to an error page
+            response.sendRedirect("ErrorPage.jsp");
         }
-        response.sendRedirect("SuccessPayment.jsp");
     }
 
     public static String generateRandomID() {
@@ -252,4 +299,48 @@ public class OrderCreation extends HttpServlet {
         return expirationDate.split("/");
     }
 
+    public static void clearTheSessionData(HttpSession session) {
+        session.removeAttribute("firstname");
+        session.removeAttribute("lastname");
+        session.removeAttribute("address1");
+        session.removeAttribute("address2");
+        session.removeAttribute("city");
+        session.removeAttribute("state");
+        session.removeAttribute("postalcode");
+        session.removeAttribute("country");
+        session.removeAttribute("contactNo");
+        session.removeAttribute("remark");
+        session.removeAttribute("cartItemList");
+        session.removeAttribute("paymentMethod");
+    }
+
+    public static void clearTheCart(String cartid, EntityManager em, UserTransaction utx) {
+        try {
+            // Begin transaction
+            utx.begin();
+
+            // Retrieve cart items based on cartid using named query
+            Query query = em.createNamedQuery("Cartitem.findByCartid");
+            query.setParameter("cartid", cartid);
+            ArrayList<Cartitem> cartItemList = new ArrayList<>(query.getResultList());
+
+            // Remove each cart item
+            for (Cartitem cartItem : cartItemList) {
+                em.remove(cartItem);
+            }
+
+            // Commit transaction
+            utx.commit();
+        } catch (Exception ex) {
+            // Rollback transaction if an exception occurs
+            try {
+                if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                    utx.rollback();
+                }
+            } catch (Exception rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+            ex.printStackTrace();
+        }
+    }
 }
