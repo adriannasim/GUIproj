@@ -1,6 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> <%--imports--%> <%@page
-    import="entity.Product,java.util.ArrayList"%> <%--tags--%> <%@ taglib
-        prefix="custom" tagdir="/WEB-INF/tags" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%--imports--%> 
+<%@page import="entity.Product,java.util.ArrayList"%> <%--tags--%> 
+<%@ include file="css/bootstrapStyles.jsp" %>
+    <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
         <!DOCTYPE html>
         <html>
@@ -37,124 +39,172 @@
                 %>
 
 
-                <h1>Sign Up</h1>
-
-                <form action="signup" method="post" id="signup-form">
-                    <label>Username</label>
-                    <input name="signup-username" id="signup-username" type="text" required
+                <h2 class="so_title">Sign Up</h2>
+        <form action="signup" method="post" id="signup-form">
+            <div class="container">
+                <div class="row justify-content-md-center mt-4">
+                    <div class="col-1">
+                        <label>Username</label>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-username" id="signup-username" type="text" required
                            value="<%= (request.getParameter("signup-username") != null)
-                                   ? request.getParameter("signup-username") : ""%>" /><br />
+                                   ? request.getParameter("signup-username") : ""%>" />
                     <div id="signup-username-error" class="signup-error-message"></div>
-                    <div id="signup-username-status" class="signup-status-message"></div>
-                    <br />
-
-                    <label>First Name</label>
-                    <input name="signup-firstname" id="signup-firstname" type="text"
-                           value="<%= (request.getParameter("signup-firstname") != null)
-                                   ? request.getParameter("signup-firstname") : ""%>"/><br />
-                    <div id="signup-firstname-error" class="signup-error-message"></div>
-                    <br />
-
-                    <label>Last Name</label>
-                           <input name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
-                                   ? request.getParameter("signup-lastname") : ""%>"/><br />
-                    <div id="signup-lastname-error" class="signup-error-message"></div>
-                    <br />
-
-                    <label>Gender</label>
-                    <input type="radio" id="male" name="signup-gender" value="M" <% if ("M".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
-                           />
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="signup-gender" value="F" <% if ("F".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
-                           />
-                    <label for="female">Female</label>
-                    <input type="radio" id="undefined" name="signup-gender" value="-" <% if ("-".equals(request.getParameter("signup-gender"))) { %> checked <% }%>
-                           />
-                    <label for="undefined">Prefer not to say</label>
-                    <br />
-                    <div id="signup-gender-error" class="signup-error-message"></div>
-                    <br />
-
-                    <label>Email</label>
-                           <input name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
-                                   ? request.getParameter("signup-email") : ""%>"/><br />
+                    <div id="signup-username-status" class="signup-status-message"></div><br/><br/>
+                    </div>
+                    <div class="col-1">
+                        <label>Email</label> 
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
+                            ? request.getParameter("signup-email") : ""%>"/>
                     <div id="signup-email-error" class="signup-error-message"></div>
                     <div id="signup-email-status" class="signup-status-message"></div>
-                    <br />
-
-                    <label>Contact No</label>
-                    <input name="signup-contactNo" id="signup-contactNo" type="text"
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-1">
+                        <label>First Name</label>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-firstname" id="signup-firstname" type="text"
+                           value="<%= (request.getParameter("signup-firstname") != null)
+                                   ? request.getParameter("signup-firstname") : ""%>"/>
+                    <div id="signup-firstname-error" class="signup-error-message"></div><br/><br/>
+                    </div>
+                    <div class="col-1">
+                        <label>Last Name</label> 
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
+                                   ? request.getParameter("signup-lastname") : ""%>"/>
+                    <div id="signup-lastname-error" class="signup-error-message"></div><br/><br/>
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-1">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-4">
+                        <input class="mr-2" type="radio" id="male" name="signup-gender" value="M" <% if ("M".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
+                           />
+                    <label for="male" class="mr-3">Male</label>
+                    <input class="mr-2" type="radio" id="female" name="signup-gender" value="F" <% if ("F".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
+                           />
+                    <label for="female" class="mr-3">Female</label>
+                    <input class="mr-2" type="radio" id="undefined" name="signup-gender" value="-" <% if ("-".equals(request.getParameter("signup-gender"))) { %> checked <% }%>
+                           />
+                    <label for="undefined" class="mr-3">Prefer not to say</label>
+                    <div id="signup-gender-error" class="signup-error-message"></div>
+                    </div>
+                    <div class="col-1">
+                        <label>Contact</label> 
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-contactNo" id="signup-contactNo" type="text"
                            value="<%= (request.getParameter("signup-contactNo") != null)
-                                   ? request.getParameter("signup-contactNo") : ""%>"/><br />
-                    <div id="signup-contactNo-error" class="signup-error-message"></div>
-                    <br />
-
-                    <label>Password</label>
-                    <input name="signup-userPwd" id="signup-userPwd" type="password" /><br />
-                    <div id="signup-userPwd-error" class="signup-error-message"></div>
-                    <br />
-
-                    <label>Confirm Password</label>
-                    <input
-                        name="signup-confirmPwd"
-                        id="signup-confirmPwd"
-                        type="password"
-                        /><br />
-                    <div id="signup-confirmPwd-error" class="signup-error-message"></div>
-                    <br />
-
-                    <label>Date of Birth</label>
-                    <input name="signup-dateOfBirth" id="signup-dateOfBirth" type="date"
+                                   ? request.getParameter("signup-contactNo") : ""%>"/>
+                    <div id="signup-contactNo-error" class="signup-error-message"></div><br/><br/>
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-1">
+                        <label>Password</label> 
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-userPwd" id="signup-userPwd" type="password" />
+                    <div id="signup-userPwd-error" class="signup-error-message"></div><br/><br/>
+                    </div>
+                    <div class="col-1">
+                        <label>Confirm Password</label> 
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-confirmPwd" id="signup-confirmPwd" type="password"/>
+                    <div id="signup-confirmPwd-error" class="signup-error-message"></div><br/><br/>
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col-1">
+                        <label>Date of Birth</label>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" name="signup-dateOfBirth" id="signup-dateOfBirth" type="date"
                            value="<%= (request.getParameter("signup-dateOfBirth") != null)
-                                   ? request.getParameter("signup-dateOfBirth") : ""%>" /><br />
-                    <div id="signup-dateOfBirth-error" class="signup-error-message"></div>
-                    <br />
-
+                                   ? request.getParameter("signup-dateOfBirth") : ""%>" />
+                    <div id="signup-dateOfBirth-error" class="signup-error-message"></div><br/><br/>
+                    </div>
                     <form id="address-form" action="" method="get" autocomplete="off">
+                    <div class="col-1">
                         <label class="full-field">
-                            <span class="form-label">Address</span>
-                            <input id="ship-address" name="ship-address" required
-                                   autocomplete="off" value="<%= (request.getParameter("ship-address")
-                                           != null) ? request.getParameter("ship-address") : ""%>" />
-                        </label>
+                        <span class="form-label">Address</span></label>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" id="ship-address" name="ship-address" required autocomplete="off" 
+                               value="<%= (request.getParameter("ship-address") != null) ? request.getParameter("ship-address") : ""%>" />
+                    </div>
+                </div>
+                    <div class="row justify-content-md-center">
+                    <div class="col-1">
                         <label class="full-field">
-                            <span class="form-label"
-                                  >Apartment, unit, suite, or floor (optional)</span
-                            >
-                                   <input id="address2" name="address2" value="<%=(request.getParameter("address2") != null)
-                                           ? request.getParameter("address2") : ""%>" readonly/>
+                            <span class="form-label">Unit / Apartment (optional)</span>
                         </label>
-                        <br /><br />
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" id="address2" name="address2" value="<%=(request.getParameter("address2") != null) ? request.getParameter("address2") : ""%>" /><br/><br/>
+                    </div>
+                    <div class="col-1">
                         <label class="full-field">
                             <span class="form-label">City</span>
-                                   <input id="locality" name="locality" value="<%=(request.getParameter("locality") != null)
-                                           ? request.getParameter("locality") : ""%>" required readonly />
                         </label>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" id="locality" name="locality" value="<%=(request.getParameter("locality") != null) ? request.getParameter("locality") : ""%>" required readonly />
+                    </div>
+                </div>
+                    <div class="row justify-content-md-center">
+                    <div class="col-1">
                         <label class="slim-field-start">
                             <span class="form-label">State</span>
-                                   <input id="state" name="state" required value="<%=(request.getParameter("state") != null)
-                                           ? request.getParameter("state") : ""%>" readonly />
                         </label>
-                        <br /><br />
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" id="state" name="state" required value="<%=(request.getParameter("state") != null) ? request.getParameter("state") : ""%>" readonly /><br/><br/>
+                    </div>
+                    <div class="col-1">
                         <label class="slim-field-end" for="postal_code">
                             <span class="form-label">Postal code</span>
-                                   <input id="postcode" name="postcode" required value="<%=(request.getParameter("postcode") != null)
-                                           ? request.getParameter("postcode") : ""%>" readonly />
                         </label>
-                        <label class="full-field">
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" id="postcode" name="postcode" required value="<%=(request.getParameter("postcode") != null) ? request.getParameter("postcode") : ""%>" readonly />
+                    </div>
+                </div>
+                    <div class="row justify-content-md-center">
+                    <div class="col-1">
+                        <label class="slim-field-start">
                             <span class="form-label">Country</span>
-                                   <input id="country" name="country" value="<%=(request.getParameter("country") != null)
-                                           ? request.getParameter("country") : ""%>" required readonly />
                         </label>
-                        <br /><br />
-                    </form>
-                    <div id="ship-address-error" class="signup-error-message"></div>
-                    <br />
-                    <br />
-
-                    <button type="submit" id="signup-submit-button">Sign Up</button>
-                    <a href="SignIn.jsp"><button type="button">Back to sign in</button></a>
+                    </div>
+                    <div class="col-4">
+                        <input class="form-control" id="country" name="country" value="<%=(request.getParameter("country") != null) ? request.getParameter("country") : ""%>" required readonly /><br/><br/>
+                    </div>
                 </form>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-2">
+                        <div class="justify-content-md-end">
+                            <button type="submit" id="signup-submit-button" class="btn btn-outline-success btn-block text-dark">Sign Up</button> 
+                        </div>
+                    </div>
+                </div>
+                    <div class="row justify-content-md-end">
+                    <div class="col-2 so_backlink">
+                            <a href="SignIn.jsp" class="so_backlink">Back to Sign In</a>
+                        </div>
+                </div>
+                    
+            </form>      
                 <script>
                     var lastCheckedUsername = ""; // Variable to store the last checked username
 

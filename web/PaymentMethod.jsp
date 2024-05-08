@@ -6,6 +6,22 @@
 <%--imports-->%
 
 <%--includes--%>
+<%
+    // Prevent caching of the page
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+    
+    // Check if the user is returning from an external page
+    Boolean redirected = (Boolean) session.getAttribute("redirected");
+    if (redirected != null && redirected) {
+        // User returned from an external page
+        // Call the OrderCreation servlet
+        session.removeAttribute("redirected");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("OrderCreation");
+        dispatcher.forward(request, response);
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +40,7 @@
 
         <!--start of content-->
         <h3>Payment Method</h3>
-        <form action="PaymentMethod" method="get">
+        <form action="PaymentOption" method="post">
             <label for="payment-method-card">Debit/Credit Card</label>
             <input type ="radio" name="paymentMethod" value="card" id="payment-method-card" />
             <br/>

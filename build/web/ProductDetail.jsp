@@ -68,7 +68,7 @@
                         </button>
                         <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
                         <input
-                            min="1"
+                            min="<%= product.getQtyAvailable() == 0 ? '0' : '1'%>"
                             value="1"
                             max="<%= product.getQtyAvailable()%>"
                             name="itemQty"
@@ -81,7 +81,21 @@
                             +
                         </button>
                     </div>
-                    <button type="button" onclick="addToCart('<%= product.getProdId()%>', document.getElementById('itemQty').value)"> Add to Cart </button>
+                    <button type="button" id="addToCartButton" 
+                            <% if (product.getQtyAvailable() <= 0) { %>
+                            disabled="disabled" 
+                            <% } else {%>
+                            onclick="addToCart('<%= product.getProdId()%>', document.getElementById('itemQty').value)"
+                            <% } %>>
+                        <% if (product.getQtyAvailable() <= 0) { %>
+                        Out of Stock
+                        <% } else { %>
+                        Add to Cart
+                        <% } %>
+                    </button>
+
+
+
 
                     <div id="msg" class="message"></div>
                 </div>

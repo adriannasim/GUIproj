@@ -17,8 +17,8 @@ public class PaymentMethod extends HttpServlet {
             throws ServletException, IOException {
 
         // Initializations
-         HttpSession session = request.getSession();
-         
+        HttpSession session = request.getSession();
+
         // Save the shipping details entered by user
         String firstname = request.getParameter("cust-firstname");
         String lastname = request.getParameter("cust-lastname");
@@ -31,49 +31,19 @@ public class PaymentMethod extends HttpServlet {
         String contactNo = request.getParameter("cust-contactNo");
         String remark = request.getParameter("cust-remark");
 
-        session.setAttribute("firstname",firstname);
-        session.setAttribute("lastname",lastname);
-        session.setAttribute("address1",address1);
-        session.setAttribute("address2",address2);
-        session.setAttribute("city",city);
-        session.setAttribute("state",state);
-        session.setAttribute("postalcode",postalCode);
-        session.setAttribute("country",country);
-        session.setAttribute("contactNo",contactNo);
-        session.setAttribute("remark",remark);
-        
-        // Forward the request to the sign-up confirmation page
+        session.setAttribute("firstname", firstname);
+        session.setAttribute("lastname", lastname);
+        session.setAttribute("address1", address1);
+        session.setAttribute("address2", address2);
+        session.setAttribute("city", city);
+        session.setAttribute("state", state);
+        session.setAttribute("postalcode", postalCode);
+        session.setAttribute("country", country);
+        session.setAttribute("contactNo", contactNo);
+        session.setAttribute("remark", remark);
+
+        // Forward the request to the Payment Method page
         RequestDispatcher dispatcher = request.getRequestDispatcher("PaymentMethod.jsp");
         dispatcher.forward(request, response);
-    }
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        // Initializations
-         HttpSession session = request.getSession();
-         
-        // Save the payment method entered by user
-        String paymentMethod = request.getParameter("paymentMethod");
-        session.setAttribute("paymentMethod",paymentMethod);
-        
-        if (paymentMethod != null) {
-            session.setAttribute("paymentMethod", paymentMethod);
-            System.out.println("Payment method is: " + paymentMethod);
-            
-            if (paymentMethod.equals("card")) {
-                response.sendRedirect("CardPayment.jsp");
-            } else if (paymentMethod.equals("fpx")) {
-                response.sendRedirect("FPXPayment.jsp");
-            } else if (paymentMethod.equals("ewallet")) {
-                response.sendRedirect("EWalletPayment.jsp");
-            } else {
-                // Error Handling here
-            }
-        } else {
-            // Handle case where paymentMethod parameter is missing
-            // Redirect user to an error page or display an error message
-        }
-    
     }
 }

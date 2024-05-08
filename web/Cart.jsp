@@ -25,6 +25,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Cart</title>
 
+        <style>
+            .cart-item-error {
+                color: red;
+            }
+        </style>
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
     </head>
@@ -41,7 +46,7 @@
         <% }
         %>
 
-        <form action="Payment" method="post">
+        <form action="Payment" method="post" onsubmit="return validateForm()">
             <div id="cartContent">
                 <!-- Display cart items -->
                 <% for (CartItem cartItem : cartItemList) {%>
@@ -60,7 +65,7 @@
                             -
                         </button>
                         <input
-                            min="1"
+                            min="<%= cartItem.getProd().getQtyAvailable() <= 0 ? '0' : '1'%>"
                             max="<%= cartItem.getProd().getQtyAvailable()%>"
                             value="<%= cartItem.getItemQty()%>"
                             name="qty"
@@ -80,6 +85,12 @@
                         <% String formattedAmount = decimalFormat.format(cartItem.getProd().getProdPrice() * cartItem.getItemQty());%>
                         Amount: RM <%=formattedAmount%>
                     </div>
+                    <div class="cart-item-error">
+                        <% if (cartItem.getProd().getQtyAvailable() < cartItem.getItemQty()) {%>
+                        <span>Sorry, selected quantity exceeds available stock (<%= cartItem.getProd().getQtyAvailable()%> items).</span>
+                        <% } %>
+                    </div>
+
                 </div>
                 <%
                     totalQty += cartItem.getItemQty();
@@ -159,6 +170,16 @@
                     inputElement.value = value - 1;
                     updateCartItem(prodId, value - 1);
                 }
+            }
+
+            function validateForm() {
+                // Check if the error message exists
+                var errorMessage = document.querySelector('.cart-item-error span');
+                if (errorMessage) {
+                    alert(errorMessage.textContent);
+                    return false; // Prevent form submission
+                }
+                return true; // Allow form submission
             }
 
             // Calling UpdateCartItem servlet
