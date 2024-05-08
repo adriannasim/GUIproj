@@ -183,7 +183,7 @@
             }
 
             // Calling UpdateCartItem servlet
-            function updateCartItem(productId, newQuantity) {
+            function updateCartItem(prodId, newQuantity) {
                 document.getElementById('message-box').innerHTML = "Processing...";
 
                 var xhr = new XMLHttpRequest();
@@ -203,11 +203,11 @@
                         }, 5000);
                     }
                 };
-                xhr.send("prodId=" + encodeURIComponent(productId) + "&qty=" + encodeURIComponent(newQuantity));
+                xhr.send("prodId=" + encodeURIComponent(prodId) + "&qty=" + encodeURIComponent(newQuantity));
             }
 
             // Calling DeleteCartItem servlet
-            function deleteCartItem(productId) {
+            function deleteCartItem(prodId) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "DeleteCartItem", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -222,7 +222,7 @@
                         }
                     }
                 };
-                xhr.send("prodId=" + encodeURIComponent(productId));
+                xhr.send("prodId=" + encodeURIComponent(prodId));
             }
 
             // Update the cart Content after Delete

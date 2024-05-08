@@ -37,7 +37,7 @@
       </form>
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link mr-3 mt-2" href="<%= session.getAttribute("username") == null ? "SignIn.jsp" : "Profile.jsp"%>">
+        <a class="nav-link mr-3 mt-2" href="<%= session.getAttribute("username") == null ? "SignIn.jsp" : "CustomerProfile.jsp"%>">
         <%= session.getAttribute("username") == null ? "Sign in / Sign up" : "Profile"%>
         </a>
         
