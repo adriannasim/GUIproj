@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('images/background1.png');
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('img/images/background1.png');
 }
 
 .container {

@@ -19,7 +19,7 @@
         <div class="myform">
             <h2>ADMIN LOGIN</h2>
             <div class="image">
-                <img src="images/admin_logo.png" alt=""/>
+                <img src="img/images/admin_logo.png" alt=""/>
             </div>
             <form>
                 <input type="text" placeholder="Email">
