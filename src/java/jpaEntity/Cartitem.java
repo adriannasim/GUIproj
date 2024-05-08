@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 {
     @NamedQuery(name = "Cartitem.findAll", query = "SELECT c FROM Cartitem c"),
     @NamedQuery(name = "Cartitem.findByCartid", query = "SELECT c FROM Cartitem c WHERE c.cartitemPK.cartid = :cartid"),
-    @NamedQuery(name = "Cartitem.findByProductid", query = "SELECT c FROM Cartitem c WHERE c.cartitemPK.productid = :productid"),
+    @NamedQuery(name = "Cartitem.findByProdid", query = "SELECT c FROM Cartitem c WHERE c.cartitemPK.prodid = :prodid"),
     @NamedQuery(name = "Cartitem.findByItemqty", query = "SELECT c FROM Cartitem c WHERE c.itemqty = :itemqty")
 })
 public class Cartitem implements Serializable
@@ -45,9 +45,9 @@ public class Cartitem implements Serializable
         this.cartitemPK = cartitemPK;
     }
 
-    public Cartitem(String cartid, String productid)
+    public Cartitem(String cartid, String prodid)
     {
-        this.cartitemPK = new CartitemPK(cartid, productid);
+        this.cartitemPK = new CartitemPK(cartid, prodid);
     }
 
     public CartitemPK getCartitemPK()

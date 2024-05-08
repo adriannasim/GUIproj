@@ -4,26 +4,38 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sign Up Confirmation</title>
+    <%@ include file="css/bootstrapStyles.jsp" %>
 </head>
 <body>
-    <h1>Sign Up Confirmation</h1>
-    <p>Please review the information you provided:</p>
-    <ul>
-        <li><strong>Username:</strong> <%= request.getAttribute("signup-username") %></li>
-        <li><strong>Email:</strong> <%= request.getAttribute("signup-email") %></li>
-        <li><strong>First Name:</strong> <%= request.getAttribute("signup-firstname") %></li>
-        <li><strong>Last Name:</strong> <%= request.getAttribute("signup-lastname") %></li>
-        <li><strong>Contact No:</strong> <%= request.getAttribute("signup-contactNo") %></li>
-        <li><strong>Date of Birth:</strong> <%= request.getAttribute("signup-dateOfBirth") %></li>
-        <li><strong>Gender:</strong> <%= request.getAttribute("signup-gender") %></li>
-        <li><strong>Address:</strong> <%= request.getAttribute("ship-address") %></li>
-        <li><strong>Apartment, unit, suite, or floor:</strong> <%= request.getAttribute("address2") %></li>
-        <li><strong>City:</strong> <%= request.getAttribute("locality") %></li>
-        <li><strong>State:</strong> <%= request.getAttribute("state") %></li>
-        <li><strong>Postal Code:</strong> <%= request.getAttribute("postcode") %></li>
-        <li><strong>Country:</strong> <%= request.getAttribute("country") %></li>
+    <div class="container mt-5 p-4 border rounded-lg bg-light text-dark confirmation-box">
+        <div class="row">
+          <div class="col-md-6">
+              <h4 class="mb-3 text-left">Sign Up Confirmation</h4>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+            <p class="text-sm-left">Please review the information you provided.</p>
+        <div class="row">
+        <div class="col-md-6">
+            <p>Username<br/><strong> <%= request.getAttribute("signup-username") %></strong></p>
+            <p>Email<br/><strong> <%= request.getAttribute("signup-email") %></strong></p>
+            <p>First Name<br/><strong> <%= request.getAttribute("signup-firstname") %></strong></p>
+            <p>Last Name<br/><strong> <%= request.getAttribute("signup-lastname") %></strong></p>
+            <p>Contact No<br/><strong> <%= request.getAttribute("signup-contactNo") %></strong></p>
+            <p>Date of Birth<br/><strong> <%= request.getAttribute("signup-dateOfBirth") %></strong></p>
+            <p>Gender<br/><strong> <%= request.getAttribute("signup-gender") %></strong></p>
+        </div>
+        <div class="col-md-6">
+            <p>Address<br/><strong> <%= request.getAttribute("ship-address") %></strong></p>
+            <p>Unit / Apartment<br/><strong> <%= request.getAttribute("address2") %></strong></p>
+            <p>City<br/><strong> <%= request.getAttribute("locality") %></strong></p>
+            <p>State<br/><strong> <%= request.getAttribute("state") %></strong></p>
+            <p>Postal Code<br/><strong> <%= request.getAttribute("postcode") %></strong></p>
+            <p>Country<br/><strong> <%= request.getAttribute("country") %></strong></p>
+        </div>
+        </div>
+    </div>
         <!-- Include other form fields here -->
-    </ul>
     <form action="signup" method="get">
         <!-- Hidden input fields to pass the values -->
         <input type="hidden" name="signup-username" value="<%= request.getAttribute("signup-username") %>">
@@ -43,7 +55,7 @@
         <!-- Include other hidden input fields for each sign-up field -->
 
         <input type="hidden" name="confirmed" value="true">
-        <button type="submit">Confirm Sign Up</button>
+        <button type="submit" class="btn btn-outline-success" id="so_confirm-btn">Confirm Sign Up</button>
     </form>
     <form action="SignUp.jsp" method="get">
         <input type="hidden" name="signup-username" value="<%= request.getAttribute("signup-username") %>">
@@ -59,7 +71,7 @@
         <input type="hidden" name="state" value="<%= request.getAttribute("state") %>">
         <input type="hidden" name="postcode" value="<%= request.getAttribute("postcode") %>">
         <input type="hidden" name="country" value="<%= request.getAttribute("country") %>">
-        <button type="submit">Edit Information</button>
+        <button type="submit" class="btn btn-outline-secondary" id="so_edit-btn">Edit Information</button>
     </form>
 </body>
 </html>

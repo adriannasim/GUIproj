@@ -23,7 +23,7 @@ public class CartItemDAO {
     }
 
     public boolean retrieveSpecificCartItem(String cartId, String prodId) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE cartId = ? AND productId=?";
+        String queryStr = "SELECT * FROM " + tableName + " WHERE cartId = ? AND prodId=?";
         
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -53,7 +53,7 @@ public class CartItemDAO {
 
             while (rs.next()) {
                 ProductDAO prodDAO = new ProductDAO();
-                Product prod = prodDAO.getProductById(rs.getString("productId"));
+                Product prod = prodDAO.getProductById(rs.getString("prodId"));
                 
                 CartItem cartItem = new CartItem(
                         rs.getString("cartId"),
@@ -73,7 +73,7 @@ public class CartItemDAO {
 
     public void addItemToCart(String cartId, String prodId, int itemQty) {
 
-        String queryStr = "INSERT INTO " + tableName + " (cartId, productId, itemQty) VALUES (?,?,?)";
+        String queryStr = "INSERT INTO " + tableName + " (cartId, prodId, itemQty) VALUES (?,?,?)";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -88,7 +88,7 @@ public class CartItemDAO {
     }
 
     public void updateItemInCart(String cartId, String prodId, int itemQty) {
-        String queryStr = "UPDATE " + tableName + " SET itemQty = ? WHERE cartId = ? AND productId = ?";
+        String queryStr = "UPDATE " + tableName + " SET itemQty = ? WHERE cartId = ? AND prodId = ?";
 
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
@@ -103,7 +103,7 @@ public class CartItemDAO {
     }
 
     public void deleteItemInCart(String cartId, String prodId) {
-        String queryStr = "DELETE FROM " + tableName + " WHERE cartId=? AND productId=?";
+        String queryStr = "DELETE FROM " + tableName + " WHERE cartId=? AND prodId=?";
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
             stmt.setString(1, cartId);

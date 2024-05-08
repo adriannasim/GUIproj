@@ -27,17 +27,17 @@ public class CartitemPK implements Serializable
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
-    @Column(name = "productid")
-    private String productid;
+    @Column(name = "prodid")
+    private String prodid;
 
     public CartitemPK()
     {
     }
 
-    public CartitemPK(String cartid, String productid)
+    public CartitemPK(String cartid, String prodid)
     {
         this.cartid = cartid;
-        this.productid = productid;
+        this.prodid = prodid;
     }
 
     public String getCartid()
@@ -50,14 +50,14 @@ public class CartitemPK implements Serializable
         this.cartid = cartid;
     }
 
-    public String getProductid()
+    public String getProdid()
     {
-        return productid;
+        return prodid;
     }
 
-    public void setProductid(String productid)
+    public void setProdid(String prodid)
     {
-        this.productid = productid;
+        this.prodid = prodid;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CartitemPK implements Serializable
     {
         int hash = 0;
         hash += (cartid != null ? cartid.hashCode() : 0);
-        hash += (productid != null ? productid.hashCode() : 0);
+        hash += (prodid != null ? prodid.hashCode() : 0);
         return hash;
     }
 
@@ -82,7 +82,7 @@ public class CartitemPK implements Serializable
         {
             return false;
         }
-        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid)))
+        if ((this.prodid == null && other.prodid != null) || (this.prodid != null && !this.prodid.equals(other.prodid)))
         {
             return false;
         }
@@ -92,7 +92,7 @@ public class CartitemPK implements Serializable
     @Override
     public String toString()
     {
-        return "jpaEntity.CartitemPK[ cartid=" + cartid + ", productid=" + productid + " ]";
+        return "jpaEntity.CartitemPK[ cartid=" + cartid + ", prodid=" + prodid + " ]";
     }
     
 }

@@ -8,6 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
         <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -31,14 +32,17 @@
               margin: 0 !important;
               padding: 0 !important;
           }
-          /*Header styles*/
+          
+          /*Start of Header*/
           .search-btn{
               margin-right: 80px;
           }
           .nav-item-pd{
               margin: 0 20px;
           }
-          /*sign in styles*/
+          /*End of Header*/
+          
+          /*Start of Sign In*/
             .si_title{
                 text-align: right;
                 margin: 8% 20%;
@@ -59,8 +63,9 @@
             .si_link{
                 margin-top: 20px;
             }
+            /*End of Sign In*/
             
-            /*sign out styles*/
+            /*Start of Sign Up*/
             .so_title{
                 margin: 50px 9%;
             }
@@ -77,7 +82,9 @@
             .btn:hover{
                 color: white !important;
             }
-            /*footer styles*/
+            /*End of Sign Up*/
+            
+            /*Start of Footer*/
             .footer{
                 width: 100%;
             }
@@ -93,6 +100,37 @@
             }
             .footer-mt{
                 margin-top: 4%;
+            }
+            /*End of Footer*/
+            
+            /*Start of Sign Up Confirmation*/
+            .soc-title{
+                text-align: center;
+                margin-top: 5%
+            }
+            .confirmation-box{
+                width: 60%;
+            }
+            /*End of Sign Up Confirmation*/
+            .box-field{
+                padding: 0 0px;
+            }
+            td{
+                padding-right: 20% !important;
+            }
+            #col1-item{
+                margin-right: 80px;
+            }
+            #col2-item{
+                margin-left: 80px;
+            }
+            #so_confirm-btn{
+                margin-top: 15px;
+                margin-left: 39%;
+            }
+            #so_edit-btn{
+                margin-top: -67px;
+                margin-left: 51%;
             }
         </style>
     </head>

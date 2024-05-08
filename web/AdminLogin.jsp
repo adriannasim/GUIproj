@@ -1,45 +1,44 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%--tags--%>
-<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%-- 
+    Document   : adminLogin
+    Created on : 8 May 2024, 12:00:39 pm
+    Author     : jiami
+--%>
 
-<%--imports-->%
-
-<%--includes--%>
-<jsp:include page="/AdminLogin"/>
-      
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Template</title>
-
-        <!-- Include commonFiles.tag -->
-        <custom:commonFilesAdm />
-
-    </head>
-    
-    <body class="text-center">
-        <!--start of content-->
-        <h1>Sign In</h1>
-        <div id="errorMsg">
-            <% if ((String) request.getAttribute("errMsg") != null) 
-            {
-            %>
-            <div id="login-errorMsg">
-                <p><%= request.getAttribute("errMsg") %></p>
+    <jsp:include page="components/header.jsp" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width-device-width,initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="adminLogin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="myform">
+            <h2>ADMIN LOGIN</h2>
+            <div class="image">
+                <img src="img/images/admin_logo.png" alt=""/>
             </div>
-            <%
-            }
-            %>
-        <form action="signup" method="post">
-            <label>Username/Email</label>
-            <input name="username" type="text"/><br/>
-
-            <label>Password</label>
-            <input name="password" type="text"/><br/>
-
-            <button type="submit">Sign In</button>
-        </form>
-        <!--end of content-->
-    </body>
+            <div id="errorMsg">
+                <% if ((String) request.getAttribute("errMsg") != null) 
+                {
+                %>
+                <div id="login-errorMsg">
+                    <p><%= request.getAttribute("errMsg") %></p>
+                <%
+                }
+                %>
+            </div>
+            <form>
+                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Password">
+                <button type="submit">LOGIN</button>
+            </form>
+        </div>
+    </div>
+</body>
+<jsp:include page="components/footer.jsp" />
 </html>
