@@ -7,10 +7,9 @@
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
-<%--includes: RetrieveProducts Servlet (This servlet will run automatically when the page is loaded)--%>
+<%--includes--%>
 <jsp:include page="/RetrieveProductsAdm"/>
 
-<%-- End: Retrieve Product List and Main Product From Session (prodList & mainProduct) --%>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +31,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Price</th>
-            <th colspan="2">Modify</th>
+            <th colspan="3">Modify</th>
         </tr>
         <% if (request.getAttribute("prodList") != null)
         {
@@ -43,7 +42,8 @@
                 <td><%= product.getProdid() %></td>
                 <td><%= product.getProdname()%></td>
                 <td><%= product.getProdprice()%></td>
-                <td><a href="EditProducts?slug=<%= product.getProdslug() %>">Edit</a></td>
+                <td><a href="EditStock.jsp?slug=<%= product.getProdslug() %>">Manage Stock</a></td>
+                <td><a href="EditProducts.jsp?slug=<%= product.getProdslug() %>">Edit</a></td>
                 <td><button onclick="confirmDelete(<%=product.getProdid()%>)">Delete</button></td>
             </tr>
         <%

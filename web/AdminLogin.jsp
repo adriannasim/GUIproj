@@ -19,9 +19,6 @@
     </head>
     
     <body class="text-center">
-        <%--header--%>
-        <jsp:include page="components/adminheader.jsp" />
-    
         <!--start of content-->
         <h1>Sign In</h1>
         <div id="errorMsg">
