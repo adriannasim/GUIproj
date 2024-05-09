@@ -28,6 +28,9 @@
         crossorigin="anonymous"
       ></script>
       <style>
+          body{
+              overflow-x: hidden;
+          }
           footer.reset-margin{
               margin: 0 !important;
               padding: 0 !important;
@@ -111,19 +114,6 @@
             .confirmation-box{
                 width: 60%;
             }
-            /*End of Sign Up Confirmation*/
-            .box-field{
-                padding: 0 0px;
-            }
-            td{
-                padding-right: 20% !important;
-            }
-            #col1-item{
-                margin-right: 80px;
-            }
-            #col2-item{
-                margin-left: 80px;
-            }
             #so_confirm-btn{
                 margin-top: 15px;
                 margin-left: 39%;
@@ -132,6 +122,57 @@
                 margin-top: -67px;
                 margin-left: 51%;
             }
+            /*End of Sign Up Confirmation*/
+            /*Start of Product Page*/
+            .prod_title{
+                margin: 30px 0;
+            }
+            .main-prod-img{
+                width: 30%;
+                margin-left: 20%;
+            }
+            .prod-img{
+                width: 250px;
+                height: 250px;
+            }
+            .card{
+                height: 420px;
+            }
+            /*End of Product Page*/
+            /*Start of Single Product Page*/
+            .single-prod{
+                margin: 5% 0;
+                margin-left: 10%;
+            } 
+            .prod-details{
+                text-align: left;
+                align-content: center;
+            }
+            .detail-element{
+                padding-bottom: 20px;
+            }
+            .atc-btn{
+                margin-left: 30%;
+            }
+            .message{
+                margin-top: -5px;
+            }
+            .prod-backlink{
+                text-align: left;
+                margin: 30px 0;
+                margin-left: 50px;
+            }
+            .prod-backlink a{
+                color: black;
+            }
+            .prod-btn:hover{
+                color: black !important;
+            }
+            .sprod-img{
+                width: 300px;
+                height: 250px;
+            }
+            /*End of Single Product Page*/
         </style>
     </head>
     <body>
