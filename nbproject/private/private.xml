@@ -7,14 +7,6 @@
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/OrderItemDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentCardDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentInfoDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustOrderDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/OrderItemDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentCardDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentInfoDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/ProductPage.jsp</file>
@@ -56,6 +48,13 @@
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/SuccessPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
         </group>
     </open-files>
 </project-private>
