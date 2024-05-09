@@ -16,8 +16,6 @@ public class CheckDuplicateUsernameServlet extends HttpServlet {
         // Get the username parameter from the request
         String username = request.getParameter("username");
 
-        // Perform your database query to check for duplicate username
-        // Replace this with your actual database logic
         boolean usernameExists = checkUsernameExistsInDatabase(username);
 
         // Send response back to the client
@@ -29,10 +27,7 @@ public class CheckDuplicateUsernameServlet extends HttpServlet {
         }
     }
 
-    // Dummy method to simulate database check
     private boolean checkUsernameExistsInDatabase(String username) {
-        // Implement your actual database logic here
-        // This is just a placeholder
         CustomerDAO custDAO = new CustomerDAO();
         Customer cust = custDAO.getRecordByUsername(username);
         if (cust != null){

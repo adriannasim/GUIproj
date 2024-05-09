@@ -1,7 +1,6 @@
 package controller;
 
 import entity.Employee;
-import entity.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -9,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.EmployeeDAO;
 
 @WebServlet(name = "AdminLogin", urlPatterns = {"/AdminLogin"})
@@ -19,7 +19,8 @@ public class AdminLogin extends HttpServlet
     {
         //Initializations
         EmployeeDAO empdao = new EmployeeDAO();
-        ArrayList<Employee> empList = new ArrayList<Employee>();
+        ArrayList<Employee> empList;
+        HttpSession session = request.getSession();
         
         //Get user input username and password
         String username = request.getParameter("username").trim();
@@ -27,13 +28,14 @@ public class AdminLogin extends HttpServlet
         
         if (!username.isEmpty() && !password.isEmpty())
         {
-            //empList = empdao.getAllRecord();
+            empList = empdao.getAllRecord();
             for (int i = 0; i < empList.size(); i++)
             {
                 if ((empList.get(i).getUsername()).equals(username) && (empList.get(i).getUserPwd()).equals(password))
                 {
                     //Login successful
-                    request.getSession().setAttribute("username", username);
+                    session.setAttribute("username", username);
+                    session.setAttribute("role", empList.get(i).getEmpRole());
                     response.sendRedirect("AdminPage.jsp");
                 }
                 else
@@ -66,6 +68,6 @@ public class AdminLogin extends HttpServlet
             request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
         }
         
-        //empDAO.closeConnection();
+        empdao.closeConnection();
     }
 }

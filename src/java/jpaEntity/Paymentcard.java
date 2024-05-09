@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 {
     @NamedQuery(name = "Paymentcard.findAll", query = "SELECT p FROM Paymentcard p"),
     @NamedQuery(name = "Paymentcard.findByCardname", query = "SELECT p FROM Paymentcard p WHERE p.paymentcardPK.cardname = :cardname"),
+    @NamedQuery(name = "Paymentcard.findByCardnameAndCardnumber", query = "SELECT p FROM Paymentcard p WHERE p.paymentcardPK.cardname = :cardname AND p.paymentcardPK.cardnumber = :cardnumber"),
     @NamedQuery(name = "Paymentcard.findByDatemonth", query = "SELECT p FROM Paymentcard p WHERE p.datemonth = :datemonth"),
     @NamedQuery(name = "Paymentcard.findByDateyear", query = "SELECT p FROM Paymentcard p WHERE p.dateyear = :dateyear"),
     @NamedQuery(name = "Paymentcard.findByCardnumber", query = "SELECT p FROM Paymentcard p WHERE p.paymentcardPK.cardnumber = :cardnumber"),

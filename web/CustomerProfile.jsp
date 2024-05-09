@@ -72,13 +72,13 @@
                                 <ul class="list-group list-group-flush rounded-3">
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <p class="mb-0">
-                                            <a href="CustEditProfile.jsp" class="aSetting"
+                                            <a href="EditCustProfile" class="aSetting"
                                                style="text-decoration:none;color:black;">Edit profile</a>
                                         </p>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <p class="mb-0">
-                                            <a href="CustAddressBook.jsp" class="aSetting"
+                                            <a href="EditCustAddress" class="aSetting"
                                                style="text-decoration:none;color:black;">Address book</a>
                                         </p>
                                     </li>
@@ -89,7 +89,7 @@
                                         </p>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <p class="mb-0"><a href="CustPaymentCard.jsp" class="aSetting"
+                                        <p class="mb-0"><a href="EditPaymentCard" class="aSetting"
                                                            style="text-decoration:none;color:black;">
                                                 My credit/debit cards</a>
                                         </p>
@@ -167,7 +167,7 @@
                                             <div class="col-6 col-lg-3">
                                                 <div class="count-data text-center">
                                                     <p class="m-0px font-w-600" style="padding-top:5px;">
-                                                        <a href="#" class="aSetting"
+                                                        <a href="CustomerProfile.jsp" class="aSetting"
                                                            style="text-decoration:none;color:black;">All Orders</a>
                                                     </p>
                                                 </div>
@@ -175,7 +175,7 @@
                                             <div class="col-6 col-lg-3">
                                                 <div class="count-data text-center">
                                                     <p class="m-0px font-w-600" style="padding-top:5px;">
-                                                        <a href="#" class="aSetting"
+                                                        <a href="?status=packaging" class="aSetting"
                                                            style="text-decoration:none;color:black;">Packaging</a>
                                                     </p>
                                                 </div>
@@ -183,7 +183,7 @@
                                             <div class="col-6 col-lg-3">
                                                 <div class="count-data text-center">
                                                     <p class="m-0px font-w-600" style="padding-top:5px;">
-                                                        <a href="#" class="aSetting"
+                                                        <a href="?status=shipping" class="aSetting"
                                                            style="text-decoration:none;color:black;">Shipping</a>
                                                     </p>
                                                 </div>
@@ -191,7 +191,7 @@
                                             <div class="col-6 col-lg-3">
                                                 <div class="count-data text-center">
                                                     <p class="m-0px font-w-600" style="padding-top:5px;">
-                                                        <a href="#" class="aSetting"
+                                                        <a href="?status=delivery" class="aSetting"
                                                            style="text-decoration:none;color:black;">Delivery</a>
                                                     </p>
                                                 </div>
@@ -208,8 +208,9 @@
                                     <div class="order my-3">
 
 
-                                        <% for (Custorder custorder : orderList) {%>
-
+                                        <% 
+                                        if (orderList != null || !orderList.isEmpty()) {
+                                            for (Custorder custorder : orderList) {%>
 
                                         <!-- FILTERED ORDER INFO LOOPING HERE -->
                                         <div class="container-fluid d-sm-flex justify-content-center" 
@@ -250,11 +251,30 @@
                                                             </h4>
                                                             <p class="text-muted">Order Status on: 
                                                                 <span class="Today">
-                                                                    [PACKAGING/SHIPPING/DELIVERY DATE]
+                                                                    <%
+                                                                        String status = custorder.getStatus();
+                                                                        Date dateValue = null;
+                                                                        String formattedStatusDate = "";
+
+                                                                        if (status.equals("Packaging")) {
+                                                                            dateValue = custorder.getPackaging();
+                                                                        } else if (status.equals("Shipping")) {
+                                                                            dateValue = custorder.getShipping();
+                                                                        } else if (status.equals("Delivery")) {
+                                                                            dateValue = custorder.getDelivery();
+                                                                        }
+
+                                                                        if (dateValue != null) {
+
+                                                                            formattedStatusDate = sdf.format(dateValue);
+                                                                        }
+                                                                    %>
+                                                                    <%=formattedStatusDate%>
+
                                                                 </span>
                                                             </p>
                                                             <button type="button" class="btn  btn-outline-primary d-flex">
-                                                                [ORDER STATUS]
+                                                                <%=custorder.getStatus()%>
                                                             </button>    
                                                         </div>
                                                         <!-- Product Img HERE -->
@@ -270,7 +290,9 @@
                                             </div>
                                         </div>
                                         <!-- FILTERED ORDER INFO LOOPING END -->
-                                        <% }%>
+                                        <% } 
+                                        }
+                                        %>
 
 
                                     </div>

@@ -1,7 +1,8 @@
 package controller;
 
-import entity.Product;
+import jpaEntity.Product;
 import java.io.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 import javax.persistence.*;
@@ -19,17 +20,19 @@ public class AddProducts extends HttpServlet
         //Initializations
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
         EntityManager em = emf.createEntityManager();
-        Product prod = new Product();
+        Product jpaprod = new Product();
+        entity.Product prod = new entity.Product();
         int imgCount = 0;
         
         String id = request.getParameter("prodid");
         String name = request.getParameter("prodname");
         String desc = request.getParameter("prodesc");
-        double price = Double.parseDouble(request.getParameter("price"));
+        double price = Double.parseDouble(request.getParameter("prodprice"));
         int qty = Integer.parseInt(request.getParameter("qtyavailable"));
         
         //Keywords
         String[] keywords = request.getParameterValues("prodkeyword");
+        String keys = prod.concatKeywords(keywords);
         
         //Product image
         //Get all files
@@ -66,21 +69,22 @@ public class AddProducts extends HttpServlet
                 imgCount++;
             }
         }
+        String url = prod.concatImg(imgUrls);
         
         //Setting varibles into product entity
-        prod.setProdID(id);
-        prod.setProdName(name);
-        prod.setProdDesc(desc);
-        prod.setProdPrice(price);
-        prod.setQtyAvailable(qty);
-        prod.concatImg(imgUrls);
-        prod.concatKeywords(keywords);
-        prod.setProdAddedDate(LocalDate.now());
-        prod.setProdSlug(name);
-        
+        jpaprod.setProdid(id);
+        jpaprod.setProdname(name);
+        jpaprod.setProddesc(desc);
+        jpaprod.setProdprice(new BigDecimal (price));
+        jpaprod.setQtyavailable(qty);
+        jpaprod.setProdimg(url);
+        jpaprod.setProdkeywords(keys);
+        jpaprod.setProdaddeddate(new Date());
+        jpaprod.setProdslug(prod.formatSlug(name));
+
         //Insert into db using JPA
         em.getTransaction().begin();
-        em.persist(prod);
+        em.persist(jpaprod);
         em.getTransaction().commit();
 
         em.close();

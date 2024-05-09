@@ -31,18 +31,19 @@ import javax.persistence.OneToMany;
 @NamedQueries(
 {
     @NamedQuery(name = "Custorder.findAll", query = "SELECT c FROM Custorder c"),
-    @NamedQuery(name = "Custorder.findByOrderid", query = "SELECT c FROM Custorder c WHERE c.orderid = :orderid"),
-    @NamedQuery(name = "Custorder.findByOrderdate", query = "SELECT c FROM Custorder c WHERE c.orderdate = :orderdate"),
-    @NamedQuery(name = "Custorder.findByStatus", query = "SELECT c FROM Custorder c WHERE c.status = :status"),
-    @NamedQuery(name = "Custorder.findByUsername", query = "SELECT c FROM Custorder c WHERE c.username = :username"),
-    @NamedQuery(name = "Custorder.findByAddress", query = "SELECT c FROM Custorder c WHERE c.address = :address"),
-    @NamedQuery(name = "Custorder.findByCity", query = "SELECT c FROM Custorder c WHERE c.city = :city"),
-    @NamedQuery(name = "Custorder.findByState", query = "SELECT c FROM Custorder c WHERE c.state = :state"),
-    @NamedQuery(name = "Custorder.findByPostalcode", query = "SELECT c FROM Custorder c WHERE c.postalcode = :postalcode"),
-    @NamedQuery(name = "Custorder.findByCountry", query = "SELECT c FROM Custorder c WHERE c.country = :country"),
-    @NamedQuery(name = "Custorder.findByPackaging", query = "SELECT c FROM Custorder c WHERE c.packaging = :packaging"),
-    @NamedQuery(name = "Custorder.findByShipping", query = "SELECT c FROM Custorder c WHERE c.shipping = :shipping"),
-    @NamedQuery(name = "Custorder.findByDelivery", query = "SELECT c FROM Custorder c WHERE c.delivery = :delivery")
+    @NamedQuery(name = "Custorder.findByOrderid", query = "SELECT c FROM Custorder c WHERE c.orderid = :orderid ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByOrderdate", query = "SELECT c FROM Custorder c WHERE c.orderdate = :orderdate ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByStatus", query = "SELECT c FROM Custorder c WHERE c.status = :status ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByUsername", query = "SELECT c FROM Custorder c WHERE c.username = :username ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByUsernameAndStatus", query = "SELECT c FROM Custorder c WHERE c.username = :username AND c.status = :status ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByAddress", query = "SELECT c FROM Custorder c WHERE c.address = :address ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByCity", query = "SELECT c FROM Custorder c WHERE c.city = :city ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByState", query = "SELECT c FROM Custorder c WHERE c.state = :state ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByPostalcode", query = "SELECT c FROM Custorder c WHERE c.postalcode = :postalcode ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByCountry", query = "SELECT c FROM Custorder c WHERE c.country = :country ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByPackaging", query = "SELECT c FROM Custorder c WHERE c.packaging = :packaging ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByShipping", query = "SELECT c FROM Custorder c WHERE c.shipping = :shipping ORDER BY c.orderdate DESC"),
+    @NamedQuery(name = "Custorder.findByDelivery", query = "SELECT c FROM Custorder c WHERE c.delivery = :delivery ORDER BY c.orderdate DESC")
 })
 public class Custorder implements Serializable
 {

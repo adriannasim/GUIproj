@@ -137,8 +137,34 @@ public class Product implements java.io.Serializable {
         this.prodImg = prodImg;
     }
     
+    //Image URL in a string
+    public void setProdImg(String prodImg) {
+        this.prodImgConcat = prodImg;
+    }
+    
+    //Keyword array
+    public void setProdKeywords(String[] prodKeywords) {
+        this.prodKeywords = prodKeywords;
+    }
+    
+    //Keyword array
+    public void setProdKeywords(String prodKeywords) {
+        this.prodKeywordsConcat = prodKeywords;
+    }
+    
+
+    public void setProdAddedDate(LocalDate prodAddedDate) {
+        this.prodAddedDate = prodAddedDate;
+    }
+    
+    public void setProdSlug(String prodSlug) {
+        this.prodSlug = prodSlug;
+    }
+    
+    
+    //Other Methods
     //Image URL Concatinated
-    public void concatImg(String[] prodImg) {
+    public String concatImg(String[] prodImg) {
         String urlAttached = "";
         if (prodImg != null)
         {
@@ -155,16 +181,11 @@ public class Product implements java.io.Serializable {
                 }
             }
         }
-        this.prodImgConcat = urlAttached;
-    }
-    
-    //Keyword array
-    public void setProdKeywords(String[] prodKeywords) {
-        this.prodKeywords = prodKeywords;
+        return urlAttached;
     }
     
     //Keywords to be concat
-    public void concatKeywords(String[] prodKeywords) {
+    public String concatKeywords(String[] prodKeywords) {
         String keywordsAttached = "";
         if (prodKeywords != null)
         {
@@ -181,16 +202,11 @@ public class Product implements java.io.Serializable {
                 }
             }
         }
-        this.prodKeywordsConcat = keywordsAttached;
+        return keywordsAttached;
     }
     
-
-    public void setProdAddedDate(LocalDate prodAddedDate) {
-        this.prodAddedDate = prodAddedDate;
-    }
-    
-    public void setProdSlug(String prodName) {
-        String slug = prodName.replaceAll(" ", "-");
-        this.prodSlug = slug;
+    //Format Slug
+    public String formatSlug(String prodName) {
+        return prodName.replaceAll(" ", "-");
     }
 }
