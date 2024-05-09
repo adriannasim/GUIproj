@@ -18,6 +18,9 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.NoResultException;
+
 
 @WebServlet(name = "OrderCreation", urlPatterns = { "/OrderCreation" })
 public class OrderCreation extends HttpServlet {
@@ -162,9 +165,16 @@ public class OrderCreation extends HttpServlet {
             pyminfo.setUsername(username);
             pyminfo.setPaymenttype(paymentMethod);
             pyminfo.setPaymentdate(new Date());
-            pyminfo.setPaymentamount(total);
+            
             pyminfo.setShippingfee(shippingFee);
             pyminfo.setSalestax(salesTax);
+            
+            if (paymentMethod.equals("card")){
+                pyminfo.setCharges(total*0.01);
+                pyminfo.setPaymentamount(total*1.01);
+            } else {
+                pyminfo.setPaymentamount(total);
+            }
 
             try {
                 // Begin transaction
@@ -186,55 +196,66 @@ public class OrderCreation extends HttpServlet {
                 ex.printStackTrace();
             }
 
-            // If use card, then save card into paymentcard DB
+            // If use card, then save card into paymentcard DB if needed
             if (paymentMethod.equals("card")) {
                 String holderName = request.getParameter("name");
                 String cardNumber = request.getParameter("cardnumber");
                 String expirationDate = request.getParameter("expirationdate");
                 String cvv = request.getParameter("securitycode");
 
-                String[] expirationDateParts = null;
-                int month = 0;
-                int year = 0;
-                if (expirationDate != null && expirationDate.contains("/")) {
-                    expirationDateParts = splitExp(expirationDate);
-                }
-
-                if (expirationDateParts != null && expirationDateParts.length >= 2) {
-                    month = Integer.parseInt(expirationDateParts[0]);
-                    year = Integer.parseInt(expirationDateParts[1]);
-                } 
-
-                PaymentcardPK pymcardPK = new PaymentcardPK();
-                pymcardPK.setCardname(holderName);
-                pymcardPK.setCardnumber(cardNumber);
-
-                Paymentcard pymcard = new Paymentcard();
-                pymcard.setPaymentcardPK(pymcardPK);
-                pymcard.setDatemonth(month);
-                pymcard.setDateyear(year);
-                pymcard.setCvv(cvv);
-                pymcard.setUsername(username);
-
                 try {
-                    // Begin transaction
-                    utx.begin();
-                    // Add the record
-                    em.persist(pymcard);
-                    // Commit transaction
-                    utx.commit();
+                    TypedQuery<Paymentcard> query = em.createNamedQuery("Paymentcard.findByCardnameAndCardnumber", Paymentcard.class);
+                    query.setParameter("cardname", holderName);
+                    query.setParameter("cardnumber", cardNumber);
+    
+                    Paymentcard card = query.getSingleResult();
 
-                } catch (Exception ex) {
-                    // Rollback transaction if an exception occurs
-                    try {
-                        if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
-                            utx.rollback();
-                        }
-                    } catch (Exception rollbackEx) {
-                        rollbackEx.printStackTrace();
+                } catch (NoResultException e){
+
+                    String[] expirationDateParts = null;
+                    int month = 0;
+                    int year = 0;
+                    if (expirationDate != null && expirationDate.contains("/")) {
+                        expirationDateParts = splitExp(expirationDate);
                     }
-                    ex.printStackTrace();
 
+                    if (expirationDateParts != null && expirationDateParts.length >= 2) {
+                        month = Integer.parseInt(expirationDateParts[0]);
+                        year = Integer.parseInt(expirationDateParts[1]);
+                    }
+
+                    PaymentcardPK pymcardPK = new PaymentcardPK();
+                    pymcardPK.setCardname(holderName);
+                    pymcardPK.setCardnumber(cardNumber);
+
+                    Paymentcard pymcard = new Paymentcard();
+                    pymcard.setPaymentcardPK(pymcardPK);
+                    pymcard.setDatemonth(month);
+                    pymcard.setDateyear(year);
+                    pymcard.setCvv(cvv);
+                    pymcard.setUsername(username);
+
+                    try {
+                        // Begin transaction
+                        utx.begin();
+                        // Add the record
+                        em.persist(pymcard);
+                        // Commit transaction
+                        utx.commit();
+
+                    } catch (Exception ex) {
+                        // Rollback transaction if an exception occurs
+                        try {
+                            if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                                utx.rollback();
+                            }
+                        } catch (Exception rollbackEx) {
+                            rollbackEx.printStackTrace();
+                        }
+                        ex.printStackTrace();
+
+                    }
+                    
                 }
             }
 
@@ -281,12 +302,15 @@ public class OrderCreation extends HttpServlet {
             // Redirect to success payment page
             response.sendRedirect("SuccessPayment.jsp");
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-           
-            // Redirect to an error page
-            response.sendRedirect("ErrorPage.jsp");
-        }
+        }catch(
+
+    Exception ex)
+    {
+        ex.printStackTrace();
+
+        // Redirect to an error page
+        response.sendRedirect("ErrorPage.jsp");
+    }
     }
 
     public static String generateRandomID() {

@@ -43,6 +43,8 @@ public class RetrieveCustomerProfile extends HttpServlet {
             return;
         }
 
+
+
         // Retrieve Customer Details
         try {
             // Use a JPQL query to retrieve the customer based on the username
@@ -68,6 +70,8 @@ public class RetrieveCustomerProfile extends HttpServlet {
             return;
         }
 
+
+
         // Retrieve customer orders details
         // Packaging status
         if (request.getParameter("status") != null && request.getParameter("status").equals("packaging")) {
@@ -76,7 +80,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 query.setParameter("username", username);
                 query.setParameter("status", "Packaging");
 
-                ArrayList<Custorder> orderList = new ArrayList<>(query.getResultList());
+               ArrayList<Custorder> orderList = new ArrayList<>(query.getResultList());
 
                 // For each order, retrieve its associated order items
                 for (Custorder order : orderList) {
@@ -85,12 +89,11 @@ public class RetrieveCustomerProfile extends HttpServlet {
                     List<Orderitem> orderItemList = orderItemQuery.getResultList();
                     ArrayList<Orderitem> orderitems = new ArrayList<>(orderItemList);
 
-                    order.setOrderitems(orderitems);
+                    order.setOrderitems(orderItemList);
                 }
 
-                session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in packaging: " + orderList);
+                session.setAttribute("orderList", orderList);  
+                logger.info("Retrieved orderList in packaging: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
@@ -105,6 +108,8 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
         } 
+
+
         // Shipping status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("shipping")) {
             try {
@@ -126,8 +131,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 }
                 
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in shipping: " + orderList);
+                logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
@@ -142,6 +146,8 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
         } 
+
+
         // Delivery status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("delivery")) {
             try {
@@ -163,8 +169,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 }
 
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in delivery: " + orderList);
+                logger.info("Retrieved orderList in delivery: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
@@ -179,6 +184,8 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
         } 
+
+
         // All
         else {
             try {
@@ -199,8 +206,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 }
 
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in all: " + orderList);
+                logger.info("Retrieved orderList in all: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {

@@ -72,7 +72,7 @@
 
                         <%
                             ArrayList<Paymentcard> paymentCardList = (ArrayList<Paymentcard>) request.getAttribute("paymentCardList");
-                            if (paymentCardList == null && paymentCardList.isEmpty()) {
+                            if (paymentCardList == null || paymentCardList.isEmpty()) {
                         %>
                         <!-- WHEN THERE IS NO PAYMENT CARD REGISTERED -->
                         <div class="row mt-2" id="no-paymentcard">

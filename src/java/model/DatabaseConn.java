@@ -13,6 +13,8 @@ public class DatabaseConn {
     private String user = "u360o6893j7kpa";
     private String password = "p0875af3ec2b5e5331ed90fa98e5b014008f67d63411fa4ff661312557111c573";
 
+    String jdbcUrl = "jdbc:postgresql://34.142.223.47/art-gallery-proj";
+    
     //private String host = "jdbc:derby://localhost:1527/artGallerydb";
     //private String user = "nbuser";
     //private String password = "nbuser";
@@ -38,7 +40,8 @@ public class DatabaseConn {
         }
 
         try {
-            conn = DriverManager.getConnection(host, user, password);
+            //conn = DriverManager.getConnection(host, user, password);
+            conn = DriverManager.getConnection(jdbcUrl,"postgres","ed*ZZN2d,r&p/G4t");
             System.out.println("Success: Connected to DB");
         } catch (SQLException ex) {
             System.err.println("Error occurred during connection to database: " + ex.getMessage());

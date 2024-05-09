@@ -1,11 +1,10 @@
-
-<%-- This file is a guideline for all individual jsp files --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
+
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--imports--%>
-<%@page import="jpaEntity.*, java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date"%> 
+<%@page import="jpaEntity.*, java.util.List,java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date"%> 
 
 <%--includes--%>
 <jsp:include page="/RetrieveCustomerProfile" />
@@ -18,7 +17,6 @@
     ArrayList<Custorder> orderList = new ArrayList<Custorder>();
     if (session.getAttribute("orderList") != null) {
         orderList = (ArrayList<Custorder>) session.getAttribute("orderList");
-        System.out.println(orderList);
     }
 %>
 
@@ -32,10 +30,8 @@
         <title>Customer Profile</title>
         <!-- Core theme CSS (includes Bootstrap) for Customer Profile ONLY -->
         <link href="css/profilestyles.css" rel="stylesheet" />
-
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
-
     </head>
 
     <body>
@@ -43,16 +39,17 @@
             <%--header--%>
             <jsp:include page="components/header.jsp" />
         </header>
+        
         <form id="logoutForm" action="Logout" method="post">
             <button type="submit">Logout</button>
         </form>
+        
         <!--start of content-->
         <section style="background-color: #f7f7f7;padding:10px;">
             <div class="container py-5">
                 <div class="row">
+                    
                     <div class="col-lg-4">
-
-
                         <!-- User Profile : Upper Avatar Card -->
                         <div class="card mb-4">
                             <div class="card-body text-center">
@@ -98,8 +95,6 @@
                             </div>
                         </div>
                         <!-- User Profile : Profile Setting -->
-
-
                     </div>
 
 
@@ -159,7 +154,6 @@
                         <div class="row">
                             <div class="col-md-6" style="width:100%;">
 
-
                                 <!-- Order Status -->
                                 <div class="card-orderstatus mb-4 mb-md-0" style="width:100%;">
                                     <div class="counter" style="width:100%;">
@@ -201,16 +195,15 @@
                                 </div>
                                 <!-- Order Status -->
 
-
                                 <!-- Order Tracking -->
                                 <div class="col-md-6" style="width:100%;">
                                     <h5 class="text-uppercase" style="padding-top:20px;">My recent orders</h5>
                                     <div class="order my-3">
 
-
-                                        <% 
-                                        if (orderList != null || !orderList.isEmpty()) {
-                                            for (Custorder custorder : orderList) {%>
+                                        <%
+                                            if (orderList != null && !orderList.isEmpty()) {
+                                                for (Custorder custorder : orderList) {
+                                        %>
 
                                         <!-- FILTERED ORDER INFO LOOPING HERE -->
                                         <div class="container-fluid d-sm-flex justify-content-center" 
@@ -234,11 +227,10 @@
                                                     </div>
                                                 </div>
 
-                                                <% if (custorder != null && custorder.getOrderitems() != null) { %>
-                                                <% for (Orderitem orderitem : custorder.getOrderitems()) {%>
-                                                <!-- Your code for order items here -->
-
-
+                                                <%
+                                                    if (custorder != null && custorder.getOrderitems() != null) {
+                                                        for (Orderitem orderitem : custorder.getOrderitems()) {
+                                                %>
 
                                                 <!-- ORDER PRODUCTS LOOPING HERE -->
                                                 <div class="card-body">
@@ -270,7 +262,6 @@
                                                                         }
                                                                     %>
                                                                     <%=formattedStatusDate%>
-
                                                                 </span>
                                                             </p>
                                                             <button type="button" class="btn  btn-outline-primary d-flex">
@@ -278,37 +269,35 @@
                                                             </button>    
                                                         </div>
                                                         <!-- Product Img HERE -->
-                                                        <img class="align-self-center img-fluid" 
+                                                        <img class="align-self-center img-fluid mt-2" 
                                                              src="<%=request.getContextPath() + orderitem.getProduct().getProdimg()%>" width="180 " height="180">
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
-                                                <% } %>
-                                                <% }%>
-
-
+                                                
+                                                <% 
+                                                    }
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                         <!-- FILTERED ORDER INFO LOOPING END -->
-                                        <% } 
-                                        }
+                                        
+                                        <% 
+                                            }
+                                            }
                                         %>
-
-
                                     </div>
                                 </div>
                                 <!-- Order Tracking -->
-
-
+                                
                             </div> 
                         </div> <!-- div row end -->
-
-
+                        
                     </div>
                 </div>
         </section>
         <!--end of content-->
-
 
     </body>
 

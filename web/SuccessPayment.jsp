@@ -79,6 +79,8 @@
                    style="text-decoration:none;color:black;">Check your order at your profile</a>
             </p>
         </div>
+        <h2>Your payment is success.</h2>
+        <a href="CustomerProfile.jsp">Click here to view your order.</a>
         <!--end of content-->
         
     </body>
