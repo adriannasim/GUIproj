@@ -52,7 +52,7 @@ String[] keys = (String[]) request.getAttribute("keys");
             </tr>
             <tr>
                 <th>Qty Available</th>
-                <td><input type="text" name="qtyavailable" value="<%= prod.getQtyavailable()%>"</td>
+                <td><input type="number" name="qtyavailable" value="<%= prod.getQtyavailable()%>"</td>
             </tr>
             <tr>
                 <th>Product Images</th>
