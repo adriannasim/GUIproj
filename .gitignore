@@ -3,3 +3,5 @@
 /build/
 build
 /nbproject/project.properties
+nbproject/private/private.properties
+nbproject/project.properties
