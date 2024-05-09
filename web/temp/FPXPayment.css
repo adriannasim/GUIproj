@@ -108,7 +108,7 @@
 #btnFPXPayment {
     width: 100%;
     padding: 6px;
-    background: #17a2b8;
+    background: #87ceeb;
     border: none;
     outline: none;
     border-radius: 10px;
@@ -119,7 +119,7 @@
 }
 
 #btnFPXPayment:hover {
-    background: #127f91;
+    background: #4682b4;
 }
 
 .logo {
