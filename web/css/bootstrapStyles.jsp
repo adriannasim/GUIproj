@@ -126,6 +126,8 @@
             /*Start of Product Page*/
             .prod_title{
                 margin: 30px 0;
+                margin-bottom: 50px;
+                font-weight: bold;
             }
             .main-prod-img{
                 width: 30%;
@@ -134,6 +136,9 @@
             .prod-img{
                 width: 250px;
                 height: 250px;
+            }
+            .all-prod-container{
+                margin-top: 5%;
             }
             .card{
                 height: 420px;
@@ -156,6 +161,10 @@
             }
             .message{
                 margin-top: -5px;
+            }
+            .sprod-rec{
+                margin-top: 3%;
+                margin-left: 6%;
             }
             .prod-backlink{
                 text-align: left;
