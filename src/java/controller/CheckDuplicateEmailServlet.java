@@ -16,6 +16,7 @@ public class CheckDuplicateEmailServlet extends HttpServlet {
         // Get the email parameter from the request
         String email = request.getParameter("email");
 
+        // Checking
         boolean emailExists = checkEmailExistsInDatabase(email);
 
         // Send response back to the client

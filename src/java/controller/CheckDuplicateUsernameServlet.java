@@ -16,6 +16,7 @@ public class CheckDuplicateUsernameServlet extends HttpServlet {
         // Get the username parameter from the request
         String username = request.getParameter("username");
 
+        // Checking
         boolean usernameExists = checkUsernameExistsInDatabase(username);
 
         // Send response back to the client

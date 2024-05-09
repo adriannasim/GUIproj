@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 @WebServlet(name = "EditCustProfile", urlPatterns = { "/EditCustProfile" })
 public class EditCustProfile extends HttpServlet {
 
@@ -75,6 +76,7 @@ public class EditCustProfile extends HttpServlet {
             e.printStackTrace();
         }
 
+        // Update profile
         try {
             utx.begin();
 

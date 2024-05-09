@@ -21,8 +21,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.NoResultException;
 
-
-@WebServlet(name = "OrderCreation", urlPatterns = { "/OrderCreation" })
+@WebServlet(name = "OrderCreation", urlPatterns = {"/OrderCreation"})
 public class OrderCreation extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
@@ -87,11 +86,8 @@ public class OrderCreation extends HttpServlet {
             custorder.setRemark(remark);
 
             try {
-                // Begin transaction
                 utx.begin();
-                // Add the record
                 em.persist(custorder);
-                // Commit transaction
                 utx.commit();
 
             } catch (Exception ex) {
@@ -125,11 +121,8 @@ public class OrderCreation extends HttpServlet {
                 orderitem.setProdprice(price);
 
                 try {
-                    // Begin transaction
                     utx.begin();
-                    // Add the record
                     em.persist(orderitem);
-                    // Commit transaction
                     utx.commit();
 
                 } catch (Exception ex) {
@@ -165,23 +158,20 @@ public class OrderCreation extends HttpServlet {
             pyminfo.setUsername(username);
             pyminfo.setPaymenttype(paymentMethod);
             pyminfo.setPaymentdate(new Date());
-            
+
             pyminfo.setShippingfee(shippingFee);
             pyminfo.setSalestax(salesTax);
-            
-            if (paymentMethod.equals("card")){
-                pyminfo.setCharges(total*0.01);
-                pyminfo.setPaymentamount(total*1.01);
+
+            if (paymentMethod.equals("card")) {
+                pyminfo.setCharges(total * 0.01);
+                pyminfo.setPaymentamount(total * 1.01);
             } else {
                 pyminfo.setPaymentamount(total);
             }
 
             try {
-                // Begin transaction
                 utx.begin();
-                // Add the record
                 em.persist(pyminfo);
-                // Commit transaction
                 utx.commit();
 
             } catch (Exception ex) {
@@ -207,10 +197,10 @@ public class OrderCreation extends HttpServlet {
                     TypedQuery<Paymentcard> query = em.createNamedQuery("Paymentcard.findByCardnameAndCardnumber", Paymentcard.class);
                     query.setParameter("cardname", holderName);
                     query.setParameter("cardnumber", cardNumber);
-    
+
                     Paymentcard card = query.getSingleResult();
 
-                } catch (NoResultException e){
+                } catch (NoResultException e) {
 
                     String[] expirationDateParts = null;
                     int month = 0;
@@ -236,11 +226,8 @@ public class OrderCreation extends HttpServlet {
                     pymcard.setUsername(username);
 
                     try {
-                        // Begin transaction
                         utx.begin();
-                        // Add the record
                         em.persist(pymcard);
-                        // Commit transaction
                         utx.commit();
 
                     } catch (Exception ex) {
@@ -255,7 +242,7 @@ public class OrderCreation extends HttpServlet {
                         ex.printStackTrace();
 
                     }
-                    
+
                 }
             }
 
@@ -302,15 +289,12 @@ public class OrderCreation extends HttpServlet {
             // Redirect to success payment page
             response.sendRedirect("SuccessPayment.jsp");
 
-        }catch(
+        } catch (Exception ex) {
+            ex.printStackTrace();
 
-    Exception ex)
-    {
-        ex.printStackTrace();
-
-        // Redirect to an error page
-        response.sendRedirect("ErrorPage.jsp");
-    }
+            // Redirect to an error page
+            response.sendRedirect("ErrorPage.jsp");
+        }
     }
 
     public static String generateRandomID() {

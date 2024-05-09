@@ -4,7 +4,7 @@
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--imports--%>
-<%@page import="jpaEntity.*, java.util.List,java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date"%> 
+<%@page import="jpaEntity.*, java.util.List,java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date,java.text.DecimalFormat"%> 
 
 <%--includes--%>
 <jsp:include page="/RetrieveCustomerProfile" />
@@ -39,16 +39,16 @@
             <%--header--%>
             <jsp:include page="components/header.jsp" />
         </header>
-        
+
         <form id="logoutForm" action="Logout" method="post">
             <button type="submit">Logout</button>
         </form>
-        
+
         <!--start of content-->
         <section style="background-color: #f7f7f7;padding:10px;">
             <div class="container py-5">
                 <div class="row">
-                    
+
                     <div class="col-lg-4">
                         <!-- User Profile : Upper Avatar Card -->
                         <div class="card mb-4">
@@ -239,7 +239,11 @@
                                                             <h5 class="bold"><%=orderitem.getProduct().getProdname()%></h5>
                                                             <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
                                                             <h4 class="mt-3 mb-4 bold">
-                                                                <span class="mt-5">RM</span> <%=orderitem.getProdprice()%>
+                                                                <%
+                                                                    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+                                                                    String formattedPrice = decimalFormat.format(orderitem.getProdprice());
+                                                                %>
+                                                                <span class="mt-5">RM</span> <%=formattedPrice%>
                                                             </h4>
                                                             <p class="text-muted">Order Status on: 
                                                                 <span class="Today">
@@ -274,26 +278,26 @@
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
-                                                
-                                                <% 
-                                                    }
+
+                                                <%
+                                                        }
                                                     }
                                                 %>
                                             </div>
                                         </div>
                                         <!-- FILTERED ORDER INFO LOOPING END -->
-                                        
-                                        <% 
-                                            }
+
+                                        <%
+                                                }
                                             }
                                         %>
                                     </div>
                                 </div>
                                 <!-- Order Tracking -->
-                                
+
                             </div> 
                         </div> <!-- div row end -->
-                        
+
                     </div>
                 </div>
         </section>

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,12 +14,11 @@ import jpaEntity.*;
 import javax.persistence.TypedQuery;
 
 
-
 @WebServlet(name = "CheckCardExistence", urlPatterns = {"/CheckCardExistence"})
 
 public class CheckCardExistenceServlet extends HttpServlet {
 
-     @PersistenceContext(unitName = "GUI_AssignmentPU")
+    @PersistenceContext(unitName = "GUI_AssignmentPU")
     private EntityManager em;
 
     @Resource

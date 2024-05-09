@@ -16,12 +16,12 @@ public class Logout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false); //getting to session object
-        if (session != null) // check if condition the session not null
+        HttpSession session = request.getSession(false); 
+        if (session != null) 
         {
-            session.invalidate(); //using this method to destroy the sesion object
-            request.setAttribute("errorMS", "Logged out successfully"); //send "errorMSG" object on client side. And get using request.getAttribute() method
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("SignIn.jsp"); // using RequestDispatcher method forward to login page.
+            session.invalidate(); // destroy the sesion object
+            request.setAttribute("errorMS", "Logged out successfully"); 
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("SignIn.jsp"); 
             requestDispatcher.forward(request, response);
         }
     }

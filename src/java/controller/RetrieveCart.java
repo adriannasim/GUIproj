@@ -20,7 +20,7 @@ public class RetrieveCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setHeader("Content-Type", "text/html");
+       
 
         // Initialization
         CartDAO cartDAO = new CartDAO();

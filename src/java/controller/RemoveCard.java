@@ -15,7 +15,6 @@ import javax.transaction.UserTransaction;
 import jpaEntity.Paymentcard;
 
 
-
 @WebServlet(name = "RemoveCard", urlPatterns = {"/RemoveCard"})
 public class RemoveCard extends HttpServlet {
 

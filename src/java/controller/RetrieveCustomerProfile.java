@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+
 @WebServlet(name = "RetrieveCustomerProfile", urlPatterns = {"/RetrieveCustomerProfile"})
 public class RetrieveCustomerProfile extends HttpServlet {
 
@@ -44,7 +45,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
         }
 
 
-
+        
         // Retrieve Customer Details
         try {
             // Use a JPQL query to retrieve the customer based on the username

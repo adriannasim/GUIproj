@@ -1,15 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,16 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import jpaEntity.Customer;
-import jpaEntity.CustomerPK;
 
-/**
- *
- * @author User
- */
+
 @WebServlet(name = "EditCustAddress", urlPatterns = {"/EditCustAddress"})
 public class EditCustAddress extends HttpServlet {
 
-     @PersistenceContext(unitName = "GUI_AssignmentPU")
+    @PersistenceContext(unitName = "GUI_AssignmentPU")
     private EntityManager em;
 
     @Resource
@@ -80,6 +67,7 @@ public class EditCustAddress extends HttpServlet {
         String state = request.getParameter("state");
         String country = request.getParameter("country");
 
+        // Update Address Details
         try {
             utx.begin();
 

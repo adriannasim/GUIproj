@@ -17,6 +17,7 @@ import jpaEntity.*;
 import java.util.List;
 import java.util.ArrayList;
 
+
 @WebServlet(name = "EditPaymentCard", urlPatterns = {"/EditPaymentCard"})
 public class EditPaymentCard extends HttpServlet {
 
@@ -102,6 +103,7 @@ public class EditPaymentCard extends HttpServlet {
         paymentcard.setCvv(cardCvv);
         paymentcard.setUsername(username);
 
+        // Add card
         try {
             utx.begin();
             em.persist(paymentcard);
@@ -127,5 +129,4 @@ public class EditPaymentCard extends HttpServlet {
     public static String[] splitExp(String expirationDate) {
         return expirationDate.split("/");
     }
-
 }
