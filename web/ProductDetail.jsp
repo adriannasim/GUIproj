@@ -37,67 +37,68 @@
         <jsp:include page="components/header.jsp" />
 
         <div id="message-box"></div>
-
+        
         <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
         <% Product product = sessProdList.get(0);%>
-        <h1><%= product.getProdName()%></h1>
-        <div class="d-flex flex-row align-items-center justify-content-center">
-            <div class="p-4">
-                <img
-                    src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>"
-                    width="500px"
-                    height="auto"
-                    />
-            </div>
+        <div class="prod-backlink">
+            <a href="ProductPage.jsp?all=t"><i class="fa fa-bars mr-3"></i>All Products</a><i class="fa fa-angle-right ml-3 mr-3"></i><%= product.getProdName()%>
+        </div>
+        <div class="container single-prod">
+            <div class="row">
+                <div class="col-6">
+                    <img
+                        src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>"
+                        width="500px"
+                        height="auto" 
 
-            <div>
-                <%
-                    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-                    String formattedPrice = decimalFormat.format(product.getProdPrice());
-                %>
-                <h2 id="totalPrice">RM <%=formattedPrice%></h2>
-                <div><%= product.getProdDesc()%></div>
-                <div>
-                    <% String keywords = String.join(" , ", product.getProdKeywords());%>
-                    <%= keywords%>
+                    />
                 </div>
-                <div>
-                    <div class="btns">
-                        <button class="btn" type="button" onclick="decrementValue('itemQty', 1,<%= product.getProdPrice()%>)">
-                            -
-                        </button>
-                        <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
-                        <input
-                            min="<%= product.getQtyAvailable() == 0 ? '0' : '1'%>"
-                            value="1"
-                            max="<%= product.getQtyAvailable()%>"
-                            name="itemQty"
-                            type="number"
-                            class=""
-                            id="itemQty"
-                            readonly
-                            />
-                        <button class="btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>,<%= product.getProdPrice()%>)">
-                            +
+                <div class="col-5 prod-details">
+                    <h2 class="detail-element"><%= product.getProdName()%></h2>
+                    <%
+                        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+                        String formattedPrice = decimalFormat.format(product.getProdPrice());
+                    %>
+                    <h2 class="detail-element" id="totalPrice">RM <%=formattedPrice%></h2>
+                    <div class="detail-element"><%= product.getProdDesc()%></div>
+                    <div class="detail-element">
+                        <% String keywords = String.join(" , ", product.getProdKeywords());%>
+                        <%= keywords%>
+                    </div>
+                    <div>
+                        <div class="btns detail-element">
+                            <button class="btn prod-btn" type="button" onclick="decrementValue('itemQty', 1,<%= product.getProdPrice()%>)">
+                                -
+                            </button>
+                            <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
+                            <input
+                                min="<%= product.getQtyAvailable() == 0 ? '0' : '1'%>"
+                                value="1"
+                                max="<%= product.getQtyAvailable()%>"
+                                name="itemQty"
+                                type="number"
+                                class=""
+                                id="itemQty"
+                                readonly
+                                />
+                            <button class="btn prod-btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>,<%= product.getProdPrice()%>)">
+                                +
+                            </button>
+                        </div>
+                                <div id="msg" class="message mb-3"></div>
+                                <button type="button" class="btn btn-dark atc-btn" id="addToCartButton" 
+                                <% if (product.getQtyAvailable() <= 0) { %>
+                                disabled="disabled" 
+                                <% } else {%>
+                                onclick="addToCart('<%= product.getProdId()%>', document.getElementById('itemQty').value)"
+                                <% } %>>
+                            <% if (product.getQtyAvailable() <= 0) { %>
+                            Out of Stock
+                            <% } else { %>
+                            Add to Cart
+                            <% } %>
                         </button>
                     </div>
-                    <button type="button" id="addToCartButton" 
-                            <% if (product.getQtyAvailable() <= 0) { %>
-                            disabled="disabled" 
-                            <% } else {%>
-                            onclick="addToCart('<%= product.getProdId()%>', document.getElementById('itemQty').value)"
-                            <% } %>>
-                        <% if (product.getQtyAvailable() <= 0) { %>
-                        Out of Stock
-                        <% } else { %>
-                        Add to Cart
-                        <% } %>
-                    </button>
-
-
-
-
-                    <div id="msg" class="message"></div>
                 </div>
             </div>
         </div> 
@@ -105,26 +106,29 @@
 
         <!-- Begin: Recommended Artworks Section (This section will display 3 recommended artworks based on keywords) -->
         <h3>You may also like</h3>
-        <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
-            <% Product suggestedProd = null;
-                for (int i = 0; i < sessSuggestionList.size(); i++) {
-                    suggestedProd = sessSuggestionList.get(i);%>
-            <a href="ProductDetail.jsp?id=<%= suggestedProd.getProdId()%>" style="text-decoration:none;">
-                <div class="p-2">
-                    <div>
-                        <img
-                            src="${pageContext.request.contextPath}<%= suggestedProd.getProdImg()[0]%>"
-                            width="200px"
-                            height="auto"
-                            />
-                    </div>
-                    <div><%= suggestedProd.getProdName()%></div>
-                    <div><%= suggestedProd.get30WordsDesc()%></div>
-                    Learn more
+        
+        <div class="container sprod-rec">
+    <div class="row d-flex flex-row">
+        <% for (int i = 0; i < sessSuggestionList.size(); i++) { %>
+            <% if (i % 3 == 0) { %>
                 </div>
-            </a>
-            <% }%>
-        </div>
+                <div class="row d-flex flex-row">
+            <% } %>
+            <% Product suggestedProd = sessSuggestionList.get(i); %>
+            
+                <div class="col-4">
+                    <div class="card m-4 pb-4" style="width: 300px;">
+                        <img class="card-img-top sprod-img" src="${pageContext.request.contextPath}<%= suggestedProd.getProdImg()[0]%>" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= suggestedProd.getProdName()%></h5>
+                            <p class="card-text"><%= suggestedProd.get30WordsDesc()%></p>
+                        </div>
+                        <a href="ProductDetail.jsp?id=<%= suggestedProd.getProdId()%>"><span class="btn btn-info">Learn More</span></a>
+                    </div>
+                </div>
+        <% } %>
+    </div> <!-- Closing the last row outside the loop -->
+</div>
         <!-- End: Recommended Artworks Section -->
 
         <!--footer-->
