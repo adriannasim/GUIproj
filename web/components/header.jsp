@@ -19,7 +19,7 @@
         <a class="nav-link" href="Home.jsp">Home</a>
       </li>
       <li class="nav-item nav-item-pd">
-        <a class="nav-link" href="ProductPage.jsp">Products</a>
+        <a class="nav-link" href="ProductPage.jsp?all=t">Products</a>
       </li>
       <li class="nav-item nav-item-pd">
         <a class="nav-link" href="Cart.jsp">Cart</a>
