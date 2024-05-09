@@ -17,8 +17,6 @@ Custorder order = (Custorder)request.getAttribute("order");
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Admin Homepage</title>
-        <script src="js/FilterOrders.js"></script>
-        <script src="js/UpdateStatus.js"></script>
         <!-- Include commonFiles.tag -->
         <custom:commonFilesAdm />
     </head>
@@ -51,10 +49,41 @@ Custorder order = (Custorder)request.getAttribute("order");
                     <td><%= order.getUsername() %></td>
                     <td><%= order.getName() %></td>
                     <td><%= order.getContactno() %></td>
-                    <td><Button type="button" onclick="UpdateStatus(<%= order.getOrderid() %>)">Update</Button></td>
-                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= order.getOrderid() %>;">View</Button></td>
+                    <!--Display address-->
+                    <td>
+                    <%
+                    if (request.getAttribute("addresses") != null)
+                    {
+                        String[] addresses = (String[])request.getAttribute("addresses");
+                        for (int i = 0; i < addresses.length; i++)
+                        {
+                    %>
+                        Address Line <%= i %>: <%= addresses[i] %><br/>
+                    <%  
+                        }
+                    %>
+                    <%
+                    }
+                    else
+                    {
+                    %>
+                        Address: <%= order.getAddress() %>
+                    <%
+                    }
+                    %>
+                        City: <%= order.getCity() %>
+                        State: <%= order.getState() %>
+                        Postal Code: <%= order.getPostalcode() %>
+                        Country: <%= order.getCountry() %>
+                    </td>
+                    <td><%= order.getRemark() != null ? order.getRemark() : "-" %></td>
+                    <td><%= order.getPackaging() != null ? order.getPackaging() : "-" %></td>
+                    <td><%= order.getShipping() != null ? order.getShipping() : "-" %></td>
+                    <td><%= order.getDelivery() != null ? order.getDelivery() : "-" %></td>
                 </tr>
             </table>
+            <button type="button" onclick="UpdateStatus(<%= order.getOrderid() %>)">Update</button>
+            <button type="button" id="back" onclick="window.location.href = 'CheckOrders.jsp';">Back</button>
         </div>
         <!--end of content-->
     </body>
