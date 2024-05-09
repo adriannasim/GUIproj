@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,13 +34,14 @@ public class UpdateStatus extends HttpServlet {
         {
             case "Packaging":
                 order.setStatus("Shipping");
+                order.setShipping(new Date());
                 em.getTransaction().commit();
                 response.getWriter().write("Status successfully updated to 'Shipping'");
                 break;
                 
             case "Shipping":
                 order.setStatus("Delivery");
-                em.getTransaction().commit();
+                order.setDelivery(new Date());
                 response.getWriter().write("Status successfully updated to 'Delivery'");
                 break;
                 
