@@ -18,28 +18,28 @@
 
 .btn-outline-primary{
     background-color: #fff !important;
-    color:#fed09a !important;
-    border:1.3px solid #fed09a !important;
+    color:#17a2b8 !important;
+    border:1.3px solid #17a2b8 !important;
     font-size: 12px;
     border-radius: 0.4em !important;
 }
 
 .btn-outline-primary:hover{
-    background-color:#fed09a  !important;
+    background-color:#17a2b8  !important;
     color:#fff !important;
-    border:1.3px solid #fed09a;
+    border:1.3px solid #17a2b8;
 }
 
 .btn-outline-primary:focus,
 .btn-outline-primary:active {
     outline: none !important;
     box-shadow: none !important;
-    border-color: #fed09a !important;
+    border-color: #17a2b8 !important;
 }
 
 .card-orderstatus {
     background-color: #fff ;
-    box-shadow: 2px 4px 15px 0px #FFE3C2;
+    box-shadow: 2px 4px 15px 0px #52d6eb;
     z-index: 0;
 }
 
@@ -76,7 +76,7 @@
     left: 0;
 }
 .aSetting::before {
-    background-color: #FFE3C2;
+    background-color: #52d6eb;
     height: 2px;
     bottom: 0;
     transform-origin: 100% 50%;
@@ -90,7 +90,7 @@
     transform-origin: 100% 50%;
     transform: translate3d(200%, 0, 0);
     transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-    color: #FFE3C2;
+    color: #52d6eb;
 }
 
 .aSetting:hover::before {
@@ -108,22 +108,22 @@
 }
 
 .profile-button {
-    background: #FFE3C2 !important;
+    background: #52d6eb !important;
     box-shadow: none !important;
     border: none !important;
 }
 
 .profile-button:hover {
-    background: #fdad50 !important;
+    background: #17a2b8 !important;
 }
 
 .profile-button:focus {
-    background: #fdad50 !important;
+    background: #17a2b8 !important;
     box-shadow: none !important;
 }
 
 .profile-button:active {
-    background: #fdad50 !important;
+    background: #17a2b8 !important;
     box-shadow: none !important;
 }
 

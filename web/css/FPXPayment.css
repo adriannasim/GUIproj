@@ -1,10 +1,10 @@
-* {
+FPXPaymentjsp {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-.container {
+FPXPayment .container {
     display: flex;
     justify-content: center;
     align-items: center;
