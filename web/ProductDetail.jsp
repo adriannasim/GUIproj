@@ -107,7 +107,7 @@
         <!-- Begin: Recommended Artworks Section (This section will display 3 recommended artworks based on keywords) -->
         <h3>You may also like</h3>
         
-        <div class="container">
+        <div class="container sprod-rec">
     <div class="row d-flex flex-row">
         <% for (int i = 0; i < sessSuggestionList.size(); i++) { %>
             <% if (i % 3 == 0) { %>
