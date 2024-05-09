@@ -6,6 +6,8 @@ import entity.Employee;
 import entity.User;
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmployeeDAO {
 
@@ -264,5 +266,15 @@ public class EmployeeDAO {
     public static void main(String[] args) {
         EmployeeDAO dao = new EmployeeDAO();
     }
-
+    
+    // Close DB conncetion
+    public void closeConnection() {
+        try {
+            if (dbConn.returnConnection() != null) {
+                dbConn.shutDown();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.WARNING, null, ex);
+        }
+    }
 }

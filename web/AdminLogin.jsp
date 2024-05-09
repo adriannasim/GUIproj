@@ -22,6 +22,16 @@
             <div class="image">
                 <img src="img/images/admin_logo.png" alt=""/>
             </div>
+            <div id="errorMsg">
+                <% if ((String) request.getAttribute("errMsg") != null) 
+                {
+                %>
+                <div id="login-errorMsg">
+                    <p><%= request.getAttribute("errMsg") %></p>
+                <%
+                }
+                %>
+            </div>
             <form>
                 <input type="text" placeholder="Email">
                 <input type="text" placeholder="Password">

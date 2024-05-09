@@ -24,7 +24,7 @@
     
         <!--start of content-->
         <h1>Add Products Page</h1>
-        <form action="addProduct" method="post" enctype="multipart/form-data">
+        <form action="AddProduct" method="post" enctype="multipart/form-data">
             <label>Product ID:</label>
             <input type="text" name="prodid"><br/>
             <label>Product Name:</label>
