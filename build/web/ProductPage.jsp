@@ -53,16 +53,16 @@
                 <div class="col-3">
                     <h2><%= sessMainProduct.getProdName()%></h2>
                     <p><%= sessMainProduct.get30WordsDesc()%></p>
-                    <a href="ProductDetail.jsp?id=<%= sessMainProduct.getProdId()%>">
-                        Learn more
-                    </a>
+                    <button class="btn btn-info">
+                        <a href="ProductDetail.jsp?id=<%= sessMainProduct.getProdId()%>" style="text-decoration: none; color: white">Learn more</a>
+                    </button>
                 </div>
             </div>
         </div>
         <!-- End: Main Product Section -->
 
         <!-- Begin: All Products Section (This part will display all the products available in the store) -->
-        <div class="container mt-4">
+        <div class="container all-prod-container">
             <div class="row d-flex flex-row">
                 <% for (int i = 0; i < sessProdList.size(); i++) { %>
                     <% if (i % 4 == 0) { %>
