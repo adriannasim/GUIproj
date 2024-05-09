@@ -97,7 +97,9 @@
                                                 <small>CARD CVV:</small> <%=paymentCard.getCvv()%>
                                             </p>
                                         </li>
-                                        <button class="submitButton" type="submit" id="">Use this card</button>
+                                        <li class="list-group-item d-flex justify-content-center align-items-center p-3">
+                                            <button class="submitButton btn btn-primary profile-button w-50" type="submit" id="">Use this card</button>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -116,8 +118,11 @@
 
 
                     <form action="OrderCreation" method="post" id="new-card-form">
+
                         <!-- ADD PAYMENT CARD -->
                         <div id="AddCardDiv" style="display:none;">
+                            <button class="btn btn-outline-info" id="btn-usesavedcard" 
+                                    type="button" onclick="CardFunction()" style="margin-bottom:10px;">Use Saved Card</button>
                             <div class="row mt-2">
 
                                 <div class="col-md-6"><label class="labels">Card Name</label>
@@ -192,6 +197,7 @@
                 z.style.display = "none";
             }
         }
+
     </script>
 
     <script>
@@ -247,21 +253,15 @@
         // Validation for all fields
         function validateName() {
             var cardName = document.getElementById("name").value;
-            var cardNumber = document.getElementById("cardnumber").value;
             var errorDiv = document.getElementById("payment-name-error");
             if (!cardName) {
                 errorDiv.textContent = "Name is required.";
             } else {
                 errorDiv.textContent = "";
             }
-
-            if (cardName && cardNumber) {
-                checkCardExistence();
-            }
         }
 
         function validateCardNumber() {
-            var cardName = document.getElementById("name").value;
             var cardNumber = document.getElementById("cardnumber").value;
             var errorDiv = document.getElementById("payment-cardNumber-error");
             let nCheck = 0, bEven = false;
@@ -283,46 +283,6 @@
                 errorDiv.textContent = "Invalid card number.";
             } else {
                 errorDiv.textContent = "";
-            }
-            if (cardName && cardNumber) {
-                checkCardExistence();
-            }
-        }
-
-        function checkCardExistence() {
-            var cardName = document.getElementById("name").value;
-            var cardNumber = document.getElementById("cardnumber").value;
-            var errorDiv = document.getElementById("payment-cardNumber-error");
-            var statusDiv = document.getElementById("payment-cardNumber-status");
-
-
-            if (cardName !== null && cardNumber !== null) {
-                errorDiv.textContent = "";
-                statusDiv.textContent = "Searching...";
-
-                var xhr = new XMLHttpRequest();
-                xhr.open(
-                        "GET",
-                        "CheckCardExistence?cardName=" + encodeURIComponent(cardName) + "&cardNumber=" + encodeURIComponent(cardNumber),
-                        true
-                        );
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        statusDiv.textContent = "";
-                        if (xhr.status === 200) {
-                            var response = xhr.responseText;
-                            if (response === "exists") {
-                                errorDiv.textContent = "This card has been used.";
-                            } else {
-                                errorDiv.textContent = "";
-                            }
-                        } else {
-                            errorDiv.textContent = "Error checking card availability. Please try again later.";
-                        }
-                    }
-                };
-                xhr.send();
             }
         }
 
@@ -391,9 +351,6 @@
             var cardNumberError = document.getElementById(
                     "payment-cardNumber-error"
                     ).textContent;
-            var cardNumberStatus = document.getElementById(
-                    "payment-cardNumber-status"
-                    ).textContent;
             var expirationError = document.getElementById(
                     "payment-expiration-error"
                     ).textContent;
@@ -406,8 +363,7 @@
                     nameError ||
                     cardNumberError ||
                     expirationError ||
-                    cvvError ||
-                    cardNumberStatus === "Searching"
+                    cvvError 
                     );
         }
 
@@ -426,6 +382,7 @@
         function checkCardExistenceForSubmission() {
             var cardName = document.getElementById("name").value;
             var cardNumber = document.getElementById("cardnumber").value;
+            var errorDiv = document.getElementById("payment-cardNumber-error");
 
             var xhr = new XMLHttpRequest();
             xhr.open(
@@ -440,6 +397,7 @@
                         var response = xhr.responseText;
                         if (response === "exists") {
                             alert("Please clear the errors before submission.");
+                            errorDiv.textContent = "This card has been used.";
                         } else {
                             document.getElementById("new-card-form").submit();
                         }
