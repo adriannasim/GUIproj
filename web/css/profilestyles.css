@@ -191,3 +191,138 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
         margin-left: -15rem;
     }
 }
+
+/* Order Progress Bar */
+#progressbar {
+    margin-bottom: 3vh;
+    overflow: hidden;
+    color: #17a2b8;
+    padding-left: 0px;
+    margin-top: 3vh
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12pt;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: rgb(160, 159, 159);
+}
+
+#progressbar #step1:before {
+    content: "";
+    color: #17a2b8;
+    width: 8px;
+    height: 8px;
+    margin-left: 0px !important;
+}
+
+#progressbar #step2:before {
+    content: "";
+    color: #fff;
+    width: 8px;
+    height: 8px;
+    margin-left: 32%;
+}
+
+#progressbar #step3:before {
+    content: "";
+    color: #fff;
+    width: 8px;
+    height: 8px;
+    margin-right: 32% ;
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: #ddd;
+    border-radius: 50%;
+    margin: auto;
+    z-index: -1;
+    margin-bottom: 1vh;
+}
+
+#progressbar li:after {
+    content: '';
+    height: 2px;
+    background: #ddd;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 2vh;
+    top: 3px;
+    z-index: 1;
+}
+
+.progress-track{
+    padding: 0 8%;
+}
+
+#progressbar li:nth-child(2):after {
+    margin-right: auto;
+}
+
+#progressbar li:nth-child(1):after {
+    margin: auto;
+}
+
+#progressbar li:nth-child(3):after {
+    float: left;
+    width: 68%;
+}
+
+#progressbar li:nth-child(4):after {
+    margin-left: auto;
+    width: 132%;
+}
+
+#progressbar  li.active{
+    color: black;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #17a2b8;
+}
+
+/* Success Payment */
+body.successPaymentjsp {
+    text-align: center;
+    padding: 0;
+    background: #EBF0F5;
+}
+
+#successH1 {
+    color: #17a2b8;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#successP {
+    color: #404F5E;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+    font-size:15px;
+    margin: 0;
+}
+
+.successPaymentjsp .checkmark {
+    color: #17a2b8;
+    font-size: 80px;
+    line-height: 200px;
+    margin-left:-15px;
+}
+
+.successPaymentjsp .card {
+    background: white;
+    padding: 60px;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px #C8D0D8;
+    display: inline-block;
+    margin: 0 auto;
+}

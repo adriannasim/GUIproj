@@ -8,12 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width-device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="FPXPayment.css">
+    <link rel="stylesheet" href="css/FPXPayment.css">
     <title>Online Banking</title>
     
 </head>
-<body>
-    <div class="container">
+<body class="FPXPaymentjsp">
+    <div class="container FPXPaymentDiv">
         <form action="">
             <h1 class="title">Online Banking Payment</h1>
             <div class="dropdown">
