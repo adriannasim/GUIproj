@@ -13,11 +13,9 @@ public class CheckDuplicateEmailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Get the username parameter from the request
+        // Get the email parameter from the request
         String email = request.getParameter("email");
 
-        // Perform your database query to check for duplicate username
-        // Replace this with your actual database logic
         boolean emailExists = checkEmailExistsInDatabase(email);
 
         // Send response back to the client
@@ -29,10 +27,7 @@ public class CheckDuplicateEmailServlet extends HttpServlet {
         }
     }
 
-    // Dummy method to simulate database check
     private boolean checkEmailExistsInDatabase(String email) {
-        // Implement your actual database logic here
-        // This is just a placeholder
         CustomerDAO custDAO = new CustomerDAO();
         Customer cust = custDAO.getRecordByEmail(email);
         if (cust != null){
