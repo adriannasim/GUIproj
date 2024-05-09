@@ -32,7 +32,7 @@
         <custom:commonFiles/>     
     </head>
 
-    <body class="text-center x-index">
+    <body class="text-center">
         <!--header-->
         <jsp:include page="components/header.jsp" />
 
