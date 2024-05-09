@@ -32,11 +32,11 @@ String[] keys = (String[]) request.getAttribute("keys");
         
         <h1>Edit Products <%= prod.getProdname()%></h1>
         <p>Added on: <%= prod.getProdaddeddate()%></p>
-        <form action="EditProducts" method="post">
+        <form>
             <table border="1">
             <tr>
                 <th>ID</th>
-                <td><%= prod.getProdid()%><input type="hidden" name="prodid" value="<%= prod.getProdname()%>"/></td>
+                <td><%= prod.getProdid()%><input type="hidden" name="prodid" value="<%= prod.getProdid()%>"/></td>
             </tr>
             <tr>
                 <th>Name</th>

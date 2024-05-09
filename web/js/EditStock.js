@@ -3,7 +3,7 @@ function changeStock(prodId)
     var stockCol = document.getElementById('stockCol_' + prodId);
     var currentStock = stockCol.innerText;
 
-    //Change the col to inclu
+    //Change the col to include buttons to save or cancel
     stockCol.innerHTML = 
     `
         <input type="number" id="newStock_${prodId}" value="${currentStock}">
