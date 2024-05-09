@@ -3,59 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/EditProducts.jsp</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/RetrieveProductsAdm.java</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/jpaEntity/Product.java</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/EditProducts.java</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/Home.jsp</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/EditProductsMenu.jsp</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/WEB-INF/tags/commonFilesAdm.tag</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/EditProducts.jsp</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/RetrieveProductsAdm.java</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/jpaEntity/Product.java</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/src/java/controller/EditProducts.java</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/Home.jsp</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/EditProductsMenu.jsp</file>
-            <file>file:/C:/Users/adria/Documents/NetBeansProjects/GUIproj/web/WEB-INF/tags/commonFilesAdm.tag</file>
-        </group>
-        <group>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Custorder.java</file>
-        </group>
-        <group>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Custorder.java</file>
-        </group>
-        <group>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Custorder.java</file>
-        </group>
-        <group>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Customer.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/CheckCurrentPasswordServlet.java</file>
-            <file>file:/D:/GUIproj/web/CustAddressBook.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/EditPaymentCard.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/SignUp.java</file>
-            <file>file:/D:/GUIproj/web/CustChangePassword.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/EditCustProfile.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/EditCustAddress.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/EditNewPassword.java</file>
-            <file>file:/D:/GUIproj/web/SignUp.jsp</file>
-            <file>file:/D:/GUIproj/web/CustPaymentCard.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Paymentcard.java</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Orderitem.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/CheckDuplicateEmailServlet.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/Password.java</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/Logout.java</file>
-            <file>file:/D:/GUIproj/web/CustEditProfile.jsp</file>
-        </group>
-        <group>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustOrderDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/OrderItemDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
@@ -72,6 +19,43 @@
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentInfoDAO.java</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/ProductPage.jsp</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustOrderDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/OrderItemDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentCardDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/PaymentInfoDAO.java</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/ProductPage.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/src/java/model/CustomerDAO.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/SuccessPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
         </group>
     </open-files>
 </project-private>
