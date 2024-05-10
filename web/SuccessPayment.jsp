@@ -37,10 +37,9 @@
                 <span style="font-weight:bold;">Order ID:&nbsp;</span>
                 [Order ID]
             </p>
-            <input type="submit" class="btn btn-primary profile-button mt-3" value="Back to Profile">
+            <a href="RetrieveCustomerProfile" class="btn btn-primary profile-button mt-3">View your order</a>
         </div>
-        <h2>Your payment is success.</h2>
-        <a href="CustomerProfile.jsp">Click here to view your order.</a>
+       
         <!--end of content-->
     </body>
 

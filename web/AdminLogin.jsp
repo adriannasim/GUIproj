@@ -98,11 +98,15 @@ form button[type="submit"]:hover {
                     <p><%= request.getAttribute("errMsg") %></p>
                 <%
                 }
+                else
+                {
+                
+                }
                 %>
             </div>
-            <form>
-                <input type="text" placeholder="Email">
-                <input type="text" placeholder="Password">
+            <form action="AdminLogin" method="POST">
+                <input type="text" name="username" placeholder="Email" />
+                <input type="text" name="password" placeholder="Password" />
                 <button type="submit">LOGIN</button>
             </form>
         </div>

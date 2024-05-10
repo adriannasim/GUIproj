@@ -89,6 +89,8 @@ public class Payment extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("Payment.jsp");
             dispatcher.forward(request, response);
             
+            em.close();
+            
         } catch (Exception ex) {
             // Rollback transaction if an exception occurs
             try {

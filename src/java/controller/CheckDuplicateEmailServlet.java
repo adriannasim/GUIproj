@@ -32,8 +32,10 @@ public class CheckDuplicateEmailServlet extends HttpServlet {
         CustomerDAO custDAO = new CustomerDAO();
         Customer cust = custDAO.getRecordByEmail(email);
         if (cust != null){
+            custDAO.closeConnection();
             return true;
         }
+        custDAO.closeConnection();
         return false;
     }
 }

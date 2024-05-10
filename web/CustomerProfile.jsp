@@ -291,8 +291,10 @@
 
                                         <%
                                                 }
-                                            }
+                                            } else {
                                         %>
+                                        <div>No order record.</div>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <!-- Order Tracking -->

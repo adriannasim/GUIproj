@@ -113,6 +113,8 @@ public class EditPaymentCard extends HttpServlet {
             HttpServletResponse resp = (HttpServletResponse) response;
             doGet(req, resp);
             
+            em.close();
+            
         } catch (Exception ex) {
             try {
                 if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {

@@ -1,44 +1,57 @@
 package entity;
 
 public class OrderItem {
-//    private String orderid;
-    private Product orderItems;
-    private int orderItemQty;
-    
-    public OrderItem(){
-        
+    private String orderId;
+    private Product orderItem;
+    private int itemQty;
+    private double prodPrice;
+
+
+    public OrderItem() {
+
     }
-    
-    public OrderItem(Product orderItems, int orderItemQty){
-//        this.orderid = orderid;
-        this.orderItems = orderItems;
-        this.orderItemQty = orderItemQty;
+
+    public OrderItem(String orderId, Product orderItem, int itemQty, double prodPrice) {
+        this.orderId = orderId;
+        this.orderItem = orderItem;
+        this.itemQty = itemQty;
+        this.prodPrice = prodPrice;
     }
 
     // getter
-//    public String getOrderId() {
-//        return orderid;
-//    }
-    
-    public Product getOrderItems() {
-        return orderItems;
+
+    public String getOrderId() {
+        return orderId;
     }
-    
-    public int getOrderItemQty() {
-        return orderItemQty;
+
+    public Product getOrderItem() {
+        return orderItem;
+    }
+
+    public int getItemQty() {
+        return itemQty;
+    }
+
+    public double getProdPrice() {
+        return prodPrice;
     }
 
     // setter
-//    public void setOrderId(String orderId) {
-//        this.orderid = orderId;
-//    }
 
-    public void setOrderItems(Product orderItems) {
-        this.orderItems = orderItems;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
-    public void setOrderItemQty(int orderItemQty) {
-        this.orderItemQty = orderItemQty;
+    public void setOrderItem(Product orderItem) {
+        this.orderItem = orderItem;
     }
+
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
+    }
+
+    public void setProdPrice(double prodPrice) {
+        this.prodPrice = prodPrice;
+    }
+
 }
-
