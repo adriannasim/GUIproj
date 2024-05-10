@@ -16,7 +16,7 @@ Custorder order = (Custorder)request.getAttribute("order");
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Admin Homepage</title>
+        <title>Check Order Details</title>
         <!-- Include commonFiles.tag -->
         <custom:commonFilesAdm />
     </head>

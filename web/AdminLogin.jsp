@@ -98,6 +98,10 @@ form button[type="submit"]:hover {
                     <p><%= request.getAttribute("errMsg") %></p>
                 <%
                 }
+                else
+                {
+                
+                }
                 %>
             </div>
             <form action="AdminLogin" method="POST">

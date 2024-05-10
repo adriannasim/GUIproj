@@ -69,6 +69,8 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     }
                     %>
                 </tr>
+                
+                <% if (packaging != null) { %>
                 <tr id="packaging">
                     <%
                     for (int i = 0; i < packaging.size(); i++)
@@ -85,6 +87,10 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     }
                     %>
                 </tr>
+                <% } else { %>
+                <tr><td>No record found.</td></tr>
+                
+                <% if (shipping != null) { %>
                 <tr id="shipping">
                     <%
                     for (int i = 0; i < shipping.size(); i++)
@@ -101,6 +107,10 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     }
                     %>
                 </tr>
+                <% } else { %>
+                <tr><td>No record found.</td></tr>
+                
+                <% if (delivery != null) { %>
                 <tr id="delivery">
                     <%
                     for (int i = 0; i < delivery.size(); i++)
@@ -117,6 +127,8 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     }
                     %>
                 </tr>
+                <% } else { %>
+                <tr><td>No record found.</td></tr>
             </table>
         </div>
         <!--end of content-->

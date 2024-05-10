@@ -47,7 +47,7 @@ public class AddProducts extends HttpServlet
             if (img.getContentType() != null && img.getContentType().startsWith("image")) 
             {
                 //Set filename
-                String filename = id + "-" + imgCount + ".jpeg";
+                String filename = id + "-" + new Date() + "-(" + imgCount + ").jpeg";
                 //Store image directly to server image directory
                 img.write(imgDir + File.separator + filename);
                 //Set file url
