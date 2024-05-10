@@ -62,21 +62,21 @@
         <custom:commonFiles />
 
         <style>
-        h1 {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 36px; 
-            font-weight: bold; 
-            color: #000; 
-            text-align: center; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-            margin-top: 20px; 
-        }
+            h1 {
+                font-family: "Times New Roman", Times, serif;
+                font-size: 36px;
+                font-weight: bold;
+                color: #000;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-top: 20px;
+            }
 
-      
-        a {
-            text-decoration: none;
-          }
+
+            a {
+                text-decoration: none;
+            }
 
 
             h1 {
@@ -142,85 +142,13 @@
 
         <!--start of content-->
         <h1>BONG BONG ART GALLERY</h1>
-        <section>
-            <!-- Carousel wrapper -->
-            <div id="carouselAboutUs" class="carousel slide carousel-fade" data-mdb-ride="carousel" data-mdb-carousel-init
-                 style="position:relative;top:-25px;height:550px;">
-                <!-- Indicators -->
-                <div class="carousel-indicators">
-                    <button
-                        type="button"
-                        data-mdb-target="#carouselAboutUs"
-                        data-mdb-slide-to="0"
-                        class="active"
-                        aria-current="true"
-                        aria-label="Slide 1"
-                        ></button>
-                    <button
-                        type="button"
-                        data-mdb-target="#carouselAboutUs"
-                        data-mdb-slide-to="1"
-                        aria-label="Slide 2"
-                        ></button>
-                    <button
-                        type="button"
-                        data-mdb-target="#carouselAboutUs"
-                        data-mdb-slide-to="2"
-                        aria-label="Slide 3"
-                        ></button>
-                </div>
-
-                <!-- Inner -->
-                <div class="carousel-inner" style="height:550px;">
-                    <!-- Single item -->
-                    <div class="carousel-item active" style="height:550px;">
-                        <img src="img/images/artgallery2.png" class="d-block w-100" alt="Sunset Over the City"
-                             style="height:550px;" />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Discover Masterpieces</h5>
-                            <p> Let's explore the gallery's collection.</p>
-                        </div>
-                    </div>
-
-                    <!-- Single item -->
-                    <div class="carousel-item" style="height:450px;">
-                        <img src="img/images/artgallery2.png" class="d-block w-100" alt="Canyon at Nigh"
-                             style="height:550px;"/>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>A Brushstroke of History</h5>
-                            <p>Rich history and legacy of the gallery, depicting significant moments or artworks.</p>
-                        </div>
-                    </div>
-
-                    <!-- Single item -->
-                    <div class="carousel-item" style="height:550px;">
-                        <img src="img/images/artgallery2.png" class="d-block w-100" alt="Cliff Above a Stormy Sea"
-                             style="height:550px;"/>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Artistry in Motion</h5>
-                            <p>Highlighting the dynamic nature of art, introduces a carousel featuring various artworks that come to life with each slide.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Inner -->
-
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselAboutUs" 
-                        data-mdb-slide="prev" style="opacity:0;">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-mdb-target="#carouselAboutUs" 
-                        data-mdb-slide="next" style="opacity:0;">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <!-- Carousel wrapper -->
-        </section>
+        
+        <div class="banner">
+            <img src="img/home/banner.png" width="100%" height="350px" alt="Banner"/>
+        </div>
 
         <div id="loadingMessage" style="display: none;">Retrieving cart...</div>
-       
+
         <!-- Projects-->
         <section class="projects-section bg-light" id="projects">
             <div class="container px-4 px-lg-5">
@@ -269,39 +197,39 @@
                     </div>
                 </div>
             </div>
-        
-        <!--end of content-->
-        <!-- Link to All Products Page Button -->
-        
-        <br>
 
-        <!-- Begin: Latest Artwork Section (This part will display the 4 recently added artworks) -->
-        <h2 class="text-dark mb-4">Latest Artwork</h2>
-        <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
-            <%
-                Product product = null;
-                for (int i = 0; i < sessProdList.size(); i++) {
-                    product = sessProdList.get(i);
-            %>
-            <a
-                href="ProductDetail.jsp?id=<%= product.getProdId()%>" style="text-decoration: none"
-                >
-                <div class="p-2">
-                    <div>
-                        <img
-                            src="<%= request.getContextPath() + product.getProdImg()[0]%>"
-                            width="200px"
-                            height="auto"
-                            />
+            <!--end of content-->
+            <!-- Link to All Products Page Button -->
+
+            <br>
+
+            <!-- Begin: Latest Artwork Section (This part will display the 4 recently added artworks) -->
+            <h2 class="text-dark mb-4">Latest Artwork</h2>
+            <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
+                <%
+                    Product product = null;
+                    for (int i = 0; i < sessProdList.size(); i++) {
+                        product = sessProdList.get(i);
+                %>
+                <a
+                    href="ProductDetail.jsp?id=<%= product.getProdId()%>" style="text-decoration: none"
+                    >
+                    <div class="p-2">
+                        <div>
+                            <img
+                                src="<%= request.getContextPath() + product.getProdImg()[0]%>"
+                                width="200px"
+                                height="auto"
+                                />
+                        </div>
+                        <div><%= product.getProdName()%></div>
+                        <% String formattedPrice = String.format("%.2f", product.getProdPrice());%>
+                        <div>RM<%= formattedPrice%></div>
                     </div>
-                    <div><%= product.getProdName()%></div>
-                    <% String formattedPrice = String.format("%.2f", product.getProdPrice());%>
-                    <div>RM<%= formattedPrice%></div>
-                </div>
-            </a>
-            <% }%>
-        </div>
-        <a href="ProductPage.jsp?all=t"><button class="btn btn-dark mt-4">All Artworks</button></a>
+                </a>
+                <% }%>
+            </div>
+            <a href="ProductPage.jsp?all=t"><button class="btn btn-dark mt-4">All Artworks</button></a>
         </section>
         <!--end of content-->
 

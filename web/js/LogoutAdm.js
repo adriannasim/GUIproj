@@ -6,7 +6,7 @@ function confirmLogout() {
             xhr.open("GET", "LogoutAdm", true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    alert(xhr.responseType);
+                    alert(xhr.responseText);
                     //Redirect to login page after logout
                     window.location.href = "AdminLogin.jsp";
                 }

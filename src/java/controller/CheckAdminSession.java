@@ -11,20 +11,36 @@ import javax.servlet.http.HttpServletResponse;
 public class CheckAdminSession extends HttpServlet
 {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
+    }
+    
+    private void checkSession(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        String username = (String) request.getSession().getAttribute("username");
+        String role = (String) request.getSession().getAttribute("role");
+        
+        System.out.print("Session:" + role + ", " + username);
+        
         //Check if user logged in through the login page to prevent unauthorized access through changing the url
-        if (request.getSession().getAttribute("username") == null)
+        if (username == null)
         {
             //Redirect to login page if not authenticated
             response.sendRedirect("AdminLogin.jsp");
+            System.out.print("Session: gonna redirect");
+            return;
         }
         
         //Check staff role to make sure they cannot access admin-only pages
-        String pageUrl = request.getRequestURL().toString();
-        if (pageUrl.startsWith("AddAccount") || pageUrl.startsWith("ManageAccounts") || pageUrl.startsWith("AddPayments") || pageUrl.startsWith("EditPayments"))
+        String pageUrl = request.getRequestURI();
+        if (pageUrl.contains("AddAccount") || pageUrl.contains("ManageAccounts") || pageUrl.contains("AddPayments") || pageUrl.contains("EditPayments"))
         {
-            if (!request.getSession().getAttribute("role").equals("admin"))
+            if (!role.equals("admin"))
             {
                 //Redirect to login page if not authenticated
                 response.sendRedirect("Admin.jsp");

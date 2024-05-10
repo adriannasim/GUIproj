@@ -287,7 +287,7 @@
                                                                 <li class="step0 active " id="step1">Packaging</li>
                                                                 <li class="step0 active text-center" id="step2">Shipped</li>
                                                                 <li class="step0 text-right" id="step3">
-                                                                    <span style="position:relative;left:85px;">Delivered</span>
+                                                                    <span style="position:relative;left:25px;">Delivered</span>
                                                                 </li>
                                                             </ul>
                                                         </div>

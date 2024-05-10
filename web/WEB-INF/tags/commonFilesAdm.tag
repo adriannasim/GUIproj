@@ -27,8 +27,5 @@
         <!-- <script src="js/<filename>.js"></script> -->
         <script src="js/LogoutAdm.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-        <!--Session validation checker-->
-        <jsp:include page="/CheckAdminSession"/>
-        
+  
         <!--End of Common Files-->
