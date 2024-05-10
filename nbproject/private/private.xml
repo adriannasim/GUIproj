@@ -54,33 +54,69 @@
         <group/>
         <group/>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/CheckOrders.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/FilterOrders.js</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/D:/GUIproj/web/Admin.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/AdminLogin.java</file>
+            <file>file:/D:/GUIproj/src/java/model/OrderItemDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Cart.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/AdminLogin.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/components/adminheader.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/LogoutAdm.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/LogoutAdm.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/WEB-INF/tags/commonFilesAdm.tag</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/CheckAdminSession.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/PaymentcardPK.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/D:/GUIproj/web/Admin.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/OrderItemDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Employee.java</file>
+            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/AdminLogin.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Cart.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/AdminLogin.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/components/adminheader.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/LogoutAdm.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/LogoutAdm.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/WEB-INF/tags/commonFilesAdm.tag</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/CheckAdminSession.java</file>
+            <file>file:/D:/GUIproj/web/newhome.jsp</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/PaymentcardPK.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/D:/GUIproj/web/Admin.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/OrderItemDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Employee.java</file>
+            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/AdminLogin.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Cart.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/AdminLogin.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/components/adminheader.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/LogoutAdm.java</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/LogoutAdm.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/WEB-INF/tags/commonFilesAdm.tag</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/CheckAdminSession.java</file>
+            <file>file:/D:/GUIproj/web/SignUpConfirmation.jsp</file>
+            <file>file:/D:/GUIproj/web/Profile.jsp</file>
+            <file>file:/D:/GUIproj/web/SignIn.jsp</file>
+            <file>file:/D:/GUIproj/web/Payment.jsp</file>
+            <file>file:/D:/GUIproj/web/404Error.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/LogoutAdm.java</file>
+            <file>file:/D:/GUIproj/web/PaymentMethod.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/D:/GUIproj/web/SuccessPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/Logout.java</file>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
         </group>
     </open-files>
 </project-private>

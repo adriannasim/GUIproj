@@ -11,7 +11,7 @@
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
     response.setDateHeader("Expires", 0); // Proxies.
-    
+
     // Check if the user is returning from an external page
     Boolean redirected = (Boolean) session.getAttribute("redirected");
     if (redirected != null && redirected) {
@@ -32,6 +32,36 @@
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
 
+        <style>
+            
+            h3 {
+                padding: 40px;
+            }
+            
+            .box {
+                border: 2px solid black;
+                border-radius: 5px;
+                margin: 10px;
+                padding: 20px;
+                cursor: pointer;
+                width: 200px;
+            }
+            
+            .box small {
+                font-size: 12px;
+            }
+            
+            
+            .box * {
+                cursor: pointer;
+            }
+            
+            .proceed-btn {
+                margin-top: 50px;
+            }
+             
+        </style>
+
     </head>
 
     <body class="text-center">
@@ -41,16 +71,29 @@
         <!--start of content-->
         <h3>Payment Method</h3>
         <form action="PaymentOption" method="post">
-            <label for="payment-method-card">Debit/Credit Card</label>
-            <input type ="radio" name="paymentMethod" value="card" id="payment-method-card" />
-            <br/>
-            <label for="payment-method-fpx">FPX</label>
-            <input type ="radio" name="paymentMethod" value="fpx" id="payment-method-fpx" />
-            <br/>
-            <label for="payment-method-ewallet">E-Wallet</label>
-            <input type ="radio" name="paymentMethod" value="ewallet" id="payment-method-ewallet" />
-            <br/><br/>
-            <button type="submit">Proceed</button>
+            <div class="d-flex flex-row align-item-center text-center justify-content-center">
+                <div class="box">
+                    <label for="payment-method-card">Debit/Credit Card</label>
+                    <input type ="radio" name="paymentMethod" value="card" id="payment-method-card" />
+                    <small> You will be charged 1% is use card to pay。 </small>
+                </div>
+                <br/>
+
+                <div class="box">
+                    <label for="payment-method-fpx">FPX</label>
+                    <input type ="radio" name="paymentMethod" value="fpx" id="payment-method-fpx" />
+                </div>
+                <br/>
+
+                <div class="box">
+                    <label for="payment-method-ewallet">E-Wallet</label>
+                    <input type ="radio" name="paymentMethod" value="ewallet" id="payment-method-ewallet" />
+                </div>
+                <br/><br/>
+            </div>
+
+
+            <button class="btn proceed-btn btn-dark" type="submit">Proceed</button>
         </form>
         <!--end of content-->
     </body>

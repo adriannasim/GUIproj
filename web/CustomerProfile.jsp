@@ -42,10 +42,6 @@
             <jsp:include page="components/header.jsp" />
         </header>
 
-        <form id="logoutForm" action="Logout" method="post">
-            <button type="submit">Logout</button>
-        </form>
-
         <!--start of content-->
         <section style="background-color: #f7f7f7;padding:10px;">
             <div class="container py-5">
@@ -91,6 +87,12 @@
                                         <p class="mb-0"><a href="EditPaymentCard" class="aSetting"
                                                            style="text-decoration:none;color:black;">
                                                 My credit/debit cards</a>
+                                        </p>
+                                    </li>
+                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <p class="mb-0"><a href="Logout" class="aSetting"
+                                                           style="text-decoration:none;color:black;">
+                                                Log Out</a>
                                         </p>
                                     </li>
                                 </ul>
@@ -284,9 +286,9 @@
                                                         <!-- Remove active for progress tracking -->
                                                         <div class="progress-track mt-3" style="margin-left:40px;">
                                                             <ul id="progressbar">
-                                                                <li class="step0 active " id="step1">Packaging</li>
-                                                                <li class="step0 active text-center" id="step2">Shipped</li>
-                                                                <li class="step0 text-right" id="step3">
+                                                                <li class="step0 <%= (custorder.getPackaging()!=null)? "active":""%> " id="step1">Packaging</li>
+                                                                <li class="step0 <%= (custorder.getShipping()!=null)? "active":""%> text-center" id="step2">Shipped</li>
+                                                                <li class="step0 <%= (custorder.getDelivery()!=null)? "active":""%> text-right" id="step3">
                                                                     <span style="position:relative;left:25px;">Delivered</span>
                                                                 </li>
                                                             </ul>

@@ -65,6 +65,7 @@
                         <!-- WHEN THERE IS PAYMENT CARD REGISTERED -->
                         <div class="row mt-2" id="yes-paymentcard">
 
+
                             <% for (Paymentcard paymentCard : paymentCardList) { %>
                             <!-- PAYMENT CARD LOOPING HERE -->
                             <div class="card" style="margin-bottom:20px;">
@@ -119,11 +120,12 @@
 
                     <form action="OrderCreation" method="post" id="new-card-form">
 
+                        
                         <input type="hidden" name="newly-added-card" id="newly-added-card" value="true"/>
                         <!-- ADD PAYMENT CARD -->
                         <div id="AddCardDiv" style="display:none;">
-                            
 
+                            <div class="row mt-2">
                                 <div class="col-md-6"><label class="labels">Card Name</label>
                                     <input type="text" class="form-control" placeholder="Holder name"  name="name" id="name">
                                     <div id="payment-name-error" class="payment-error-message"></div>
@@ -135,8 +137,9 @@
                                     <div id="payment-cardNumber-error" class="payment-error-message"></div>
                                     <div id="payment-cardNumber-status" class="payment-status-message"></div>
                                 </div>
-
                             </div>
+
+
 
                             <div class="row mt-2">
 
@@ -158,6 +161,11 @@
                                 <button class="btn btn-primary profile-button" 
                                         type="submit" id="card-payment-submit">Confirm with Payment</button>
                             </div>
+                            
+                            <div class="mt-5 text-center">
+                            <button class="btn btn-primary profile-button" id="btn-addcard" 
+                                    type="button" onclick="CardFunction()">Use Added Card</button>
+                        </div>
                         </div>
                         <!-- ADD PAYMENT CARD -->
                     </form>
@@ -362,7 +370,7 @@
                     nameError ||
                     cardNumberError ||
                     expirationError ||
-                    cvvError 
+                    cvvError
                     );
         }
 

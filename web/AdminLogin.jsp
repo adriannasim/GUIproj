@@ -83,7 +83,7 @@ form button[type="submit"]:hover {
         </style>
     
 </head>
-<body>
+<body id="adminlg">
     <div class="cont">
         <div class="myform">
             <h2>ADMIN LOGIN</h2>

@@ -19,7 +19,7 @@
     </head>
     <body style="background: #ecf0f3;">
         <div class="wrapper">
-            <form class="p-3">
+            <form class="p-3" action="OrderCreation" method="post">
                 <div class="logo">
                     <img src="img/images/bankImg.jpg" alt="">
                 </div>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-primary profile-button" id="btnFPXPayment" 
+                <button type="submit" class="btn btn-primary profile-button" id="btnFPXPayment" 
                         style="margin-top:30px;">Proceed</button>
             </form>
         </div>

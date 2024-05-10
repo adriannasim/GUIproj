@@ -30,11 +30,25 @@
       <style>
           
           /*Start of Home*/
-          .banner{
-              margin-top: -17px;
+          :root{
+              --bs-black-rgb: 0, 0, 0;
+          }
+          .masthead {
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 35rem;
+            padding: 15rem 0;
+            margin-top: -16px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../img/home/pic-4.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
           }
           .about-section {
             padding-top: 5rem;
+            background: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
           }
           .about-section p {
             margin-bottom: 5rem;
@@ -45,10 +59,10 @@
             margin-bottom: -8%;
           }
           .projects-section h2{
-              padding: 3rem 0;
+              padding: 2rem 0;
           }
           .projects-item{
-              padding: 5rem;
+              padding-bottom: 3rem;
           }
           .projects-section .featured-text {
             padding: 2rem;
@@ -76,6 +90,26 @@
             max-width: 100%;
             height: auto;
           }
+          .bg-black {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-black-rgb), var(--bs-bg-opacity)) !important;
+          }
+          .home-prod{
+                width: 300px;
+                height: 230px;
+                display: inline-block;
+                border-radius: 10px;
+                padding: 15px;
+                box-sizing: border-box;
+                transition: transform 0.5s;
+            }
+
+            .home-prod:hover{
+                transform: translateY(-10px);
+            }
+            .browse-btn{
+                margin-bottom: 5%;
+            }
           /*End of Home*/
           body{
               overflow-x: hidden;
