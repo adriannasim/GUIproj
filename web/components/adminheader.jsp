@@ -16,7 +16,7 @@
         <a href="EditProductsMenu.jsp">Manage Products</a>
         <a href="AddAccounts.jsp">Add Accounts</a>
         <a href="ManageAccountsMenu.jsp">Manage Accounts</a>
-        <button onclick="logout()">Logout</button>
+        <button onclick="confirmLogout()">Logout</button>
         <%
         }
         else
@@ -25,7 +25,7 @@
         <h1>Staff Header</h1>
         <a href="AddProducts.jsp">Add Product</a>
         <a href="EditProductsMenu.jsp">Manage Products</a>
-        <button onclick="logout()">Logout</button>
+        <button onclick="confirmLogout()">Logout</button>
         <%   
         }
         %>

@@ -52,6 +52,7 @@ public class CheckOrders extends HttpServlet
             request.setAttribute("packing", packaging);
             request.setAttribute("shipping", shipping);
             request.setAttribute("delivering", delivery);
+            System.out.print("CheckOrders.java Success: GOT RESULT!!");
         }
         catch (Exception e)
         {
