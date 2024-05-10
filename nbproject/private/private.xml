@@ -3,13 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/SuccessPayment.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
-        </group>
-        <group>
             <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
             <file>file:/D:/GUIproj/web/CustPaymentCard.jsp</file>
         </group>
@@ -93,6 +86,13 @@
             <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
             <file>file:/D:/GUIproj/web/Cart.jsp</file>
             <file>file:/D:/GUIproj/src/java/jpaEntity/Cart.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/Home.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
+            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/CustomerProfile.jsp</file>
         </group>
     </open-files>
 </project-private>
