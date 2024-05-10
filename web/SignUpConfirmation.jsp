@@ -5,6 +5,74 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sign Up Confirmation</title>
     <%@ include file="css/bootstrapStyles.jsp" %>
+    
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light gray background color */
+    color: #343a40; /* Dark text color */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 50px; /* Adjust top margin as needed */
+    padding: 20px;
+    border: 2px solid #dee2e6; /* Light border color */
+    border-radius: 10px;
+    background-color: #fff; /* White background color */
+}
+
+.confirmation-box {
+    max-width: 600px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the box horizontally */
+}
+
+.confirmation-box h4 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #007bff; /* Blue title color */
+}
+
+.confirmation-box .dropdown-divider {
+    border-top: 1px solid #dee2e6; /* Light border color */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.confirmation-box p {
+    margin-bottom: 10px;
+}
+
+.confirmation-box p strong {
+    font-weight: bold;
+}
+
+.confirmation-box form {
+    margin-top: 20px;
+}
+
+#so_confirm-btn {
+    margin-right: 10px; /* Add some space between buttons */
+}
+
+#so_edit-btn {
+    margin-top: 10px; /* Add some space between buttons */
+}
+
+.btn {
+    color: #fff;
+    background-color: #007bff; /* Blue button color */
+    border-color: #007bff;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #0056b3; /* Darker blue color on hover */
+    border-color: #0056b3;
+}
+</style>
+    
 </head>
 <body>
     <div class="container mt-5 p-4 border rounded-lg bg-light text-dark confirmation-box">

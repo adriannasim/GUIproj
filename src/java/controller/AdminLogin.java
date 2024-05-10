@@ -37,7 +37,7 @@ public class AdminLogin extends HttpServlet
                     //Login successful
                     session.setAttribute("username", username);
                     session.setAttribute("role", empList.get(i).getEmpRole());
-                    response.sendRedirect("AdminPage.jsp");
+                    response.sendRedirect("Admin.jsp");
                     login = true;
                     break;
                 }
