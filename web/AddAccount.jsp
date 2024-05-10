@@ -11,18 +11,77 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <jsp:include page="components/adminheader.jsp" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script src="js/CheckPassword.js"></script>
         <title>Add Employee Account</title>
 
         <!-- Include commonFiles.tag -->
         <custom:commonFilesAdm />
+        
+        <style>
+    body {
+        background-image: url('img/images/background1.png');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type="radio"] {
+        display: inline; /* Display radio buttons inline */
+        margin-right: 5px;
+    }
+
+    #submit {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background-color: #800080; 
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #submit:hover {
+        background-color: #6a006a;
+    }
+</style>
+
     </head>
     
     <body class="text-center">
-        <%--header--%>
-        <jsp:include page="components/adminheader.jsp" />
-    
+        
         <!--start of content-->
         <h1>Add Employee Account</h1>
         <form action="AddAccount" method="post">

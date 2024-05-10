@@ -24,9 +24,9 @@
         max-width: 600px;
         margin: 0 auto;
         padding: 20px;
-        background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+        background-color: rgba(255, 255, 255, 0.8);
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* slight shadow */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .title {
@@ -35,19 +35,19 @@
 
     .bank-selection {
         margin-top: 20px;
-        overflow: hidden; /* Clear floats */
+        overflow: hidden;
     }
 
     .bank-selection label {
-        width: 50%; /* Two options per row */
-        float: left; /* Float the options to left */
-        box-sizing: border-box; /* Include padding and border in width */
+        width: 50%; 
+        float: left; 
+        box-sizing: border-box;
     }
 
     .bank-selection img {
         vertical-align: middle;
         margin-right: 5px;
-        width: 100px; /* Adjust the width of the images */
+        width: 100px; 
     }
 
     #proceed {
@@ -55,14 +55,14 @@
         margin: 20px auto;
         padding: 10px 20px;
         border: none;
-        background-color: #800080; /* purple color */
+        background-color: #800080;
         color: white;
         border-radius: 5px;
         cursor: pointer;
     }
 
     #proceed:hover {
-        background-color: #6a006a; /* darker purple color on hover */
+        background-color: #6a006a; 
     }
 
 
