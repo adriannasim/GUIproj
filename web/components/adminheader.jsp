@@ -14,9 +14,9 @@
         <h1>Admin Header</h1>
         <a href="AddProducts.jsp">Add Product</a>
         <a href="EditProductsMenu.jsp">Manage Products</a>
-        <a href="#">Check Orders</a>
-        <a href="#">Manage Payments</a>
-        <a href="#">Manage Accounts</a>
+        <a href="AddAccounts.jsp">Add Accounts</a>
+        <a href="ManageAccountsMenu.jsp">Manage Accounts</a>
+        <button onclick="logout()">Logout</button>
         <%
         }
         else
@@ -25,7 +25,7 @@
         <h1>Staff Header</h1>
         <a href="AddProducts.jsp">Add Product</a>
         <a href="EditProductsMenu.jsp">Manage Products</a>
-        <a href="#">Check Orders</a>
+        <button onclick="logout()">Logout</button>
         <%   
         }
         %>

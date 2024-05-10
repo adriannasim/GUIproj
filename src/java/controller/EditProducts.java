@@ -1,6 +1,5 @@
 package controller;
 
-import entity.Product;
 import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,7 +24,6 @@ public class EditProducts extends HttpServlet
         EntityManager em = emf.createEntityManager();
         jpaEntity.Product jpaprod = new jpaEntity.Product();
         entity.Product prod = new entity.Product();
-        int imgCount = 0;
         
         String id = request.getParameter("prodid");
         String name = request.getParameter("prodname");

@@ -3,16 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Custorder.java</file>
-        </group>
-        <group>
-            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/jpaEntity/Custorder.java</file>
-        </group>
-        <group>
             <file>file:/D:/GUIproj/src/java/jpaEntity/Customer.java</file>
             <file>file:/D:/GUIproj/src/java/controller/CheckCurrentPasswordServlet.java</file>
             <file>file:/D:/GUIproj/web/CustAddressBook.jsp</file>
@@ -72,6 +62,11 @@
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
         </group>
+        <group/>
+        <group>
+            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/src/java/controller/EditProducts.java</file>
+            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/web/EditProducts.jsp</file>
+            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/web/js/EditProducts.js</file>
         <group>
             <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
             <file>file:/D:/GUIproj/web/CustPaymentCard.jsp</file>
