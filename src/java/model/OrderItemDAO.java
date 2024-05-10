@@ -12,36 +12,64 @@ public class OrderItemDAO {
 
     private DatabaseConn dbConn;
     private PreparedStatement stmt;
-    private String tableName = "public.custorder";
+    private String tableName = "public.orderItem";
 
     public OrderItemDAO() {
         dbConn = new DatabaseConn();
     }
 
-//  RETRIEVE RECORD BY ORDERID    
-    public ArrayList<OrderItem> getRecord(String orderid) {
-        String queryStr = "SELECT * FROM " + tableName + " WHERE orderid=?";
-        
-        ProductDAO productDAO = new ProductDAO();
-        ArrayList<OrderItem> items = new ArrayList<OrderItem>();
-        Product tempProd;
-
+    public ArrayList<OrderItem> retrieveOrderItem(String orderId) {
+        String queryStr = "SELECT * FROM " + tableName + " WHERE orderId = ?";
+        ArrayList<OrderItem> orderItemList = new ArrayList<>();
         try {
             stmt = dbConn.returnConnection().prepareStatement(queryStr);
+            stmt.setString(1, orderId);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                tempProd = productDAO.getProductById(rs.getString(2));
-                items.add(new OrderItem(tempProd, rs.getInt(3)));
+                ProductDAO prodDAO = new ProductDAO();
+                Product prod = prodDAO.getProductById(rs.getString("prodId"));
+
+                OrderItem orderItem = new OrderItem(
+                        rs.getString("orderId"),
+                        prod,
+                        rs.getInt("itemQty"),
+                        rs.getDouble("prodPrice"));
+
+                orderItemList.add(orderItem);
             }
+
         } catch (SQLException ex) {
-            ex.getMessage();
+            ex.printStackTrace();
         }
 
-        return items;
+        return orderItemList;
     }
-    
-//  INSERTING RECORD
+
+    // RETRIEVE RECORD BY ORDERID
+    // public ArrayList<OrderItem> getRecord(String orderid) {
+    //     String queryStr = "SELECT * FROM " + tableName + " WHERE orderid=?";
+
+    //     ProductDAO productDAO = new ProductDAO();
+    //     ArrayList<OrderItem> items = new ArrayList<OrderItem>();
+    //     Product tempProd;
+
+    //     try {
+    //         stmt = dbConn.returnConnection().prepareStatement(queryStr);
+    //         ResultSet rs = stmt.executeQuery();
+
+    //         while (rs.next()) {
+    //             tempProd = productDAO.getProductById(rs.getString(2));
+    //             items.add(new OrderItem(tempProd, rs.getInt(3)));
+    //         }
+    //     } catch (SQLException ex) {
+    //         ex.getMessage();
+    //     }
+
+    //     return items;
+    // }
+
+    // INSERTING RECORD
     public void insertRecord(String orderid, String prodid, int itemqty) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?)";
 
@@ -57,8 +85,8 @@ public class OrderItemDAO {
             ex.getMessage();
         }
     }
-    
-//  UPDATING RECORD
+
+    // UPDATING RECORD
     public void updateRecord(String orderid, String prodid, int itemqty) {
         String queryStr = "UPDATE " + tableName + " SET itemqty=? WHERE orderid=? AND prodid=?";
 
@@ -72,8 +100,8 @@ public class OrderItemDAO {
             ex.getMessage();
         }
     }
-    
-//  DELETING RECORD
+
+    // DELETING RECORD
     public void deleteRecord(String orderid, String prodid) {
         String queryStr = "DELETE FROM " + tableName + " WHERE orderid=? AND prodid=?";
 
@@ -86,8 +114,8 @@ public class OrderItemDAO {
             ex.getMessage();
         }
     }
-    
-        public void deleteEntireOrderRecord(String orderid) {
+
+    public void deleteEntireOrderRecord(String orderid) {
         String queryStr = "DELETE FROM " + tableName + " WHERE orderid=?";
 
         try {

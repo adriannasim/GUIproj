@@ -21,6 +21,7 @@ public class AdminLogin extends HttpServlet
         EmployeeDAO empdao = new EmployeeDAO();
         ArrayList<Employee> empList;
         HttpSession session = request.getSession();
+        boolean login = false;
         
         //Get user input username and password
         String username = request.getParameter("username").trim();
@@ -36,18 +37,17 @@ public class AdminLogin extends HttpServlet
                     //Login successful
                     session.setAttribute("username", username);
                     session.setAttribute("role", empList.get(i).getEmpRole());
-                    response.sendRedirect("AdminPage.jsp");
-                }
-                else
-                {
-                    //Wrong password or username
-                    request.setAttribute("errMsg", "Invalid username or password.");
-                    request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
+                    response.sendRedirect("Admin.jsp");
+                    login = true;
+                    break;
                 }
             }
-            //No record found
-            request.setAttribute("errMsg", "No record found");
-            request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
+            if (!login)
+            {
+                //Wrong password or username
+                request.setAttribute("errMsg", "Invalid username or password.");
+                request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
+            }
         }
         else if (username.isEmpty())
         {

@@ -71,8 +71,8 @@
     
 </head>
 <body>
-    <div class="cont">
-        <form action="">
+    <div class="container">
+        <form action="OrderCreation" method="post">
             <h1 class="title">Online Banking Payment</h1>
             <div class="bank-selection">
                 <label>

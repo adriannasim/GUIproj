@@ -7,10 +7,9 @@ import java.util.*;
 public class CustOrder {
 
     private String orderId;
-    private String username;
     private Date orderdate;
     private String status;
-    private ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
+    private String username;
     Address shippingAdd;
     private Date packaging;
     private Date shipping;
@@ -18,14 +17,15 @@ public class CustOrder {
     private String name;
     private String contactno;
     private String remark;
+    private ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     public CustOrder() {
 
     }
 
     public CustOrder(String orderId, Date orderdate, String status, String username, Address shippingAdd, 
-            ArrayList<OrderItem> orderItems, Date packaging, Date shipping, Date delivery, String name, 
-            String contactno, String remark) {
+             Date packaging, Date shipping, Date delivery, String name, 
+            String contactno, String remark, ArrayList<OrderItem> orderItems) {
         this.orderId = orderId;
         this.username = username;
         this.orderdate = orderdate;
