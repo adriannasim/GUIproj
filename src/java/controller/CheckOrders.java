@@ -17,39 +17,46 @@ public class CheckOrders extends HttpServlet
         //Initializations
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
         EntityManager em = emf.createEntityManager();
-        List<Custorder> packaging = null;
-        List<Custorder> shipping = null;
-        List<Custorder> delivery = null;
+        List<Custorder> packaging = new ArrayList<>();
+        List<Custorder> shipping = new ArrayList<>();
+        List<Custorder> delivery = new ArrayList<>();
         
         //Get all orders from custorder table
-        TypedQuery<Custorder> querystr = em.createQuery("SELECT order FROM Custorder order", Custorder.class);
-        List<Custorder> orderList = querystr.getResultList();
-            
-        for (int i = 0; i < orderList.size(); i++)
+        try 
         {
-            switch (orderList.get(i).getStatus())
+            TypedQuery<Custorder> querystr = em.createQuery("SELECT order FROM Custorder order", Custorder.class);
+            List<Custorder> orderList = querystr.getResultList();
+
+            for (int i = 0; i < orderList.size(); i++)
             {
-            //If status is "Packaging"
-                case "Packaging":
-                    packaging.add(orderList.get(i));
-                    break;
-            //If status is "Shipping"
-                case "Shipping":
-                    shipping.add(orderList.get(i));
-                    break;
-            //If status is "Delivery"
-                case "Delivery":
-                    delivery.add(orderList.get(i));
-                    break;
-                default:
-                    System.out.print("Order No."+ i + "have no status.");
-                    break;
+                switch (orderList.get(i).getStatus())
+                {
+                //If status is "Packaging"
+                    case "Packaging":
+                        packaging.add(orderList.get(i));
+                        break;
+                //If status is "Shipping"
+                    case "Shipping":
+                        shipping.add(orderList.get(i));
+                        break;
+                //If status is "Delivery"
+                    case "Delivery":
+                        delivery.add(orderList.get(i));
+                        break;
+                    default:
+                        System.out.print("Order No."+ i + "have no status.");
+                        break;
+                }
             }
+            request.setAttribute("all", orderList);
+            request.setAttribute("packing", packaging);
+            request.setAttribute("shipping", shipping);
+            request.setAttribute("delivering", delivery);
         }
-        request.setAttribute("all", orderList);
-        request.setAttribute("packing", packaging);
-        request.setAttribute("shipping", shipping);
-        request.setAttribute("delivering", delivery);
+        catch (Exception e)
+        {
+            System.out.print("CheckOrders.java Error:" + e);
+        }
        
         em.close();
         emf.close();

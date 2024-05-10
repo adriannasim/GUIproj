@@ -222,5 +222,6 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
         // Response redirect to customer profile page
         response.sendRedirect("CustomerProfile.jsp");
+        em.close();
     }
 }

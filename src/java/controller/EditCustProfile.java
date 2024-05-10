@@ -99,6 +99,7 @@ public class EditCustProfile extends HttpServlet {
             utx.commit();
 
             response.sendRedirect("CustomerProfile.jsp");
+            em.close();
 
         } catch (Exception ex) {
             try {

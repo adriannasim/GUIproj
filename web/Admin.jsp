@@ -89,6 +89,7 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                 </tr>
                 <% } else { %>
                 <tr><td>No record found.</td></tr>
+                <% } %>
                 
                 <% if (shipping != null) { %>
                 <tr id="shipping">
@@ -109,6 +110,7 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                 </tr>
                 <% } else { %>
                 <tr><td>No record found.</td></tr>
+                <% } %>
                 
                 <% if (delivery != null) { %>
                 <tr id="delivery">
@@ -129,6 +131,7 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                 </tr>
                 <% } else { %>
                 <tr><td>No record found.</td></tr>
+                <% } %>
             </table>
         </div>
         <!--end of content-->

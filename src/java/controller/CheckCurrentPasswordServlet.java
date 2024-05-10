@@ -52,10 +52,12 @@ public class CheckCurrentPasswordServlet extends HttpServlet {
 
             Customer customer = query.getSingleResult();
             String storedPassword = customer.getUserpwd();
+            em.close();
 
             return Password.checkPassword(password, storedPassword);
         } catch (Exception ex) {
             ex.printStackTrace();
+            em.close();
             return false;
         }
     }
