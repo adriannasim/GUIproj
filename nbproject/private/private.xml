@@ -67,6 +67,13 @@
             <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/src/java/controller/EditProducts.java</file>
             <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/web/EditProducts.jsp</file>
             <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/web/js/EditProducts.js</file>
+        <group>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/web/CustPaymentCard.jsp</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/web/CustPaymentCard.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
-import model.CustomerDAO;
 import jpaEntity.*;
-import controller.Password;
 
 @WebServlet(name = "CheckCurrentPasswordS", urlPatterns = {"/CheckCurrentPassword"})
 public class CheckCurrentPasswordServlet extends HttpServlet {
@@ -29,12 +26,14 @@ public class CheckCurrentPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Initialization
         HttpSession session = request.getSession();
         String username = (String) session.getAttribute("username");
 
         // Get the password parameter from the request
         String password = request.getParameter("password");
 
+        // Checking
         boolean passMatched = checkPasswordMatch(username, password);
 
         // Send response back to the client
@@ -60,5 +59,4 @@ public class CheckCurrentPasswordServlet extends HttpServlet {
             return false;
         }
     }
-
 }

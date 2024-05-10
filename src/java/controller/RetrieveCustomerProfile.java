@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet(name = "RetrieveCustomerProfile", urlPatterns = {"/RetrieveCustomerProfile"})
+@WebServlet(name = "RetrieveCustomerProfile", urlPatterns = { "/RetrieveCustomerProfile" })
 public class RetrieveCustomerProfile extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
@@ -27,7 +27,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
     private UserTransaction utx;
 
     private static final Logger logger = Logger.getLogger(RetrieveCustomerProfile.class.getName());
-    
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -39,7 +39,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
         // Check if the username is present in the session
         if (username == null) {
-            response.sendRedirect("SignIn.jsp"); // Redirect to signin page 
+            response.sendRedirect("SignIn.jsp"); // Redirect to signin page
             return;
         }
 
@@ -64,7 +64,7 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 rollbackEx.printStackTrace();
             }
             ex.printStackTrace();
-            response.sendRedirect("ErrorPage.jsp"); // Redirect to error page 
+            response.sendRedirect("ErrorPage.jsp"); // Redirect to error page
             return;
         }
 
@@ -72,25 +72,26 @@ public class RetrieveCustomerProfile extends HttpServlet {
         // Packaging status
         if (request.getParameter("status") != null && request.getParameter("status").equals("packaging")) {
             try {
-                TypedQuery<Custorder> query = em.createNamedQuery("Custorder.findByUsernameAndStatus", Custorder.class);
+            
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username AND co.status = :status",
+                        Custorder.class);
                 query.setParameter("username", username);
                 query.setParameter("status", "Packaging");
 
-                ArrayList<Custorder> orderList = new ArrayList<>(query.getResultList());
+                List<Custorder> orderList = query.getResultList();
 
-                // For each order, retrieve its associated order items
+                // Rendering Custorder and its associated orderitems with product details
                 for (Custorder order : orderList) {
-                    TypedQuery<Orderitem> orderItemQuery = em.createNamedQuery("Orderitem.findByOrderid", Orderitem.class);
-                    orderItemQuery.setParameter("orderid", order.getOrderid());
-                    List<Orderitem> orderItemList = orderItemQuery.getResultList();
-                    ArrayList<Orderitem> orderitems = new ArrayList<>(orderItemList);
-
-                    order.setOrderitems(orderitems);
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in packaging: " + orderList);
+                logger.info("Retrieved orderList in packaging: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
@@ -104,30 +105,31 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        } 
+        }
+
         // Shipping status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("shipping")) {
             try {
 
-                TypedQuery<Custorder> query = em.createNamedQuery("Custorder.findByUsernameAndStatus", Custorder.class);
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username AND co.status = :status",
+                        Custorder.class);
                 query.setParameter("username", username);
                 query.setParameter("status", "Shipping");
 
-                ArrayList<Custorder> orderList = new ArrayList<>(query.getResultList());
+                List<Custorder> orderList = query.getResultList();
 
-                // For each order, retrieve its associated order items
+                // Rendering Custorder and its associated orderitems with product details
                 for (Custorder order : orderList) {
-                    TypedQuery<Orderitem> orderItemQuery = em.createNamedQuery("Orderitem.findByOrderid", Orderitem.class);
-                    orderItemQuery.setParameter("orderid", order.getOrderid());
-                    List<Orderitem> orderItemList = orderItemQuery.getResultList();
-                    ArrayList<Orderitem> orderitems = new ArrayList<>(orderItemList);
-
-                    order.setOrderitems(orderitems);
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
-                
+
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in shipping: " + orderList);
+                logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
@@ -141,30 +143,31 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        } 
+        }
+
         // Delivery status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("delivery")) {
             try {
 
-                TypedQuery<Custorder> query = em.createNamedQuery("Custorder.findByUsernameAndStatus", Custorder.class);
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username AND co.status = :status",
+                        Custorder.class);
                 query.setParameter("username", username);
                 query.setParameter("status", "Delivery");
 
-                ArrayList<Custorder> orderList = new ArrayList<>(query.getResultList());
+                List<Custorder> orderList = query.getResultList();
 
-                // For each order, retrieve its associated order items
+                // Rendering Custorder and its associated orderitems with product details
                 for (Custorder order : orderList) {
-                    TypedQuery<Orderitem> orderItemQuery = em.createNamedQuery("Orderitem.findByOrderid", Orderitem.class);
-                    orderItemQuery.setParameter("orderid", order.getOrderid());
-                    List<Orderitem> orderItemList = orderItemQuery.getResultList();
-                    ArrayList<Orderitem> orderitems = new ArrayList<>(orderItemList);
-
-                    order.setOrderitems(orderitems);
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in delivery: " + orderList);
+                logger.info("Retrieved orderList in delivery: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
@@ -178,29 +181,30 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        } 
+        }
+
         // All
         else {
             try {
 
-                TypedQuery<Custorder> query = em.createNamedQuery("Custorder.findByUsername", Custorder.class);
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username",
+                        Custorder.class);
                 query.setParameter("username", username);
 
-                ArrayList<Custorder> orderList = new ArrayList<>(query.getResultList());
+                List<Custorder> orderList = query.getResultList();
 
-                // For each order, retrieve its associated order items
+                // Rendering Custorder and its associated orderitems with product details
                 for (Custorder order : orderList) {
-                    TypedQuery<Orderitem> orderItemQuery = em.createNamedQuery("Orderitem.findByOrderid", Orderitem.class);
-                    orderItemQuery.setParameter("orderid", order.getOrderid());
-                    List<Orderitem> orderItemList = orderItemQuery.getResultList();
-                    ArrayList<Orderitem> orderitems = new ArrayList<>(orderItemList);
-
-                    order.setOrderitems(orderitems);
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                
-                logger.info("Retrieved orderList in all: " + orderList);
+                logger.info("Retrieved orderList in all: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {

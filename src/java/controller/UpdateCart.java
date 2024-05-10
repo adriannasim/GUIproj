@@ -45,10 +45,6 @@ public class UpdateCart extends HttpServlet {
 
         // Update the cartItemList in the session after modification (adding or subtracting the qty)
         session.setAttribute("cartItemList", cartItemList);
-
-        //response.setContentType("text/plain");
-        //response.setCharacterEncoding("UTF-8");
-        //response.getWriter().write("Item updated.");
         
         response.sendRedirect("Cart.jsp");
     }

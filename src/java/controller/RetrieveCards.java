@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
-import jpaEntity.Paymentcard;
+import jpaEntity.*;
+import java.util.List;
+import java.util.ArrayList;
 
-
-@WebServlet(name = "RemoveCard", urlPatterns = {"/RemoveCard"})
-public class RemoveCard extends HttpServlet {
+@WebServlet(name = "RetrieveCards", urlPatterns = {"/RetrieveCards"})
+public class RetrieveCards extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
     private EntityManager em;
@@ -31,24 +33,19 @@ public class RemoveCard extends HttpServlet {
         // Initializations
         HttpSession session = request.getSession();
 
-        // Get the card details from user
-        String cardName = request.getParameter("cardName");
-        String cardNumber = request.getParameter("cardNumber");
+        // Retrieve username from session
+        String username = (String) session.getAttribute("username");
 
+        // Retrieve customer's cards
         try {
-            utx.begin();
+            TypedQuery<Paymentcard> query = em.createNamedQuery("Paymentcard.findByUsername", Paymentcard.class);
+            query.setParameter("username", username);
 
-            TypedQuery<Paymentcard> query = em.createNamedQuery("Paymentcard.findByCardnameAndCardnumber", Paymentcard.class);
-            query.setParameter("cardname", cardName);
-            query.setParameter("cardnumber", cardNumber);
+            List<Paymentcard> paymentCardList = query.getResultList();
+            ArrayList<Paymentcard> paymentCardArrayList = new ArrayList<>(paymentCardList);
 
-            Paymentcard paymentcard = query.getSingleResult(); 
-            
-            // Delete the card from DB
-            em.remove(paymentcard);
-            utx.commit();
-
-            response.sendRedirect("EditPaymentCard");
+            // Set request attributes
+            request.setAttribute("paymentCardList", paymentCardArrayList);
 
         } catch (Exception ex) {
             try {
@@ -61,5 +58,10 @@ public class RemoveCard extends HttpServlet {
             ex.printStackTrace();
             response.sendRedirect("ErrorPage.jsp"); // Redirect to error page
         }
+
+        // Forward the request to the JSP with request parameters
+        RequestDispatcher dispatcher = request.getRequestDispatcher("CardPayment.jsp");
+        dispatcher.forward(request, response);
     }
+
 }

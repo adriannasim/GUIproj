@@ -35,6 +35,7 @@ public class EditNewPassword extends HttpServlet {
         String username = (String) session.getAttribute("username");
         String newPassword = request.getParameter("new-password");
 
+        // Update password
         try {
             utx.begin();
 

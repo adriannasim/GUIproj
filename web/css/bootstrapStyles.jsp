@@ -143,6 +143,9 @@
             .card{
                 height: 420px;
             }
+            .main-desc{
+                margin:  20% 0;
+            }
             /*End of Product Page*/
             /*Start of Single Product Page*/
             .single-prod{

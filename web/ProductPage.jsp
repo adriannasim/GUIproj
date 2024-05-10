@@ -51,8 +51,8 @@
                 %>
             
                 <div class="col-3">
-                    <h2><%= sessMainProduct.getProdName()%></h2>
-                    <p><%= sessMainProduct.get30WordsDesc()%></p>
+                    <h2 class="ml-3 align-item-start"><%= sessMainProduct.getProdName()%></h2>
+                    <p class="ml-3 main-desc"><%= sessMainProduct.get30WordsDesc()%></p>
                     <button class="btn btn-info">
                         <a href="ProductDetail.jsp?id=<%= sessMainProduct.getProdId()%>" style="text-decoration: none; color: white">Learn more</a>
                     </button>
