@@ -3,6 +3,7 @@
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--imports--%>
+<jsp:include page="/CheckAdminSession"/>
 
         <!--Start of header-->
         <% 
