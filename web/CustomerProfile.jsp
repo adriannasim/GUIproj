@@ -286,9 +286,9 @@
                                                         <!-- Remove active for progress tracking -->
                                                         <div class="progress-track mt-3" style="margin-left:40px;">
                                                             <ul id="progressbar">
-                                                                <li class="step0 active " id="step1">Packaging</li>
-                                                                <li class="step0 active text-center" id="step2">Shipped</li>
-                                                                <li class="step0 text-right" id="step3">
+                                                                <li class="step0 <%= (custorder.getPackaging()!=null)? "active":""%> " id="step1">Packaging</li>
+                                                                <li class="step0 <%= (custorder.getShipping()!=null)? "active":""%> text-center" id="step2">Shipped</li>
+                                                                <li class="step0 <%= (custorder.getDelivery()!=null)? "active":""%> text-right" id="step3">
                                                                     <span style="position:relative;left:25px;">Delivered</span>
                                                                 </li>
                                                             </ul>
