@@ -69,42 +69,62 @@
             background-repeat: no-repeat;
             background-size: cover;
         }    
+       
 
-        .all-artworks-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Green background color */
-            color: white; /* White text color */
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+        h1 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 36px; 
+            font-weight: bold; 
+            color: #000; 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            margin-top: 20px; 
+        }
+
+      
+        a {
             text-decoration: none;
-            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-        }
+          }
 
-        .all-artworks-button:hover {
-            background-color: #45a049; /* Darker green background color on hover */
-            cursor: pointer; /* Change cursor to pointer on hover */
-        }
+
+        button {
+            padding: 10px 20px; 
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff; 
+            background-color: #800080; 
+            border: none;
+            border-radius: 5px; 
+            cursor: pointer;
+            transition: background-color 0.3s ease; 
+          }
+
+
+        button:hover {
+            background-color: #4b004e; 
+          }
+
         
-        .card{
-            width: 250px;
-            height: 80px;
+        .p-2{
+            width: 200px;
+            height: 230px;
             display: inline-block;
             border-radius: 10px;
-            padding: 15px 20px;
+            padding: 15px 25px;
+            box-sizing: border-box;
             cursor: pointer;
             margin: 10px 15px;
             background-position: center;
             background-size: cover;
             transition: transform 0.5s;
         }
-        
-        .card:hover{
+    
+        .p-2:hover{
             transform: translateY(-10px);
         }
-    </style>
+            
+        </style>
         
     </head>
 
@@ -113,12 +133,13 @@
         <jsp:include page="components/header.jsp" />
 
         <!--start of content-->
-        <h1>Home</h1>
+        <h1>BONG BONG ART GALLERY</h1>
 
         <div id="loadingMessage" style="display: none;">Retrieving cart...</div>
 
         <!-- Link to All Products Page Button -->
         <a href="ProductPage.jsp?all=t"><button>All Artworks</button></a>
+        <br>
 
         <!-- Begin: Latest Artwork Section (This part will display the 4 recently added artworks) -->
         <h2>Latest Artworks</h2>
@@ -131,7 +152,7 @@
             <a
                 href="ProductDetail.jsp?id=<%= product.getProdId()%>" style="text-decoration: none"
                 >
-                <div class="card">
+                <div class="p-2">
                     <div>
                         <img
                             src="<%= request.getContextPath() + product.getProdImg()[0]%>"
