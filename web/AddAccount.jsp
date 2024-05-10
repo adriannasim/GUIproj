@@ -10,6 +10,7 @@
 <jsp:include page="components/header.jsp" />
       
 <!DOCTYPE html>
+
 <html>
     <head>
         <jsp:include page="components/adminheader.jsp" />
@@ -59,7 +60,7 @@
         }
 
         input[type="radio"] {
-            display: inline; /* Display radio buttons inline */
+            display: inline; 
             margin-right: 5px;
         }
 
