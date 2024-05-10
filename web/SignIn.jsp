@@ -9,6 +9,57 @@
         <title>Sign In</title>
         <!-- Include commonFiles.tag -->
         <custom:commonFiles/>
+        
+        <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('img/images/background1.png'); 
+        background-size: cover;
+        background-position: center;
+        color: white; 
+        margin: 0;
+        padding: 0;
+    }
+    
+        .cont {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+        }
+
+        /* Styling the form container */
+        .cont form {
+            border: 2px solid white;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        /* Centering the form fields */
+        .cont form .row {
+            justify-content: center;
+        }
+
+        /* Padding for form items */
+        .si_item-padding {
+            padding: 10px 0;
+        }
+
+        /* Styling the submit button */
+        .si_btn-pd button {
+            width: 100%;
+        }
+
+        /* Styling the links */
+        .si_link {
+            text-align: center;
+        }
+
+</style>
+
+        
     </head>
     <body class="text-center">
         <!--header-->
@@ -82,8 +133,11 @@
                 request.getSession().removeAttribute("signup-success");
             }
         %>
-        <h2 class="si_title">Sign In</h2>
+       
+    <div class="cont">
+        
         <form action="signin" method="post" id="signin-form">
+            <h2 class="si_title">Sign In</h2>
             <div class="container"> 
                 <div class="row justify-content-md-end">
                     <div class="col-2">
@@ -123,6 +177,7 @@
                 </div>
                 </div>
         </form>
+        </div>
 
         <!--footer-->
         <jsp:include page="components/footer.jsp" />

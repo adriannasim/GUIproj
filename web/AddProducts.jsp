@@ -6,7 +6,8 @@
 <%--imports-->%
 
 <%--includes--%>
-      
+<jsp:include page="components/header.jsp" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,6 +17,78 @@
 
         <!-- Include commonFiles.tag -->
         <custom:commonFilesAdm />
+        
+         <style>
+            body {
+                background-image: url('img/images/background1.png');
+                background-size: cover;
+                background-position: center;
+                font-family: Arial, sans-serif;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .cont {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="file"],
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            #add-image,
+            #add-keyword,
+            input[type="submit"] {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                border: none;
+                background-color: #000; 
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            #add-image:hover,
+            #add-keyword:hover {
+                background-color: #000; 
+            }
+
+            input[type="submit"]:hover {
+                background-color: #800080; 
+            }
+
+            #image-col,
+            #keyword-col {
+                margin-bottom: 10px;
+            }
+
+            #images,
+            #keywords {
+                margin-bottom: 20px;
+            }
+</style>
+
+        
     </head>
     
     <body class="text-center">
@@ -23,6 +96,7 @@
         <jsp:include page="components/adminheader.jsp" />
     
         <!--start of content-->
+        <div class="cont">
         <h1>Add Products Page</h1>
         <form action="AddProduct" method="post" enctype="multipart/form-data">
             <label>Product ID:</label>
@@ -51,6 +125,9 @@
             </div>
             <input type="submit" value="Add Product">
         </form>
+        </div>
         <!--end of content-->
     </body>
+    
+    <jsp:include page="components/footer.jsp" />
 </html>

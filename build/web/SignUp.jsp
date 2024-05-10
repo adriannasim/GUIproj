@@ -7,6 +7,7 @@
 <%--tags--%> 
 <%@ include file="css/bootstrapStyles.jsp" %>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<jsp:include page="components/header.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -18,17 +19,69 @@
         <custom:commonFiles />
 
         <style>
-            .signup-error-message {
-                color: red;
-            }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            background-image: url('img/images/background1.png');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .signup-error-message {
+            color: red;
+        }
+
+        .signup-status-message {
+            color: green;
+        }
+
+        /* Custom form styles */
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+       .btn-outline-success {
+        
+        color: #800080; 
+        background-color: transparent;
+    }
+        .so_title {
+            color: #333;
+        }
+
+        .so_backlink {
+            margin-top: 20px;
+        }
+    
         </style>
 
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     </head>
 
     <body class="text-center">
-        <!--header-->
-        <jsp:include page="components/header.jsp" />
+        
 
         <!-- Start of Message Div -->
         <%

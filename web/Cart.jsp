@@ -29,6 +29,91 @@
             .cart-item-error {
                 color: red;
             }
+            
+        body {
+            background-image: url('img/images/background1.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #333; 
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cart item styles */
+        .cart-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .cart-item img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .cart-item .btns {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item .btn {
+            background-color: #800080; /* Purple button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .cart-item .btn:hover {
+            background-color: #6a006a; /* Darker purple on hover */
+        }
+
+        .cart-item .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 5px;
+        }
+
+        .cart-item .subtotal {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .cart-item .cart-item-error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        /* Checkout section styles */
+        .checkout-section {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .checkout-section .btn {
+            background-color: #800080; /* Purple button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .checkout-section .btn:hover {
+            background-color: #6a006a; /* Darker purple on hover */
+        }
+    
         </style>
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
