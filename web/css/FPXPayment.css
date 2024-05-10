@@ -1,94 +1,140 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+/* Importing fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+.wrapper {
+    width: 30%;
+    min-height: 200px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height:100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('img/images/background1.png');
-    height: 100%;background-position: center; 
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 30px;
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    padding-left: 10px;
+    color: #555;
 }
 
-.container form{
-    width: 300px;
-    padding: 50px;
-    background: #fff;
+.wrapper .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+}
+
+.wrapper .form-field {
+/*    padding-left: 10px;
+    margin-bottom: 20px;*/
     border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    font-size: 12pt;
 }
 
-.title {
-    margin-bottom: 20px; 
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
 }
 
-.dropbtn { 
-            background-color: #4CAF50; 
-            color: white; 
-            padding: 16px; 
-            font-size: 16px; 
-            border: none; 
-            cursor: pointer; 
-        } 
-  
-.dropdown { 
-    position: relative; 
-    display: inline-block; 
-} 
-  
-.dropdown-content { 
-    display: none; 
-    position: absolute; 
-    background-color: #fff; 
-    min-width: 700px; 
-    box-shadow: 0px 8px 16px  
-                0px rgba(0, 0, 0, 0.2); 
+.wrapper a:hover {
+    color: #039BE5;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+}
+
+/*.dropbtn {
+    background-color: #FFE3C2;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5%;
+    cursor: pointer;
+}*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 700px;
+    box-shadow: 0px 8px 16px
+        0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     column-count: 3;
-} 
-  
-.dropdown-content a { 
-    color: black; 
-    padding: 8px 12px; 
-    text-decoration: none; 
-    display: block; 
-} 
-  
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
 .dropdown-content a img {
     width: 100px;
     height: auto;
 }
 
-.dropdown-content a:hover { 
-    background-color: #f1f1f1 
-} 
-  
-.dropdown:hover .dropdown-content { 
-    display: block; 
-    } 
-  
-.dropdown:hover .dropbtn { 
-   background-color: #3e8e41; 
-} 
+/*.dropdown-content a:hover {
+    background-color: #f1f1f1
+}*/
 
-#proceed {
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}*/
+
+#btnFPXPayment {
     width: 100%;
-    padding: 12px;
-    background: #8175d3;
+    padding: 6px;
+    background: #87ceeb;
     border: none;
     outline: none;
-    border-radius: 6px;
-    font-size: 17px;
+    border-radius: 10px;
+    font-size: 11pt;
     color: #fff;
-    margin-top: 5px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
-#proceed:hover {
-    background: #6a5acd;
+#btnFPXPayment:hover {
+    background: #4682b4;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+
+.logo img {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
 }

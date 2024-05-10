@@ -60,72 +60,72 @@
 
         <%-- Include commonFiles.tag --%>
         <custom:commonFiles />
-        
+
         <style>
-        
-        body {
-            background-image: url('img/images/background1.png'); 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }    
-       
 
-        h1 {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 36px; 
-            font-weight: bold; 
-            color: #000; 
-            text-align: center; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-            margin-top: 20px; 
-        }
-
-      
-        a {
-            text-decoration: none;
-          }
+            body {
+                background-image: url('img/images/background1.png');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
 
 
-        button {
-            padding: 10px 20px; 
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff; 
-            background-color: #800080; 
-            border: none;
-            border-radius: 5px; 
-            cursor: pointer;
-            transition: background-color 0.3s ease; 
-          }
+            h1 {
+                font-family: "Times New Roman", Times, serif;
+                font-size: 36px;
+                font-weight: bold;
+                color: #000;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-top: 20px;
+            }
 
 
-        button:hover {
-            background-color: #4b004e; 
-          }
+            a {
+                text-decoration: none;
+            }
 
-        
-        .p-2{
-            width: 200px;
-            height: 230px;
-            display: inline-block;
-            border-radius: 10px;
-            padding: 15px 25px;
-            box-sizing: border-box;
-            cursor: pointer;
-            margin: 10px 15px;
-            background-position: center;
-            background-size: cover;
-            transition: transform 0.5s;
-        }
-    
-        .p-2:hover{
-            transform: translateY(-10px);
-        }
-            
+
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #fff;
+                background-color: #800080;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+
+            button:hover {
+                background-color: #4b004e;
+            }
+
+
+            .p-2{
+                width: 200px;
+                height: 230px;
+                display: inline-block;
+                border-radius: 10px;
+                padding: 15px 25px;
+                box-sizing: border-box;
+                cursor: pointer;
+                margin: 10px 15px;
+                background-position: center;
+                background-size: cover;
+                transition: transform 0.5s;
+            }
+
+            .p-2:hover{
+                transform: translateY(-10px);
+            }
+
         </style>
-        
+
     </head>
 
     <body class="text-center">
@@ -134,6 +134,82 @@
 
         <!--start of content-->
         <h1>BONG BONG ART GALLERY</h1>
+        <section>
+            <!-- Carousel wrapper -->
+            <div id="carouselAboutUs" class="carousel slide carousel-fade" data-mdb-ride="carousel" data-mdb-carousel-init
+                 style="position:relative;top:-25px;height:550px;">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button
+                        type="button"
+                        data-mdb-target="#carouselAboutUs"
+                        data-mdb-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                        ></button>
+                    <button
+                        type="button"
+                        data-mdb-target="#carouselAboutUs"
+                        data-mdb-slide-to="1"
+                        aria-label="Slide 2"
+                        ></button>
+                    <button
+                        type="button"
+                        data-mdb-target="#carouselAboutUs"
+                        data-mdb-slide-to="2"
+                        aria-label="Slide 3"
+                        ></button>
+                </div>
+
+                <!-- Inner -->
+                <div class="carousel-inner" style="height:550px;">
+                    <!-- Single item -->
+                    <div class="carousel-item active" style="height:550px;">
+                        <img src="img/images/artgallery2.png" class="d-block w-100" alt="Sunset Over the City"
+                             style="height:550px;" />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Discover Masterpieces</h5>
+                            <p> Let's explore the gallery's collection.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single item -->
+                    <div class="carousel-item" style="height:450px;">
+                        <img src="img/images/artgallery2.png" class="d-block w-100" alt="Canyon at Nigh"
+                             style="height:550px;"/>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>A Brushstroke of History</h5>
+                            <p>Rich history and legacy of the gallery, depicting significant moments or artworks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single item -->
+                    <div class="carousel-item" style="height:550px;">
+                        <img src="img/images/artgallery2.png" class="d-block w-100" alt="Cliff Above a Stormy Sea"
+                             style="height:550px;"/>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Artistry in Motion</h5>
+                            <p>Highlighting the dynamic nature of art, introduces a carousel featuring various artworks that come to life with each slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Inner -->
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselAboutUs" 
+                        data-mdb-slide="prev" style="opacity:0;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselAboutUs" 
+                        data-mdb-slide="next" style="opacity:0;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- Carousel wrapper -->
+        </section>
 
         <div id="loadingMessage" style="display: none;">Retrieving cart...</div>
 
@@ -161,7 +237,7 @@
                             />
                     </div>
                     <div><%= product.getProdName()%></div>
-                    <% String formattedPrice = String.format("%.2f", product.getProdPrice()); %>
+                    <% String formattedPrice = String.format("%.2f", product.getProdPrice());%>
                     <div>RM<%= formattedPrice%></div>
                 </div>
             </a>
