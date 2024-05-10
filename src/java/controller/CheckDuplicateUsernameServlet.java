@@ -32,8 +32,10 @@ public class CheckDuplicateUsernameServlet extends HttpServlet {
         CustomerDAO custDAO = new CustomerDAO();
         Customer cust = custDAO.getRecordByUsername(username);
         if (cust != null){
+            custDAO.closeConnection();
             return true;
         }
+        custDAO.closeConnection();
         return false;
     }
 }

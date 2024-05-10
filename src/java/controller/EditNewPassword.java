@@ -49,6 +49,7 @@ public class EditNewPassword extends HttpServlet {
             utx.commit();
 
             request.getRequestDispatcher("Logout").forward(request, response);
+            em.close();
 
         } catch (Exception ex) {
             try {

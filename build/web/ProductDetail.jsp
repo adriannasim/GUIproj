@@ -31,17 +31,6 @@
         <!-- Include commonFiles.tag -->
         <custom:commonFiles/>
         
-        <style>
-            
-            body {
-            background-image: url('img/images/background1.png'); 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }    
-        
-           </style>
-        
         
     </head>
 
@@ -81,7 +70,7 @@
                     <div>
                         <div class="btns detail-element">
                             <button class="btn prod-btn" type="button" onclick="decrementValue('itemQty', 1,<%= product.getProdPrice()%>)">
-                                -
+                                <b>-</b>
                             </button>
                             <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
                             <input
@@ -95,7 +84,7 @@
                                 readonly
                                 />
                             <button class="btn prod-btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>,<%= product.getProdPrice()%>)">
-                                +
+                                <b>+</b>
                             </button>
                         </div>
                                 <div id="msg" class="message mb-3"></div>

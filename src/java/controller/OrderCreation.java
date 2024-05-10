@@ -291,6 +291,7 @@ public class OrderCreation extends HttpServlet {
             // Redirect to an error page
             response.sendRedirect("ErrorPage.jsp");
         }
+        em.close();
     }
 
     public static String generateRandomID() {

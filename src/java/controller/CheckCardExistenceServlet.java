@@ -44,5 +44,6 @@ public class CheckCardExistenceServlet extends HttpServlet {
         } else {
             response.getWriter().write(""); 
         }
+        em.close();
     }
 }

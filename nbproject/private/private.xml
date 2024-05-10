@@ -3,43 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/src/java/controller/CheckOrders.java</file>
-            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/src/java/controller/RetrieveProductsAdm.java</file>
-            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/src/java/jpaEntity/Custorder.java</file>
-            <file>file:/C:/Users/adria/Documents/GitHub/GUI-Practical/NetBeansProject/GUIproj/web/js/FilterOrders.js</file>
-        </group>
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/FPXPayment.jsp</file>
-=======
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/SuccessPayment.jsp</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
             <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/SuccessPayment.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/FPXPayment.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/template.jsp</file>
->>>>>>> 7ddce24f12fef75d8560bc56567b6a3fb6ee4c0f
-        </group>
-        <group>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/SuccessPayment.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/temp/CustProfileTemp.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/FPXPayment.jsp</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/profilestyles.css</file>
-            <file>file:/C:/Users/asusvivo/Documents/GitHub/GUIproj/web/css/FPXPayment.css</file>
-=======
-            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/index.html</file>
-            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/components/footer.jsp</file>
-            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/Home.jsp</file>
-            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/FPXPayment.jsp</file>
->>>>>>> Stashed changes
         </group>
         <group>
             <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
@@ -94,23 +62,37 @@
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/CustPaymentCard.jsp</file>
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/FPXPayment.jsp</file>
         </group>
-        <group>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/web/Cart.jsp</file>
-        </group>
-        <group>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/web/Cart.jsp</file>
-        </group>
+        <group/>
+        <group/>
         <group>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/D:/GUIproj/web/Admin.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/AdminLogin.java</file>
+            <file>file:/D:/GUIproj/src/java/model/OrderItemDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/EmployeeDAO.java</file>
             <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Cart.java</file>
         </group>
         <group>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/PaymentcardPK.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/D:/GUIproj/web/Admin.jsp</file>
+            <file>file:/D:/GUIproj/src/java/model/OrderItemDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/EmployeeDAO.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustomerDAO.java</file>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Employee.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/AdminLogin.java</file>
+            <file>file:/D:/GUIproj/src/java/model/CustOrderDAO.java</file>
             <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Cart.java</file>
         </group>
     </open-files>
 </project-private>

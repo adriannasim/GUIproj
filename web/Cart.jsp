@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--tags-->
-<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %> <%--imports--%> 
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %> 
+
+<%--imports--%> 
 <%@page import="entity.Product,entity.CartItem,java.util.ArrayList, model.CartItemDAO,java.text.DecimalFormat"%>
 
 <%-- Begin: Retrieve Product List From Session (cartItemList) --%> 
@@ -29,91 +31,77 @@
             .cart-item-error {
                 color: red;
             }
-            
-        body {
-            background-image: url('img/images/background1.png');
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            color: #333; 
-        }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+            /* Cart item styles */
+            .cart-item {
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: #fff;
+            }
 
-        /* Cart item styles */
-        .cart-item {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #fff;
-        }
+            .cart-item img {
+                max-width: 100px;
+                height: auto;
+                margin-right: 10px;
+            }
 
-        .cart-item img {
-            max-width: 100px;
-            height: auto;
-            margin-right: 10px;
-        }
+            .cart-item .btns {
+                display: flex;
+                align-items: center;
+            }
 
-        .cart-item .btns {
-            display: flex;
-            align-items: center;
-        }
+            .cart-item .btn {
+                background-color: #800080; /* Purple button */
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 5px 10px;
+                margin: 0 5px;
+                cursor: pointer;
+            }
 
-        .cart-item .btn {
-            background-color: #800080; /* Purple button */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
+            .cart-item .btn:hover {
+                background-color: #6a006a; /* Darker purple on hover */
+            }
 
-        .cart-item .btn:hover {
-            background-color: #6a006a; /* Darker purple on hover */
-        }
+            .cart-item .quantity-input {
+                width: 50px;
+                text-align: center;
+                margin: 0 5px;
+            }
 
-        .cart-item .quantity-input {
-            width: 50px;
-            text-align: center;
-            margin: 0 5px;
-        }
+            .cart-item .subtotal {
+                font-weight: bold;
+                margin-top: 10px;
+            }
 
-        .cart-item .subtotal {
-            font-weight: bold;
-            margin-top: 10px;
-        }
+            .cart-item .cart-item-error {
+                color: red;
+                margin-top: 5px;
+            }
 
-        .cart-item .cart-item-error {
-            color: red;
-            margin-top: 5px;
-        }
+            /* Checkout section styles */
+            .checkout-section {
+                border-top: 1px solid #ccc;
+                padding-top: 20px;
+                margin-top: 20px;
+            }
 
-        /* Checkout section styles */
-        .checkout-section {
-            border-top: 1px solid #ccc;
-            padding-top: 20px;
-            margin-top: 20px;
-        }
+            .checkout-section .btn {
+                background-color: #800080; /* Purple button */
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
 
-        .checkout-section .btn {
-            background-color: #800080; /* Purple button */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+            .checkout-section .btn:hover {
+                background-color: #6a006a; /* Darker purple on hover */
+            }
 
-        .checkout-section .btn:hover {
-            background-color: #6a006a; /* Darker purple on hover */
-        }
-    
         </style>
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
@@ -126,96 +114,113 @@
         <!--start of content-->
         <div id="message-box"></div>
 
-        <% if (cartItemList.isEmpty()) { %>
-        <div> Your cart is empty. </div>
-        <% }
-        %>
-
+        <h3 class="cart_title">YOUR CART</h3>
+       
         <form action="Payment" method="post" onsubmit="return validateForm()">
+
             <div id="cartContent">
-                <!-- Display cart items -->
-                <% for (CartItem cartItem : cartItemList) {%>
-                <div class="d-flex flex-row align-items-center w-100 justify-content-between p-5" id="cartItem<%= cartItem.getProd().getProdId()%>">
-                    <!-- Display cart item details -->
-                    <img src="<%= request.getContextPath() + cartItem.getProd().getProdImg()[0]%>" height="200px" width="auto" />
-                    <div><%= cartItem.getProd().getProdId()%>&nbsp; </div>
-                    <div><%= cartItem.getProd().getProdName()%>&nbsp;</div>
-                    <div><% String formattedPrice = String.format("%.2f", cartItem.getProd().getProdPrice());%>
-                        RM <%=formattedPrice%> &nbsp; </div>
-
-                    <!-- Buttons for increment, decrement, and delete -->
-                    <div class="btns">
-                        Qty:
-                        <button class="btn" type="button" onclick="decrementValueAndUpdate('<%= cartItem.getProd().getProdId()%>', 1, '<%= cartItem.getProd().getProdId()%>',<%=cartItem.getProd().getProdPrice()%>)">
-                            -
-                        </button>
-                        <input
-                            min="<%= cartItem.getProd().getQtyAvailable() <= 0 ? '0' : '1'%>"
-                            max="<%= cartItem.getProd().getQtyAvailable()%>"
-                            value="<%= cartItem.getItemQty()%>"
-                            name="qty"
-                            type="number"
-                            class="quantity-input"
-                            id="qty<%=cartItem.getProd().getProdId()%>"
-                            data-price="<%=cartItem.getProd().getProdPrice()%>"
-                            readonly
-                            />
-                        <button class="btn" type="button" onclick="incrementValueAndUpdate('<%= cartItem.getProd().getProdId()%>', <%= cartItem.getProd().getQtyAvailable()%>, '<%= cartItem.getProd().getProdId()%>',<%=cartItem.getProd().getProdPrice()%>)">
-                            +
-                        </button>
+                <section class="h-100 h-custom" style="background-color: #eee;">
+                      <% if (cartItemList.isEmpty()) { %>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center justify-content-center">
+                                  
+                                    <h2>Your cart is empty. </h2>
+                                   
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                     <% } %>
 
-                    <button type="button" onclick="deleteCartItem('<%= cartItem.getProd().getProdId()%>')">Delete</button
-                    <div id="amount<%=cartItem.getProd().getProdId()%>" class="subtotal">
-                        <% String formattedAmount = decimalFormat.format(cartItem.getProd().getProdPrice() * cartItem.getItemQty());%>
-                        Amount: RM <%=formattedAmount%>
+                    <!-- Display cart items -->
+
+                    <% for (CartItem cartItem : cartItemList) {%>
+                    <div class="d-flex flex-row align-items-center w-100 justify-content-between p-5" id="cartItem<%= cartItem.getProd().getProdId()%>">
+                        <!-- Display cart item details -->
+                        <img src="<%= request.getContextPath() + cartItem.getProd().getProdImg()[0]%>" height="200px" width="auto" />
+                        <div><%= cartItem.getProd().getProdId()%>&nbsp; </div>
+                        <div><%= cartItem.getProd().getProdName()%>&nbsp;</div>
+                        <div><% String formattedPrice = String.format("%.2f", cartItem.getProd().getProdPrice());%>
+                            RM <%=formattedPrice%> &nbsp; </div>
+
+                        <!-- Buttons for increment, decrement, and delete -->
+                        <div class="btns">
+                            Qty:
+                            <button class="btn" type="button" onclick="decrementValueAndUpdate('<%= cartItem.getProd().getProdId()%>', 1, '<%= cartItem.getProd().getProdId()%>',<%=cartItem.getProd().getProdPrice()%>)">
+                                <b> - </b>
+                            </button>
+                            <input
+                                min="<%= cartItem.getProd().getQtyAvailable() <= 0 ? '0' : '1'%>"
+                                max="<%= cartItem.getProd().getQtyAvailable()%>"
+                                value="<%= cartItem.getItemQty()%>"
+                                name="qty"
+                                type="number"
+                                class="quantity-input"
+                                id="qty<%=cartItem.getProd().getProdId()%>"
+                                data-price="<%=cartItem.getProd().getProdPrice()%>"
+                                readonly
+                                />
+                            <button class="btn" type="button" onclick="incrementValueAndUpdate('<%= cartItem.getProd().getProdId()%>', <%= cartItem.getProd().getQtyAvailable()%>, '<%= cartItem.getProd().getProdId()%>',<%=cartItem.getProd().getProdPrice()%>)">
+                                <b> + </b>
+                            </button>
+                        </div>
+
+                            <button type="button" class="btn btn-dark" onclick="deleteCartItem('<%= cartItem.getProd().getProdId()%>')">Delete</button
+                        <div id="amount<%=cartItem.getProd().getProdId()%>" class="subtotal">
+                            <% String formattedAmount = decimalFormat.format(cartItem.getProd().getProdPrice() * cartItem.getItemQty());%>
+                            Amount: RM <%=formattedAmount%>
+                        </div>
+                        <div class="cart-item-error">
+                            <% if (cartItem.getProd().getQtyAvailable() < cartItem.getItemQty()) {%>
+                            <span>Sorry, selected quantity exceeds available stock (<%= cartItem.getProd().getQtyAvailable()%> items).</span>
+                            <% } %>
+                        </div>
+
                     </div>
-                    <div class="cart-item-error">
-                        <% if (cartItem.getProd().getQtyAvailable() < cartItem.getItemQty()) {%>
-                        <span>Sorry, selected quantity exceeds available stock (<%= cartItem.getProd().getQtyAvailable()%> items).</span>
-                        <% } %>
-                    </div>
-
-                </div>
-                <%
-                    totalQty += cartItem.getItemQty();
-                    subtotal += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
-                %>
-                <% }%>
-
-                <%
-                    if (!cartItemList.isEmpty()) {
-                %>
-                <div class="text-right p-5"> 
                     <%
-                        String formattedSubtotal = decimalFormat.format(subtotal);
+                        totalQty += cartItem.getItemQty();
+                        subtotal += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
                     %>
-                    <b>Total item(s) : <%=totalQty%> pcs</b>&nbsp; &nbsp;
-                    <b>Subtotal : RM <%=formattedSubtotal%></b><br/>
-                    <hr/>
+                    <% }%>
+
                     <%
-                        if (subtotal >= 1000) {
-                            shippingFee = 0.0;
-                        } else {
-                            shippingFee = 15.00;
-                        }
-
-                        salesTax = subtotal * 0.10;
-                        total = subtotal + shippingFee + salesTax;
-
-                        String formattedShippingFee = decimalFormat.format(shippingFee);
-                        String formattedSalesTax = decimalFormat.format(salesTax);
-                        String formattedTotal = decimalFormat.format(total);
+                        if (!cartItemList.isEmpty()) {
                     %>
-                    <small> Shipping Fee : RM <%=formattedShippingFee%> <br/><span style="font-size: 10px;">(Free shipping if purchase over RM1,000)</span></small><br/>
-                    <small> Sales Tax (10%) : RM <%=formattedSalesTax%> <br/></small>
-                    <b>Total: <%=formattedTotal%></b><br/>
-                    <hr/>
-                    <button class="w-25" type="submit">Proceed to Checkout</button>
-                </div>
-                <% }%>
+                    <div class="text-right p-5"> 
+                        <%
+                            String formattedSubtotal = decimalFormat.format(subtotal);
+                        %>
+                        <b>Total item(s) : <%=totalQty%> pcs</b>&nbsp; &nbsp;
+                        <b>Subtotal : RM <%=formattedSubtotal%></b><br/>
+                        <hr/>
+                        <%
+                            if (subtotal >= 1000) {
+                                shippingFee = 0.0;
+                            } else {
+                                shippingFee = 15.00;
+                            }
+
+                            salesTax = subtotal * 0.10;
+                            total = subtotal + shippingFee + salesTax;
+
+                            String formattedShippingFee = decimalFormat.format(shippingFee);
+                            String formattedSalesTax = decimalFormat.format(salesTax);
+                            String formattedTotal = decimalFormat.format(total);
+                        %>
+                        <small> Shipping Fee : RM <%=formattedShippingFee%> <br/><span style="font-size: 10px;">(Free shipping if purchase over RM1,000)</span></small><br/>
+                        <small> Sales Tax (10%) : RM <%=formattedSalesTax%> <br/></small>
+                        <b>Total: <%=formattedTotal%></b><br/>
+                        <hr/>
+                        <button class="w-25" type="submit">Proceed to Checkout</button>
+                </section>
+            </div>
+            <% }%>
+
         </form>
         <!--end of content-->
+
 
         <!--footer-->
         <jsp:include page="components/footer.jsp" />

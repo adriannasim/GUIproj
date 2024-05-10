@@ -87,5 +87,7 @@ public class AddToCart extends HttpServlet {
 
         // Update the cartItemList in the session after modification (adding)
         session.setAttribute("cartItemList", cartItemList);
+        
+        cartDAO.closeConnection();
     }
 }
