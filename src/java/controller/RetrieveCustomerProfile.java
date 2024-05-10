@@ -16,10 +16,8 @@ import jpaEntity.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import entity.CustOrder;
-import model.*;
 
-@WebServlet(name = "RetrieveCustomerProfile", urlPatterns = {"/RetrieveCustomerProfile"})
+@WebServlet(name = "RetrieveCustomerProfile", urlPatterns = { "/RetrieveCustomerProfile" })
 public class RetrieveCustomerProfile extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
@@ -73,83 +71,140 @@ public class RetrieveCustomerProfile extends HttpServlet {
         // Retrieve customer orders details
         // Packaging status
         if (request.getParameter("status") != null && request.getParameter("status").equals("packaging")) {
-
-            // Initialization
-            OrderItemDAO orderItemDAO = new OrderItemDAO();
-            CustOrderDAO custOrderDAO = new CustOrderDAO();
-
             try {
-                ArrayList<CustOrder> orderList = custOrderDAO.getCustOrderByUsernameAndStatus(username, "Packaging");
-                for (CustOrder order : orderList) {
-                    order.setOrderItems(orderItemDAO.retrieveOrderItem(order.getOrderId()));
+            
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username AND co.status = :status",
+                        Custorder.class);
+                query.setParameter("username", username);
+                query.setParameter("status", "Packaging");
+
+                List<Custorder> orderList = query.getResultList();
+
+                // Rendering Custorder and its associated orderitems with product details
+                for (Custorder order : orderList) {
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in packaging: "
-                        + session.getAttribute("orderList"));
+                logger.info("Retrieved orderList in packaging: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
-
+                try {
+                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                        utx.rollback();
+                    }
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
                 ex.printStackTrace();
 
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        } // Shipping status
+        }
+
+        // Shipping status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("shipping")) {
-            // Initialization
-            OrderItemDAO orderItemDAO = new OrderItemDAO();
-            CustOrderDAO custOrderDAO = new CustOrderDAO();
-
             try {
-                ArrayList<CustOrder> orderList = custOrderDAO.getCustOrderByUsernameAndStatus(username, "Shipping");
-                for (CustOrder order : orderList) {
-                    order.setOrderItems(orderItemDAO.retrieveOrderItem(order.getOrderId()));
+
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username AND co.status = :status",
+                        Custorder.class);
+                query.setParameter("username", username);
+                query.setParameter("status", "Shipping");
+
+                List<Custorder> orderList = query.getResultList();
+
+                // Rendering Custorder and its associated orderitems with product details
+                for (Custorder order : orderList) {
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in shipping: "
-                        + session.getAttribute("orderList"));
+                logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
-
+                try {
+                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                        utx.rollback();
+                    }
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
                 ex.printStackTrace();
 
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        } // Delivery status
+        }
+
+        // Delivery status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("delivery")) {
-            // Initialization
-            OrderItemDAO orderItemDAO = new OrderItemDAO();
-            CustOrderDAO custOrderDAO = new CustOrderDAO();
-
             try {
-                ArrayList<CustOrder> orderList = custOrderDAO.getCustOrderByUsernameAndStatus(username, "Delivery");
-                for (CustOrder order : orderList) {
-                    order.setOrderItems(orderItemDAO.retrieveOrderItem(order.getOrderId()));
+
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username AND co.status = :status",
+                        Custorder.class);
+                query.setParameter("username", username);
+                query.setParameter("status", "Delivery");
+
+                List<Custorder> orderList = query.getResultList();
+
+                // Rendering Custorder and its associated orderitems with product details
+                for (Custorder order : orderList) {
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in packaging: "
-                        + session.getAttribute("orderList"));
+                logger.info("Retrieved orderList in delivery: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
-
+                try {
+                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                        utx.rollback();
+                    }
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
                 ex.printStackTrace();
 
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        } // All
-        else {
-            // Initialization
-            OrderItemDAO orderItemDAO = new OrderItemDAO();
-            CustOrderDAO custOrderDAO = new CustOrderDAO();
+        }
 
+        // All
+        else {
             try {
-                ArrayList<CustOrder> orderList = custOrderDAO.getCustOrderByUsername(username);
-                for (CustOrder order : orderList) {
-                    order.setOrderItems(orderItemDAO.retrieveOrderItem(order.getOrderId()));
+
+                TypedQuery<Custorder> query = em.createQuery(
+                        "SELECT DISTINCT co FROM Custorder co " +
+                                "JOIN FETCH co.orderitems oi " +
+                                "JOIN FETCH oi.product " +
+                                "WHERE co.username = :username",
+                        Custorder.class);
+                query.setParameter("username", username);
+
+                List<Custorder> orderList = query.getResultList();
+
+                // Rendering Custorder and its associated orderitems with product details
+                for (Custorder order : orderList) {
+                    // Render Orderitem details
+                    List<Orderitem> orderItems = order.getOrderitems();
                 }
 
                 session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in all: "
-                        + session.getAttribute("orderList"));
+                logger.info("Retrieved orderList in all: " + session.getAttribute("orderList"));
 
             } catch (Exception ex) {
                 try {
