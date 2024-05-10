@@ -125,9 +125,9 @@
 
         <!--start of content-->
         <div id="message-box"></div>
-
+        <h3 class="cart_title">YOUR CART</h3>
         <% if (cartItemList.isEmpty()) { %>
-        <div> Your cart is empty. </div>
+        <div class="cart-spacing"> Your cart is empty. </div>
         <% }
         %>
 

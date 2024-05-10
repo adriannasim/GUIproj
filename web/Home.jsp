@@ -5,7 +5,7 @@
 
 <%-- imports --%>
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
-
+<%@ include file="css/bootstrapStyles.jsp" %>
 <%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
 
@@ -62,15 +62,6 @@
         <custom:commonFiles />
         
         <style>
-        
-        body {
-            background-image: url('img/images/background1.png'); 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }    
-       
-
         h1 {
             font-family: "Times New Roman", Times, serif;
             font-size: 36px; 
@@ -133,16 +124,67 @@
         <jsp:include page="components/header.jsp" />
 
         <!--start of content-->
-        <h1>BONG BONG ART GALLERY</h1>
-
+        <div class="banner">
+            <img src="img/home/banner.png" width="100%" height="350px" alt="Banner"/>
+        </div>
         <div id="loadingMessage" style="display: none;">Retrieving cart...</div>
-
+       
+        <!-- Projects-->
+        <section class="projects-section bg-light" id="projects">
+            <div class="container px-4 px-lg-5">
+                <!-- Featured Project Row-->
+                <h2 class="text-dark mb-4">About Us</h2>
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="img/home/background1.png" alt="..." /></div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4 class="text-dark">Shoreline</h4>
+                            <p class="text-dark-50 mb-0"> We offer an exquisite selection of artwork for sale, curated to inspire and enrich your living spaces. 
+                                Whether you're seeking a statement piece for your home or a unique gift for a loved one, discover the perfect artwork to complement your style and elevate your surroundings. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="text-dark mb-4">Our Masterpiece</h2>
+                <!-- Project One Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid" src="img/prodImg/Portrait-Paint-1.jpg" alt="..." /></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-dark">Picturesque Sceneries</h4>
+                                    <p class="mb-0 text-dark-50">Exploration into enigmatic depths of mother nature.</p>
+                                    <a href="ProductDetail.jsp?id=P0001"><button class="btn btn-info mt-4">Browse</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Two Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center projects-item">
+                    <div class="col-lg-6"><img class="img-fluid" src="img/prodImg/Landscape-Paint-1.jpeg" alt="..." /></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-dark">Portraits</h4>
+                                    <p class="mb-0 text-dark-50">A beacon of clarity.</p>
+                                    <a href="ProductDetail.jsp?id=P0001"><button class="btn btn-info mt-4">Browse</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <!--end of content-->
         <!-- Link to All Products Page Button -->
-        <a href="ProductPage.jsp?all=t"><button>All Artworks</button></a>
+        
         <br>
 
         <!-- Begin: Latest Artwork Section (This part will display the 4 recently added artworks) -->
-        <h2>Latest Artworks</h2>
+        <h2 class="text-dark mb-4">Latest Artwork</h2>
         <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
             <%
                 Product product = null;
@@ -167,6 +209,8 @@
             </a>
             <% }%>
         </div>
+        <a href="ProductPage.jsp?all=t"><button class="btn btn-dark mt-4">All Artworks</button></a>
+        </section>
         <!--end of content-->
 
         <%-- footer --%>

@@ -28,6 +28,55 @@
         crossorigin="anonymous"
       ></script>
       <style>
+          
+          /*Start of Home*/
+          .banner{
+              margin-top: -17px;
+          }
+          .about-section {
+            padding-top: 5rem;
+          }
+          .about-section p {
+            margin-bottom: 5rem;
+          }
+          .projects-section {
+            padding-top: 2rem; 
+            padding-bottom: 5rem;
+            margin-bottom: -8%;
+          }
+          .projects-section h2{
+              padding: 3rem 0;
+          }
+          .projects-item{
+              padding: 5rem;
+          }
+          .projects-section .featured-text {
+            padding: 2rem;
+          }
+          @media (min-width: 992px) {
+            .projects-section .featured-text {
+              padding: 0 0 0 2rem;
+              border-left: 0.5rem solid #64a19d;
+            }
+          }
+          .projects-section .project-text {
+            padding: 3rem;
+            text-align: center !important;
+            font-size: 90%;
+          }
+          @media (min-width: 992px) {
+            .projects-section .project-text {
+              padding: 5rem;
+            }
+          }
+          #home-view{
+              padding: 10px;
+          }
+          .img-fluid {
+            max-width: 100%;
+            height: auto;
+          }
+          /*End of Home*/
           body{
               overflow-x: hidden;
           }
@@ -185,6 +234,16 @@
                 height: 250px;
             }
             /*End of Single Product Page*/
+            /*Start of Cart*/
+            .cart-title{
+                margin: 30px 0;
+                font-weight: bold;
+            }
+            .cart-spacing{
+                margin: 13% 0;
+            }
+            /*End of Cart*/
+
         </style>
     </head>
     <body>
