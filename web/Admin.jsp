@@ -65,7 +65,7 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     <td><%= all.get(i).getStatus() %></td>
                     <td><%= all.get(i).getUsername() %></td>
                     <td><%= all.get(i).getContactno() %></td>
-                    <td><Button type="button" onclick="UpdateStatus(<%= all.get(i).getOrderid() %>)">Update</Button></td>
+                    <td><Button type="button" onclick="updateStatus(<%= all.get(i).getOrderid() %>)">Update</Button></td>
                     <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= all.get(i).getOrderid() %>;">View</Button></td>
                 </tr>
                 <%

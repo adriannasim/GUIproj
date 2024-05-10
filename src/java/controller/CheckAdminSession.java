@@ -11,16 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 public class CheckAdminSession extends HttpServlet
 {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
+    }
+    
+    private void checkSession(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         String username = (String) request.getSession().getAttribute("username");
         String role = (String) request.getSession().getAttribute("role");
+        
+        System.out.print("Session:" + role + ", " + username);
         
         //Check if user logged in through the login page to prevent unauthorized access through changing the url
         if (username == null)
         {
             //Redirect to login page if not authenticated
             response.sendRedirect("AdminLogin.jsp");
+            System.out.print("Session: gonna redirect");
             return;
         }
         
