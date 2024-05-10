@@ -188,61 +188,57 @@ public class OrderCreation extends HttpServlet {
 
             // If use card, then save card into paymentcard DB if needed
             if (paymentMethod.equals("card")) {
-                String holderName = request.getParameter("name");
-                String cardNumber = request.getParameter("cardnumber");
-                String expirationDate = request.getParameter("expirationdate");
-                String cvv = request.getParameter("securitycode");
+                String needAdd = request.getParameter("newly-added-card");
 
-                try {
-                    TypedQuery<Paymentcard> query = em.createNamedQuery("Paymentcard.findByCardnameAndCardnumber", Paymentcard.class);
-                    query.setParameter("cardname", holderName);
-                    query.setParameter("cardnumber", cardNumber);
+                if (needAdd != null) {
+                    if (needAdd.equals("true")) {
+                        String holderName = request.getParameter("name");
+                        String cardNumber = request.getParameter("cardnumber");
+                        String expirationDate = request.getParameter("expirationdate");
+                        String cvv = request.getParameter("securitycode");
 
-                    Paymentcard card = query.getSingleResult();
-
-                } catch (NoResultException e) {
-
-                    String[] expirationDateParts = null;
-                    int month = 0;
-                    int year = 0;
-                    if (expirationDate != null && expirationDate.contains("/")) {
-                        expirationDateParts = splitExp(expirationDate);
-                    }
-
-                    if (expirationDateParts != null && expirationDateParts.length >= 2) {
-                        month = Integer.parseInt(expirationDateParts[0]);
-                        year = Integer.parseInt(expirationDateParts[1]);
-                    }
-
-                    PaymentcardPK pymcardPK = new PaymentcardPK();
-                    pymcardPK.setCardname(holderName);
-                    pymcardPK.setCardnumber(cardNumber);
-
-                    Paymentcard pymcard = new Paymentcard();
-                    pymcard.setPaymentcardPK(pymcardPK);
-                    pymcard.setDatemonth(month);
-                    pymcard.setDateyear(year);
-                    pymcard.setCvv(cvv);
-                    pymcard.setUsername(username);
-
-                    try {
-                        utx.begin();
-                        em.persist(pymcard);
-                        utx.commit();
-
-                    } catch (Exception ex) {
-                        // Rollback transaction if an exception occurs
-                        try {
-                            if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
-                                utx.rollback();
-                            }
-                        } catch (Exception rollbackEx) {
-                            rollbackEx.printStackTrace();
+                        String[] expirationDateParts = null;
+                        int month = 0;
+                        int year = 0;
+                        if (expirationDate != null && expirationDate.contains("/")) {
+                            expirationDateParts = splitExp(expirationDate);
                         }
-                        ex.printStackTrace();
+
+                        if (expirationDateParts != null && expirationDateParts.length >= 2) {
+                            month = Integer.parseInt(expirationDateParts[0]);
+                            year = Integer.parseInt(expirationDateParts[1]);
+                        }
+
+                        PaymentcardPK pymcardPK = new PaymentcardPK();
+                        pymcardPK.setCardname(holderName);
+                        pymcardPK.setCardnumber(cardNumber);
+
+                        Paymentcard pymcard = new Paymentcard();
+                        pymcard.setPaymentcardPK(pymcardPK);
+                        pymcard.setDatemonth(month);
+                        pymcard.setDateyear(year);
+                        pymcard.setCvv(cvv);
+                        pymcard.setUsername(username);
+
+                        try {
+                            utx.begin();
+                            em.persist(pymcard);
+                            utx.commit();
+
+                        } catch (Exception ex) {
+                            // Rollback transaction if an exception occurs
+                            try {
+                                if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                                    utx.rollback();
+                                }
+                            } catch (Exception rollbackEx) {
+                                rollbackEx.printStackTrace();
+                            }
+                            ex.printStackTrace();
+
+                        }
 
                     }
-
                 }
             }
 

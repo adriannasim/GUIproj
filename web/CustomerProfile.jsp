@@ -14,10 +14,12 @@
     if (session.getAttribute("customer") != null) {
         customer = (Customer) session.getAttribute("customer");
     }
-    ArrayList<Custorder> orderList = new ArrayList<Custorder>();
-    if (session.getAttribute("orderList") != null) {
-        orderList = (ArrayList<Custorder>) session.getAttribute("orderList");
-    }
+    List<Custorder> orderList = new ArrayList<Custorder>();
+        if (session.getAttribute("orderList") != null) {
+            // Ensure session attribute is retrieved as List<Custorder>
+            orderList = (List<Custorder>) session.getAttribute("orderList");
+        }
+        
 %>
 
 <!DOCTYPE html>

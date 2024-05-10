@@ -119,6 +119,7 @@
 
                     <form action="OrderCreation" method="post" id="new-card-form">
 
+                        <input type="hidden" name="newly-added-card" id="newly-added-card" value="true"/>
                         <!-- ADD PAYMENT CARD -->
                         <div id="AddCardDiv" style="display:none;">
                             <button class="btn btn-outline-info" id="btn-usesavedcard" 
