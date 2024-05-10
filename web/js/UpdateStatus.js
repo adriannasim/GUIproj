@@ -1,5 +1,6 @@
 function updateStatus(id) 
 {
+    console.log("UPDATE STATUS CLICKED");
     //Prompt confirmation window
     if (confirm("Are you sure you want to update the status of this order?")) {
         update(id);

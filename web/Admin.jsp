@@ -65,8 +65,8 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     <td><%= all.get(i).getStatus() %></td>
                     <td><%= all.get(i).getUsername() %></td>
                     <td><%= all.get(i).getContactno() %></td>
-                    <td><Button type="button" onclick="updateStatus(<%= all.get(i).getOrderid() %>)">Update</Button></td>
-                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= all.get(i).getOrderid() %>;">View</Button></td>
+                    <td><Button type="button" onclick="updateStatus('<%= all.get(i).getOrderid() %>')">Update</Button></td>
+                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= all.get(i).getOrderid() %>';">View</Button></td>
                 </tr>
                 <%
                 }
@@ -99,8 +99,8 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     <td><%= packaging.get(i).getStatus() %></td>
                     <td><%= packaging.get(i).getUsername() %></td>
                     <td><%= packaging.get(i).getContactno() %></td>
-                    <td><Button type="button" onclick="UpdateStatus(<%= packaging.get(i).getOrderid() %>)">Update</Button></td>
-                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= packaging.get(i).getOrderid() %>;">View</Button></td>
+                    <td><Button type="button" onclick="updateStatus('<%= packaging.get(i).getOrderid() %>')">Update</Button></td>
+                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= packaging.get(i).getOrderid() %>';">View</Button></td>
                 </tr>
                 <%
                 }
@@ -134,8 +134,8 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     <td><%= shipping.get(i).getStatus() %></td>
                     <td><%= shipping.get(i).getUsername() %></td>
                     <td><%= shipping.get(i).getContactno() %></td>
-                    <td><Button type="button" onclick="UpdateStatus(<%= shipping.get(i).getOrderid() %>)">Update</Button></td>
-                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= shipping.get(i).getOrderid() %>;">View</Button></td>
+                    <td><Button type="button" onclick="updateStatus('<%= shipping.get(i).getOrderid() %>')">Update</Button></td>
+                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= shipping.get(i).getOrderid() %>';">View</Button></td>
                 </tr>
                 <%
                 }
@@ -168,8 +168,8 @@ List<Custorder> delivery = (List<Custorder>)request.getAttribute("delivering");
                     <td><%= delivery.get(i).getStatus() %></td>
                     <td><%= delivery.get(i).getUsername() %></td>
                     <td><%= delivery.get(i).getContactno() %></td>
-                    <td><Button type="button" onclick="UpdateStatus(<%= delivery.get(i).getOrderid() %>)">Update</Button></td>
-                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= delivery.get(i).getOrderid() %>;">View</Button></td>
+                    <td><Button type="button" onclick="updateStatus('<%= delivery.get(i).getOrderid() %>')">Update</Button></td>
+                    <td><Button type="button" onclick="window.location.href='CheckOrderDetails.jsp?id=<%= delivery.get(i).getOrderid() %>';">View</Button></td>
                 </tr>
                 <%
                 }
