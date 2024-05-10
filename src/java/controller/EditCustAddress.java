@@ -95,7 +95,7 @@ public class EditCustAddress extends HttpServlet {
             utx.commit();
 
             response.sendRedirect("CustomerProfile.jsp");
-            em.close();
+            //em.close();
             
 
         } catch (Exception ex) {

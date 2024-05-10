@@ -36,7 +36,21 @@
             .cust-error-message {
                 color: red;
             }
+            
+            input {
+                padding: 10px;
+                width: 100%;
+            }
+            
+            label {
+                padding: 5px;
+            }
+            
+            
+
         </style>
+
+
 
     </head>
 
@@ -48,12 +62,12 @@
         <div id="message-box"></div>
 
         <div class="p-5">
-            1. Enter details.
+
             <h3>Shipping Address</h3>
             <div class="d-flex flex-row w-100 justify-content-between">
                 <form action="PaymentMethod" method="post" id="shipping-address-form">
                     <div class="d-flex flex-column w-100">
-                        <label>First Name</label>
+                        <b><label>First Name</label></b>
                         <input name="cust-firstname" id="cust-firstname" type="text"
                                value="<%= (request.getAttribute("cust-firstname") != null)
                                        ? request.getAttribute("cust-firstname") : ""%>"/>
@@ -63,7 +77,7 @@
                             ></div>
                         <br />
 
-                        <label>Last Name</label>
+                        <b><label>Last Name</label></b>
                         <input name="cust-lastname" id="cust-lastname" type="text"
                                value="<%=(request.getAttribute("cust-lastname") != null)
                                        ? request.getAttribute("cust-lastname") : ""%>"/>
@@ -80,7 +94,7 @@
                             autocomplete="off"
                             >
                             <label class="full-field">
-                                <span class="form-label">Address</span></label
+                                <b><span class="form-label">Address</span></b></label
                             >
                             <input id="ship-address" name="ship-address" required
                                    autocomplete="off"
@@ -90,9 +104,10 @@
                             <br />
 
                             <label class="full-field">
+                                <b>
                                 <span class="form-label"
                                       >Apartment, unit, suite, or floor (optional)</span
-                                >
+                                ></b>
                             </label>
                             <input id="address2" name="address2"
                                    value="<%=(request.getAttribute("cust-address-line2")
@@ -101,7 +116,7 @@
                             <br />
 
                             <label class="full-field">
-                                <span class="form-label">City</span>
+                                <b><span class="form-label">City</span></b>
                             </label>
                             <input id="locality" name="locality"
                                    value="<%=(request.getAttribute("cust-city") != null)
@@ -110,7 +125,7 @@
                             <br />
 
                             <label class="slim-field-start">
-                                <span class="form-label">State</span>
+                                <b><span class="form-label">State</span></b>
                             </label>
                             <input id="state" name="state" required
                                    value="<%=(request.getAttribute("cust-state") != null)
@@ -118,7 +133,7 @@
                             <br />
 
                             <label class="slim-field-end" for="postal_code">
-                                <span class="form-label">Postal code</span></label
+                                <b><span class="form-label">Postal code</span></b></label
                             >
                             <input id="postcode" name="postcode" required
                                    value="<%=(request.getAttribute("cust-postcode") != null)
@@ -126,7 +141,7 @@
                             <br />
 
                             <label class="full-field">
-                                <span class="form-label">Country</span>
+                                <b><span class="form-label">Country</span></b>
                             </label>
                             <input id="country" name="country"
                                    value="<%=(request.getAttribute("cust-country") != null)
@@ -137,7 +152,7 @@
                         <div id="ship-address-error" class="cust-error-message"></div>
                         <br />
 
-                        <label>Contact No</label>
+                        <b><label>Contact No</label></b>
                         <input name="cust-contactNo" id="cust-contactNo" type="text"
                                value="<%= (request.getAttribute("cust-contactNo") != null)
                                        ? request.getAttribute("cust-contactNo") : ""%>"/>
@@ -147,7 +162,7 @@
                             ></div>
                         <br />
 
-                        <label>Remark</label>
+                        <b><label>Remark</label></b>
                         <textarea
                             name="cust-remark"
                             id="cust-remark"
@@ -175,25 +190,27 @@
                                     />
                                 <div><%= cartItem.getProd().getProdName()%>&nbsp;</div>
                                 <div>
-                                    <% String formattedPrice = String.format("%.2f",
-                                                cartItem.getProd().getProdPrice());%> RM
+                                    <% String formattedPrice = decimalFormat.format(cartItem.getProd().getProdPrice());%> RM
                                     <%=formattedPrice%> &nbsp;
                                 </div>
                                 x &nbsp; <%= cartItem.getItemQty()%>
                                 <div class="subtotal">
                                     <% String formattedAmount
                                                 = decimalFormat.format(cartItem.getProd().getProdPrice()
-                                                        * cartItem.getItemQty());%> :
+                                                        * cartItem.getItemQty());%> 
                                     <b>RM <%=formattedAmount%></b>
                                 </div>
                             </div>
-                            <% totalQty += cartItem.getItemQty();
-                                subtotal
-                                        += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
-                            %> <% }%> <% if (!cartItemList.isEmpty()) { %>
+                            <%
+                                totalQty += cartItem.getItemQty();
+                                subtotal += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
+                            %> <% }%> 
+
+                            <% if (!cartItemList.isEmpty()) { %>
                             <div class="text-right p-5">
-                                <% String formattedSubtotal
-                                            = decimalFormat.format(subtotal);%>
+                                <%
+                                    String formattedSubtotal = decimalFormat.format(subtotal);
+                                %>
                                 <b>Total item(s) : <%=totalQty%> pcs</b>&nbsp; &nbsp;
                                 <b>Subtotal : RM <%=formattedSubtotal%></b><br />
                                 <hr />
@@ -221,7 +238,7 @@
                                 <b>Total: RM <%=formattedTotal%></b><br />
                                 <hr />
                                 <button
-                                    class="w-25"
+                                    class="w-25 btn btn-dark"
                                     id="shipping-address-submit-btn"
                                     type="submit"
                                     >

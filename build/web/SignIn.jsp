@@ -11,15 +11,7 @@
         <custom:commonFiles/>
         
         <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-image: url('img/images/background1.png'); 
-        background-size: cover;
-        background-position: center;
-        color: white; 
-        margin: 0;
-        padding: 0;
-    }
+   
     
         .cont {
             display: flex;
@@ -157,17 +149,17 @@
                     <div class="col-2 si_item-padding">
                         <label></label> 
                     </div>
-                    <div class="col-2 si_item-padding">
+                    <!-- <div class="col-2 si_item-padding">
                         <input type="checkbox"/>&nbsp;&nbsp;
                         <label>Remember Me</label> 
-                    </div>
+                    </div> -->
                     <div class="col-2 si_btn-pd">
                        <button type="submit" class="btn btn-outline-success btn-block">Sign In</button> 
                     </div>
                 </div>
                 <div class="row justify-content-md-end">
                     <div class="col-2 si_link">
-                        <a href="FgtPw.jsp" class="si_backlink">Forgot Password</a>
+                        <!-- <a href="FgtPw.jsp" class="si_backlink">Forgot Password</a> -->
                     </div>
                     <div class="col-2">
                     </div>

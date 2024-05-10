@@ -20,7 +20,7 @@
 
         <style>
         
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             background-image: url('img/images/background1.png');
@@ -29,7 +29,7 @@
             color: #333;
             margin: 0;
             padding: 0;
-        }
+        } */
 
         .container {
             max-width: 800px;

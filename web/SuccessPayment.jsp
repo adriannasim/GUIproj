@@ -6,6 +6,10 @@
 <%--imports--%>
 <%--includes--%>
 
+<% 
+    String paymentId = (String) request.getAttribute("paymentId");
+    String orderId = (String) request.getAttribute("orderId");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,11 +35,11 @@
             <hr>
             <p class="mt-3" style="font-size:10pt;">
                 <span style="font-weight:bold;">Payment ID:&nbsp;</span>
-                [Payment ID]
+             <%=paymentId%>
             </p>
             <p class="mt-1" style="font-size:10pt;">
                 <span style="font-weight:bold;">Order ID:&nbsp;</span>
-                [Order ID]
+                <%=orderId%>
             </p>
             <a href="RetrieveCustomerProfile" class="btn btn-primary profile-button mt-3">View your order</a>
         </div>

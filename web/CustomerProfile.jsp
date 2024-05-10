@@ -42,10 +42,6 @@
             <jsp:include page="components/header.jsp" />
         </header>
 
-        <form id="logoutForm" action="Logout" method="post">
-            <button type="submit">Logout</button>
-        </form>
-
         <!--start of content-->
         <section style="background-color: #f7f7f7;padding:10px;">
             <div class="container py-5">
@@ -91,6 +87,12 @@
                                         <p class="mb-0"><a href="EditPaymentCard" class="aSetting"
                                                            style="text-decoration:none;color:black;">
                                                 My credit/debit cards</a>
+                                        </p>
+                                    </li>
+                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <p class="mb-0"><a href="Logout" class="aSetting"
+                                                           style="text-decoration:none;color:black;">
+                                                Log Out</a>
                                         </p>
                                     </li>
                                 </ul>

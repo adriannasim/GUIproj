@@ -84,12 +84,6 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 List<Custorder> orderList = query.getResultList();
 
-                // Rendering Custorder and its associated orderitems with product details
-                for (Custorder order : orderList) {
-                    // Render Orderitem details
-                    List<Orderitem> orderItems = order.getOrderitems();
-                }
-
                 session.setAttribute("orderList", orderList);
                 logger.info("Retrieved orderList in packaging: " + session.getAttribute("orderList"));
 
@@ -121,12 +115,6 @@ public class RetrieveCustomerProfile extends HttpServlet {
                 query.setParameter("status", "Shipping");
 
                 List<Custorder> orderList = query.getResultList();
-
-                // Rendering Custorder and its associated orderitems with product details
-                for (Custorder order : orderList) {
-                    // Render Orderitem details
-                    List<Orderitem> orderItems = order.getOrderitems();
-                }
 
                 session.setAttribute("orderList", orderList);
                 logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
@@ -160,12 +148,6 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 List<Custorder> orderList = query.getResultList();
 
-                // Rendering Custorder and its associated orderitems with product details
-                for (Custorder order : orderList) {
-                    // Render Orderitem details
-                    List<Orderitem> orderItems = order.getOrderitems();
-                }
-
                 session.setAttribute("orderList", orderList);
                 logger.info("Retrieved orderList in delivery: " + session.getAttribute("orderList"));
 
@@ -197,12 +179,6 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 List<Custorder> orderList = query.getResultList();
 
-                // Rendering Custorder and its associated orderitems with product details
-                for (Custorder order : orderList) {
-                    // Render Orderitem details
-                    List<Orderitem> orderItems = order.getOrderitems();
-                }
-
                 session.setAttribute("orderList", orderList);
                 logger.info("Retrieved orderList in all: " + session.getAttribute("orderList"));
 
@@ -222,6 +198,6 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
         // Response redirect to customer profile page
         response.sendRedirect("CustomerProfile.jsp");
-        em.close();
+        
     }
 }

@@ -125,9 +125,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex flex-row align-items-center justify-content-center">
-                                  
-                                    <h2>Your cart is empty. </h2>
-                                   
+                                    <h3>Your cart is empty. </h3>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +147,7 @@
                         <div class="btns">
                             Qty:
                             <button class="btn" type="button" onclick="decrementValueAndUpdate('<%= cartItem.getProd().getProdId()%>', 1, '<%= cartItem.getProd().getProdId()%>',<%=cartItem.getProd().getProdPrice()%>)">
-                                <b> - </b>
+                                <i class='fas fa-minus'></i>
                             </button>
                             <input
                                 min="<%= cartItem.getProd().getQtyAvailable() <= 0 ? '0' : '1'%>"
@@ -163,7 +161,7 @@
                                 readonly
                                 />
                             <button class="btn" type="button" onclick="incrementValueAndUpdate('<%= cartItem.getProd().getProdId()%>', <%= cartItem.getProd().getQtyAvailable()%>, '<%= cartItem.getProd().getProdId()%>',<%=cartItem.getProd().getProdPrice()%>)">
-                                <b> + </b>
+                                <i class='fas fa-plus'></i>
                             </button>
                         </div>
 
@@ -213,7 +211,7 @@
                         <small> Sales Tax (10%) : RM <%=formattedSalesTax%> <br/></small>
                         <b>Total: <%=formattedTotal%></b><br/>
                         <hr/>
-                        <button class="w-25" type="submit">Proceed to Checkout</button>
+                        <button class="w-25 btn btn-dark" type="submit">Proceed to Checkout</button>
                 </section>
             </div>
             <% }%>

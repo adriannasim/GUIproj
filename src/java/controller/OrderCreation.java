@@ -150,10 +150,11 @@ public class OrderCreation extends HttpServlet {
 
             double salesTax = subtotal * 0.1;
             double total = subtotal + shippingFee + salesTax;
+            String paymentId = "P" + generateRandomID();
 
             // Save order into paymentinfo DB
             Paymentinfo pyminfo = new Paymentinfo();
-            pyminfo.setPaymentid("P" + generateRandomID());
+            pyminfo.setPaymentid(paymentId);
             pyminfo.setOrderid(orderId);
             pyminfo.setUsername(username);
             pyminfo.setPaymenttype(paymentMethod);
@@ -283,7 +284,11 @@ public class OrderCreation extends HttpServlet {
             clearTheCart(cartId, em, utx);
 
             // Redirect to success payment page
-            response.sendRedirect("SuccessPayment.jsp");
+            request.setAttribute("paymentId",paymentId );
+            request.setAttribute("orderId", orderId);
+            request.getRequestDispatcher("SuccessPayment.jsp").forward(request, response);
+            
+            //response.sendRedirect("SuccessPayment.jsp");
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -291,7 +296,7 @@ public class OrderCreation extends HttpServlet {
             // Redirect to an error page
             response.sendRedirect("ErrorPage.jsp");
         }
-        em.close();
+        //em.close();
     }
 
     public static String generateRandomID() {
