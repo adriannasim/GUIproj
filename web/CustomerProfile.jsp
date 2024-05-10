@@ -4,7 +4,7 @@
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--imports--%>
-<%@page import="jpaEntity.*, java.util.List,java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date,java.text.DecimalFormat"%> 
+<%@page import="jpaEntity.*,entity.CustOrder,java.util.List,java.util.ArrayList,java.text.SimpleDateFormat, java.util.Date,java.text.DecimalFormat"%> 
 
 <%--includes--%>
 <jsp:include page="/RetrieveCustomerProfile" />
@@ -14,10 +14,10 @@
     if (session.getAttribute("customer") != null) {
         customer = (Customer) session.getAttribute("customer");
     }
-    List<Custorder> orderList = new ArrayList<Custorder>();
+    ArrayList<CustOrder> orderList = new ArrayList<Custorder>();
         if (session.getAttribute("orderList") != null) {
             // Ensure session attribute is retrieved as List<Custorder>
-            orderList = (List<Custorder>) session.getAttribute("orderList");
+            orderList = (ArrayList<Custorder>) session.getAttribute("orderList");
         }
         
 %>
@@ -41,10 +41,6 @@
             <%--header--%>
             <jsp:include page="components/header.jsp" />
         </header>
-
-        <form id="logoutForm" action="Logout" method="post">
-            <button type="submit">Logout</button>
-        </form>
 
         <!--start of content-->
         <section style="background-color: #f7f7f7;padding:10px;">
@@ -91,6 +87,12 @@
                                         <p class="mb-0"><a href="EditPaymentCard" class="aSetting"
                                                            style="text-decoration:none;color:black;">
                                                 My credit/debit cards</a>
+                                        </p>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <p class="mb-0"><a href="Logout" class="aSetting"
+                                                           style="text-decoration:none;color:black;">
+                                                Log Out</a>
                                         </p>
                                     </li>
                                 </ul>
@@ -204,7 +206,7 @@
 
                                         <%
                                             if (orderList != null && !orderList.isEmpty()) {
-                                                for (Custorder custorder : orderList) {
+                                                for (CustOrder custorder : orderList) {
                                         %>
 
                                         <!-- FILTERED ORDER INFO LOOPING HERE -->
@@ -230,20 +232,20 @@
                                                 </div>
 
                                                 <%
-                                                    if (custorder != null && custorder.getOrderitems() != null) {
-                                                        for (Orderitem orderitem : custorder.getOrderitems()) {
+                                                    if (orderList != null && !orderList.isEmpty()) {
+                                                        for (OrderItem orderitem : custorder.getOrderItems()) {
                                                 %>
 
                                                 <!-- ORDER PRODUCTS LOOPING HERE -->
                                                 <div class="card-body">
                                                     <div class="media flex-column flex-sm-row">
                                                         <div class="media-body ">
-                                                            <h5 class="bold"><%=orderitem.getProduct().getProdname()%></h5>
-                                                            <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
+                                                            <h5 class="bold"><%=orderitem.getOrderItem().getProdImg()%></h5>
+                                                            <p class="text-muted"> Qty: <%=orderitem.getItemQty())%></p>
                                                             <h4 class="mt-3 mb-4 bold">
                                                                 <%
                                                                     DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-                                                                    String formattedPrice = decimalFormat.format(orderitem.getProdprice());
+                                                                    String formattedPrice = decimalFormat.format(orderitem.getOrderItem()getProdPrice());
                                                                 %>
                                                                 <span class="mt-5">RM</span> <%=formattedPrice%>
                                                             </h4>
@@ -272,11 +274,12 @@
                                                             </p>
                                                             <button type="button" class="btn  btn-outline-primary d-flex">
                                                                 <%=custorder.getStatus()%>
-                                                            </button>    
-                                                        </div>
-                                                        <!-- Product Img HERE -->
+                                                            </button> 
+                                                             <!-- Product Img HERE -->
                                                         <img class="align-self-center img-fluid mt-2" 
-                                                             src="<%=request.getContextPath() + orderitem.getProduct().getProdimg()%>" width="180 " height="180">
+                                                        src="<%=request.getContextPath() + orderitem.getOrderItem().getProdImg()%>" width="180 " height="180">   
+                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
@@ -291,8 +294,10 @@
 
                                         <%
                                                 }
-                                            }
+                                            } else {
                                         %>
+                                        <div>No order record.</div>
+                                        <% } %>
                                     </div>
                                 </div>
                                 <!-- Order Tracking -->

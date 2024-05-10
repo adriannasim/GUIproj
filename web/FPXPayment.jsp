@@ -103,7 +103,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="">
+        <form action="OrderCreation" method="post">
             <h1 class="title">Online Banking Payment</h1>
             <div class="bank-selection">
                 <label>
