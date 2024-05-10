@@ -11,16 +11,6 @@
         <custom:commonFiles/>
         
         <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-image: url('img/images/background1.png'); 
-        background-size: cover;
-        background-position: center;
-        color: white; 
-        margin: 0;
-        padding: 0;
-    }
-    
         .cont {
             display: flex;
             flex-direction: column;
