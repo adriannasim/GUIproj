@@ -100,9 +100,9 @@ form button[type="submit"]:hover {
                 }
                 %>
             </div>
-            <form>
-                <input type="text" placeholder="Email">
-                <input type="text" placeholder="Password">
+            <form action="AdminLogin" method="POST">
+                <input type="text" name="username" placeholder="Email" />
+                <input type="text" name="password" placeholder="Password" />
                 <button type="submit">LOGIN</button>
             </form>
         </div>
