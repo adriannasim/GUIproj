@@ -7,6 +7,7 @@
 <%--tags--%> 
 <%@ include file="css/bootstrapStyles.jsp" %>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<jsp:include page="components/header.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            background-image: url('img/images.background1.png');
+            background-image: url('img/images/background1.png');
             background-size: cover;
             background-position: center;
             color: #333;
@@ -61,13 +62,11 @@
             cursor: pointer;
         }
 
-        .btn-outline-success {
-            color: #28a745;
-            border: 1px solid #28a745;
-            background-color: transparent;
-        }
-
-        /* Other styles */
+       .btn-outline-success {
+        
+        color: #800080; 
+        background-color: transparent;
+    }
         .so_title {
             color: #333;
         }
@@ -82,8 +81,7 @@
     </head>
 
     <body class="text-center">
-        <!--header-->
-        <jsp:include page="components/header.jsp" />
+        
 
         <!-- Start of Message Div -->
         <%
