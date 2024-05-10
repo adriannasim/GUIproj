@@ -57,7 +57,7 @@ public class UpdateStatus extends HttpServlet {
         }
         catch (Exception e)
         {
-            throw new ServletException("Error updating order status", e);
+            System.out.println(e);
         }
     }
 }
