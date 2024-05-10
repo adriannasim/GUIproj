@@ -69,72 +69,31 @@
             background-repeat: no-repeat;
             background-size: cover;
         }    
-            
-        .latest-artworks-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .artwork-item {
-            margin: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            text-align: center;
-            width: 200px;
-        }
-
-        .artwork-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .artwork-item h3 {
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
-        .artwork-item p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #777;
-        }
-
-        .artwork-item a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .artwork-item a:hover {
-            text-decoration: underline;
-        }
 
         .all-artworks-button {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #4CAF50; /* Green background color */
+            color: white; /* White text color */
             border: none;
             border-radius: 5px;
             font-size: 16px;
             text-decoration: none;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
         }
 
         .all-artworks-button:hover {
-            background-color: #0056b3;
+            background-color: #45a049; /* Darker green background color on hover */
+            cursor: pointer; /* Change cursor to pointer on hover */
         }
         
         .card{
-            width: 200px;
-            height: 230px;
+            width: 250px;
+            height: 80px;
             display: inline-block;
             border-radius: 10px;
-            padding: 15px 25px;
-            box-sizing: border-box;
+            padding: 15px 20px;
             cursor: pointer;
             margin: 10px 15px;
             background-position: center;
