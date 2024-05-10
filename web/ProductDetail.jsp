@@ -29,7 +29,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product Details</title>
         <!-- Include commonFiles.tag -->
-        <custom:commonFiles/>     
+        <custom:commonFiles/>
+        
+        <style>
+            
+            body {
+            background-image: url('img/images/background2.png'); 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }    
+            
+           </style>
+        
+        
     </head>
 
     <body class="text-center">
@@ -48,7 +61,7 @@
                 <div class="col-6">
                     <img
                         src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>"
-                        width="500px"
+                        width="300px"
                         height="auto" 
 
                     />
