@@ -60,6 +60,93 @@
 
         <%-- Include commonFiles.tag --%>
         <custom:commonFiles />
+        
+        <style>
+        
+        body {
+            background-image: url('img/images/background1.png'); 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }    
+            
+        .latest-artworks-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .artwork-item {
+            margin: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .artwork-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .artwork-item h3 {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .artwork-item p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .artwork-item a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .artwork-item a:hover {
+            text-decoration: underline;
+        }
+
+        .all-artworks-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .all-artworks-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .card{
+            width: 200px;
+            height: 230px;
+            display: inline-block;
+            border-radius: 10px;
+            padding: 15px 25px;
+            box-sizing: border-box;
+            cursor: pointer;
+            margin: 10px 15px;
+            background-position: center;
+            background-size: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover{
+            transform: translateY(-10px);
+        }
+    </style>
+        
     </head>
 
     <body class="text-center">
@@ -85,7 +172,7 @@
             <a
                 href="ProductDetail.jsp?id=<%= product.getProdId()%>" style="text-decoration: none"
                 >
-                <div class="p-2">
+                <div class="card">
                     <div>
                         <img
                             src="<%= request.getContextPath() + product.getProdImg()[0]%>"
