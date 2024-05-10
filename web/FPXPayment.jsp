@@ -12,97 +12,66 @@
     <title>Online Banking</title>
     
     <style>
-        
-            body {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url('img/images/background1.png'); 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-            .container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh; 
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover; 
-                padding: 30px;
-            }
+   
+    body {
+        background-image: url('img/images/background1.png');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .cont {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* slight shadow */
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .bank-selection {
+        margin-top: 20px;
+        overflow: hidden; /* Clear floats */
+    }
+
+    .bank-selection label {
+        width: 50%; /* Two options per row */
+        float: left; /* Float the options to left */
+        box-sizing: border-box; /* Include padding and border in width */
+    }
+
+    .bank-selection img {
+        vertical-align: middle;
+        margin-right: 5px;
+        width: 100px; /* Adjust the width of the images */
+    }
+
+    #proceed {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border: none;
+        background-color: #800080; /* purple color */
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #proceed:hover {
+        background-color: #6a006a; /* darker purple color on hover */
+    }
 
 
-            .container form{
-                width: 300px;
-                padding: 100px;
-                background: #fff;
-                border-radius: 20px;
-            }
+</style>
 
-
-            .title {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-
-            .bank-selection {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                margin-bottom: 20px;
-            }
-
-            .bank-selection label {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-                cursor: pointer;
-                width: calc(50% - 10px);
-                font-size: 14px;
-            }
-
-            .bank-selection img {
-                margin-right: 10px;
-                width: 60px;
-                height: 15px;
-            }
-
-            .container form {
-                width: 100%;
-                max-width: 400px;
-                padding: 20px;
-                background: #fff;
-                border-radius: 20px;
-            }
-
-            .title {
-                text-align: center;
-                margin-bottom: 20px;
-                font-size: 24px; 
-            }
-
-            #proceed {
-                width: 100%;
-                padding: 10px;
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-
-            #proceed:hover {
-                background-color: #0056b3;
-            }
-
-
-    </style>
     
 </head>
 <body>
-    <div class="container">
+    <div class="cont">
         <form action="">
             <h1 class="title">Online Banking Payment</h1>
             <div class="bank-selection">
