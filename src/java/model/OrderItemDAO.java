@@ -7,6 +7,8 @@ import entity.Product;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderItemDAO {
 
@@ -49,15 +51,12 @@ public class OrderItemDAO {
     // RETRIEVE RECORD BY ORDERID
     // public ArrayList<OrderItem> getRecord(String orderid) {
     //     String queryStr = "SELECT * FROM " + tableName + " WHERE orderid=?";
-
     //     ProductDAO productDAO = new ProductDAO();
     //     ArrayList<OrderItem> items = new ArrayList<OrderItem>();
     //     Product tempProd;
-
     //     try {
     //         stmt = dbConn.returnConnection().prepareStatement(queryStr);
     //         ResultSet rs = stmt.executeQuery();
-
     //         while (rs.next()) {
     //             tempProd = productDAO.getProductById(rs.getString(2));
     //             items.add(new OrderItem(tempProd, rs.getInt(3)));
@@ -65,10 +64,8 @@ public class OrderItemDAO {
     //     } catch (SQLException ex) {
     //         ex.getMessage();
     //     }
-
     //     return items;
     // }
-
     // INSERTING RECORD
     public void insertRecord(String orderid, String prodid, int itemqty) {
         String queryStr = "INSERT INTO " + tableName + " VALUES (?,?,?)";
@@ -124,6 +121,17 @@ public class OrderItemDAO {
             stmt.execute();
         } catch (SQLException ex) {
             ex.getMessage();
+        }
+    }
+
+    // Close DB conncetion
+    public void closeConnection() {
+        try {
+            if (dbConn.returnConnection() != null) {
+                dbConn.shutDown();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(OrderItemDAO.class.getName()).log(Level.WARNING, null, ex);
         }
     }
 }
