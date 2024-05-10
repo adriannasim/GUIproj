@@ -15,11 +15,11 @@
         customer = (Customer) session.getAttribute("customer");
     }
     List<Custorder> orderList = new ArrayList<Custorder>();
-        if (session.getAttribute("orderList") != null) {
-            // Ensure session attribute is retrieved as List<Custorder>
-            orderList = (List<Custorder>) session.getAttribute("orderList");
-        }
-        
+    if (session.getAttribute("orderList") != null) {
+        // Ensure session attribute is retrieved as List<Custorder>
+        orderList = (List<Custorder>) session.getAttribute("orderList");
+    }
+
 %>
 
 <!DOCTYPE html>
@@ -236,8 +236,8 @@
 
                                                 <!-- ORDER PRODUCTS LOOPING HERE -->
                                                 <div class="card-body">
-                                                    <div class="media flex-column flex-sm-row">
-                                                        <div class="media-body ">
+                                                    <div class="media flex-column flex-sm-row row">
+                                                        <div class="media-body col-sm">
                                                             <h5 class="bold"><%=orderitem.getProduct().getProdname()%></h5>
                                                             <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
                                                             <h4 class="mt-3 mb-4 bold">
@@ -275,8 +275,23 @@
                                                             </button>    
                                                         </div>
                                                         <!-- Product Img HERE -->
-                                                        <img class="align-self-center img-fluid mt-2" 
-                                                             src="<%=request.getContextPath() + orderitem.getProduct().getProdimg()%>" width="180 " height="180">
+                                                        <div class="col-sm">
+                                                            <img class="align-self-center img-fluid mt-2" 
+                                                                 src="<%=request.getContextPath() + orderitem.getProduct().getProdimg()%>" width="180 " height="180">
+                                                        </div>
+
+                                                        <!-- Order Tracking Bar HERE -->
+                                                        <!-- Remove active for progress tracking -->
+                                                        <div class="progress-track mt-3" style="margin-left:40px;">
+                                                            <ul id="progressbar">
+                                                                <li class="step0 active " id="step1">Packaging</li>
+                                                                <li class="step0 active text-center" id="step2">Shipped</li>
+                                                                <li class="step0 text-right" id="step3">
+                                                                    <span style="position:relative;left:25px;">Delivered</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <!-- Order Tracking Bar HERE -->
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
@@ -290,11 +305,11 @@
                                         <!-- FILTERED ORDER INFO LOOPING END -->
 
                                         <%
-                                                }
-                                            } else {
+                                            }
+                                        } else {
                                         %>
                                         <div>No order record.</div>
-                                        <% } %>
+                                        <% }%>
                                     </div>
                                 </div>
                                 <!-- Order Tracking -->
