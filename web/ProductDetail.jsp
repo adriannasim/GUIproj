@@ -34,12 +34,12 @@
         <style>
             
             body {
-            background-image: url('img/images/background2.png'); 
+            background-image: url('img/images/background1.png'); 
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }    
-            
+        
            </style>
         
         

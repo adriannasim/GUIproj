@@ -3,7 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
-        <group/>
         <group>
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/AdminLogin.jsp</file>
         </group>
@@ -25,6 +24,11 @@
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/index.html</file>
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/components/footer.jsp</file>
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/Home.jsp</file>
+            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/FPXPayment.jsp</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/Home.jsp</file>
+            <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/ProductDetail.jsp</file>
             <file>file:/C:/Users/jiami/Documents/NetBeansProjects/GUIproj/web/FPXPayment.jsp</file>
         </group>
     </open-files>
