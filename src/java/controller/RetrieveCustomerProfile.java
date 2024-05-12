@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@WebServlet(name = "RetrieveCustomerProfile", urlPatterns = { "/RetrieveCustomerProfile" })
+@WebServlet(name = "RetrieveCustomerProfile", urlPatterns = {"/RetrieveCustomerProfile"})
 public class RetrieveCustomerProfile extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
@@ -67,25 +67,40 @@ public class RetrieveCustomerProfile extends HttpServlet {
             response.sendRedirect("ErrorPage.jsp"); // Redirect to error page
             return;
         }
-
         // Retrieve customer orders details
         // Packaging status
         if (request.getParameter("status") != null && request.getParameter("status").equals("packaging")) {
             try {
-            
+                utx.begin();
+
                 TypedQuery<Custorder> query = em.createQuery(
-                        "SELECT DISTINCT co FROM Custorder co " +
-                                "JOIN FETCH co.orderitems oi " +
-                                "JOIN FETCH oi.product " +
-                                "WHERE co.username = :username AND co.status = :status",
+                        "SELECT co FROM Custorder co "
+                        + "WHERE co.username = :username AND co.status = :status",
                         Custorder.class);
                 query.setParameter("username", username);
                 query.setParameter("status", "Packaging");
 
                 List<Custorder> orderList = query.getResultList();
 
+                // For each Custorder, retrieve associated Orderitems
+                for (Custorder custorder : orderList) {
+                    String orderId = custorder.getOrderid();
+
+                    // Retrieve Orderitems for the current Custorder
+                    TypedQuery<Orderitem> orderItemQuery = em.createQuery(
+                            "SELECT oi FROM Orderitem oi WHERE oi.orderitemPK.orderid = :orderId",
+                            Orderitem.class);
+                    orderItemQuery.setParameter("orderId", orderId);
+                    List<Orderitem> orderItems = orderItemQuery.getResultList();
+
+                    // Set the retrieved Orderitems to the Custorder
+                    custorder.setOrderitems(orderItems);
+                }
+
                 session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in packaging: " + session.getAttribute("orderList"));
+                logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
+
+                utx.commit();
 
             } catch (Exception ex) {
                 try {
@@ -99,25 +114,39 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        }
-
-        // Shipping status
+        } // Shipping status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("shipping")) {
             try {
+                utx.begin();
 
                 TypedQuery<Custorder> query = em.createQuery(
-                        "SELECT DISTINCT co FROM Custorder co " +
-                                "JOIN FETCH co.orderitems oi " +
-                                "JOIN FETCH oi.product " +
-                                "WHERE co.username = :username AND co.status = :status",
+                        "SELECT co FROM Custorder co "
+                        + "WHERE co.username = :username AND co.status = :status",
                         Custorder.class);
                 query.setParameter("username", username);
                 query.setParameter("status", "Shipping");
 
                 List<Custorder> orderList = query.getResultList();
 
+                // For each Custorder, retrieve associated Orderitems
+                for (Custorder custorder : orderList) {
+                    String orderId = custorder.getOrderid();
+
+                    // Retrieve Orderitems for the current Custorder
+                    TypedQuery<Orderitem> orderItemQuery = em.createQuery(
+                            "SELECT oi FROM Orderitem oi WHERE oi.orderitemPK.orderid = :orderId",
+                            Orderitem.class);
+                    orderItemQuery.setParameter("orderId", orderId);
+                    List<Orderitem> orderItems = orderItemQuery.getResultList();
+
+                    // Set the retrieved Orderitems to the Custorder
+                    custorder.setOrderitems(orderItems);
+                }
+
                 session.setAttribute("orderList", orderList);
                 logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
+
+                utx.commit();
 
             } catch (Exception ex) {
                 try {
@@ -131,25 +160,38 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        }
-
-        // Delivery status
+        } // Delivery status
         else if (request.getParameter("status") != null && request.getParameter("status").equals("delivery")) {
             try {
+                utx.begin();
 
                 TypedQuery<Custorder> query = em.createQuery(
-                        "SELECT DISTINCT co FROM Custorder co " +
-                                "JOIN FETCH co.orderitems oi " +
-                                "JOIN FETCH oi.product " +
-                                "WHERE co.username = :username AND co.status = :status",
-                        Custorder.class);
+                        "SELECT co FROM Custorder co "
+                        + "WHERE co.username = :username AND co.status = :status", Custorder.class);
                 query.setParameter("username", username);
                 query.setParameter("status", "Delivery");
 
                 List<Custorder> orderList = query.getResultList();
 
+                // For each Custorder, retrieve associated Orderitems
+                for (Custorder custorder : orderList) {
+                    String orderId = custorder.getOrderid();
+
+                    // Retrieve Orderitems for the current Custorder
+                    TypedQuery<Orderitem> orderItemQuery = em.createQuery(
+                            "SELECT oi FROM Orderitem oi WHERE oi.orderitemPK.orderid = :orderId",
+                            Orderitem.class);
+                    orderItemQuery.setParameter("orderId", orderId);
+                    List<Orderitem> orderItems = orderItemQuery.getResultList();
+
+                    // Set the retrieved Orderitems to the Custorder
+                    custorder.setOrderitems(orderItems);
+                }
+
                 session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in delivery: " + session.getAttribute("orderList"));
+                logger.info("Retrieved orderList in shipping: " + session.getAttribute("orderList"));
+
+                utx.commit();
 
             } catch (Exception ex) {
                 try {
@@ -163,25 +205,39 @@ public class RetrieveCustomerProfile extends HttpServlet {
 
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
-        }
-
-        // All
+        } // All
         else {
             try {
+                utx.begin();
 
                 TypedQuery<Custorder> query = em.createQuery(
-                        "SELECT DISTINCT co FROM Custorder co " +
-                                "JOIN FETCH co.orderitems oi " +
-                                "JOIN FETCH oi.product " +
-                                "WHERE co.username = :username",
+                        "SELECT co FROM Custorder co WHERE co.username = :username",
                         Custorder.class);
                 query.setParameter("username", username);
-
                 List<Custorder> orderList = query.getResultList();
 
-                session.setAttribute("orderList", orderList);
-                logger.info("Retrieved orderList in all: " + session.getAttribute("orderList"));
+                System.out.println("Retrieved Custorder count: " + orderList.size()); // Log the number of Custorder objects retrieved
 
+                // For each Custorder, retrieve associated Orderitems
+                for (Custorder custorder : orderList) {
+                    String orderId = custorder.getOrderid();
+
+                    // Retrieve Orderitems for the current Custorder
+                    TypedQuery<Orderitem> orderItemQuery = em.createQuery(
+                            "SELECT oi FROM Orderitem oi WHERE oi.orderitemPK.orderid = :orderId",
+                            Orderitem.class);
+                    orderItemQuery.setParameter("orderId", orderId);
+                    List<Orderitem> orderItems = orderItemQuery.getResultList();
+
+                    // Set the retrieved Orderitems to the Custorder
+                    custorder.setOrderitems(orderItems);
+                    System.out.println("Custorder ID: " + orderId + ", Orderitems count: " + orderItems.size()); // Log the Orderitems count for each Custorder
+                }
+
+                session.setAttribute("orderList", orderList);
+                System.out.println("Retrieved orderList in all: " + session.getAttribute("orderList")); // Log the orderList set in the session
+
+                utx.commit();
             } catch (Exception ex) {
                 try {
                     if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
@@ -191,13 +247,12 @@ public class RetrieveCustomerProfile extends HttpServlet {
                     rollbackEx.printStackTrace();
                 }
                 ex.printStackTrace();
-
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error processing payment.");
             }
         }
 
         // Response redirect to customer profile page
         response.sendRedirect("CustomerProfile.jsp");
-        
+
     }
 }

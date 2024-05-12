@@ -5,11 +5,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import model.CustomerDAO;
 import entity.Customer;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "CheckDuplicateUsername", urlPatterns = {"/CheckDuplicateUsername"})
 public class CheckDuplicateUsernameServlet extends HttpServlet {
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

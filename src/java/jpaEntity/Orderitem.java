@@ -36,14 +36,19 @@ public class Orderitem implements Serializable {
     protected OrderitemPK orderitemPK;
     @Column(name = "itemqty")
     private Integer itemqty;
+
     @Column(name = "prodprice")
-    private Double prodprice;
+    private double prodprice;
+
+    @Column(name = "prodname")
+    private String prodname;
+
+    @Column(name = "prodImg")
+    private String prodimg;
+
     @ManyToOne
     @JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
     private Custorder custorder;
-    @ManyToOne
-    @JoinColumn(name = "prodid", referencedColumnName = "prodid", insertable = false, updatable = false)
-    private Product product;
 
     public Orderitem() {
     }
@@ -72,11 +77,11 @@ public class Orderitem implements Serializable {
         this.itemqty = itemqty;
     }
 
-    public Double getProdprice() {
+    public double getProdprice() {
         return prodprice;
     }
 
-    public void setProdprice(Double prodprice) {
+    public void setProdprice(double prodprice) {
         this.prodprice = prodprice;
     }
 
@@ -87,13 +92,21 @@ public class Orderitem implements Serializable {
     public void setCustorder(Custorder custorder) {
         this.custorder = custorder;
     }
-    
-    public Product getProduct() {
-        return product;
+
+    public String getProdname() {
+        return prodname;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProdname(String prodname) {
+        this.prodname = prodname;
+    }
+
+    public String getProdimg() {
+        return prodimg;
+    }
+
+    public void setProdimg(String prodimg) {
+        this.prodimg = prodimg;
     }
 
     @Override

@@ -110,6 +110,9 @@ public class OrderCreation extends HttpServlet {
                 int qty = cartItem.getItemQty();
                 Double price = cartItem.getProd().getProdPrice();
                 subtotal += price * qty;
+                String prodname = cartItem.getProd().getProdName();
+                String[] prodimg = cartItem.getProd().getProdImg();
+                String concatenatedImg = String.join(",", prodimg);
 
                 OrderitemPK orderitemPK = new OrderitemPK();
                 orderitemPK.setOrderid(orderId);
@@ -119,6 +122,8 @@ public class OrderCreation extends HttpServlet {
                 orderitem.setOrderitemPK(orderitemPK);
                 orderitem.setItemqty(qty);
                 orderitem.setProdprice(price);
+                orderitem.setProdname(prodname);
+                orderitem.setProdimg(concatenatedImg);
 
                 try {
                     utx.begin();
@@ -135,7 +140,6 @@ public class OrderCreation extends HttpServlet {
                         rollbackEx.printStackTrace();
                     }
                     ex.printStackTrace();
-
                 }
             }
 
@@ -284,12 +288,11 @@ public class OrderCreation extends HttpServlet {
             clearTheCart(cartId, em, utx);
 
             // Redirect to success payment page
-            request.setAttribute("paymentId",paymentId );
+            request.setAttribute("paymentId", paymentId);
             request.setAttribute("orderId", orderId);
             request.getRequestDispatcher("SuccessPayment.jsp").forward(request, response);
-            
-            //response.sendRedirect("SuccessPayment.jsp");
 
+            //response.sendRedirect("SuccessPayment.jsp");
         } catch (Exception ex) {
             ex.printStackTrace();
 

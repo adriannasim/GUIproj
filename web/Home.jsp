@@ -65,6 +65,7 @@
     <body class="text-center mt-0" id="page-top">
         <%--header--%>
         <jsp:include page="components/header.jsp" />
+        <div id="loadingMessage"></div>
     
         <!--start of content-->
         <!-- Masthead-->

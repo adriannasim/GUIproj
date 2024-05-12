@@ -3,6 +3,7 @@ package controller;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
+import javax.servlet.ServletException;
 
 public class WebServlet extends HttpServlet {
     @Override

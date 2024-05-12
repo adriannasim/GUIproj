@@ -98,7 +98,7 @@
         <!--start of content-->
         <div class="cont">
         <h1>Add Products Page</h1>
-        <form action="AddProduct" method="post" enctype="multipart/form-data">
+        <form action="AddProducts" method="post" enctype="multipart/form-data">
             <label>Product ID:</label>
             <input type="text" name="prodid"><br/>
             <label>Product Name:</label>

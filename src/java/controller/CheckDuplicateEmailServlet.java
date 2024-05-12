@@ -5,6 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import model.CustomerDAO;
 import entity.Customer;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "CheckDuplicateEmail", urlPatterns = {"/CheckDuplicateEmail"})

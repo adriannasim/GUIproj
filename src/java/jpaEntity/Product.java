@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.FetchType;
 
 /**
  *
@@ -78,8 +79,7 @@ public class Product implements Serializable
     @Size(max = 255)
     @Column(name = "prodslug")
     private String prodslug;
-    @OneToMany(mappedBy = "product")
-    private List<Orderitem> orderitems;
+   
 
     public Product()
     {
@@ -190,15 +190,6 @@ public class Product implements Serializable
         this.prodslug = prodslug;
     }
     
-     public List<Orderitem> getOrderitems()
-    {
-        return orderitems;
-    }
-
-    public void setOrderitems(List<Orderitem> orderitems)
-    {
-        this.orderitems = orderitems;
-    }
 
     @Override
     public int hashCode()

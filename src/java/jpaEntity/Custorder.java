@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -97,7 +98,7 @@ public class Custorder implements Serializable
     @Size(max = 500)
     @Column(name = "remark")
     private String remark;
-    @OneToMany(mappedBy = "custorder")
+    @OneToMany(mappedBy = "custorder", fetch = FetchType.EAGER)
     private List<Orderitem> orderitems;
 
     public Custorder()

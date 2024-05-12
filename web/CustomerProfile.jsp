@@ -89,7 +89,7 @@
                                                 My credit/debit cards</a>
                                         </p>
                                     </li>
-                                     <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                         <p class="mb-0"><a href="Logout" class="aSetting"
                                                            style="text-decoration:none;color:black;">
                                                 Log Out</a>
@@ -203,44 +203,40 @@
                                 <div class="col-md-6" style="width:100%;">
                                     <h5 class="text-uppercase" style="padding-top:20px;">My recent orders</h5>
                                     <div class="order my-3">
-
                                         <%
                                             if (orderList != null && !orderList.isEmpty()) {
                                                 for (Custorder custorder : orderList) {
                                         %>
-
                                         <!-- FILTERED ORDER INFO LOOPING HERE -->
-                                        <div class="container-fluid d-sm-flex justify-content-center" 
-                                             style="width:100%;margin:5px;">
+                                        <div class="container-fluid d-sm-flex justify-content-center" style="width:100%;margin:5px;">
                                             <div class="card px-2" style="width:100%;">
                                                 <div class="card-header bg-white">
                                                     <div class="row justify-content-between">
                                                         <div class="col">
-                                                            <p class="text-muted"> Order ID  
+                                                            <p class="text-muted"> Order ID
                                                                 <span class="font-weight-bold text-dark"><%=custorder.getOrderid()%></span>
-                                                            </p> 
+                                                            </p>
                                                             <%
                                                                 Date orderDate = custorder.getOrderdate();
                                                                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                                                                 String formattedDate = sdf.format(orderDate);
                                                             %>
-                                                            <p class="text-muted"> Place On 
-                                                                <span class="font-weight-bold text-dark"><%=formattedDate%></span> 
+                                                            <p class="text-muted"> Place On
+                                                                <span class="font-weight-bold text-dark"><%=formattedDate%></span>
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <%
-                                                    if (custorder != null && custorder.getOrderitems() != null) {
+                                                    if (custorder != null && custorder.getOrderitems() != null && !custorder.getOrderitems().isEmpty()) {
                                                         for (Orderitem orderitem : custorder.getOrderitems()) {
                                                 %>
-
                                                 <!-- ORDER PRODUCTS LOOPING HERE -->
                                                 <div class="card-body">
                                                     <div class="media flex-column flex-sm-row row">
                                                         <div class="media-body col-sm">
-                                                            <h5 class="bold"><%=orderitem.getProduct().getProdname()%></h5>
+                                                            <h5 class="bold"><%=orderitem.getProdname()%></h5>
                                                             <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
                                                             <h4 class="mt-3 mb-4 bold">
                                                                 <%
@@ -249,7 +245,7 @@
                                                                 %>
                                                                 <span class="mt-5">RM</span> <%=formattedPrice%>
                                                             </h4>
-                                                            <p class="text-muted">Order Status on: 
+                                                            <p class="text-muted">Order Status on:
                                                                 <span class="Today">
                                                                     <%
                                                                         String status = custorder.getStatus();
@@ -265,7 +261,6 @@
                                                                         }
 
                                                                         if (dateValue != null) {
-
                                                                             formattedStatusDate = sdf.format(dateValue);
                                                                         }
                                                                     %>
@@ -274,21 +269,26 @@
                                                             </p>
                                                             <button type="button" class="btn  btn-outline-primary d-flex">
                                                                 <%=custorder.getStatus()%>
-                                                            </button>    
+                                                            </button>
                                                         </div>
                                                         <!-- Product Img HERE -->
                                                         <div class="col-sm">
-                                                            <img class="align-self-center img-fluid mt-2" 
-                                                                 src="<%=request.getContextPath() + orderitem.getProduct().getProdimg()%>" width="180 " height="180">
+                                                            <h5 class="bold"><%=orderitem.getProdname()%></h5>
+                                                            <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
+                                                            <%
+                                                                String prodimgStr = orderitem.getProdimg();
+                                                                String[] prodimgArray = prodimgStr != null ? prodimgStr.split(",") : new String[0];
+                                                            %>
+                                                            <img class="align-self-center img-fluid mt-2" src="<%=request.getContextPath() + prodimgArray[0]%>" width="180 " height="180">
                                                         </div>
 
                                                         <!-- Order Tracking Bar HERE -->
                                                         <!-- Remove active for progress tracking -->
                                                         <div class="progress-track mt-3" style="margin-left:40px;">
                                                             <ul id="progressbar">
-                                                                <li class="step0 <%= (custorder.getPackaging()!=null)? "active":""%> " id="step1">Packaging</li>
-                                                                <li class="step0 <%= (custorder.getShipping()!=null)? "active":""%> text-center" id="step2">Shipped</li>
-                                                                <li class="step0 <%= (custorder.getDelivery()!=null)? "active":""%> text-right" id="step3">
+                                                                <li class="step0 <%= (custorder.getPackaging() != null) ? "active" : ""%> " id="step1">Packaging</li>
+                                                                <li class="step0 <%= (custorder.getShipping() != null) ? "active" : ""%> text-center" id="step2">Shipped</li>
+                                                                <li class="step0 <%= (custorder.getDelivery() != null) ? "active" : ""%> text-right" id="step3">
                                                                     <span style="position:relative;left:25px;">Delivered</span>
                                                                 </li>
                                                             </ul>
@@ -297,7 +297,6 @@
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
-
                                                 <%
                                                         }
                                                     }
@@ -305,13 +304,14 @@
                                             </div>
                                         </div>
                                         <!-- FILTERED ORDER INFO LOOPING END -->
-
                                         <%
                                             }
                                         } else {
                                         %>
                                         <div>No order record.</div>
-                                        <% }%>
+                                        <%
+                                            }
+                                        %>
                                     </div>
                                 </div>
                                 <!-- Order Tracking -->
