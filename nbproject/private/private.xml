@@ -3,67 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GUIproj/web/SignUpConfirmation.jsp</file>
-            <file>file:/D:/GUIproj/web/SuccessPayment.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/UpdateCart.java</file>
-            <file>file:/D:/GUIproj/web/404Error.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/Logout.java</file>
-            <file>file:/D:/GUIproj/web/SignIn.jsp</file>
-            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/model/ProductDAO.java</file>
-            <file>file:/D:/GUIproj/web/AddProducts.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
-            <file>file:/D:/GUIproj/web/PaymentMethod.jsp</file>
-            <file>file:/D:/GUIproj/src/java/model/CartDAO.java</file>
-            <file>file:/D:/GUIproj/web/FPXPayment.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/CheckDuplicateUsernameServlet.java</file>
-            <file>file:/D:/GUIproj/web/Payment.jsp</file>
-            <file>file:/D:/GUIproj/web/Cart.jsp</file>
-            <file>file:/D:/GUIproj/web/Profile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/WebServlet.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/LogoutAdm.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/AddProducts.java</file>
-            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
-            <file>file:/D:/GUIproj/src/java/model/DatabaseConn.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/AddAccount.java</file>
-            <file>file:/D:/GUIproj/src/java/model/CartItemDAO.java</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
         </group>
         <group>
-            <file>file:/D:/GUIproj/web/SignUpConfirmation.jsp</file>
-            <file>file:/D:/GUIproj/web/Profile.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/UpdateCart.java</file>
-            <file>file:/D:/GUIproj/web/SignIn.jsp</file>
-            <file>file:/D:/GUIproj/web/Payment.jsp</file>
-            <file>file:/D:/GUIproj/web/404Error.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/LogoutAdm.java</file>
-            <file>file:/D:/GUIproj/web/PaymentMethod.jsp</file>
-            <file>file:/D:/GUIproj/web/AddProducts.jsp</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
+            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
+        </group>
+        <group>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/web/FPXPayment.jsp</file>
-            <file>file:/D:/GUIproj/web/SuccessPayment.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/Logout.java</file>
-            <file>file:/D:/GUIproj/web/CardPayment.jsp</file>
-            <file>file:/D:/GUIproj/src/java/controller/WebServlet.java</file>
-            <file>file:/D:/GUIproj/src/java/controller/Payment.java</file>
-            <file>file:/D:/GUIproj/web/Cart.jsp</file>
+            <file>file:/D:/GUIproj/web/Home.jsp</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/OrderitemPK.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Custorder.java</file>
             <file>file:/D:/GUIproj/src/java/controller/OrderCreation.java</file>
+            <file>file:/D:/GUIproj/src/java/jpaEntity/Orderitem.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
-        </group>
-        <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
+            <file>file:/D:/GUIproj/web/components/Header.jsp</file>
+            <file>file:/D:/GUIproj/web/Home.jsp</file>
+            <file>file:/D:/GUIproj/web/Cart.jsp</file>
         </group>
     </open-files>
 </project-private>

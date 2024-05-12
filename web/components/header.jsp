@@ -1,67 +1,45 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%--tags--%>
-<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<%-- 
+    Document   : Header
+    Created on : 11 May 2024, 10:37:13 pm
+    Author     : asusvivo
+--%>
 
-<%--imports--%>
-<%@ include file="../css/bootstrapStyles.jsp" %>
-<%@page import="java.util.List"%> 
-        <!--Start of header-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="Home.jsp">
-    <img src="img/logo/art_logo_white.png" class="ml-4" width="95px" height="35px" alt="BongBongArtGallery">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item nav-item-pd">
-        <a class="nav-link" href="Home.jsp">Home</a>
-      </li>
-      <li class="nav-item nav-item-pd">
-        <a class="nav-link" href="ProductPage.jsp?all=t">Products</a>
-      </li>
-      <li class="nav-item nav-item-pd">
-        <a class="nav-link" href="Cart.jsp">Cart</a>
-      </li>
-    </ul>
-      <form class="form-inline my-2 my-lg-0" id="searchBar" method="Get" action="SearchBar">
-          <div class="row justify-content-center">
-              <div class="col-8">
-                  <input class="form-control mr-sm-2" type="search" id="search-input-dropdown" name="query" placeholder="Search..." aria-label="Search">
-              </div>
-              <div class="col-2">
-                  <button class="btn btn-outline-info search-btn" type="submit">Search</button>
-              </div>
-          </div>
-      </form>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link mr-3 mt-2" href="<%= session.getAttribute("username") == null ? "SignIn.jsp" : "RetrieveCustomerProfile"%>">
-        <%= session.getAttribute("username") == null ? "Sign in / Sign up" : "Profile"%>
-        </a>
-        
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-3" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="img/navbar/user-icon-white.png" alt="User" width="40px" height="40px"/>
-        </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="RetrieveCustomerProfile">Profile</a>
-          <a class="dropdown-item" href="CustEditProfile.jsp">Edit Personal Details</a>
-          <a class="dropdown-item" href="CustAddressBook.jsp">Shipping Address</a>
-          <a class="dropdown-item" href="CustPaymentCard.jsp">Payment Details</a>
-          <a class="dropdown-item" href="CustChangePassword.jsp">Change Password</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="Logout"><i class="fa fa-power-off">&nbsp;&nbsp;&nbsp;</i>Logout</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-            <!--Search Bar-->
-            <div id="searchBar-dropdown">
-                <ul id="searchBar-dropdown-list"></ul>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Header</title>
+    </head>
+    <body>
+        <!-- Start Header/Navigation -->
+        <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+            <div class="container">
+                <a class="navbar-brand" href="#">Bong Bong<span>.</span></a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsFurni">
+                    <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Home.jsp">Home</a>
+                        </li>
+                        <li><a class="nav-link" href="shop.jsp">Arts</a></li>
+                        <li><a class="nav-link" href="about.jsp">About us</a></li>
+                        <li><a class="nav-link" href="contact.jsp">Contact us</a></li>
+                    </ul>
+
+                    <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                        <li><a class="nav-link" href="#"><i class="fas fa-user-circle"></i></a></li>
+                        <li><a class="nav-link" href="Cart.jsp"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
             </div>
-        
-        <!--End of header-->
+
+        </nav>
+        <!-- End Header/Navigation -->
+    </body>
+</html>

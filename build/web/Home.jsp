@@ -64,7 +64,7 @@
     
     <body class="text-center mt-0" id="page-top">
         <%--header--%>
-        <jsp:include page="components/header.jsp" />
+        <jsp:include page="components/Header.jsp" />
         <div id="loadingMessage"></div>
     
         <!--start of content-->
@@ -173,5 +173,5 @@
         <!--end of content-->
     </body>
     <%--footer--%>
-    <jsp:include page="components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>
