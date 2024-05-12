@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<!-- Testing -->
 <%--<jsp:include page="components/header.jsp" />--%>
 <%@ include file="css/bootstrapStyles.jsp" %>
 
