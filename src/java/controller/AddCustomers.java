@@ -26,8 +26,8 @@ public class AddCustomers extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             //Initializations
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
-            EntityManager em = emf.createEntityManager();
+            //EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
+            //EntityManager em = emf.createEntityManager();
             Customer jpacust = new Customer();
             entity.Customer cust = new entity.Customer();
 

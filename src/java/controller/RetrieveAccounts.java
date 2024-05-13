@@ -25,7 +25,7 @@ public class RetrieveAccounts extends HttpServlet
         //If id exists (means its from ManageAccountsMenu.jsp)
         if (id != null) 
         {
-            TypedQuery<Employee> querystr = em.createQuery("SELECT emp FROM Employee emp WHERE emp.empid = :id", Employee.class);
+            TypedQuery<Employee> querystr = em.createQuery("SELECT emp FROM Employee emp WHERE emp.username = :id", Employee.class);
             querystr.setParameter("id", id);
             Employee emp = querystr.getSingleResult();
             request.setAttribute("emp", emp);

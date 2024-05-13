@@ -17,18 +17,23 @@ public class RetrieveCustomerAdm extends HttpServlet {
         //Initializations
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
         EntityManager em = emf.createEntityManager();
+        HttpSession session = request.getSession();
 
+        
         //Get Employee from db
         //If id exists (means its from editCustomer.jsp) 
-        if (request.getParameter("user") != null && request.getParameter("email") != null) {
+        if (request.getParameter("user") != null ) {
             String username = request.getParameter("user");
             String email = request.getParameter("email");
-            CustomerPK pk = new CustomerPK(username, email);
+            CustomerPK pk = new CustomerPK();
+            
 
             Customer cust = em.find(Customer.class, pk);
             request.setAttribute("cust", cust);
 
-            response.sendRedirect("editCustomer.jsp");
+            // Forward the request to the editCustomer.jsp page
+            //request.getRequestDispatcher("editCustomer.jsp").forward(request, response);
+            session.setAttribute("cust",cust);
 
         } //If id slug doesnt exists (means its from customers.jsp)
         else {
@@ -36,12 +41,11 @@ public class RetrieveCustomerAdm extends HttpServlet {
             List<Customer> custList = querystr.getResultList();
             request.setAttribute("custList", custList);
 
-            response.sendRedirect("customers.jsp");
+            // Forward the request to the customers.jsp page
+            request.getRequestDispatcher("customers.jsp").forward(request, response);
         }
 
         em.close();
         emf.close();
-
-        //Send response to jsp
     }
 }

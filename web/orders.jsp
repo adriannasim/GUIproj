@@ -28,7 +28,7 @@
         <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href="/assets/img/apple-icon.png"
+            href="assets/img/apple-icon.png"
             />
         <link rel="icon" type="image/png" href="/assets/img/art_logo.png" />
         <title>Soft UI Dashboard by Creative Tim</title>
@@ -38,18 +38,18 @@
             rel="stylesheet"
             />
         <!-- Nucleo Icons -->
-        <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- Font Awesome Icons -->
         <script
             src="https://kit.fontawesome.com/42d5adcbca.js"
             crossorigin="anonymous"
         ></script>
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- CSS Files -->
         <link
             id="pagestyle"
-            href="/assets/css/soft-ui-dashboard.css?v=1.0.7"
+            href="assets/css/soft-ui-dashboard.css?v=1.0.7"
             rel="stylesheet"
             />
         <!-- Nepcha Analytics (nepcha.com) -->
@@ -63,7 +63,7 @@
 
     <body class="g-sidenav-show bg-gray-100">
         <!-- Aside -->
-        <%@ include file="components/aside.jsp" %>
+        <%@ include file="admin-components/aside.jsp" %>
         <!-- End Aside -->
 
         <main
@@ -104,10 +104,19 @@
                         <div class="card">
                             <div class="card-header pb-0 d-flex flex-row align-items-center">
                                 <h6 class="mb-0">Orders</h6>
-                                <div class="input-group w-25 mx-4">
-                                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" placeholder="Type here...">
-                                </div>
+
+                                <form action="SearchingFunction" method="get">
+                                    <select name="field">
+                                        <option value="orderid">Order id</option>
+                                        <option value="status">Status</option>
+                                        <option value="orderdate">Order Date</option>
+                                    </select>
+                                    <div class="input-group w-25 mx-4">
+                                        <button type="submit"><span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span></button>
+                                        <input class="form-control" type="text" name="query" placeholder="Enter your search query">
+                                    </div>
+                                    <input type="hidden" id="table" name="table" value="Custorder" />
+                                </form>
                             </div>
                             <div class="card-body pt-4 p-3">
                                 <ul class="list-group">
