@@ -16,6 +16,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <div class="col-4">
+                    <input class="form-control mr-sm-2" type="search" id="search-input-dropdown" name="query" placeholder="Search..." aria-label="Search">
+                </div>
+
                 <div class="collapse navbar-collapse" id="navbarsFurni">
                     <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                         <li class="nav-item">

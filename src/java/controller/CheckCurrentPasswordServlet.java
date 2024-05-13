@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 import jpaEntity.*;
 
-@WebServlet(name = "CheckCurrentPasswordS", urlPatterns = {"/CheckCurrentPassword"})
+@WebServlet(name = "CheckCurrentPassword", urlPatterns = {"/CheckCurrentPassword"})
 public class CheckCurrentPasswordServlet extends HttpServlet {
 
     @PersistenceContext(unitName = "GUI_AssignmentPU")
@@ -28,6 +28,9 @@ public class CheckCurrentPasswordServlet extends HttpServlet {
 
         // Initialization
         HttpSession session = request.getSession();
+        //Get servletName
+        String servletName = getServletConfig().getServletName();
+        
         String username = (String) session.getAttribute("username");
 
         // Get the password parameter from the request
@@ -61,4 +64,20 @@ public class CheckCurrentPasswordServlet extends HttpServlet {
             return false;
         }
     }
+//    private boolean checkPasswordMatchAdm(String username, String password) {
+//        try {
+//            TypedQuery<Employee> query = em.createNamedQuery("Employee.findByUsername", Employee.class);
+//            query.setParameter("username", username);
+//
+//            Employee employee = query.getSingleResult();
+//            String storedPassword = employee.getUserpwd();
+//            //em.close();
+//
+//            return Password.checkPassword(password, storedPassword);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//           //em.close();
+//            return false;
+//        }
+//    }
 }

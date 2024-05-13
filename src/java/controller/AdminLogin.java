@@ -23,8 +23,8 @@ public class AdminLogin extends HttpServlet
         boolean matched = false;
         
         //Get user input username and password
-        String username = request.getParameter("signin-username").trim();
-        String password = request.getParameter("signin-password").trim();
+        String username = request.getParameter("signin-username");
+        String password = request.getParameter("signin-password");
         
         try
         {
