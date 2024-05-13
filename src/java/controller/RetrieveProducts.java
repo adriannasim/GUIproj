@@ -46,6 +46,7 @@ public class RetrieveProducts extends HttpServlet {
         {
             prodName = request.getParameter("prodname");
             prodList = prodDA.matchProductByName(prodName);
+            response.sendRedirect("ProductPage.jsp");
         }
         //Else, for main page latest products
         else {

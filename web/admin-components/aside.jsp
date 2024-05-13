@@ -14,7 +14,7 @@
       target="_blank"
     >
       <img
-        src="/assets/img/art_logo.png"
+        src="assets/img/art_logo.png"
         class="navbar-brand-img h-100"
         alt="main_logo"
       />
