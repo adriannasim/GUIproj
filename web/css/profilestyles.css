@@ -25,21 +25,21 @@
 }
 
 .btn-outline-primary:hover{
-    background-color:#17a2b8  !important;
+    background-color:#3b5d50  !important;
     color:#fff !important;
-    border:1.3px solid #17a2b8;
+    border:1.3px solid #3b5d50;
 }
 
 .btn-outline-primary:focus,
 .btn-outline-primary:active {
     outline: none !important;
     box-shadow: none !important;
-    border-color: #17a2b8 !important;
+    border-color: #3b5d50 !important;
 }
 
 .card-orderstatus {
     background-color: #fff ;
-    box-shadow: 2px 4px 15px 0px #52d6eb;
+    box-shadow: 2px 4px 15px 0px #3b5d50;
     z-index: 0;
 }
 
@@ -76,7 +76,7 @@
     left: 0;
 }
 .aSetting::before {
-    background-color: #52d6eb;
+    background-color: #3b5d50;
     height: 2px;
     bottom: 0;
     transform-origin: 100% 50%;
@@ -90,7 +90,7 @@
     transform-origin: 100% 50%;
     transform: translate3d(200%, 0, 0);
     transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-    color: #52d6eb;
+    color: #3b5d50;
 }
 
 .aSetting:hover::before {
@@ -108,22 +108,22 @@
 }
 
 .profile-button {
-    background: #52d6eb !important;
+    background: #3b5d50 !important;
     box-shadow: none !important;
     border: none !important;
 }
 
 .profile-button:hover {
-    background: #17a2b8 !important;
+    background: #3b5d50 !important;
 }
 
 .profile-button:focus {
-    background: #17a2b8 !important;
+    background: #3b5d50 !important;
     box-shadow: none !important;
 }
 
 .profile-button:active {
-    background: #17a2b8 !important;
+    background: #3b5d50 !important;
     box-shadow: none !important;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .sidebar-heading .sidebar-heading-a:hover {
-    color: #FFE3C2;
+    color: #3b5d50;
 }
 
 #sidebar-wrapper .list-group {
@@ -165,7 +165,7 @@
 }
 
 #sidebar-wrapper #sidebar-list-group .list-group-a:hover{
-    background-color: #FFE3C2 !important;
+    background-color: #3b5d50 !important;
     color: white !important;
 }
 
@@ -196,7 +196,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 #progressbar {
     margin-bottom: 3vh;
     overflow: hidden;
-    color: #17a2b8;
+    color: #3b5d50;
     padding-left: 0px;
     margin-top: 3vh
 }
@@ -213,7 +213,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 
 #progressbar #step1:before {
     content: "";
-    color: #17a2b8;
+    color: #3b5d50;
     width: 8px;
     height: 8px;
     margin-left: 0px !important;
@@ -312,7 +312,7 @@ body.successPaymentjsp {
 }
 
 .successPaymentjsp .checkmark {
-    color: #17a2b8;
+    color: #3b5d50;
     font-size: 80px;
     line-height: 200px;
     margin-left:-15px;
