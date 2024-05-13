@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Header
-    Created on : 11 May 2024, 10:37:13 pm
-    Author     : asusvivo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
