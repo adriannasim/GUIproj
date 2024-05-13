@@ -13,11 +13,6 @@
             <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
-        </group>
-        <group>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
             <file>file:/D:/GUIproj/web/Home.jsp</file>
@@ -31,5 +26,6 @@
             <file>file:/D:/GUIproj/web/Home.jsp</file>
             <file>file:/D:/GUIproj/web/Cart.jsp</file>
         </group>
+        <group/>
     </open-files>
 </project-private>
