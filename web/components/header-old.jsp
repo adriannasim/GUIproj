@@ -29,7 +29,7 @@
       <form class="form-inline my-2 my-lg-0" id="searchBar" method="Get" action="SearchBar">
           <div class="row justify-content-center">
               <div class="col-8">
-                  <input class="form-control mr-sm-2" type="search" id="search-input-dropdown" name="query" placeholder="Search..." aria-label="Search">
+                  <input class="form-control mr-sm-2" type="search" id="search-input-dropdown" name="query" placeholder="Search..." aria-label="Search" data-filter="">
               </div>
               <div class="col-2">
                   <button class="btn btn-outline-info search-btn" type="submit">Search</button>

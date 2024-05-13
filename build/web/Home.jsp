@@ -259,5 +259,5 @@
     <!--end of content-->
 </body>
 <%--footer--%>
-<jsp:include page="admin-components/footer.jsp" />
+<jsp:include page="components/footer.jsp" />
 </html>

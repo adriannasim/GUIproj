@@ -27,8 +27,11 @@ public class ResetPasswordAdm extends HttpServlet
         em.getTransaction().begin();
         Employee emp = em.find(Employee.class, username);
         
+        // Hashing the password before storing into DB
+        String hashPassword = Password.hashPassword(psw);
+        
         //Update all properties
-        emp.setUserpwd(psw);
+        emp.setUserpwd(hashPassword);
         
         //Commit changes into db
         em.getTransaction().commit();

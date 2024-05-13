@@ -37,12 +37,15 @@ public class AddAccount extends HttpServlet {
         String lastname = request.getParameter("lastname");
         String gender = request.getParameter("gender");
         String contact = request.getParameter("contact");
+        
+        // Hashing the password before storing into DB
+        String hashPassword = Password.hashPassword(password);
 
         //Setting varibles into product entity
         emp.setEmprole(role);
         emp.setEmpid(id);
         emp.setUsername(username);
-        emp.setUserpwd(password);
+        emp.setUserpwd(hashPassword);
         emp.setEmail(email);
         emp.setFirstname(firstname);
         emp.setLastname(lastname);
