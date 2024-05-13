@@ -41,6 +41,17 @@
         <link href="assets/css/tiny-slider.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <title>Bong Bong</title>
+        <style>
+            .prod-loop{
+                margin-bottom: 6%;
+            }
+            .prod-btm{
+                margin-bottom: -10%;
+            }
+            .prod-loop-btn{
+                margin-left: 20px;
+            }
+        </style>
     </head>
 
     <%--header--%>
@@ -67,41 +78,27 @@
 
         <div class="untree_co-section product-section before-footer-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3 mb-5">
-                        <a class="product-item" href="ProductDetail.jsp?id=<%= sessMainProduct.getProdId()%>">
-                            <img src="${pageContext.request.contextPath}<%= sessMainProduct.getProdImg()[0]%>" class="img-fluid product-thumbnail">
-                            <h3 class="product-title"><%= sessMainProduct.getProdName()%></h3>
-                            <strong class="product-price"><%= sessMainProduct.get30WordsDesc()%></strong>
-
-                            <!--<span class="icon-cross">
-                                <button type="button" class="btn btn-round" style="font-size:10pt;">
-                                    View
-                                </button>
-                            </span>-->
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <% for (int i = 0; i < sessProdList.size(); i++) { %>
+                <div class="row prod-btm">
+                    <% for (int i = 0; i < sessProdList.size(); i++) {
+                        Product product = sessProdList.get(i);
+                        // Skip the main product if its ID matches the current product in the loop
+                        if (product.getProdId() == sessMainProduct.getProdId()) {
+                            continue;
+                        }
+                    %>
                     <!-- Products Looping Here -->
-                    <div class="col-12 col-md-4 col-lg-3 mb-5">
-                        <% Product product = sessProdList.get(i);%>
+                    <div class="col-12 col-md-4 col-lg-3 prod-loop">
                         <a class="product-item" href="ProductDetail.jsp?id=<%= product.getProdId()%>">
-                            <img src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>" class="img-fluid product-thumbnail">
+                            <img src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>" width="100%" height="350px" class="product-thumbnail">
                             <h3 class="product-title"><%= product.getProdName()%></h3>
                             <strong class="product-price"><%= product.get30WordsDesc()%></strong>
-
-                            <!--<span class="icon-cross">
-                                <button type="button" class="btn btn-round" style="font-size:10pt;">
-                                    View
-                                </button>
-                            </span>-->
+                            <span class="icon-cross prod-loop-btn">
+                                <button type="button" class="btn btn-round ml-2" style="font-size:10pt;">View</button>
+                            </span>
                         </a>
                     </div> 
                     <!-- Products Looping End Here -->
-                    <% }%>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -111,7 +108,7 @@
         <script src="js/custom.js"></script>
 
         <%--footer--%>
-        <jsp:include page="admin-components/footer.jsp" />
+        <jsp:include page="components/Footer.jsp" />
     </body>
 
 </html>
