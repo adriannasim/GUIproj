@@ -170,7 +170,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 mx-auto text-center">
-                        <h2 class="section-title">Reviews</h2>
+                        <h2 class="section-title">Testimonials</h2>
                     </div>
                 </div>
 
@@ -229,7 +229,7 @@
 
                                             <div class="testimonial-block text-center">
                                                 <blockquote class="mb-5">
-                                                    <p>&ldquo;Before I start carving the idea must be almost complete. I say ?almost' because the really important thing seems to be the sculptor's ability to let his intuition guide him over the gap between conception and realization without compromising the integrity of the original idea.&rdquo;</p>
+                                                    <p>&ldquo;Before I start carving the idea must be almost complete. I say 'almost' because the really important thing seems to be the sculptor's ability to let his intuition guide him over the gap between conception and realization without compromising the integrity of the original idea.&rdquo;</p>
                                                 </blockquote>
 
                                                 <div class="author-info">
@@ -259,5 +259,5 @@
     <!--end of content-->
 </body>
 <%--footer--%>
-<jsp:include page="components/footer.jsp" />
+<jsp:include page="components/Footer.jsp" />
 </html>

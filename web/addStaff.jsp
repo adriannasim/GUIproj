@@ -124,46 +124,58 @@
             <form class="contact-form row" action="AddAccount" method="post" id="editStaffForm">
                 <div class="form-field col-lg-6">
                     <input id="username" name="username" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("username") != null)
+                                                           ? request.getParameter("username") : ""%>">
                     <label class="label" for="username">Staff Username:</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="empid" name="empid" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("empid") != null)
+                                                           ? request.getParameter("empid") : ""%>">
                     <label class="label" for="empid">Staff ID</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="firstname" name="firstname" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("firstname") != null)
+                                                           ? request.getParameter("firstname") : ""%>">
                     <label class="label" for="firstname">First Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="lastname" name="lastname" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("lastname") != null)
+                                                           ? request.getParameter("lastname") : ""%>">
                     <label class="label" for="lastname">Last Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="email" name="email" class="input-text js-input" type="email"
-                           value="">
+                           value="<%= (request.getParameter("email") != null)
+                                                           ? request.getParameter("email") : ""%>">
                     <label class="label" for="email">Staff E-mail</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="contact" name="contact" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("lastname") != null)
+                                                           ? request.getParameter("lastname") : ""%>">
                     <label class="label" for="contact">Contact Number</label>
                 </div>
 
                 <div class="form-field col-lg-12">
                     <label class="label">Gender</label>
                     <div class="inputGender">
-                        <input class="input-gender" type="radio" id="male" name="gender" value="M"/>
+                        <input class="input-gender" type="radio" id="male" name="gender" value="M"
+                               <% if (request.getParameter("gender").equals("M")) { %> checked
+                               <% } %>
+                               />
                         <label class="genderField" for="male">Male</label>
-                        <input class="input-gender" type="radio" id="female" name="gender" value="F"/>
+                        <input class="input-gender" type="radio" id="female" name="gender" value="F"
+                               <% if (request.getParameter("gender").equals("F")) { %> checked
+                               <% } %>
+                               />
                         <label class="genderField" for="female">Female</label>
                     </div>
                 </div>

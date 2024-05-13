@@ -59,6 +59,42 @@
             .quantity-amount:focus {
                 outline: none;
             }
+            .single-prod{
+                margin: 5% 0;
+                margin-left: 10%;
+            } 
+            .prod-details{
+                text-align: left;
+                align-content: center;
+            }
+            .detail-element{
+                padding-bottom: 20px;
+            }
+            .atc-btn{
+                margin-left: 30%;
+            }
+            .message{
+                margin-top: -5px;
+            }
+            .sprod-rec{
+                margin-top: 3%;
+                margin-left: 6%;
+            }
+            .prod-backlink{
+                text-align: left;
+                margin: 30px 0;
+                margin-left: 50px;
+            }
+            .prod-backlink a{
+                color: black;
+            }
+            .prod-btn:hover{
+                color: black !important;
+            }
+            .sprod-img{
+                width: 300px;
+                height: 250px;
+            }
 
         </style>
 
@@ -73,7 +109,7 @@
         <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
         <% Product product = sessProdList.get(0);%>
         <div class="prod-backlink">
-            <a href="ProductPage.jsp?all=t"><i class="fa fa-bars mr-3"></i>All Products</a><i class="fa fa-angle-right ml-3 mr-3"></i><%= product.getProdName()%>
+            <a href="ProductPage.jsp?all=t"><i class="fa fa-bars mr-3">&nbsp;&nbsp;&nbsp;</i>All Products</a>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right ml-3 mr-3"></i>&nbsp;&nbsp;&nbsp;<%= product.getProdName()%>
         </div>
         <div class="container single-prod">
             <div class="row">
@@ -164,7 +200,7 @@
         <!-- End: Recommended Artworks Section -->
 
         <!--footer-->
-        <jsp:include page="admin-components/footer.jsp" />
+        <jsp:include page="components/Footer.jsp" />
 
         <script>
             function incrementValue(inputId, maxValue, price) {
