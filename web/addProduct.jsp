@@ -158,7 +158,7 @@
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="imageInput" name="imageInput" class="input-file js-input" type="file" accept="image/*">
+                    <input id="imageInput" name="imageInput" class="input-text js-input" type="file" accept="image/*">
                     <label class="label" for="imageInput">Upload Image</label>
                 </div>
 
