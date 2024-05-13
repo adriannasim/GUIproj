@@ -14,7 +14,7 @@
       target="_blank"
     >
       <img
-        src="../assets/img/art_logo.png"
+        src="/assets/img/art_logo.png"
         class="navbar-brand-img h-100"
         alt="main_logo"
       />
@@ -25,7 +25,7 @@
   <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="../admin/admin-dashboard.jsp">
+        <a class="nav-link" href="admin-dashboard.jsp">
           <div
             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
           >
@@ -65,7 +65,7 @@
       </li>
       <!-- Product -->
       <li class="nav-item">
-        <a class="nav-link" href="../admin/products.jsp">
+        <a class="nav-link" href="products.jsp">
           <div
             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
           >
@@ -105,7 +105,7 @@
       </li>
       <!-- Staff -->
       <li class="nav-item">
-        <a class="nav-link" href="../admin/staff.jsp">
+        <a class="nav-link" href="staff.jsp">
           <div
             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
           >
@@ -145,7 +145,7 @@
       </li>
       <!-- Customer -->
       <li class="nav-item">
-        <a class="nav-link" href="../admin/customers.jsp">
+        <a class="nav-link" href="customers.jsp">
           <div
             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
           >
@@ -185,7 +185,7 @@
       </li>
       <!-- Order -->
       <li class="nav-item">
-        <a class="nav-link" href="../admin/orders.jsp">
+        <a class="nav-link" href="orders.jsp">
           <div
             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center"
           >

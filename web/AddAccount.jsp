@@ -135,5 +135,5 @@
         </div>
         <!--end of content-->
     </body>
-    <jsp:include page="components/footer.jsp" />
+    <jsp:include page="admin-components/footer.jsp" />
 </html>

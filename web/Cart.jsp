@@ -341,7 +341,7 @@
         </script>
 
         <%--footer--%>
-        <jsp:include page="components/Footer.jsp" />
+        <jsp:include page="admin-components/footer.jsp" />
     </body>
 
 </html>

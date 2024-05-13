@@ -1,3 +1,17 @@
+<!--
+=========================================================
+* Soft UI Dashboard - v1.0.7
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,17 +26,16 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+  <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-  
 </head>
 
 <body class="">
@@ -32,7 +45,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid pe-0">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../admin/admin-dashboard.jsp">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="admin-dashboard.jsp">
               Soft UI Dashboard
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,83 +98,75 @@
     </div>
   </div>
   <main class="main-content  mt-0">
-    <section class="text-center  d-flex justify-content-center">
-
-            <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
-                 margin-top: -100px;
-                 backdrop-filter: blur(30px);
-                 width: 60%;
-                 margin-bottom: 60px;
-                 border-radius: 20px;
-                 ">
-                <div class="card-body py-5 px-md-5">
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-8">
-                            <h2 class="fw-bold mb-5">Sign in</h2>
-                            <form action="AdminLogin" method="post" id="signin-form">
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <label class="form-label" for="signin-username">Username<span class="text-danger">*</span></label>
-                                            <input class="form-control form-control-lg" type="text" 
-                                                   name="signin-username" id="signin-username/email"/>
-                                        </div>
-                                    </div>
-                                    <!-- Password input -->
-                                    <div data-mdb-input-init class="col-md-6 mb-4">
-                                        <label class="form-label" for="signin-password">Password<span class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <input class="form-control" name="signin-password" id="signin-password" type="password" />
-                                            <span class="input-group-text" id="togglePassword">
-                                                <i class="fas fa-eye" id="toggleIcon"></i>
-                                            </span>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- Submit button -->
-                                <button type="submit" data-mdb-button-init data-mdb-ripple-init 
-                                        class="btn btn-primary btn-block btn-rounded mb-4"
-                                        id="signup-submit-button"
-                                        style="background-color:black;color:white;border-radius:30px;">
-                                    Sign in
-                                </button>
-
-                                <!-- Register buttons -->
-                                <div class="text-center">
-                                    <p>
-                                        <a href="SignUp.jsp" class="si_backlink"
-                                           id="signupLink">Don't have an account? Sign up here</a>
-                                    </p>
-                                </div>
-                            </form>
+    <section>
+      <div class="page-header min-vh-75">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+              <div class="card card-plain mt-8">
+                <div class="card-header pb-0 text-left bg-transparent">
+                  <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
+                  <p class="mb-0">Enter your email and password to sign in</p>
+                </div>
+                <div class="card-body">
+                  <form role="form">
+                    <label>Product Name</label>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Product Name" aria-label="Product Name" aria-describedby="product-name-addon">
+                        <div class="invalid-feedback">
+                            Please provide a valid product name.
+                        </div>
+                        <div id="product-searching-status" class="text-muted">
+                            Searching database...
                         </div>
                     </div>
-
+                    <label>Description</label>
+                    <div class="mb-3">
+                        <textarea class="form-control" placeholder="Description" aria-label="Description" aria-describedby="description-addon"></textarea>
+                    </div>
+                    <label>Price</label>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="price-addon">
+                    </div>
+                    <label>Stock Quantity</label>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" placeholder="Stock Quantity" aria-label="Stock Quantity" aria-describedby="stock-quantity-addon">
+                    </div>
+                    <label>Upload Image</label>
+                    <div class="mb-3">
+                        <input type="file" class="form-control" accept="image/*" aria-label="Upload Image" aria-describedby="upload-image-addon">
+                    </div>
+                    <label>Keywords</label>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Keywords" aria-label="Keywords" aria-describedby="keywords-addon">
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="setAsMain">
+                        <label class="form-check-label" for="setAsMain">Set as main product</label>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0">Add Product</button>
+                    </div>
+                </form>
+                
                 </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                  <p class="mb-4 text-sm mx-auto">
+                    Don't have an account?
+                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Sign up</a>
+                  </p>
+                </div>
+              </div>
             </div>
-
-        </section>
-        <!-- Section: Design Block -->
-        <script>
-
-            // Toggle password visibility for signup-userPwd
-            document.getElementById('togglePassword').addEventListener('click', function () {
-                var pwdInput = document.getElementById('signin-password');
-                var icon = document.getElementById('toggleIcon');
-                if (pwdInput.type === 'password') {
-                    pwdInput.type = 'text';
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                } else {
-                    pwdInput.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                }
-            });
-
-        </script>
+            <div class="col-md-6">
+              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/assets/img/curved-images/curved6.jpg')"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
   <footer class="footer py-5">

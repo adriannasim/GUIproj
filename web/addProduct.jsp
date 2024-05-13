@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <form class="contact-form row" action="AddProducts" id="editProductForm">
+            <form class="contact-form row" action="AddProducts" method="post" id="editProductForm">
                 <div class="form-field col-lg-6">
                     <input id="id" name="id" class="input-text js-input" type="text"
                            value="">

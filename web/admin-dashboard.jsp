@@ -23,9 +23,9 @@
         <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href="/assets/img/apple-icon.png"
+            href="assets/img/apple-icon.png"
             />
-        <link rel="icon" type="image/png" href="/assets/img/art_logo.png" />
+        <link rel="icon" type="image/png" href="assets/img/art_logo.png" />
         <title>Bong Bong | Admin Dashboard</title>
         <!--     Fonts and icons     -->
         <link
@@ -33,18 +33,18 @@
             rel="stylesheet"
             />
         <!-- Nucleo Icons -->
-        <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- Font Awesome Icons -->
         <script
             src="https://kit.fontawesome.com/42d5adcbca.js"
             crossorigin="anonymous"
         ></script>
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- CSS Files -->
         <link
             id="pagestyle"
-            href="/assets/css/soft-ui-dashboard.css?v=1.0.7"
+            href="assets/css/soft-ui-dashboard.css?v=1.0.7"
             rel="stylesheet"
             />
         <!-- Nepcha Analytics (nepcha.com) -->
@@ -60,7 +60,7 @@
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
-        <%@ include file="components/aside.jsp" %>
+        <%@ include file="admin-components/aside.jsp" %>
 
         <main
             class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
