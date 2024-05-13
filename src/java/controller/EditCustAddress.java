@@ -107,7 +107,7 @@ public class EditCustAddress extends HttpServlet {
                 rollbackEx.printStackTrace();
             }
             ex.printStackTrace();
-            response.sendRedirect("ErrorPage.jsp"); // Redirect to error page
+            response.sendRedirect("404Error.jsp"); // Redirect to error page
         }
     }
 }

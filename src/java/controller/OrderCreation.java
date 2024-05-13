@@ -297,7 +297,7 @@ public class OrderCreation extends HttpServlet {
             ex.printStackTrace();
 
             // Redirect to an error page
-            response.sendRedirect("ErrorPage.jsp");
+            response.sendRedirect("404Error.jsp");
         }
         //em.close();
     }

@@ -13,7 +13,9 @@
 
 <%
 //Get the result from servlet
-    Customer cust = (Customer) request.getAttribute("cust");
+    if (session.getAttribute("cust")!=null){
+    Customer cust = (Customer) session.getAttribute("cust");
+    }
 %>
 <!DOCTYPE html>
 <html>
