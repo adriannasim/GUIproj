@@ -191,11 +191,6 @@
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     >
-                                                    Status
-                                                </th>
-                                                <th
-                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    >
                                                     Added on
                                                 </th>
                                                 <th
@@ -240,9 +235,6 @@
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">RM&nbsp; 
                                                         <%= product.getProdprice()%></p>
-                                                </td>
-                                                <td>
-                                                    <p class="text-xs font-weight-bold mb-0">2</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <span class="badge badge-sm bg-gradient-success"

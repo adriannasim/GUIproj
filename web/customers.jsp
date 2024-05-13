@@ -139,6 +139,14 @@
                                         placeholder="Type here..."
                                         />
                                 </div>
+
+                                <div class="w-50 text-end">
+                                    <a href="addCustomer.jsp">
+                                        <button id="add-product-btn" class="btn btn-primary" >
+                                            Add Customer
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
 
                             <div class="card-body px-0 pt-0 pb-2">
