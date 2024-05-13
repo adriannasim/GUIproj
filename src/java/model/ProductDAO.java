@@ -109,9 +109,11 @@ public class ProductDAO {
         return prod;
     }
 
-    public List<String> matchProductByName(String query) {
-        //Initializing a list to store all matching result
-        List<String> matches = new ArrayList<>();
+    public ArrayList<Product> matchProductByName(String query) {
+        //Initializing
+        Product prod;
+        ArrayList<Product> matches = new ArrayList<>();
+        
         //Database query to retrieve product by ID
         String queryStr = "SELECT * FROM " + tableName + " WHERE LOWER(prodName) LIKE ?";
 
@@ -122,7 +124,22 @@ public class ProductDAO {
 
             //Add all result to list
             while (rs.next()) {
-                matches.add(rs.getString("prodName"));
+                String prodImgList = rs.getString("prodImg");
+                String[] prodImgArray = prodImgList.split(";");
+                String prodKeyList = rs.getString("prodKeywords");
+                String[] prodKeyArray = prodKeyList.split(";");
+                
+                prod = new Product(rs.getString("prodId"),
+                        rs.getString("prodName"),
+                        rs.getString("prodDesc"),
+                        rs.getDouble("prodPrice"),
+                        rs.getInt("qtyAvailable"),
+                        prodImgArray,
+                        prodKeyArray,
+                        LocalDate.parse(rs.getString("prodAddedDate")),
+                        rs.getString("prodSlug")
+                );
+                matches.add(prod);
             }
         } catch (SQLException ex) {
             System.err.println("Error occurred retrieving product: " + ex.getMessage());

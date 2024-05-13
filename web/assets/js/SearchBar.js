@@ -67,22 +67,23 @@
 //});
 
 document.addEventListener('DOMContentLoaded', e =>
-{
-    $.ajax({
-        url: '/SearchBar',
-        method: 'GET',
-        dataType: 'json',
-        success: function(data)
         {
-            $('#searchBar').autoComplete({
-                resolverSettings: {
-                    url: data
-                },
+            $('.advancedAutoComplete').autoComplete({
+                resolver: 'custom',
+                events: {
+                    search: function (qry, callback) {
+                        // Adjust the URL to call the SearchBar servlet
+                        $.ajax({
+                            url: 'SearchBar',
+                            type: 'GET',
+                            data: {'qry': qry}
+                        }).done(function (res) {
+                            callback(res); // Assuming res is already an array of results
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            console.error("AJAX Error:", textStatus, errorThrown);
+                        });
+                    }
+                }
             });
-        },
-        error: function(xhr, status, error)
-        {
-            console.error('Error fetching data:', error);
-        }
-    });
-}, false);
+        }, false);
+

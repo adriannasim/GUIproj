@@ -77,8 +77,8 @@
 
         <div class="untree_co-section product-section before-footer-section">
             <div class="container">
-                <form action="RetriveProducts">
-                    <input class="form-control basicAutoComplete" name="id" id="searchBar" type="text" autocomplete="off" />
+                <form action="RetrieveProducts">
+                    <input class="form-control basicAutoComplete" name="prodname" id="searchBar" type="text" autocomplete="off" />
                     <button class="btn btn-outline-info search-btn" type="submit">Search</button>
                 </form>
                 <div class="row prod-btm">

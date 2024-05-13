@@ -185,6 +185,8 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="currentEmail" id="currentEmail" value="<%=emp.getEmail()%>"/>
+
                 <div class="form-field col-lg-12">
                     <button class="submit-btn" id="editStaffSubmit" type="submit" value="Submit">Submit</button>
                 </div>
@@ -192,9 +194,10 @@
         </section>
 
         <script>
-            var lastCheckedEmail="";
+            var lastCheckedEmail = "";
             function validateEmail() {
                 var email = document.getElementById("email").value;
+                var currentEmail = document.getElementById("currentEmail").value;
                 var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 var errorDiv = document.getElementById("errorEmailDiv");
                 var statusDiv = document.getElementById("emailSearching");
@@ -214,7 +217,7 @@
                         var xhr = new XMLHttpRequest();
                         xhr.open(
                                 "GET",
-                                "CheckEmployeeEmail?email=" + encodeURIComponent(email),
+                                "CheckEmployeeEmail?email=" + encodeURIComponent(email) + "&currentEmail=" + encodeURIComponent(currentEmail),
                                 true
                                 );
                         xhr.onreadystatechange = function () {
@@ -289,7 +292,7 @@
                 var errorDiv = document.getElementById("errorGenderDiv");
                 if (
                         !document.getElementById("male").checked &&
-                        !document.getElementById("female").checked 
+                        !document.getElementById("female").checked
                         //!document.getElementById("nottosay").checked
                         )
                 {
@@ -351,8 +354,8 @@
                         "errorContactDiv"
                         ).textContent;
                 //var dobError = document.getElementById(
-                  //      "errorDateOfBirthDiv"
-                    //II    ).textContent;
+                //      "errorDateOfBirthDiv"
+                //II    ).textContent;
                 var genderError = document.getElementById(
                         "errorGenderDiv"
                         ).textContent;

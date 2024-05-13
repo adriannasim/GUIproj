@@ -16,14 +16,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%--imports--%>
-<%@page import="entity.Customer,java.util.ArrayList"%>
+<%@page import="jpaEntity.Customer,java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--includes--%>
-<jsp:include page="/RetrieveCustomerAdm"/>
+<%--<jsp:include page="/RetrieveCustomerAdm"/>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,18 +46,18 @@
             rel="stylesheet"
             />
         <!-- Nucleo Icons -->
-        <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- Font Awesome Icons -->
         <script
             src="https://kit.fontawesome.com/42d5adcbca.js"
             crossorigin="anonymous"
         ></script>
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- CSS Files -->
         <link
             id="pagestyle"
-            href="/assets/css/soft-ui-dashboard.css?v=1.0.7"
+            href="assets/css/soft-ui-dashboard.css?v=1.0.7"
             rel="stylesheet"
             />
         <!-- Nepcha Analytics (nepcha.com) -->
@@ -80,7 +80,7 @@
 
     <body class="g-sidenav-show bg-gray-100">
         <!-- Aside -->
-        <%@ include file="components/aside.jsp" %>
+        <%@ include file="admin-components/aside.jsp" %>
         <!-- End Aside -->
 
         <main
@@ -192,7 +192,7 @@
                                         </thead>
                                         <tbody>
                                             <% if (request.getAttribute("custList") != null) {
-                                                    for (Customer emp : (List<Customer>) request.getAttribute("custList")) {
+                                                    for (Customer customer : (List<Customer>) request.getAttribute("custList")) {
                                             %>
                                             <tr>
                                                 <td>
@@ -208,30 +208,36 @@
                                                             class="d-flex flex-column justify-content-center"
                                                             >
                                                             <h6 class="mb-0 text-sm">
-                                                                <%= customer.getFirstName()%>&nbsp;
-                                                                <%= customer.getLastName()%></h6>
+                                                                <%= customer.getFirstname()%>&nbsp;
+                                                                <%= customer.getLastname()%></h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0"><%= customer.getUsername()%></p>
+                                                    <p class="text-xs font-weight-bold mb-0"><%= customer.getCustomerPK().getUsername()%></p>
                                                 </td>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">
-                                                        <%= customer.getEmail()%>
+                                                        <%= customer.getCustomerPK().getEmail()%>
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">
-                                                        <%= customer.getContactNo()%>
+                                                        <%= customer.getContactno()%>
                                                     </p>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">Female</p>
+                                               <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold"
+                                                          >
+                                                        <% if (customer.getGender().equals('M')) {%>
+                                                        Male <% } else if (customer.getGender().equals('F')) { %>
+                                                        Female <% } else { %>
+                                                        Prefer Not To Say <% } %>
+                                                    </span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-bold"
-                                                          ><%= customer.getDateOfBirth()%></span
+                                                          ><%= customer.getDateofbirth()%></span
                                                     >
                                                 </td>
                                                 <td class="align-middle text-center">
@@ -244,25 +250,19 @@
                                                     </span>
                                                 </td>
 
-                                                <% Address custAdd = customer.getCustAdd();%>
+                                                
 
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-bold"
-                                                          ><%= custAdd.getAddress()%>,&nbsp;
-                                                        <%= custAdd.getPostalCode()%><%= custAdd.getAddress()%>,&nbsp;</span
+                                                          ><%= customer.getAddress()%>,&nbsp;
+                                                        <%= customer.getPostalcode()%>,<%= customer.getState()%>,<%= customer.getCountry()%>&nbsp;</span
                                                     >
                                                 </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs font-weight-bold"
-                                                          ><%= custAdd.getPostalCode()%>,&nbsp;
-                                                        <%= custAdd.getState()%>,&nbsp;
-                                                        <%= custAdd.getCountry()%></span
-                                                    >
-                                                </td>
+                                               
                                                 <td class="align-middle">
                                                     <a
-                                                        href="editCustomer.jsp?user=<%= customer.getUsername()%>
-                                                        &email=<%= customer.getEmail()%>"
+                                                        href="editCustomer.jsp?user=<%= customer.getCustomerPK().getUsername()%>+email=<%= customer.getCustomerPK().getEmail()%>"
+                                                        
                                                         class="text-secondary font-weight-bold text-xs"
                                                         data-toggle="tooltip"
                                                         data-original-title="Edit user"
@@ -283,12 +283,12 @@
                                                     <form id='deleteForm' action='DeleteCustomers' method='post' 
                                                           style="display:none;">
                                                         <input type='hidden' name='username' 
-                                                               value='<%= customer.getUsername()%>'>
-                                                        <input type='hidden' name='email' value='<%= customer.getEmail()%>'>
+                                                               value='<%= customer.getCustomerPK().getUsername()%>'>
+                                                        <input type='hidden' name='email' value='<%= customer.getCustomerPK().getEmail()%>'>
                                                     </form>
                                                 </td>
                                             </tr>
-                                            <% }%>
+                                            <%} }%>
                                         </tbody>
                                     </table>
                                 </div>

@@ -16,9 +16,10 @@ public class CheckEmployeeEmail extends HttpServlet {
 
         // Get the email parameter from the request
         String email = request.getParameter("email");
+        String currentEmail = request.getParameter("currentEmail");
 
         // Checking
-        boolean emailExists = checkEmailExistsInDatabase(email);
+        boolean emailExists = checkEmailExistsInDatabase(email, currentEmail);
 
         // Send response back to the client
         response.setContentType("text/plain");
@@ -29,12 +30,22 @@ public class CheckEmployeeEmail extends HttpServlet {
         }
     }
 
-    private boolean checkEmailExistsInDatabase(String email) {
+    private boolean checkEmailExistsInDatabase(String email, String currentEmail) {
         EmployeeDAO empDAO = new EmployeeDAO();
         Employee emp = empDAO.getRecordByEmail(email);
-        if (emp != null){
-            empDAO.closeConnection();
-            return true;
+        if (emp != null) {
+            if (currentEmail != null) {
+                if (email.equals(currentEmail)) {
+                    empDAO.closeConnection();
+                    return false;
+                } else {
+                    empDAO.closeConnection();
+                    return true;
+                }
+            } else {
+                empDAO.closeConnection();
+                return true;
+            }
         }
         empDAO.closeConnection();
         return false;

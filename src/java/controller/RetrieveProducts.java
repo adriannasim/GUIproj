@@ -23,6 +23,7 @@ public class RetrieveProducts extends HttpServlet {
         ArrayList<Product> prodList = new ArrayList<>();
         ArrayList<Product> suggestionList = new ArrayList<>();
         String prodId;
+        String prodName;
         String viewAll;
         Product mainProduct = new Product();
         HttpSession session = request.getSession();
@@ -40,7 +41,12 @@ public class RetrieveProducts extends HttpServlet {
                 prodList = prodDA.getAllProducts();
                 mainProduct = prodDA.getMainProduct();
             }
-        } 
+        }
+        else if (request.getParameter("prodname") != null && !request.getParameter("prodname").equals(""))
+        {
+            prodName = request.getParameter("prodname");
+            prodList = prodDA.matchProductByName(prodName);
+        }
         //Else, for main page latest products
         else {
             prodList = prodDA.getLatestProducts();
@@ -70,7 +76,6 @@ public class RetrieveProducts extends HttpServlet {
         // close DB Connection
         prodDA.closeConnection();
 
-        
-        response.sendRedirect("Home.jsp");
+        response.sendRedirect("index.jsp");
     }
 }

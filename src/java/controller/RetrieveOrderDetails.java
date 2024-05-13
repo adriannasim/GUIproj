@@ -34,7 +34,7 @@ public class RetrieveOrderDetails extends HttpServlet {
         try {
             utx.begin();
             // Get order from custorder table
-            TypedQuery<Custorder> querystr = em.createQuery("SELECT c FROM Custorder c WHERE c.orderid = :id", Custorder.class);
+            TypedQuery<Custorder> querystr = em.createQuery("SELECT c FROM Custorder c WHERE c.orderid = :orderid", Custorder.class);
             querystr.setParameter("id", id);
             Custorder order = querystr.getSingleResult();
             System.out.println("Enter 1");
@@ -44,16 +44,17 @@ public class RetrieveOrderDetails extends HttpServlet {
             try {
                 utx.begin();
                 // Get paymentInfo from paymentinfo table
-                TypedQuery<Paymentinfo> querystr2 = em.createQuery("SELECT p FROM Paymentinfo p WHERE p.orderid = :id", Paymentinfo.class);
+                TypedQuery<Paymentinfo> querystr2 = em.createQuery("SELECT p FROM Paymentinfo p WHERE p.orderid = :orderid", Paymentinfo.class);
                 querystr2.setParameter("id", id);
                 Paymentinfo paymentinfo = querystr2.getSingleResult();
                 order.setPaymentinfo(paymentinfo);
                 System.out.println("Enter 2");
 
                 utx.commit();
+                
                 try {  // Get order items
                     utx.begin();
-                    TypedQuery<Orderitem> querystr3 = em.createQuery("SELECT o FROM Orderitem o WHERE o.orderitemPK.orderid = :id", Orderitem.class);
+                    TypedQuery<Orderitem> querystr3 = em.createQuery("SELECT o FROM Orderitem o WHERE o.orderitemPK.orderid = :orderid", Orderitem.class);
                     querystr3.setParameter("id", id);
                     List<Orderitem> orderItems = querystr3.getResultList();
                     order.setOrderitems(orderItems);
@@ -67,17 +68,17 @@ public class RetrieveOrderDetails extends HttpServlet {
                 } catch (Exception e) {
                     System.out.println("Error in RetrieveOrderDetails servlet: " + e.getMessage());
                     request.setAttribute("errorMessage", "Error retrieving order details.");
-                    request.getRequestDispatcher("error-page.jsp").forward(request, response);
+                    request.getRequestDispatcher("404Error.jsp").forward(request, response);
                 }
             } catch (Exception e) {
                 System.out.println("Error in RetrieveOrderDetails servlet: " + e.getMessage());
                 request.setAttribute("errorMessage", "Error retrieving order details.");
-                request.getRequestDispatcher("error-page.jsp").forward(request, response);
+                request.getRequestDispatcher("404Error.jsp").forward(request, response);
             }
         } catch (Exception e) {
             System.out.println("Error in RetrieveOrderDetails servlet: " + e.getMessage());
             request.setAttribute("errorMessage", "Error retrieving order details.");
-            request.getRequestDispatcher("error-page.jsp").forward(request, response);
+            request.getRequestDispatcher("404Error.jsp").forward(request, response);
         }
 
     }

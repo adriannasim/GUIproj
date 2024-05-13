@@ -2,6 +2,7 @@ package controller;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.*;
@@ -25,14 +26,20 @@ public class SearchBar extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        List<String> autocomplete = new ArrayList<>();
         try
         {
             TypedQuery<Product> query = em.createQuery("SELECT prod FROM Product prod", Product.class);
             List<Product> results = query.getResultList();
             
+            for (Product product : results)
+            {
+                autocomplete.add(product.getProdname());
+            }
+            
             //Convert data to JSON or another suitable format
             Gson gson = new Gson();
-            String jsonData = gson.toJson(results);
+            String jsonData = gson.toJson(autocomplete);
             
             //Send the list to JS file
             response.setContentType("application/json");
