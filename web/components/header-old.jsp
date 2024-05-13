@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%> 
         <!--Start of header-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="Home.jsp">
+  <a class="navbar-brand" href="index.jsp">
     <img src="img/logo/art_logo_white.png" class="ml-4" width="95px" height="35px" alt="BongBongArtGallery">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item nav-item-pd">
-        <a class="nav-link" href="Home.jsp">Home</a>
+        <a class="nav-link" href="index.jsp">Home</a>
       </li>
       <li class="nav-item nav-item-pd">
         <a class="nav-link" href="ProductPage.jsp?all=t">Products</a>

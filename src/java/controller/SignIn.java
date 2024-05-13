@@ -42,7 +42,7 @@ public class SignIn extends HttpServlet {
                     Cookie cartIdToRemove = new Cookie("cart_id", "");
                     cartIdToRemove.setMaxAge(0);
                     response.addCookie(cartIdToRemove);
-                    response.sendRedirect("Home.jsp");
+                    response.sendRedirect("index.jsp");
                 }
             } else if (custByEmail != null) {
                 matched = Password.checkPassword(userPwd, custByEmail.getUserPwd());
@@ -52,7 +52,7 @@ public class SignIn extends HttpServlet {
                     Cookie cartIdToRemove = new Cookie("cart_id", "");
                     cartIdToRemove.setMaxAge(0);
                     response.addCookie(cartIdToRemove);
-                    response.sendRedirect("Home.jsp");
+                    response.sendRedirect("index.jsp");
                 }
             } else {
                 session.setAttribute("signin-failure-message", "Invalid credentials.");

@@ -31,7 +31,7 @@
             href="assets/img/apple-icon.png"
             />
         <link rel="icon" type="image/png" href="/assets/img/art_logo.png" />
-        <title>Soft UI Dashboard by Creative Tim</title>
+        <title>Bong Bong</title>
         <!--     Fonts and icons     -->
         <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -105,18 +105,7 @@
                             <div class="card-header pb-0 d-flex flex-row align-items-center">
                                 <h6 class="mb-0">Orders</h6>
 
-                                <form action="SearchingFunction" method="get">
-                                    <select name="field">
-                                        <option value="orderid">Order id</option>
-                                        <option value="status">Status</option>
-                                        <option value="orderdate">Order Date</option>
-                                    </select>
-                                    <div class="input-group w-25 mx-4">
-                                        <button type="submit"><span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span></button>
-                                        <input class="form-control" type="text" name="query" placeholder="Enter your search query">
-                                    </div>
-                                    <input type="hidden" id="table" name="table" value="Custorder" />
-                                </form>
+                               
                             </div>
                             <div class="card-body pt-4 p-3">
                                 <ul class="list-group">
@@ -170,13 +159,7 @@
                                                       ><%=custorder.getStatus()%></span
                                                 >
                                         </div>
-                                        <div class="ms-auto text-end">
-                                            <a class="btn btn-link text-primary px-3 mb-0"
-                                               href="view-order.jsp?orderId=<%= custorder.getOrderid()%>">
-                                                <i class="fas fa-pencil-alt text-primary me-2" aria-hidden="true"></i>
-                                                View
-                                            </a>
-                                        </div>
+                                       
                                     </li>
                                     <%
                                             }

@@ -39,7 +39,7 @@
             href="/assets/img/apple-icon.png"
             />
         <link rel="icon" type="image/png" href="/assets/img/art_logo.png" />
-        <title>Soft UI Dashboard by Creative Tim</title>
+        <title>Bong Bong</title>
         <!--     Fonts and icons     -->
         <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -132,13 +132,7 @@
                                         />
                                 </div>
 
-                                <div class="w-50 text-end">
-                                    <a href="addCustomer.jsp">
-                                        <button id="add-product-btn" class="btn btn-primary" >
-                                            Add Customer
-                                        </button>
-                                    </a>
-                                </div>
+                               
                             </div>
 
                             <div class="card-body px-0 pt-0 pb-2">
@@ -176,11 +170,7 @@
                                                     >
                                                     Date of Birth
                                                 </th>
-                                                <th
-                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    >
-                                                    Address
-                                                </th>
+                                              
                                                 <th
                                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     >
@@ -223,8 +213,8 @@
                                                <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-bold"
                                                           >
-                                                        <% if (customer.getGender().equals('M')) {%>
-                                                        Male <% } else if (customer.getGender().equals('F')) { %>
+                                                        <% if (customer.getGender().equals("M")) {%>
+                                                        Male <% } else if (customer.getGender().equals("F")) { %>
                                                         Female <% } else { %>
                                                         Prefer Not To Say <% } %>
                                                     </span>
@@ -234,16 +224,7 @@
                                                           ><%= customer.getDateofbirth()%></span
                                                     >
                                                 </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs font-weight-bold"
-                                                          >
-                                                        <% if (customer.getGender().equals('M')) {%>
-                                                        Male <% } else if (customer.getGender().equals('F')) { %>
-                                                        Female <% } else { %>
-                                                        Prefer Not To Say <% } %>
-                                                    </span>
-                                                </td>
-
+                                               
                                                 
 
                                                 <td class="align-middle text-center">
