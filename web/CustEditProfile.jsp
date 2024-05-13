@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="mt-5 text-center">
-                                <button class="btn btn-primary profile-button" id="edit-profile-submit-button" type="submit">Save Profile</button>
+                                <button class="btn profile-button" id="edit-profile-submit-button" type="submit">Save Profile</button>
                             </div>
                         </div>
                     </div>
@@ -333,5 +333,5 @@
         </script>
     </body>
     <%--footer--%>
-    <jsp:include page="admin-components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>

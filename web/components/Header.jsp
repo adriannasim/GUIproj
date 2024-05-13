@@ -19,11 +19,9 @@
                 <div class="collapse navbar-collapse" id="navbarsFurni">
                     <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="Home.jsp">Home</a>
+                            <a class="nav-link" href="index.jsp">Home</a>
                         </li>
                         <li><a class="nav-link" href="ProductPage.jsp?all=t">Arts</a></li>
-                        <li><a class="nav-link" href="about.jsp">About us</a></li>
-                        <li><a class="nav-link" href="contact.jsp">Contact us</a></li>
                     </ul>
 
                     <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">

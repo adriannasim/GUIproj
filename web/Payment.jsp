@@ -304,7 +304,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="row mb-5">
+                            <div class="row mb-5" hidden>
                                 <div class="col-md-12">
                                     <h2 class="h3 mb-3 text-black">Coupon Code</h2>
                                     <div class="p-3 p-lg-5 border bg-white">
@@ -369,13 +369,7 @@
                                                     <td class="text-black font-weight-bold">
                                                         <strong>Cart Subtotal</strong>
                                                     </td>
-                                                    <td class="text-black"><%=formattedSubtotal%></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-black font-weight-bold">
-                                                        <strong>Cart Subtotal</strong>
-                                                    </td>
-                                                    <td class="text-black"><%=formattedSubtotal%></td>
+                                                    <td class="text-black">RM <%=formattedSubtotal%></td>
                                                 </tr>
                                                 <% if (subtotal >= 1000) {
                                                         shippingFee = 0.0;
@@ -394,14 +388,14 @@
                                                     <td class="text-black font-weight-bold">
                                                         <strong>Shipping Fee</strong>
                                                     </td>
-                                                    <td class="text-black"> <%=formattedShippingFee%></td>
+                                                    <td class="text-black">RM <%=formattedShippingFee%></td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="text-black font-weight-bold">
                                                         <strong>Sales Tax (10%)</strong>
                                                     </td>
-                                                    <td class="text-black"> <%=formattedSalesTax%></td>
+                                                    <td class="text-black">RM <%=formattedSalesTax%></td>
                                                 </tr>
 
                                                 <tr>
@@ -409,7 +403,7 @@
                                                         <strong>Order Total</strong>
                                                     </td>
                                                     <td class="text-black font-weight-bold">
-                                                        <strong><%=formattedTotal%></strong>
+                                                        <strong>RM <%=formattedTotal%></strong>
                                                     </td>
                                                 </tr>
                                             </tbody>
