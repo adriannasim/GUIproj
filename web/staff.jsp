@@ -35,9 +35,9 @@
         <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href="/assets/img/apple-icon.png"
+            href="assets/img/apple-icon.png"
             />
-        <link rel="icon" type="image/png" href="/assets/img/art_logo.png" />
+        <link rel="icon" type="image/png" href="assets/img/art_logo.png" />
         <title>Admin</title>
         <!--     Fonts and icons     -->
         <link
@@ -45,18 +45,18 @@
             rel="stylesheet"
             />
         <!-- Nucleo Icons -->
-        <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- Font Awesome Icons -->
         <script
             src="https://kit.fontawesome.com/42d5adcbca.js"
             crossorigin="anonymous"
         ></script>
-        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- CSS Files -->
         <link
             id="pagestyle"
-            href="/assets/css/soft-ui-dashboard.css?v=1.0.7"
+            href="assets/css/soft-ui-dashboard.css?v=1.0.7"
             rel="stylesheet"
             />
         <!-- Nepcha Analytics (nepcha.com) -->
@@ -79,7 +79,7 @@
 
     <body class="g-sidenav-show bg-gray-100">
         <!-- Aside -->
-        <%@ include file="components/aside.jsp" %>
+        <%@ include file="admin-components/aside.jsp" %>
         <!-- End Aside -->
 
         <main
@@ -129,6 +129,13 @@
                                         class="form-control"
                                         placeholder="Type here..."
                                         />
+                                </div>
+                                <div class="w-50 text-end">
+                                    <a href="addStaff.jsp">
+                                    <button id="add-staff-btn" class="btn btn-primary" >
+                                        Add Staff
+                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
@@ -209,7 +216,7 @@
                                                 </td>
                                                 <td class="align-middle">
                                                     <a
-                                                        href="editStaff.jsp?id=<%= emp.getEmpid()%>"
+                                                        href="editStaff.jsp?id=<%= emp.getUsername()%>"
                                                         class="text-secondary font-weight-bold text-xs"
                                                         data-toggle="tooltip"
                                                         data-original-title="Edit user"
@@ -227,9 +234,9 @@
                                                         >
                                                         Delete
                                                     </a>
-                                                    <form id='deleteForm' action='DeleteAccounts' method='post' 
+                                                    <form id='deleteForm' action='DeleteAccount' method='post' 
                                                           style="display:none;">
-                                                        <input type='hidden' name='id' value='<%= emp.getEmpid()%>'>
+                                                        <input type='hidden' name='id' value='<%= emp.getUsername()%>'>
                                                     </form>
                                                 </td>
                                             </tr>

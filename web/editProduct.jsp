@@ -129,7 +129,7 @@
 
             <form class="contact-form row" action="EditProducts" method="post" id="editProductForm">
                 <div class="form-field col-lg-6">
-                    <input id="id" name="id" class="input-text js-input" type="text" disabled
+                    <input id="id" name="id" class="input-text js-input" type="text" readonly
                            value="<%= prod.getProdid()%>">
                     <label class="label" for="id">Product ID</label>
                 </div>

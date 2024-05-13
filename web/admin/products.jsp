@@ -35,9 +35,9 @@
         <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href="../assets/img/apple-icon.png"
+            href="/assets/img/apple-icon.png"
             />
-        <link rel="icon" type="image/png" href="../assets/img/art_logo.png" />
+        <link rel="icon" type="image/png" href="/assets/img/art_logo.png" />
         <title>Edit Product</title>
         <!--     Fonts and icons     -->
         <link
@@ -45,18 +45,18 @@
             rel="stylesheet"
             />
         <!-- Nucleo Icons -->
-        <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- Font Awesome Icons -->
         <script
             src="https://kit.fontawesome.com/42d5adcbca.js"
             crossorigin="anonymous"
         ></script>
-        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
         <!-- CSS Files -->
         <link
             id="pagestyle"
-            href="../assets/css/soft-ui-dashboard.css?v=1.0.7"
+            href="/assets/css/soft-ui-dashboard.css?v=1.0.7"
             rel="stylesheet"
             />
         <!-- Nepcha Analytics (nepcha.com) -->
@@ -161,9 +161,11 @@
                                 </div>
 
                                 <div class="w-50 text-end">
-                                    <button id="add-product-btn" class="btn btn-primary">
+                                    <a href="addProduct.jsp">
+                                    <button id="add-product-btn" class="btn btn-primary" >
                                         Add Product
                                     </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
@@ -264,7 +266,7 @@
                                                 </td>
                                                 <td class="align-middle">
                                                     <a
-                                                        href=EditProducts.jsp?slug=<%= product.getProdslug()%>"
+                                                        href="editProduct.jsp?id=<%= product.getProdid()%>"
                                                         class="text-secondary font-weight-bold text-xs"
                                                         data-toggle="tooltip"
                                                         data-original-title="Edit user"
@@ -301,14 +303,14 @@
                     </div>
                 </div>
 
-                <%@ include file="components/footer.jsp" %>
+                <%@ include file="admin-components/footer.jsp" %>
             </div>
         </main>
 
         <!--   Core JS Files   -->
-        <script src="../assets/js/core/popper.min.js"></script>
-        <script src="../assets/js/core/bootstrap.min.js"></script>
-        <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-        <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+        <script src="/assets/js/core/popper.min.js"></script>
+        <script src="/assets/js/core/bootstrap.min.js"></script>
+        <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
     </body>
 </html>

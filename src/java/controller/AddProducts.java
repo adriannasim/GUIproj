@@ -6,21 +6,30 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.transaction.UserTransaction;
 import model.EmployeeDAO;
 
 @WebServlet(name = "AddProducts", urlPatterns = {"/AddProducts"})
 public class AddProducts extends HttpServlet
 {
+    @PersistenceContext(unitName = "GUI_AssignmentPU")
+    private EntityManager em;
+
+    @Resource
+    private UserTransaction utx;
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        try {
         //Initializations
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
-        EntityManager em = emf.createEntityManager();
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
+        //EntityManager em = emf.createEntityManager();
         Product jpaprod = new Product();
         entity.Product prod = new entity.Product();
         int imgCount = 0;
@@ -96,12 +105,26 @@ public class AddProducts extends HttpServlet
         jpaprod.setProdaddeddate(new Date());
         jpaprod.setProdslug(prod.formatSlug(name));
 
+        utx.begin();
         //Insert into db using JPA
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
         em.persist(jpaprod);
-        em.getTransaction().commit();
+        //em.getTransaction().commit();
+        utx.commit();
+        
+        }   catch (Exception ex) {
+                // Rollback transaction if an exception occurs
+                try {
+                    if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                        utx.rollback();
+                    }
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+                ex.printStackTrace();
+            }
 
-        em.close();
-        emf.close();
+        //em.close();
+        //emf.close();
     }
 }

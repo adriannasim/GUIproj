@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import jpaEntity.Custorder;
 import jpaEntity.Orderitem;
 import jpaEntity.Paymentinfo;
-import java.util.List; // Added import for List
+import java.util.List; 
 import javax.annotation.Resource;
 import javax.transaction.UserTransaction;
+
 
 @WebServlet(name = "RetrieveOrderDetails", urlPatterns = {"/RetrieveOrderDetails"})
 public class RetrieveOrderDetails extends HttpServlet {
@@ -24,7 +25,6 @@ public class RetrieveOrderDetails extends HttpServlet {
     
     @Resource
     private UserTransaction utx;
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,6 +37,7 @@ public class RetrieveOrderDetails extends HttpServlet {
             TypedQuery<Custorder> querystr = em.createQuery("SELECT c FROM Custorder c WHERE c.orderid = :id", Custorder.class);
             querystr.setParameter("id", id);
             Custorder order = querystr.getSingleResult();
+            System.out.println("Enter 1");
 
             utx.commit();
             
@@ -47,6 +48,7 @@ public class RetrieveOrderDetails extends HttpServlet {
                 querystr2.setParameter("id", id);
                 Paymentinfo paymentinfo = querystr2.getSingleResult();
                 order.setPaymentinfo(paymentinfo);
+                System.out.println("Enter 2");
 
                 utx.commit();
                 try {  // Get order items
@@ -57,6 +59,7 @@ public class RetrieveOrderDetails extends HttpServlet {
                     order.setOrderitems(orderItems);
 
                     request.setAttribute("order", order);
+                    System.out.println("Enter 3");
 
                     utx.commit();
                     // Send response to JSP

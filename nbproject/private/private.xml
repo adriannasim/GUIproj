@@ -8,11 +8,6 @@
             <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/Admin.jsp</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/web/js/UpdateStatus.js</file>
-            <file>file:/C:/Users/adrianna/Documents/NetBeansProjects/GUIproj/src/java/controller/UpdateStatus.java</file>
-        </group>
-        <group>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
             <file>file:/D:/GUIproj/web/Home.jsp</file>
@@ -30,7 +25,7 @@
         <group>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/web/components/Footer.jsp</file>
+            <file>file:/D:/GUIproj/web/admin-components/footer.jsp</file>
             <file>file:/D:/GUIproj/src/conf/web.xml</file>
             <file>file:/D:/GUIproj/src/java/controller/EditCustProfile.java</file>
             <file>file:/D:/GUIproj/web/EditCustomer.jsp</file>
@@ -42,7 +37,7 @@
         <group>
             <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
             <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
-            <file>file:/D:/GUIproj/web/components/Footer.jsp</file>
+            <file>file:/D:/GUIproj/web/admin-components/footer.jsp</file>
             <file>file:/D:/GUIproj/web/WEB-INF/glassfish-web.xml</file>
             <file>file:/D:/GUIproj/web/WEB-INF/glassfish-resources.xml</file>
             <file>file:/D:/GUIproj/src/java/controller/EditCustProfile.java</file>
@@ -51,6 +46,12 @@
             <file>file:/D:/GUIproj/src/java/controller/EditCustomer.java</file>
             <file>file:/D:/GUIproj/src/java/controller/CheckOrderDetails.java</file>
             <file>file:/D:/GUIproj/src/java/controller/CheckOrders.java</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveOrders.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveOrderDetails.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/SearchBar.java</file>
         </group>
     </open-files>
 </project-private>
