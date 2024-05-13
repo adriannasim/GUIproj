@@ -27,5 +27,30 @@
             <file>file:/D:/GUIproj/web/Cart.jsp</file>
         </group>
         <group/>
+        <group>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/components/Footer.jsp</file>
+            <file>file:/D:/GUIproj/src/conf/web.xml</file>
+            <file>file:/D:/GUIproj/src/java/controller/EditCustProfile.java</file>
+            <file>file:/D:/GUIproj/web/EditCustomer.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/UpdateStatus.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/EditCustomer.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/CheckOrderDetails.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/CheckOrders.java</file>
+        </group>
+        <group>
+            <file>file:/D:/GUIproj/src/java/controller/RetrieveCustomerProfile.java</file>
+            <file>file:/D:/GUIproj/web/CustomerProfile.jsp</file>
+            <file>file:/D:/GUIproj/web/components/Footer.jsp</file>
+            <file>file:/D:/GUIproj/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/D:/GUIproj/web/WEB-INF/glassfish-resources.xml</file>
+            <file>file:/D:/GUIproj/src/java/controller/EditCustProfile.java</file>
+            <file>file:/D:/GUIproj/web/EditCustomer.jsp</file>
+            <file>file:/D:/GUIproj/src/java/controller/UpdateStatus.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/EditCustomer.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/CheckOrderDetails.java</file>
+            <file>file:/D:/GUIproj/src/java/controller/CheckOrders.java</file>
+        </group>
     </open-files>
 </project-private>

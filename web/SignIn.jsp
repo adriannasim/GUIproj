@@ -1,61 +1,67 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
-<%@ include file="css/bootstrapStyles.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sign In</title>
-        <!-- Include commonFiles.tag -->
-        <custom:commonFiles/>
-        
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="shortcut icon" href="favicon.png">
+        <title>Bong Bong</title>
+
+        <!-- Theme -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+
         <style>
-   
-    
-        .cont {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 90vh;
-        }
+            body {
+                z-index: 0;
+            }
 
-        /* Styling the form container */
-        .cont form {
-            border: 2px solid white;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-        }
+            .form-control {
+                font-size: 16px;
+            }
 
-        /* Centering the form fields */
-        .cont form .row {
-            justify-content: center;
-        }
+            .message {
+                position: fixed;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 10px 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                z-index: 9999;
+                text-align: center;
+            }
 
-        /* Padding for form items */
-        .si_item-padding {
-            padding: 10px 0;
-        }
-
-        /* Styling the submit button */
-        .si_btn-pd button {
-            width: 100%;
-        }
-
-        /* Styling the links */
-        .si_link {
-            text-align: center;
-        }
-
-</style>
-
-        
+            .signup-error-message{
+                font-size: 12px;
+                color: red;
+            }
+            .signup-status-message{
+                font-size: 12px;
+                color: red;
+            }
+            #signupLink{
+                color: black;
+                text-decoration: none;
+            }
+            #signupLink:hover{
+                color: #3b5d50;
+                text-decoration: none;
+            }
+        </style>
     </head>
-    <body class="text-center">
-        <!--header-->
-        <jsp:include page="components/header.jsp" />
+    <body>
+        <%--header--%>
+        <jsp:include page="components/Header.jsp" />
+
+        <!-- Start of Message Div -->
         <%
             // Retrieve the message from session
             String signupMsg = (String) session.getAttribute("signup-message");
@@ -105,9 +111,9 @@
             }
         %>
         <%
-       // Check if sign-up was successful
-       Boolean signupSuccess = (Boolean) request.getSession().getAttribute("signup-success");
-       if (signupSuccess != null && signupSuccess) {
+            // Check if sign-up was successful
+            Boolean signupSuccess = (Boolean) request.getSession().getAttribute("signup-success");
+            if (signupSuccess != null && signupSuccess) {
         %>
         <script>
             // Use AJAX to call RetrieveCart servlet in the background
@@ -125,53 +131,98 @@
                 request.getSession().removeAttribute("signup-success");
             }
         %>
-       
-    <div class="cont">
-        
-        <form action="signin" method="post" id="signin-form">
-            <h2 class="si_title">Sign In</h2>
-            <div class="container"> 
-                <div class="row justify-content-md-end">
-                    <div class="col-2">
-                        <label>Username/Email</label>
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control form-control-lg" type="text" name="signin-username/email" id="signin-username/email"/><br/><br/>
-                    </div>
-                    <div class="row justify-content-md-end">
-                    <div class="col-2">
-                        <label>Password</label> 
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control form-control-lg" type="password" name="signin-password" id="signin-password"/><br/><br/>
-                    </div>
-                    </div>
-                    <div class="col-2 si_item-padding">
-                        <label></label> 
-                    </div>
-                    <!-- <div class="col-2 si_item-padding">
-                        <input type="checkbox"/>&nbsp;&nbsp;
-                        <label>Remember Me</label> 
-                    </div> -->
-                    <div class="col-2 si_btn-pd">
-                       <button type="submit" class="btn btn-outline-success btn-block">Sign In</button> 
-                    </div>
-                </div>
-                <div class="row justify-content-md-end">
-                    <div class="col-2 si_link">
-                        <!-- <a href="FgtPw.jsp" class="si_backlink">Forgot Password</a> -->
-                    </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="col-2 si_link">
-                        <a href="SignUp.jsp" class="si_backlink">Don't have an account? Sign up here</a>
-                    </div>
-                </div>
-                </div>
-        </form>
-        </div>
+        <!-- End of Message Div -->
 
-        <!--footer-->
-        <jsp:include page="components/footer.jsp" />
+        <!-- Background image -->
+        <div class="p-5 bg-image" style="background-color:#3b5d50;
+             height: 300px;
+             "></div>
+        <!-- Background image -->
+
+        <!-- Section: Design Block -->
+        <section class="text-center  d-flex justify-content-center">
+
+            <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+                 margin-top: -100px;
+                 backdrop-filter: blur(30px);
+                 width: 60%;
+                 margin-bottom: 60px;
+                 border-radius: 20px;
+                 ">
+                <div class="card-body py-5 px-md-5">
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <h2 class="fw-bold mb-5">Sign in</h2>
+                            <form action="signin" method="post" id="signin-form">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label" for="signin-username/email">Username/email<span class="text-danger">*</span></label>
+                                            <input class="form-control form-control-lg" type="text" 
+                                                   name="signin-username/email" id="signin-username/email"/>
+                                        </div>
+                                    </div>
+
+                                    <!-- Password input -->
+
+
+                                    <div data-mdb-input-init class="col-md-6 mb-4">
+                                        <label class="form-label" for="signin-password">Password<span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <input class="form-control" name="signin-password" id="signin-password" type="password" />
+                                            <span class="input-group-text" id="togglePassword">
+                                                <i class="fas fa-eye" id="toggleIcon"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init 
+                                        class="btn btn-primary btn-block btn-rounded mb-4"
+                                        id="signup-submit-button"
+                                        style="background-color:black;color:white;border-radius:30px;">
+                                    Sign in
+                                </button>
+
+                                <!-- Register buttons -->
+                                <div class="text-center">
+                                    <p>
+                                        <a href="SignUp.jsp" class="si_backlink"
+                                           id="signupLink">Don't have an account? Sign up here</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- Section: Design Block -->
+        <script>
+
+            // Toggle password visibility for signup-userPwd
+            document.getElementById('togglePassword').addEventListener('click', function () {
+                var pwdInput = document.getElementById('signin-password');
+                var icon = document.getElementById('toggleIcon');
+                if (pwdInput.type === 'password') {
+                    pwdInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    pwdInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+        </script>
+
+        <%--footer--%>
+        <jsp:include page="components/Footer.jsp" />
     </body>
 </html>

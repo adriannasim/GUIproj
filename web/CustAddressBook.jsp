@@ -21,10 +21,17 @@
 
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
+        
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
 
         <style>
             .address-error-message {
                 color: red;
+                font-size:12px;
             }
         </style>
 
@@ -34,7 +41,7 @@
     <body>
         <header class="text-center">
             <%--header--%>
-            <jsp:include page="components/header.jsp" />
+            <jsp:include page="components/Header.jsp" />
         </header>
 
         <!--start of content-->
@@ -227,5 +234,5 @@
         ></script>
     </body>
     <%--footer--%>
-    <jsp:include page="components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>

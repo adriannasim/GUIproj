@@ -27,13 +27,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="Home.jsp">Home</a>
                         </li>
-                        <li><a class="nav-link" href="shop.jsp">Arts</a></li>
+                        <li><a class="nav-link" href="ProductPage.jsp?all=t">Arts</a></li>
                         <li><a class="nav-link" href="about.jsp">About us</a></li>
                         <li><a class="nav-link" href="contact.jsp">Contact us</a></li>
                     </ul>
 
                     <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                        <li><a class="nav-link" href="#"><i class="fas fa-user-circle"></i></a></li>
+                        <li><a class="nav-link" href="<%= session.getAttribute("username") == null ? "SignIn.jsp" : "RetrieveCustomerProfile"%>"><i class="fas fa-user-circle"></i></a></li>
                         <li><a class="nav-link" href="Cart.jsp"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>

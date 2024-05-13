@@ -34,12 +34,20 @@
         <link href="css/profilestyles.css" rel="stylesheet" />
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
+
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+
+
     </head>
 
     <body>
         <header class="text-center">
             <%--header--%>
-            <jsp:include page="components/header.jsp" />
+            <jsp:include page="components/Header.jsp" />
         </header>
 
         <!--start of content-->
@@ -51,9 +59,9 @@
                         <!-- User Profile : Upper Avatar Card -->
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="img/navbar/user-icon-black.png" alt="avatar"
-                                     class="rounded-circle img-fluid" style="width: 150px;height: 140px;">
-                                <h5 class="my-3"><%=customer.getFirstname()%> <%=customer.getLastname()%></h5>
+                                <!--<img src="img/navbar/user-icon-black.png" alt="avatar"
+                                     class="rounded-circle img-fluid" style="width: 150px;height: 140px;">-->
+                                <h5 class="my-3"><%=customer.getCustomerPK().getUsername()%></h5>
                                 <p class="text-muted mb-1"><%=customer.getContactno()%></p>
                             </div>
                         </div>
@@ -159,9 +167,9 @@
                             <div class="col-md-6" style="width:100%;">
 
                                 <!-- Order Status -->
-                                <div class="card-orderstatus mb-4 mb-md-0" style="width:100%;">
+                                <div class="card-orderstatus mb-md-0" style="width:100%;">
                                     <div class="counter" style="width:100%;">
-                                        <div class="row">
+                                        <div class="row pt-3">
                                             <div class="col-6 col-lg-3">
                                                 <div class="count-data text-center">
                                                     <p class="m-0px font-w-600" style="padding-top:5px;">
@@ -213,7 +221,7 @@
                                                 <div class="card-header bg-white">
                                                     <div class="row justify-content-between">
                                                         <div class="col">
-                                                            <p class="text-muted"> Order ID
+                                                            <p class="text-muted pt-4"> Order ID
                                                                 <span class="font-weight-bold text-dark"><%=custorder.getOrderid()%></span>
                                                             </p>
                                                             <%
@@ -224,31 +232,33 @@
                                                             <p class="text-muted"> Place On
                                                                 <span class="font-weight-bold text-dark"><%=formattedDate%></span>
                                                             </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                            <!-- Order Tracking Bar HERE -->
+                                                            <div class="d-flex flex-row align-items-center w-100">
+                                                                <div class="w-25"> 
+                                                                    <button type="button" class="btn btn-outline-primary d-flex">
+                                                                        <%=custorder.getStatus()%>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="progress-track mt-3 w-75" style="margin-left:10px;">
+                                                                    <ul id="progressbar">
+                                                                        <li class="step0 <%= (custorder.getPackaging() != null) ? "active" : ""%> " id="step1">Packaging</li>
+                                                                        <li class="step0 <%= (custorder.getShipping() != null) ? "active" : ""%> text-center" id="step2">Shipped</li>
+                                                                        <li class="step0 <%= (custorder.getDelivery() != null) ? "active" : ""%> text-right" id="step3">
+                                                                            <span style="position:relative;left:25px;">Delivered</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Remove active for progress tracking -->
 
-                                                <%
-                                                    if (custorder != null && custorder.getOrderitems() != null && !custorder.getOrderitems().isEmpty()) {
-                                                        for (Orderitem orderitem : custorder.getOrderitems()) {
-                                                %>
-                                                <!-- ORDER PRODUCTS LOOPING HERE -->
-                                                <div class="card-body">
-                                                    <div class="media flex-column flex-sm-row row">
-                                                        <div class="media-body col-sm">
-                                                            <h5 class="bold"><%=orderitem.getProdname()%></h5>
-                                                            <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
-                                                            <h4 class="mt-3 mb-4 bold">
-                                                                <%
-                                                                    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-                                                                    String formattedPrice = decimalFormat.format(orderitem.getProdprice());
-                                                                %>
-                                                                <span class="mt-5">RM</span> <%=formattedPrice%>
-                                                            </h4>
-                                                            <p class="text-muted">Order Status on:
+
+                                                            <!-- Order Tracking Bar HERE -->
+                                                            <p class="text-muted">Order Status Updated on:
                                                                 <span class="Today">
                                                                     <%
                                                                         String status = custorder.getStatus();
+
+                                                                        System.out.println("status is : " + status);
                                                                         Date dateValue = null;
                                                                         String formattedStatusDate = "";
 
@@ -267,33 +277,36 @@
                                                                     <%=formattedStatusDate%>
                                                                 </span>
                                                             </p>
-                                                            <button type="button" class="btn  btn-outline-primary d-flex">
-                                                                <%=custorder.getStatus()%>
-                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <%
+                                                    if (custorder != null && custorder.getOrderitems() != null && !custorder.getOrderitems().isEmpty()) {
+                                                        for (Orderitem orderitem : custorder.getOrderitems()) {
+                                                %>
+                                                <!-- ORDER PRODUCTS LOOPING HERE -->
+                                                <div class="card-body">
+                                                    <div class="media flex-column flex-sm-row row w-50">
+                                                        <div class="media-body col-sm">
+                                                            <h6 class="bold"><%=orderitem.getProdname()%></h5>
+                                                                <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
+                                                                <h6 class="mt-3 mb-4 bold">
+                                                                    <%
+                                                                        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+                                                                        String formattedPrice = decimalFormat.format(orderitem.getProdprice());
+                                                                    %>
+                                                                    <span class="mt-5">RM</span> <%=formattedPrice%> <small>/unit</small>
+                                                                </h6>
                                                         </div>
                                                         <!-- Product Img HERE -->
                                                         <div class="col-sm">
-                                                            <h5 class="bold"><%=orderitem.getProdname()%></h5>
-                                                            <p class="text-muted"> Qty: <%=orderitem.getItemqty()%></p>
                                                             <%
                                                                 String prodimgStr = orderitem.getProdimg();
                                                                 String[] prodimgArray = prodimgStr != null ? prodimgStr.split(",") : new String[0];
                                                             %>
-                                                            <img class="align-self-center img-fluid mt-2" src="<%=request.getContextPath() + prodimgArray[0]%>" width="180 " height="180">
+                                                            <img class="align-self-center img-fluid mt-2" src="<%=request.getContextPath() + prodimgArray[0]%>" width="100 " height="100">
                                                         </div>
-
-                                                        <!-- Order Tracking Bar HERE -->
-                                                        <!-- Remove active for progress tracking -->
-                                                        <div class="progress-track mt-3" style="margin-left:40px;">
-                                                            <ul id="progressbar">
-                                                                <li class="step0 <%= (custorder.getPackaging() != null) ? "active" : ""%> " id="step1">Packaging</li>
-                                                                <li class="step0 <%= (custorder.getShipping() != null) ? "active" : ""%> text-center" id="step2">Shipped</li>
-                                                                <li class="step0 <%= (custorder.getDelivery() != null) ? "active" : ""%> text-right" id="step3">
-                                                                    <span style="position:relative;left:25px;">Delivered</span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <!-- Order Tracking Bar HERE -->
                                                     </div>
                                                 </div>
                                                 <!-- ORDER PRODUCT LOOPING END -->
@@ -327,5 +340,5 @@
     </body>
 
     <%--footer--%>
-    <jsp:include page="components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>

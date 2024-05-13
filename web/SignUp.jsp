@@ -5,72 +5,45 @@
 <%@page import="entity.Product,java.util.ArrayList"%> 
 
 <%--tags--%> 
-<%@ include file="css/bootstrapStyles.jsp" %>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
-<jsp:include page="components/header.jsp" />
+
+<%--header--%>
+<jsp:include page="components/Header.jsp" />
 
 <!DOCTYPE html>
 <html>
     <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Sign Up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="shortcut icon" href="favicon.png">
+        <title>Bong Bong</title>
 
-        <!-- Include commonFiles.tag -->
-        <custom:commonFiles />
+        <!-- Theme -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
 
         <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .signup-error-message {
-            color: red;
-        }
-
-        .signup-status-message {
-            color: green;
-        }
-
-        /* Custom form styles */
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-       .btn-outline-success {
-        
-        color: #800080; 
-        background-color: transparent;
-    }
-        .so_title {
-            color: #333;
-        }
-
-        .so_backlink {
-            margin-top: 20px;
-        }
-    
+            .signup-error-message{
+                color: red;
+                font-size: 12px;
+            }
+            .signup-status-message{
+                font-size: 12px;
+                color: gray;
+            }
+            .radio-btn-group input,
+            .radio-btn-group label{
+                cursor: pointer;
+            }
         </style>
 
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="assets/js/GoogleAutocomplete.js"></script>
     </head>
-
-    <body class="text-center">
-        
-
+    <body>
         <!-- Start of Message Div -->
         <%
             String message = (String) session.getAttribute("message");
@@ -89,215 +62,237 @@
         %>
         <!-- End of Message Div -->
 
-        <h2 class="so_title">Sign Up</h2>
+        <!-- Background image -->
+        <div class="p-5 bg-image" style="background-color:#3b5d50;
+             height: 300px;
+             "></div>
+        <!-- Background image -->
 
-        <form action="signup" method="post" id="signup-form">
-            <div class="container">
+        <!-- Section: Design Block -->
+        <section class="text-center  d-flex justify-content-center">
 
-                <!-- Start of PK Row -->
-                <div class="row justify-content-md-center mt-4">
-                    <div class="col-1">
-                        <label>Username</label>
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" name="signup-username" id="signup-username" type="text" required
-                               value="<%= (request.getParameter("signup-username") != null)
-                                       ? request.getParameter("signup-username") : ""%>" />
-                        <div id="signup-username-error" class="signup-error-message"></div>
-                        <div id="signup-username-status" class="signup-status-message"></div><br/><br/>
-                    </div>
-                    <div class="col-1">
-                        <label>Email</label> 
-                    </div>
-                    <div class="col-4">
-                           <input class="form-control" name="signup-email" id="signup-email" type="email" value="<%=(request.getParameter("signup-email") != null)
-                                ? request.getParameter("signup-email") : ""%>"/>
-                        <div id="signup-email-error" class="signup-error-message"></div>
-                        <div id="signup-email-status" class="signup-status-message"></div>
+            <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+                 margin-top: -100px;
+                 backdrop-filter: blur(30px);
+                 width: 60%;
+                 margin-bottom: 60px;
+                 border-radius: 20px;
+                 ">
+                <div class="card-body py-5 px-md-5">
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <h2 class="fw-bold mb-5">Sign up now</h2>
+                            <form action="signup" method="post" id="signup-form">
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label" for="signup-username">Username<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="signup-username" id="signup-username" 
+                                                   type="text" required
+                                                   value="<%= (request.getParameter("signup-username") != null)
+                                                           ? request.getParameter("signup-username") : ""%>" />
+                                            <div id="signup-username-error" class="signup-error-message"></div>
+                                            <div id="signup-username-status" class="signup-status-message"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Email input -->
+                                    <div data-mdb-input-init class="col-md-6 mb-4">
+                                        <label class="form-label" for="signup-email">Email<span class="text-danger">*</span></label>
+                                        <input class="form-control" name="signup-email" id="signup-email" 
+                                               type="email" value="<%=(request.getParameter("signup-email") != null)
+                                                       ? request.getParameter("signup-email") : ""%>"/>
+                                        <div id="signup-email-error" class="signup-error-message"></div>
+                                        <div id="signup-email-status" class="signup-status-message"></div>
+                                    </div>
+
+                                    <!-- First Name input -->
+                                    <div class="col-md-6 mb-4">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label" for="signup-firstname">First name<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="signup-firstname" id="signup-firstname" 
+                                                   type="text"
+                                                   value="<%= (request.getParameter("signup-firstname") != null)
+                                                           ? request.getParameter("signup-firstname") : ""%>"/>
+                                            <div id="signup-firstname-error" class="signup-error-message"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Last Name input -->
+                                    <div class="col-md-6 mb-4">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label" for="signup-lastname">Last name<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="signup-lastname" 
+                                                   id="signup-lastname" type="text" 
+                                                   value="<%=(request.getParameter("signup-lastname") != null)
+                                                           ? request.getParameter("signup-lastname") : ""%>"/>
+                                            <div id="signup-lastname-error" class="signup-error-message"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Gender input -->
+                                <div form-outline mb-4>
+                                    <label for="signup-gender">Gender<span class="text-danger">*</span></label>
+                                    <div class="radio-btn-group">
+                                        <input class="mr-2" type="radio" id="male" name="signup-gender" value="M" 
+                                               <% if ("M".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
+                                               />
+                                        <label for="male" class="mr-3">Male</label> &nbsp; &nbsp; &nbsp;
+                                        <input class="mr-2" type="radio" id="female" name="signup-gender" value="F" 
+                                               <% if ("F".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
+                                               />
+                                        <label for="female" class="mr-3">Female</label> &nbsp; &nbsp; &nbsp;
+                                        <input class="mr-2" type="radio" id="undefined" name="signup-gender" value="-" 
+                                               <% if ("-".equals(request.getParameter("signup-gender"))) { %> checked <% }%>
+                                               />
+                                        <label for="undefined" class="mr-3">Prefer not to say</label>
+                                        <hr>
+                                    </div>
+                                    <div id="signup-gender-error" class="signup-error-message"></div>
+                                </div>
+
+                                <!-- Contact input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" for="signup-contactNo">Contact<span class="text-danger">*</span></label>
+                                    <input class="form-control" name="signup-contactNo" id="signup-contactNo" type="text"
+                                           value="<%= (request.getParameter("signup-contactNo") != null)
+                                                   ? request.getParameter("signup-contactNo") : ""%>"/>
+                                    <div id="signup-contactNo-error" class="signup-error-message"></div>
+                                </div>
+
+                                <!-- Date Of Birth input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" for="signup-dateOfBirth">Date Of Birth<span class="text-danger">*</span></label>
+                                    <input class="form-control" name="signup-dateOfBirth" id="signup-dateOfBirth" type="date"
+                                           value="<%= (request.getParameter("signup-dateOfBirth") != null)
+                                                   ? request.getParameter("signup-dateOfBirth") : ""%>" />
+                                    <div id="signup-dateOfBirth-error" class="signup-error-message"></div>
+                                </div>
+
+                                <!-- Password input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" for="signup-userPwd">Password<span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control" name="signup-userPwd" id="signup-userPwd" type="password" />
+                                        <span class="input-group-text" id="togglePassword">
+                                            <i class="fas fa-eye" id="toggleIcon"></i>
+                                        </span>
+                                    </div>
+                                    <div id="signup-userPwd-error" class="signup-error-message"></div>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    <label class="form-label" for="signup-confirmPwd">Confirm Password<span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control" name="signup-confirmPwd" id="signup-confirmPwd" type="password"/>
+                                        <span class="input-group-text" id="toggleConfirmPassword">
+                                            <i class="fas fa-eye" id="toggleConfirmIcon"></i>
+                                        </span>
+                                    </div>
+                                    <div id="signup-confirmPwd-error" class="signup-error-message"></div>
+                                </div>
+
+                                <form id="address-form" action="" method="get" autocomplete="off">
+                                    <!-- Address input -->
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label" for="ship-address">Address<span class="text-danger">*</span></label>
+                                            <input class="form-control" id="ship-address" name="ship-address" 
+                                                   required autocomplete="off" 
+                                                   value="<%= (request.getParameter("ship-address") != null)
+                                                           ? request.getParameter("ship-address") : ""%>" />
+                                            <div id="signup-address-error" class="signup-error-message"></div>
+                                        </div>
+                                    </div>
+
+                                    <div data-mdb-input-init class="form-outline mb-4">
+                                        <label class="form-label" for="address2">Unit / Apartment (optional)</label>
+                                        <input class="form-control" id="address2" name="address2" 
+                                               value="<%=(request.getParameter("address2") != null)
+                                                       ? request.getParameter("address2") : ""%>"/>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- City input -->
+                                        <div class="col-md-6 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="locality">City<span class="text-danger">*</span></label>
+                                                <input class="form-control" id="locality" name="locality" 
+                                                       value="<%=(request.getParameter("locality") != null)
+                                                               ? request.getParameter("locality") : ""%>" required readonly />
+                                            </div>
+                                        </div>
+
+                                        <!-- State input -->
+                                        <div class="col-md-6 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="state">State<span class="text-danger">*</span></label>
+                                                <input class="form-control" id="state" name="state" 
+                                                       required value="<%=(request.getParameter("state") != null)
+                                                               ? request.getParameter("state") : ""%>" readonly />
+                                            </div>
+                                        </div>
+
+                                        <!-- Postal Code input -->
+                                        <div class="col-md-6 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="postcode">Postal Code<span class="text-danger">*</span></label>
+                                                <input class="form-control" id="postcode" name="postcode" 
+                                                       required value="<%=(request.getParameter("postcode") != null)
+                                                               ? request.getParameter("postcode") : ""%>" readonly />
+                                            </div>
+                                        </div>
+
+                                        <!-- Country input -->
+                                        <div class="col-md-6 mb-4">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <label class="form-label" for="country">Country<span class="text-danger">*</span></label>
+                                                <input class="form-control" id="country" name="country" 
+                                                       value="<%=(request.getParameter("country") != null)
+                                                               ? request.getParameter("country") : ""%>" required readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                                <!-- Submit button -->
+                                <button type="submit" data-mdb-button-init data-mdb-ripple-init 
+                                        class="btn btn-primary btn-block btn-rounded mb-4"
+                                        id="signup-submit-button"
+                                        style="background-color:black;color:white;border-radius:30px;">
+                                    Sign up
+                                </button>
+                            </form> 
+
+                            <!-- Login buttons -->
+                            <div class="text-center">
+                                <p>
+                                    <a style="text-decoration:none;" href="SignIn.jsp" class="si_backlink"
+                                       id="signupLink">Back to Sign In</a>
+                                </p>
+                            </div>
+
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>or sign up with:</p>
+                                <img src="img/facebook.png" width="34px" height="34px" alt="facebook"/>
+
+                                <img src="img/twitter.png" width="31px" height="31px" alt="twitter"
+                                     style="margin-left:10px;"/>
+
+                                <img src="img/google.png" width="31px" height="31px" alt="google"
+                                     style="margin-left:10px;"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- End of PK Row -->
-
-                <!-- Start of Name Row -->
-                <div class="row justify-content-md-center">
-                    <div class="col-1">
-                        <label>First Name</label>
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" name="signup-firstname" id="signup-firstname" type="text"
-                               value="<%= (request.getParameter("signup-firstname") != null)
-                                       ? request.getParameter("signup-firstname") : ""%>"/>
-                        <div id="signup-firstname-error" class="signup-error-message"></div><br/><br/>
-                    </div>
-                    <div class="col-1">
-                        <label>Last Name</label> 
-                    </div>
-                    <div class="col-4">
-                           <input class="form-control" name="signup-lastname" id="signup-lastname" type="text" value="<%=(request.getParameter("signup-lastname") != null)
-                                ? request.getParameter("signup-lastname") : ""%>"/>
-                        <div id="signup-lastname-error" class="signup-error-message"></div><br/><br/>
-                    </div>
-                </div>
-                <!-- End of Name Row --> 
-
-                <!-- Start of Gender & Contact No Row -->
-                <div class="row justify-content-md-center">
-                    <div class="col-1">
-                        <label>Gender</label>
-                    </div>
-                    <div class="col-4">
-                        <input class="mr-2" type="radio" id="male" name="signup-gender" value="M" <% if ("M".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
-                               />
-                        <label for="male" class="mr-3">Male</label>
-                        <input class="mr-2" type="radio" id="female" name="signup-gender" value="F" <% if ("F".equals(request.getParameter("signup-gender"))) { %> checked <% } %>
-                               />
-                        <label for="female" class="mr-3">Female</label>
-                        <input class="mr-2" type="radio" id="undefined" name="signup-gender" value="-" <% if ("-".equals(request.getParameter("signup-gender"))) { %> checked <% }%>
-                               />
-                        <label for="undefined" class="mr-3">Prefer not to say</label>
-                        <div id="signup-gender-error" class="signup-error-message"></div>
-                    </div>
-                    <div class="col-1">
-                        <label>Contact</label> 
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" name="signup-contactNo" id="signup-contactNo" type="text"
-                               value="<%= (request.getParameter("signup-contactNo") != null)
-                                       ? request.getParameter("signup-contactNo") : ""%>"/>
-                        <div id="signup-contactNo-error" class="signup-error-message"></div><br/><br/>
-                    </div>
-                </div>
-                <!-- End of Gender & Contact No Row -->
-
-                <!-- Start of Password Row -->
-                <div class="row justify-content-md-center">
-                    <div class="col-1">
-                        <label>Password</label> 
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" name="signup-userPwd" id="signup-userPwd" type="password" />
-                        <div id="signup-userPwd-error" class="signup-error-message"></div><br/><br/>
-                    </div>
-                    <div class="col-1">
-                        <label>Confirm Password</label> 
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" name="signup-confirmPwd" id="signup-confirmPwd" type="password"/>
-                        <div id="signup-confirmPwd-error" class="signup-error-message"></div><br/><br/>
-                    </div>
-                </div>
-                <!-- End of Password Row --> 
-
-                <!-- Start of DOB Row -->
-                <div class="row justify-content-md-center">
-                    <div class="col-1">
-                        <label>Date of Birth</label>
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" name="signup-dateOfBirth" id="signup-dateOfBirth" type="date"
-                               value="<%= (request.getParameter("signup-dateOfBirth") != null)
-                                       ? request.getParameter("signup-dateOfBirth") : ""%>" />
-                        <div id="signup-dateOfBirth-error" class="signup-error-message"></div><br/><br/>
-                    </div>
-                    <div class="col-1">
-
-                    </div>
-                    <div class="col-4">
-
-                    </div>
-                </div>
-                <!-- End of DOB Row -->
-
-                <!-- Start of address from -->
-                <form id="address-form" action="" method="get" autocomplete="off"> 
-                    <!-- First Row Start -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-1">
-                            <label class="full-field">
-                                <span class="form-label">Address</span>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <input class="form-control" id="ship-address" name="ship-address" required autocomplete="off" 
-                                   value="<%= (request.getParameter("ship-address") != null) ? request.getParameter("ship-address") : ""%>" />
-                            <div id="signup-address-error" class="signup-error-message"></div><br/><br/>
-                        </div>
-                        <div class="col-1">
-                            <label class="full-field">
-                                <span class="form-label">Unit / Apartment (optional)</span>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <input class="form-control" id="address2" name="address2" value="<%=(request.getParameter("address2") != null) ? request.getParameter("address2") : ""%>"/><br/><br/>
-                        </div>
-                    </div>
-                    <!-- First Row End -->
-
-                    <!-- Second Row Start -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-1">
-                            <label class="full-field">
-                                <span class="form-label">City</span>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <input class="form-control" id="locality" name="locality" value="<%=(request.getParameter("locality") != null) ? request.getParameter("locality") : ""%>" required readonly />
-                        </div>
-                        <div class="col-1">
-                            <label class="slim-field-start">
-                                <span class="form-label">State</span>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <input class="form-control" id="state" name="state" required value="<%=(request.getParameter("state") != null) ? request.getParameter("state") : ""%>" readonly /><br/><br/>
-                        </div>
-                    </div>
-                    <!-- Second Row End -->
-
-                    <!-- Third Row Start -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-1">
-                            <label class="slim-field-end" for="postal_code">
-                                <span class="form-label">Postal code</span>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <input class="form-control" id="postcode" name="postcode" required value="<%=(request.getParameter("postcode") != null) ? request.getParameter("postcode") : ""%>" readonly />
-                        </div>
-                        <div class="col-1">
-                            <label class="slim-field-start">
-                                <span class="form-label">Country</span>
-                            </label>
-                        </div>
-                        <div class="col-4">
-                            <input class="form-control" id="country" name="country" value="<%=(request.getParameter("country") != null) ? request.getParameter("country") : ""%>" required readonly /><br/><br/>
-                        </div>
-                    </div>
-                    <!-- Third Row End -->
-                </form>
-                <!-- End of address from -->
-
-                <!-- Start of Submit Button -->
-                <div class="row justify-content-md-end">
-                    <div class="col-3">
-                        <div class="justify-content-md-end">
-                            <button type="submit" id="signup-submit-button" class="btn btn-outline-success btn-block text-dark">Sign Up</button> 
-                        </div>
-                    </div>
-                </div>
-                <!-- End of Submit Button -->
-
-                <!-- Start of Sign In Button -->
-                <div class="row justify-content-md-start">
-                    <div class="col-2 so_backlink">
-                        <a href="SignIn.jsp" class="so_backlink">Back to Sign In</a>
-                    </div>
-                </div>
-                <!-- End of Sign In Button -->
-
             </div>
-        </form> 
-
+        </section>
+        <!-- Section: Design Block -->
 
         <script>
             var lastCheckedUsername = ""; // Variable to store the last checked username
@@ -652,6 +647,37 @@
                     alert("Please correct the validation errors before submitting the form.");
                 }
             });
+
+            // Toggle password visibility for signup-userPwd
+            document.getElementById('togglePassword').addEventListener('click', function () {
+                var pwdInput = document.getElementById('signup-userPwd');
+                var icon = document.getElementById('toggleIcon');
+                if (pwdInput.type === 'password') {
+                    pwdInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    pwdInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            // Toggle password visibility for signup-confirmPwd
+            document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
+                var confirmPwdInput = document.getElementById('signup-confirmPwd');
+                var icon = document.getElementById('toggleConfirmIcon');
+                if (confirmPwdInput.type === 'password') {
+                    confirmPwdInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    confirmPwdInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
         </script>
 
         <script
@@ -659,8 +685,8 @@
             defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
         ></script>
-        <!--footer-->
 
+        <%--footer--%>
+        <jsp:include page="components/Footer.jsp" />
     </body>
-    <jsp:include page="components/footer.jsp" />
 </html>

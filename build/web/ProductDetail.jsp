@@ -30,16 +30,46 @@
         <title>Product Details</title>
         <!-- Include commonFiles.tag -->
         <custom:commonFiles/>
-        
-        
+
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+
+        <style>
+            .prod-btn {
+                background: none;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                margin: 10px;
+            }
+            .quantity-amount {
+                width: 50px; 
+                height: 50px;
+                border: none;
+                text-align: center;
+            }
+            .quantity-amount::-webkit-inner-spin-button,
+            .quantity-amount::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            .quantity-amount:focus {
+                outline: none;
+            }
+
+        </style>
+
     </head>
 
     <body class="text-center">
         <!--header-->
-        <jsp:include page="components/header.jsp" />
+        <jsp:include page="components/Header.jsp" />
 
         <div id="message-box"></div>
-        
+
         <!-- Begin: Product Details Section (This part will display product image, price, description, keywords, and cart button) -->
         <% Product product = sessProdList.get(0);%>
         <div class="prod-backlink">
@@ -52,8 +82,7 @@
                         src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>"
                         width="300px"
                         height="auto" 
-
-                    />
+                        />
                 </div>
                 <div class="col-5 prod-details">
                     <h2 class="detail-element"><%= product.getProdName()%></h2>
@@ -68,9 +97,10 @@
                         <%= keywords%>
                     </div>
                     <div>
-                        <div class="btns detail-element">
-                            <button class="btn prod-btn" type="button" onclick="decrementValue('itemQty', 1,<%= product.getProdPrice()%>)">
-                                <b>-</b>
+
+                        <div class="btns detail-element align-items-center justify-content-center d-flex flex-row">
+                            <button class="prod-btn" type="button" onclick="decrementValue('itemQty', 1,<%= product.getProdPrice()%>)">
+                                <b>&minus;</b>
                             </button>
                             <input type="hidden" name="prodId" value="<%=product.getProdId()%>">
                             <input
@@ -79,16 +109,16 @@
                                 max="<%= product.getQtyAvailable()%>"
                                 name="itemQty"
                                 type="number"
-                                class=""
+                                class="form-control text-center quantity-amount"
                                 id="itemQty"
                                 readonly
                                 />
-                            <button class="btn prod-btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>,<%= product.getProdPrice()%>)">
-                                <b>+</b>
+                            <button class="prod-btn" type="button" onclick="incrementValue('itemQty', <%=product.getQtyAvailable()%>,<%= product.getProdPrice()%>)">
+                                <b>&plus;</b>
                             </button>
                         </div>
-                                <div id="msg" class="message mb-3"></div>
-                                <button type="button" class="btn btn-dark atc-btn" id="addToCartButton" 
+                        <div id="msg" class="message mb-3"></div>
+                        <button type="button" class="btn btn-dark atc-btn" id="addToCartButton" 
                                 <% if (product.getQtyAvailable() <= 0) { %>
                                 disabled="disabled" 
                                 <% } else {%>
@@ -108,16 +138,16 @@
 
         <!-- Begin: Recommended Artworks Section (This section will display 3 recommended artworks based on keywords) -->
         <h3>You may also like</h3>
-        
+
         <div class="container sprod-rec">
-    <div class="row d-flex flex-row">
-        <% for (int i = 0; i < sessSuggestionList.size(); i++) { %>
-            <% if (i % 3 == 0) { %>
-                </div>
-                <div class="row d-flex flex-row">
-            <% } %>
-            <% Product suggestedProd = sessSuggestionList.get(i); %>
-            
+            <div class="row d-flex flex-row">
+                <% for (int i = 0; i < sessSuggestionList.size(); i++) { %>
+                <% if (i % 3 == 0) { %>
+            </div>
+            <div class="row d-flex flex-row">
+                <% } %>
+                <% Product suggestedProd = sessSuggestionList.get(i);%>
+
                 <div class="col-4">
                     <div class="card m-4 pb-4" style="width: 300px;">
                         <img class="card-img-top sprod-img" src="${pageContext.request.contextPath}<%= suggestedProd.getProdImg()[0]%>" alt="Product Image">
@@ -128,13 +158,13 @@
                         <a href="ProductDetail.jsp?id=<%= suggestedProd.getProdId()%>"><span class="btn btn-info">Learn More</span></a>
                     </div>
                 </div>
-        <% } %>
-    </div> <!-- Closing the last row outside the loop -->
-</div>
+                <% }%>
+            </div> <!-- Closing the last row outside the loop -->
+        </div>
         <!-- End: Recommended Artworks Section -->
 
         <!--footer-->
-        <jsp:include page="components/footer.jsp" />
+        <jsp:include page="components/Footer.jsp" />
 
         <script>
             function incrementValue(inputId, maxValue, price) {
