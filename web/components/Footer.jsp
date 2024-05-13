@@ -34,7 +34,7 @@
                             <div class="col-6 col-sm-6 col-md-3">
                                 <h4 class="mb-4">Contact Info</h4>
                                 <p class="mt-4">Address: 73, Lebuh Campbell, George Town, 10100 GeorgeTown, Penang</p>
-                                <p class="mt-4">Email: <a href="mailto:<%=companyEmail%>"><%=companyEmail%></a></p>
+                                <p class="mt-4">Email: <a href="mailto:<%= companyEmail%>"><%= companyEmail%></a></p>
                                 <p class="mt-4">Phone: <a href="tel:+6012-3456789">+6012-3456789</a></p>
                             </div>
                             <div class="col-2"></div>
@@ -54,7 +54,7 @@
                             <!-- License information: https://untree.co/license/  </p> -->
                        
                             <p class="mb-2 text-center text-lg-start">
-                                <%=companyCopyrights%> <%=companyName%>
+                                <%= companyCopyrights%> <%= companyName%>
                             </p>
                         </div>
 
