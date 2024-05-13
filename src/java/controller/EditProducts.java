@@ -9,49 +9,60 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.persistence.*;
+import javax.transaction.UserTransaction;
 
 @WebServlet(name = "EditProducts", urlPatterns = {"/EditProducts"})
 public class EditProducts extends HttpServlet {
+
+    @PersistenceContext(unitName = "GUI_AssignmentPU")
+    private EntityManager em;
+
+    @Resource
+    private UserTransaction utx;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Initializations
         String id = request.getParameter("id");
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
-        EntityManager em = emf.createEntityManager();
-        jpaEntity.Product jpaprod = em.find(jpaEntity.Product.class, id);
-        entity.Product prod = new entity.Product();
-        int finalNo = 0;
 
-        String name = request.getParameter("name");
-        String desc = request.getParameter("description");
-        String keywords = request.getParameter("keywords");
-        double price = Double.parseDouble(request.getParameter("price"));
-        int qty = Integer.parseInt(request.getParameter("stock"));
-
-        String dateString = request.getParameter("date");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
         try {
-            // Parse the string into a Date object
-            date = dateFormat.parse(dateString);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            utx.begin();
+            System.out.println("id is : " + id);
+            //EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
+            //EntityManager em = emf.createEntityManager();
+            jpaEntity.Product jpaprod = em.find(jpaEntity.Product.class, id);
+            entity.Product prod = new entity.Product();
+            int finalNo = 0;
 
-        String image = request.getParameter("imageInput");
+            String name = request.getParameter("name");
+            String desc = request.getParameter("description");
+            String keywords = request.getParameter("keywords");
+            double price = Double.parseDouble(request.getParameter("price"));
+            int qty = Integer.parseInt(request.getParameter("stock"));
 
-        //Keywords
+            String dateString = request.getParameter("date");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            try {
+                // Parse the string into a Date object
+                date = dateFormat.parse(dateString);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String image = request.getParameter("imageInput");
+
+            //Keywords
 //        String[] keywords = request.getParameterValues("prodkeyword");
 //        String keys = prod.concatKeywords(keywords);
-        //Product image
-        //Get the JSON array of urls that needs to be deleted
+            //Product image
+            //Get the JSON array of urls that needs to be deleted
 //        String json = request.getParameter("dltedImgUrls");
 //        Gson gson = new Gson();
 //        String[] dltedImgUrls = gson.fromJson(json, String[].class);
@@ -113,23 +124,37 @@ public class EditProducts extends HttpServlet {
 //            }
 //        }
 //        String url = prod.concatImg(imgUrls);
+            //Setting varibles into product entity
+            jpaprod.setProdid(id);
+            jpaprod.setProdname(name);
+            jpaprod.setProddesc(desc);
+            jpaprod.setProdprice(new BigDecimal(price));
+            jpaprod.setQtyavailable(qty);
+            jpaprod.setProdimg(image);
+            jpaprod.setProdkeywords(keywords);
+            //jpaprod.setProdaddeddate(date);
 
-        //Setting varibles into product entity
-        jpaprod.setProdid(id);
-        jpaprod.setProdname(name);
-        jpaprod.setProddesc(desc);
-        jpaprod.setProdprice(new BigDecimal(price));
-        jpaprod.setQtyavailable(qty);
-        jpaprod.setProdimg(image);
-        jpaprod.setProdkeywords(keywords);
-        jpaprod.setProdaddeddate(date);
+            //Update into db using JPA
+            //em.getTransaction().begin();
+            em.merge(jpaprod);
+            //em.getTransaction().commit();
 
-        //Update into db using JPA
-        em.getTransaction().begin();
-        em.merge(jpaprod);
-        em.getTransaction().commit();
+            utx.commit();
+            //em.close();
+            //emf.close();
 
-        em.close();
-        emf.close();
+            response.sendRedirect("products.jsp");
+        } catch (Exception ex) {
+            try {
+                if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {
+                    utx.rollback();
+                }
+            } catch (Exception rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+            ex.printStackTrace();
+            response.sendRedirect("ErrorPage.jsp"); // Redirect to error page
+        }
+
     }
 }

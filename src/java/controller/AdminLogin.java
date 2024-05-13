@@ -19,55 +19,40 @@ public class AdminLogin extends HttpServlet
     {
         //Initializations
         EmployeeDAO empdao = new EmployeeDAO();
-        ArrayList<Employee> empList;
         HttpSession session = request.getSession();
-        boolean login = false;
+        boolean matched = false;
         
         //Get user input username and password
-        String username = request.getParameter("username").trim();
-        String password = request.getParameter("password").trim();
+        String username = request.getParameter("signin-username").trim();
+        String password = request.getParameter("signin-password").trim();
         
-        if (!username.isEmpty() && !password.isEmpty())
+        try
         {
-            empList = empdao.getAllRecord();
-            for (int i = 0; i < empList.size(); i++)
+            Employee empUsername = empdao.getRecordByUsername(username);
+            
+            if (empUsername != null)
             {
-                if ((empList.get(i).getUsername()).equals(username) && (empList.get(i).getUserPwd()).equals(password))
+                matched = Password.checkPassword(password, empUsername.getUserPwd());
+                if (matched)
                 {
-                    //Login successful
-                    session.setAttribute("username", username);
-                    session.setAttribute("role", empList.get(i).getEmpRole());
-                    response.sendRedirect("Admin.jsp");
-                    login = true;
-                    break;
+                    session.setAttribute("username", empUsername.getUsername());
+                    session.setAttribute("role", empUsername.getEmpRole());
+                    response.sendRedirect("admin-dashboard.jsp");
                 }
             }
-            if (!login)
+            else
             {
-                //Wrong password or username
-                request.setAttribute("errMsg", "Invalid username or password.");
-                request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
+                session.setAttribute("signin-failure-message", "Invalid credentials.");
+                response.sendRedirect("sign-in.jsp");
             }
         }
-        else if (username.isEmpty())
+        catch(Exception e)
         {
-            //Prompt please enter username
-            request.setAttribute("errMsg", "Please enter your username.");
-            request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
-        }
-        else if (password.isEmpty())
+            e.printStackTrace();
+        } 
+        finally
         {
-            //Prompt please enter password
-            request.setAttribute("errMsg", "Please enter your password");
-            request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
+             empdao.closeConnection();
         }
-        else
-        {
-            //Prompt please enter credentials
-            request.setAttribute("errMsg", "Please enter your credentials.");
-            request.getRequestDispatcher("AdminLogin.jsp").forward(request, response);
-        }
-        
-        empdao.closeConnection();
     }
 }

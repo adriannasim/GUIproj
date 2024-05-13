@@ -164,7 +164,7 @@
         <!-- End: Recommended Artworks Section -->
 
         <!--footer-->
-        <jsp:include page="components/Footer.jsp" />
+        <jsp:include page="admin-components/footer.jsp" />
 
         <script>
             function incrementValue(inputId, maxValue, price) {

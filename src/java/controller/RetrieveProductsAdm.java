@@ -21,15 +21,15 @@ public class RetrieveProductsAdm extends HttpServlet {
         boolean menu;
 
         //Get slug from url
-        String slug = request.getParameter("slug");
+        String id = request.getParameter("id");
 
         //Get Product from db
         //If slug exists (means its from EditProducts.jsp)
-        if (slug != null) {
+        if (id != null) {
             //Set menu to false so it will send response to EditProducts.jsp
             menu = false;
-            TypedQuery<Product> querystr = em.createQuery("SELECT prod FROM Product prod WHERE prod.prodslug = :slug", Product.class);
-            querystr.setParameter("slug", slug);
+            TypedQuery<Product> querystr = em.createQuery("SELECT prod FROM Product prod WHERE prod.prodid = :id", Product.class);
+            querystr.setParameter("id", id);
             Product prod = querystr.getSingleResult();
             request.setAttribute("prod", prod);
 
