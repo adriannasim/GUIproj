@@ -19,21 +19,21 @@ public class RetrieveCustomerAdm extends HttpServlet {
         EntityManager em = emf.createEntityManager();
         HttpSession session = request.getSession();
 
-        
         //Get Employee from db
         //If id exists (means its from editCustomer.jsp) 
-        if (request.getParameter("user") != null ) {
+        if (request.getParameter("user") != null) {
             String username = request.getParameter("user");
             String email = request.getParameter("email");
             CustomerPK pk = new CustomerPK();
-            
+            pk.setUsername(username);
+            pk.setEmail(email);
 
             Customer cust = em.find(Customer.class, pk);
-            request.setAttribute("cust", cust);
+//            request.setAttribute("cust", cust);
 
             // Forward the request to the editCustomer.jsp page
             //request.getRequestDispatcher("editCustomer.jsp").forward(request, response);
-            session.setAttribute("cust",cust);
+            session.setAttribute("cust", cust);
 
         } //If id slug doesnt exists (means its from customers.jsp)
         else {
