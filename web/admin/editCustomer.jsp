@@ -9,8 +9,8 @@
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--includes--%>
-<jsp:include page="/RetrieveCustomers"/>
-<jsp:include page="/EditCustomers"/>
+<jsp:include page="/RetrieveCustomerAdm"/>
+<jsp:include page="/EditCustomer"/>
 
 <%
     Customer cust = new Customer();
@@ -134,39 +134,39 @@
                 </div>
             </div>
 
-            <form class="contact-form row" action="" id="editCustomerForm">
+            <form class="contact-form row" action="EditCustomer" id="editCustomerForm">
                 <div class="form-field col-lg-6">
-                    <input id="name" class="input-text js-input" type="text" disabled
+                    <input id="name" name="name" class="input-text js-input" type="text" disabled
                            value="<%= cust.getUsername()%>">
                     <label class="label" for="name">Customer Username:</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="email" class="input-text js-input" type="email"
+                    <input id="email" name="email" class="input-text js-input" type="email"
                            value="<%= cust.getEmail()%>">
                     <label class="label" for="email">Customer E-mail</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="firstname" class="input-text js-input" type="text"
+                    <input id="firstname" name="firstname" class="input-text js-input" type="text"
                            value="<%= cust.getFirstName()%>">
                     <label class="label" for="firstname">First Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="lastname" class="input-text js-input" type="text"
+                    <input id="lastname" name="lastname" class="input-text js-input" type="text"
                            value="<%= cust.getLastName()%>">
                     <label class="label" for="lastname">Last Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="contact" class="input-text js-input" type="text"
+                    <input id="contact" name="contact" class="input-text js-input" type="text"
                            value="<%= cust.getContactNo()%>">
                     <label class="label" for="contact">Contact Number</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="birth" class="input-text js-input" type="date"
+                    <input id="birth" name="birth" class="input-text js-input" type="date"
                            value="<%= cust.getDateOfBirth()%>">
                     <label class="label" for="birth" style="margin-bottom:15px;">Date Of Birth</label>
                 </div>
@@ -195,32 +195,32 @@
                 <% Address custAdd = cust.getCustAdd();%>
 
                 <div class="form-field col-lg-12">
-                    <input id="address" class="input-text js-input" type="text" required
+                    <input id="address" name="address" class="input-text js-input" type="text" required
                            value="<%= custAdd.getAddress()%>">
                     <label class="label" for="address">Address</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="state" class="input-text js-input" type="text" required
+                    <input id="state" name="state" class="input-text js-input" type="text" required
                            value="<%= custAdd.getState()%>">
                     <label class="label" for="state">State</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="locality" class="input-text js-input" type="text" required
+                    <input id="locality" name="locality" class="input-text js-input" type="text" required
                            value="<%= custAdd.getCity()%>">
                     <label class="label" for="locality">City</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="postalCode" class="input-text js-input" type="text" required
+                    <input id="postalCode" name="postalCode" class="input-text js-input" type="text" required
                            value="<%= custAdd.getPostalCode()%>">
                     <label class="label" for="postalCode">Postal Code</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="country" class="input-text js-input" type="text" required
-                           value="<%= custAdd.getPostalCode()%>">
+                    <input id="country" name="country" class="input-text js-input" type="text" required
+                           value="<%= custAdd.getCountry()%>">
                     <label class="label" for="country">Country</label>
                 </div>
 
@@ -347,7 +347,10 @@
                     var dob = new Date(dateOfBirth);
                     var difference = today - dob;
                     var age = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
-                    if (isNaN(age) || age < 12) {
+                    
+                    if (dob <= today) {
+                        errorDiv.textContent = "The date must be after today.";
+                    } else if (isNaN(age) || age < 12) {
                         errorDiv.textContent = "You must be at least 12 years old to sign up.";
                     } else {
                         errorDiv.textContent = "";

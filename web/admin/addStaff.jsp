@@ -9,18 +9,13 @@
 
 <%--includes--%>
 <jsp:include page="/ManageAccounts"/>
-<jsp:include page="/RetrieveAccounts"/>
-
-<%
-//Get the result from servlet
-    Employee emp = (Employee) request.getAttribute("emp");
-%>
+<jsp:include page="/AddAccount"/>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Staff</title>
+        <title>Add Staff</title>
 
         <!-- Theme -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -111,13 +106,13 @@
     </head>
     <body class="g-sidenav-show bg-gray-100">
         <section class="editStaff">
-            <h1 class="title">Edit Staff</h1>
+            <h1 class="title">Add Staff</h1>
             <div class="errorMsg row" style="position:relative;top:-20px;">
                 <div class="col-sm">
+                    <div id="errorUsernameDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorEmailDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorFirstNameDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorLastNameDiv" style="color:red;font-size:13pt;"></div>
-
                 </div>
                 <div class="col-sm">
                     <div id="errorContactDiv" style="color:red;font-size:13pt;"></div>
@@ -126,61 +121,49 @@
                 </div>
             </div>
 
-            <form class="contact-form row" action="ManageAccounts" id="editStaffForm">
+            <form class="contact-form row" action="AddAccount" id="editStaffForm">
                 <div class="form-field col-lg-6">
-                    <input id="name" name="name" class="input-text js-input" type="text" disabled
-                           value="<%= emp.getUsername()%>">
-                    <label class="label" for="name">Staff Username:</label>
+                    <input id="username" name="username" class="input-text js-input" type="text"
+                           value="">
+                    <label class="label" for="username">Staff Username:</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="empid" name="empid" class="input-text js-input" type="text"
-                           value="<%= emp.getEmpid()%>" disabled>
+                           value="" disabled>
                     <label class="label" for="empid">Staff ID</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="firstname" name="firstname" class="input-text js-input" type="text"
-                           value="<%= emp.getFirstname()%>">
+                           value="">
                     <label class="label" for="firstname">First Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="lastname" name="lastname" class="input-text js-input" type="text"
-                           value="<%= emp.getLastname()%>">
+                           value="">
                     <label class="label" for="lastname">Last Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="email" name="email" class="input-text js-input" type="email"
-                           value="<%= emp.getEmail()%>">
+                           value="">
                     <label class="label" for="email">Staff E-mail</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="contact" name="contact" class="input-text js-input" type="text"
-                           value="<%= emp.getContactno()%>">
+                           value="">
                     <label class="label" for="contact">Contact Number</label>
                 </div>
 
                 <div class="form-field col-lg-12">
                     <label class="label">Gender</label>
                     <div class="inputGender">
-                        <input class="input-gender" type="radio" id="male" name="gender" value="M"
-                               <%
-                                   if (emp.getGender().equals('M')) {
-                               %> checked
-                               <%
-                                   }
-                               %>/>
+                        <input class="input-gender" type="radio" id="male" name="gender" value="M"/>
                         <label class="genderField" for="male">Male</label>
-                        <input class="input-gender" type="radio" id="female" name="gender" value="F"
-                               <%
-                                   if (emp.getGender().equals('F')) {
-                               %> checked
-                               <%
-                                   }
-                               %>/>
+                        <input class="input-gender" type="radio" id="female" name="gender" value="F"/>
                         <label class="genderField" for="female">Female</label>
                     </div>
                 </div>
@@ -192,6 +175,20 @@
         </section>
 
         <script>
+            function validateUserame() {
+                var firstname = document.getElementById("username").value;
+                var errorDiv = document.getElementById("errorUsernameDiv");
+                
+                if (!firstname) {
+                    errorDiv.textContent = "Username is required.";
+                } else if (firstname.length < 2) {
+                    errorDiv.textContent =
+                            "Username must be at least 2 characters long.";
+                } else {
+                    errorDiv.textContent = "";
+                }
+            }
+
             function validateEmail() {
                 var email = document.getElementById("empemail").value;
                 var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -300,6 +297,9 @@
 
             // Add event listeners to trigger validation
             document
+                    .getElementById("username")
+                    .addEventListener("blur", validateUserame);
+            document
                     .getElementById("email")
                     .addEventListener("blur", validateEmail);
             document
@@ -320,6 +320,7 @@
 
             function validateAllFields() {
                 // Trigger validation for all fields
+                validateUserame();
                 validateEmail();
                 validateFirstName();
                 validateLastName();
@@ -336,6 +337,10 @@
 
             function hasValidationError() {
                 // Validation error flags for each field
+                var usernameError =
+                        document.getElementById(
+                                "errorUsernameDiv"
+                                ).textContent;
                 var emailError =
                         document.getElementById(
                                 "errorEmailDiv"
@@ -358,6 +363,7 @@
 
                 // Check if any validation error exists
                 return (
+                        usernameError ||
                         emailError ||
                         firstNameError ||
                         lastNameError ||

@@ -1,26 +1,22 @@
+<%@page import="entity.Address"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%--imports--%>
-<%@page import="jpaEntity.Employee,java.util.ArrayList"%>
+<%@page import="entity.Customer,java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
 <%--tags--%>
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--includes--%>
-<jsp:include page="/ManageAccounts"/>
-<jsp:include page="/RetrieveAccounts"/>
-
-<%
-//Get the result from servlet
-    Employee emp = (Employee) request.getAttribute("emp");
-%>
+<jsp:include page="/RetrieveCustomerAdm"/>
+<jsp:include page="/AddCustomers"/>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Staff</title>
+        <title>Add Customer</title>
 
         <!-- Theme -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -111,87 +107,129 @@
     </head>
     <body class="g-sidenav-show bg-gray-100">
         <section class="editStaff">
-            <h1 class="title">Edit Staff</h1>
+            <h1 class="title">Add Customer</h1>
             <div class="errorMsg row" style="position:relative;top:-20px;">
                 <div class="col-sm">
-                    <div id="errorEmailDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorUsernameDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="emailError" style="color:red;font-size:13pt;"></div>
                     <div id="errorFirstNameDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorLastNameDiv" style="color:red;font-size:13pt;"></div>
-
-                </div>
-                <div class="col-sm">
                     <div id="errorContactDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorDateOfBirthDiv" style="color:red;font-size:13pt;"></div>
+                </div>
+                <div class="col-sm">
                     <div id="errorGenderDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorAddressDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorStateDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorCityDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorPostalCodeDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorCountryDiv" style="color:red;font-size:13pt;"></div>
                 </div>
             </div>
 
-            <form class="contact-form row" action="ManageAccounts" id="editStaffForm">
+            <form class="contact-form row" action="AddCustomers" id="editCustomerForm">
                 <div class="form-field col-lg-6">
-                    <input id="name" name="name" class="input-text js-input" type="text" disabled
-                           value="<%= emp.getUsername()%>">
-                    <label class="label" for="name">Staff Username:</label>
+                    <input id="username" name="username" class="input-text js-input" type="text"
+                           value="">
+                    <label class="label" for="username">Customer Username</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="empid" name="empid" class="input-text js-input" type="text"
-                           value="<%= emp.getEmpid()%>" disabled>
-                    <label class="label" for="empid">Staff ID</label>
+                    <input id="email" name="email" class="input-text js-input" type="email"
+                           value="">
+                    <label class="label" for="email">Customer E-mail</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="firstname" name="firstname" class="input-text js-input" type="text"
-                           value="<%= emp.getFirstname()%>">
+                           value="">
                     <label class="label" for="firstname">First Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="lastname" name="lastname" class="input-text js-input" type="text"
-                           value="<%= emp.getLastname()%>">
+                           value="">
                     <label class="label" for="lastname">Last Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="email" name="email" class="input-text js-input" type="email"
-                           value="<%= emp.getEmail()%>">
-                    <label class="label" for="email">Staff E-mail</label>
+                    <input id="contact" name="contact" class="input-text js-input" type="text"
+                           value="">
+                    <label class="label" for="contact">Contact Number</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
-                    <input id="contact" name="contact" class="input-text js-input" type="text"
-                           value="<%= emp.getContactno()%>">
-                    <label class="label" for="contact">Contact Number</label>
+                    <input id="birth" name="birth" class="input-text js-input" type="date"
+                           value="">
+                    <label class="label" for="birth" style="margin-bottom:15px;">Date Of Birth</label>
                 </div>
 
                 <div class="form-field col-lg-12">
                     <label class="label">Gender</label>
                     <div class="inputGender">
                         <input class="input-gender" type="radio" id="male" name="gender" value="M"
-                               <%
-                                   if (emp.getGender().equals('M')) {
-                               %> checked
-                               <%
-                                   }
-                               %>/>
+                               />
                         <label class="genderField" for="male">Male</label>
                         <input class="input-gender" type="radio" id="female" name="gender" value="F"
-                               <%
-                                   if (emp.getGender().equals('F')) {
-                               %> checked
-                               <%
-                                   }
-                               %>/>
+                               />
                         <label class="genderField" for="female">Female</label>
+                        <input class="input-gender" type="radio" id="nottosay" name="gender" value="-"
+                               />
+                        <label class="genderField" for="nottosay">Prefer Not To Say</label>
                     </div>
                 </div>
 
                 <div class="form-field col-lg-12">
-                    <input class="submit-btn" id="editStaffSubmit" type="submit" value="Submit">
+                    <input id="address" name="address" class="input-text js-input" type="text" required
+                           value="">
+                    <label class="label" for="address">Address</label>
+                </div>
+
+                <div class="form-field col-lg-6 ">
+                    <input id="state" name="state" class="input-text js-input" type="text" required
+                           value="">
+                    <label class="label" for="state">State</label>
+                </div>
+
+                <div class="form-field col-lg-6 ">
+                    <input id="locality" name="locality" class="input-text js-input" type="text" required
+                           value="">
+                    <label class="label" for="locality">City</label>
+                </div>
+
+                <div class="form-field col-lg-6 ">
+                    <input id="postalCode" name="postalCode" class="input-text js-input" type="text" required
+                           value="">
+                    <label class="label" for="postalCode">Postal Code</label>
+                </div>
+
+                <div class="form-field col-lg-6 ">
+                    <input id="country" name="country" class="input-text js-input" type="text" required
+                           value="">
+                    <label class="label" for="country">Country</label>
+                </div>
+
+                <div class="form-field col-lg-12">
+                    <input class="submit-btn" id="editCustomerSubmit" type="submit" value="Submit">
                 </div>
             </form>
         </section>
 
         <script>
+            function validateUsername() {
+                var lastname = document.getElementById("username").value;
+                var errorDiv = document.getElementById("errorUsernameDiv");
+                
+                if (!lastname) {
+                    errorDiv.textContent = "Username is required.";
+                } else if (lastname.length < 2) {
+                    errorDiv.textContent =
+                            "Userame must be at least 2 characters long.";
+                } else {
+                    errorDiv.textContent = "";
+                }
+            }
+
             function validateEmail() {
                 var email = document.getElementById("empemail").value;
                 var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -298,7 +336,61 @@
                 }
             }
 
+            function validateDateOfBirth() {
+                var dateOfBirth = document.getElementById("birth").value;
+                var errorDiv = document.getElementById("errorDateOfBirthDiv");
+                if (!dateOfBirth) {
+                    errorDiv.textContent = "Date of Birth is required.";
+                } else {
+                    var today = new Date();
+                    var dob = new Date(dateOfBirth);
+                    var difference = today - dob;
+                    var age = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+
+                    if (dob <= today) {
+                        errorDiv.textContent = "The date must be after today.";
+                    } else if (isNaN(age) || age < 12) {
+                        errorDiv.textContent = "You must be at least 12 years old to sign up.";
+                    } else {
+                        errorDiv.textContent = "";
+                    }
+                }
+            }
+
+            function validateAddress() {
+                var address = document.getElementById("address").value.trim();
+                var locality = document.getElementById("locality").value.trim();
+                var state = document.getElementById("state").value.trim();
+                var postcode = document.getElementById("postalCode").value.trim();
+                var country = document.getElementById("country").value.trim();
+                var errorDiv = document.getElementById("errorAddressDiv");
+                var errorStateDiv = document.getElementById("errorStateDiv");
+                var errorCityDiv = document.getElementById("errorCityDiv");
+                var errorPostalCodeDiv = document.getElementById("errorPostalCodeDiv");
+                var errorCountryDiv = document.getElementById("errorCountryDiv");
+                if (!address) {
+                    errorDiv.textContent = "Address is required.";
+                }
+                if (!locality) {
+                    errorCityDiv.textContent = "City is required.";
+                }
+                if (!state) {
+                    errorStateDiv.textContent = "State is required.";
+                }
+                if (!postcode) {
+                    errorPostalCodeDiv.textContent = "Postcode is required.";
+                }
+                if (!country) {
+                    errorCountryDiv.textContent = "Country is required.";
+                } else {
+                    errorDiv.textContent = "";
+                }
+            }
+
             // Add event listeners to trigger validation
+            document
+                    .getElementById("username")
+                    .addEventListener("blur", validateUsername);
             document
                     .getElementById("email")
                     .addEventListener("blur", validateEmail);
@@ -312,14 +404,36 @@
                     .getElementById("contact")
                     .addEventListener("blur", validateContactNo);
             document
+                    .getElementById("birth")
+                    .addEventListener("blur", validateDateOfBirth);
+            document
+                    .getElementById("address")
+                    .addEventListener("blur", validateAddress);
+            document
+                    .getElementById("locality")
+                    .addEventListener("blur", validateAddress);
+            document
+                    .getElementById("state")
+                    .addEventListener("blur", validateAddress);
+            document
+                    .getElementById("postalCode")
+                    .addEventListener("blur", validateAddress);
+            document
+                    .getElementById("country")
+                    .addEventListener("blur", validateAddress);
+            document
                     .getElementById("male")
                     .addEventListener("click", validateGender);
             document
                     .getElementById("female")
                     .addEventListener("click", validateGender);
+            document
+                    .getElementById("nottosay")
+                    .addEventListener("click", validateGender);
 
             function validateAllFields() {
                 // Trigger validation for all fields
+                validateUsername();
                 validateEmail();
                 validateFirstName();
                 validateLastName();
@@ -330,12 +444,16 @@
 
                 // Perform form submission if there are no validation errors
                 if (!hasValidationError()) {
-                    document.getElementById("editStaffForm").submit();
+                    document.getElementById("editCustomerForm").submit();
                 }
             }
 
             function hasValidationError() {
                 // Validation error flags for each field
+                var usernameError =
+                        document.getElementById(
+                                "errorUsernameDiv"
+                                ).textContent;
                 var emailError =
                         document.getElementById(
                                 "errorEmailDiv"
@@ -355,18 +473,45 @@
                 var genderError = document.getElementById(
                         "errorGenderDiv"
                         ).textContent;
+                var addressError =
+                        document.getElementById(
+                                "errorAddressDiv"
+                                ).textContent;
+                var stateError =
+                        document.getElementById(
+                                "errorStateDiv"
+                                ).textContent;
+                var cityError =
+                        document.getElementById(
+                                "errorCityDiv"
+                                ).textContent;
+                var postcodeError =
+                        document.getElementById(
+                                "errorPostalCodeDiv"
+                                ).textContent;
+                var countryError =
+                        document.getElementById(
+                                "errorCountryDiv"
+                                ).textContent;
 
                 // Check if any validation error exists
                 return (
+                        usernameError ||
                         emailError ||
                         firstNameError ||
                         lastNameError ||
                         contactNoError ||
-                        genderError
+                        dobError ||
+                        genderError ||
+                        addressError ||
+                        stateError ||
+                        cityError ||
+                        postalField ||
+                        countryError
                         );
             }
 
-            document.getElementById("editStaffSubmit").addEventListener("click", function (event) {
+            document.getElementById("editCustomerSubmit").addEventListener("click", function (event) {
                 event.preventDefault();
                 validateAllFields();
                 if (hasValidationError()) {
@@ -375,5 +520,10 @@
             });
         </script>
 
+        <script
+            async
+            defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
+        ></script>
     </body>
 </html>

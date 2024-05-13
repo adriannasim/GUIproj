@@ -23,7 +23,7 @@
 <%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
 
 <%--includes--%>
-<jsp:include page="/RetrieveCustomers"/>
+<jsp:include page="/RetrieveCustomerAdm"/>
 
 <%
     ArrayList<Customer> custList = new ArrayList<Customer>();
@@ -263,7 +263,8 @@
                                                 </td>
                                                 <td class="align-middle">
                                                     <a
-                                                        href="editCustomer.jsp?user=<%= customer.getUsername()%>"
+                                                        href="editCustomer.jsp?user=<%= customer.getUsername()%>
+                                                        &email=<%= customer.getEmail()%>"
                                                         class="text-secondary font-weight-bold text-xs"
                                                         data-toggle="tooltip"
                                                         data-original-title="Edit user"
@@ -297,7 +298,7 @@
                         </div>
                     </div>
                 </div>
-                                            
+
 
                 <%@ include file="components/footer.jsp" %>
             </div>
