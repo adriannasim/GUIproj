@@ -275,18 +275,6 @@
                                        id="signupLink">Back to Sign In</a>
                                 </p>
                             </div>
-
-                            <!-- Register buttons -->
-                            <div class="text-center">
-                                <p>or sign up with:</p>
-                                <img src="img/facebook.png" width="34px" height="34px" alt="facebook"/>
-
-                                <img src="img/twitter.png" width="31px" height="31px" alt="twitter"
-                                     style="margin-left:10px;"/>
-
-                                <img src="img/google.png" width="31px" height="31px" alt="google"
-                                     style="margin-left:10px;"/>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -687,6 +675,6 @@
         ></script>
 
         <%--footer--%>
-        <jsp:include page="admin-components/footer.jsp" />
+        <jsp:include page="components/Footer.jsp" />
     </body>
 </html>

@@ -168,7 +168,7 @@
 
         
         <div class="btnDiv">
-            <button class="btn btn-primary profile-button" style="position:relative;top:-10px;"><a href="#" 
+            <button class="btn" style="position:relative;top:-10px;background-color:#3b5d50;"><a href="index.jsp" 
                                               style="text-decoration:none;color:white;">Back to Profile Here</a></button>
         </div>
         

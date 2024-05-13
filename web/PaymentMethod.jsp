@@ -98,5 +98,5 @@
         <!--end of content-->
     </body>
     <%--footer--%>
-    <jsp:include page="admin-components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>
