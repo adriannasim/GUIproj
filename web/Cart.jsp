@@ -36,6 +36,20 @@
         <link href="assets/css/tiny-slider.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <title>Bong Bong</title>
+        
+        <style>
+            .message {
+                position: fixed;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                z-index: 9999;
+                text-align: center;
+            }
+        </style>
     </head>
 
     <%--header--%>
@@ -58,15 +72,15 @@
             </div>
         </div>
         <!-- End Hero Section -->
-        
-        <div class="alert" id="message-box">
+
+        <div class="message" id="message-box">
         </div>
 
         <div class="untree_co-section before-footer-section">
             <div class="container">
                 <div class="row mb-5">
 
-                    <form class="col-md-12" method="post">
+                    <form action="Payment" class="col-md-12" method="post" onsubmit="return validateForm();">
                         <div class="site-blocks-table">
 
                             <% if (cartItemList.isEmpty()) { %>
@@ -127,8 +141,8 @@
                                     <% if (cartItem.getProd().getQtyAvailable() < cartItem.getItemQty()) {%>
                                     <span>Sorry, selected quantity exceeds available stock (<%= cartItem.getProd().getQtyAvailable()%> items).</span>
                                     <% } %>
-
                                 </div>
+                                
                                 <!-- Product Looping End Here -->
                                 <%
                                     totalQty += cartItem.getItemQty();
@@ -145,7 +159,7 @@
                             %>
 
                         </div>
-                    </form>
+                   
 
                 </div>
 
@@ -159,7 +173,7 @@
                         </div>
 
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <label class="text-black h4" for="coupon">Coupon</label>
                                 <p>Enter your coupon code if you have one.</p>
@@ -170,7 +184,7 @@
                             <div class="col-md-4">
                                 <button class="btn btn-black">Apply Coupon</button>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -204,14 +218,14 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <button class="btn btn-black btn-lg py-3 btn-block <%=(!cartItemList.isEmpty()) ? "" : "disabled"%>" onclick="window.location = 'checkout.jsp'">Proceed To Checkout</button>
+                                        <button class="btn btn-black btn-lg py-3 btn-block <%=(!cartItemList.isEmpty()) ? "" : "disabled"%>" type="submit">Proceed To Checkout</button>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
+ </form>
                 </div>
             </div>
         </div>
@@ -229,8 +243,10 @@
                                                     var messageDiv = document.getElementById("message-box");
                                                     messageDiv.innerHTML = "Maximum quantity reached";
                                                     messageDiv.style.display = "block";
+                                                    messageDiv.style.padding = "10px 20px";
                                                     setTimeout(function () {
                                                         messageDiv.style.display = "none";
+                                                        messageDiv.style.padding = "0";
                                                     }, 5000);
                                                 }
                                                 if (value < maxValue) {
@@ -247,8 +263,10 @@
                                                     var messageDiv = document.getElementById("message-box");
                                                     messageDiv.innerHTML = "Item quantity should not less than 1.";
                                                     messageDiv.style.display = "block";
+                                                    messageDiv.style.padding = "10px 20px";
                                                     setTimeout(function () {
                                                         messageDiv.style.display = "none";
+                                                        messageDiv.style.padding = "0";
                                                     }, 5000);
                                                 }
                                                 if (value > minValue) {
@@ -283,8 +301,10 @@
                                                         //}, 5000);
                                                         updateCartContent(xhr.responseText);
                                                         document.getElementById('message-box').innerHTML = "Item updated.";
+                                                        document.getElementById('message-box').style.padding = "10px 20px";
                                                         setTimeout(function () {
                                                             document.getElementById('message-box').innerHTML = "";
+                                                            document.getElementById('message-box').style.padding = "0";
                                                         }, 5000);
                                                     }
                                                 };
@@ -301,8 +321,10 @@
                                                         if (xhr.status === 200) {
                                                             updateCartContent(xhr.responseText);
                                                             document.getElementById('message-box').innerHTML = "Item deleted.";
+                                                            document.getElementById('message-box').style.padding = "10px 20px";
                                                             setTimeout(function () {
                                                                 document.getElementById('message-box').innerHTML = "";
+                                                                document.getElementById('message-box').style.padding = "0";
                                                             }, 5000);
                                                         }
                                                     }

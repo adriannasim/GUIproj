@@ -22,12 +22,4 @@
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
   </jsp-config>
-  <error-page>
-        <error-code>404</error-code>
-        <location>web/404Error.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>web/404Error.jsp</location>
-    </error-page>
 </glassfish-web-app>

@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 /**
  *
@@ -27,17 +29,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "paymentinfo")
 @XmlRootElement
 @NamedQueries(
-{
-    @NamedQuery(name = "Paymentinfo.findAll", query = "SELECT p FROM Paymentinfo p"),
-    @NamedQuery(name = "Paymentinfo.findByPaymentid", query = "SELECT p FROM Paymentinfo p WHERE p.paymentid = :paymentid"),
-    @NamedQuery(name = "Paymentinfo.findByOrderid", query = "SELECT p FROM Paymentinfo p WHERE p.orderid = :orderid"),
-    @NamedQuery(name = "Paymentinfo.findByusername", query = "SELECT p FROM Paymentinfo p WHERE p.username = :username"),
-    @NamedQuery(name = "Paymentinfo.findByPaymenttype", query = "SELECT p FROM Paymentinfo p WHERE p.paymenttype = :paymenttype"),
-    @NamedQuery(name = "Paymentinfo.findByPaymentdate", query = "SELECT p FROM Paymentinfo p WHERE p.paymentdate = :paymentdate"),
-    @NamedQuery(name = "Paymentinfo.findByPaymentamount", query = "SELECT p FROM Paymentinfo p WHERE p.paymentamount = :paymentamount")
-})
-public class Paymentinfo implements Serializable
-{
+        {
+            @NamedQuery(name = "Paymentinfo.findAll", query = "SELECT p FROM Paymentinfo p"),
+            @NamedQuery(name = "Paymentinfo.findByPaymentid", query = "SELECT p FROM Paymentinfo p WHERE p.paymentid = :paymentid"),
+            @NamedQuery(name = "Paymentinfo.findByOrderid", query = "SELECT p FROM Paymentinfo p WHERE p.orderid = :orderid"),
+            @NamedQuery(name = "Paymentinfo.findByusername", query = "SELECT p FROM Paymentinfo p WHERE p.username = :username"),
+            @NamedQuery(name = "Paymentinfo.findByPaymenttype", query = "SELECT p FROM Paymentinfo p WHERE p.paymenttype = :paymenttype"),
+            @NamedQuery(name = "Paymentinfo.findByPaymentdate", query = "SELECT p FROM Paymentinfo p WHERE p.paymentdate = :paymentdate"),
+            @NamedQuery(name = "Paymentinfo.findByPaymentamount", query = "SELECT p FROM Paymentinfo p WHERE p.paymentamount = :paymentamount")
+        })
+public class Paymentinfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -72,142 +73,128 @@ public class Paymentinfo implements Serializable
     private double salestax;
     @Column(name = "charges")
     private double charges;
+    
+    @OneToOne
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid", insertable = false, updatable = false)
+    private Custorder custorder;
 
-    public Paymentinfo()
-    {
+    public Paymentinfo() {
     }
 
-    public Paymentinfo(String paymentid)
-    {
+    public Paymentinfo(String paymentid) {
         this.paymentid = paymentid;
     }
 
-    public Paymentinfo(String paymentid, String orderid, String username, String paymenttype)
-    {
+    public Paymentinfo(String paymentid, String orderid, String username, String paymenttype) {
         this.paymentid = paymentid;
         this.orderid = orderid;
         this.username = username;
         this.paymenttype = paymenttype;
     }
 
-    public String getPaymentid()
-    {
+    public String getPaymentid() {
         return paymentid;
     }
 
-    public void setPaymentid(String paymentid)
-    {
+    public void setPaymentid(String paymentid) {
         this.paymentid = paymentid;
     }
 
-    public String getOrderid()
-    {
+    public String getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(String orderid)
-    {
+    public void setOrderid(String orderid) {
         this.orderid = orderid;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPaymenttype()
-    {
+    public String getPaymenttype() {
         return paymenttype;
     }
 
-    public void setPaymenttype(String paymenttype)
-    {
+    public void setPaymenttype(String paymenttype) {
         this.paymenttype = paymenttype;
     }
 
-    public Date getPaymentdate()
-    {
+    public Date getPaymentdate() {
         return paymentdate;
     }
 
-    public void setPaymentdate(Date paymentdate)
-    {
+    public void setPaymentdate(Date paymentdate) {
         this.paymentdate = paymentdate;
     }
 
-    public double getPaymentamount()
-    {
+    public double getPaymentamount() {
         return paymentamount;
     }
 
-    public void setPaymentamount(double paymentamount)
-    {
+    public void setPaymentamount(double paymentamount) {
         this.paymentamount = paymentamount;
     }
-    
-    public double getShippingfee()
-    {
+
+    public double getShippingfee() {
         return shippingfee;
     }
 
-    public void setShippingfee(double shippingfee)
-    {
+    public void setShippingfee(double shippingfee) {
         this.shippingfee = shippingfee;
     }
-    
-    public double getSalestax()
-    {
+
+    public double getSalestax() {
         return salestax;
     }
 
-    public void setSalestax(double salestax)
-    {
+    public void setSalestax(double salestax) {
         this.salestax = salestax;
     }
-    
-    public double getCharges()
-    {
+
+    public double getCharges() {
         return charges;
     }
 
-    public void setCharges(double charges)
-    {
+    public void setCharges(double charges) {
         this.charges = charges;
     }
 
+    public Custorder getCustorder() {
+        return custorder;
+    }
+
+    public void setCustorder(Custorder custorder) {
+        this.custorder = custorder;
+    }
+
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (paymentid != null ? paymentid.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Paymentinfo))
-        {
+        if (!(object instanceof Paymentinfo)) {
             return false;
         }
         Paymentinfo other = (Paymentinfo) object;
-        if ((this.paymentid == null && other.paymentid != null) || (this.paymentid != null && !this.paymentid.equals(other.paymentid)))
-        {
+        if ((this.paymentid == null && other.paymentid != null) || (this.paymentid != null && !this.paymentid.equals(other.paymentid))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "jpaEntity.Paymentinfo[ paymentid=" + paymentid + " ]";
     }
-    
+
 }

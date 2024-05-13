@@ -18,6 +18,12 @@
         <title>Profile Setting</title>
         <!-- Core theme CSS (includes Bootstrap) for Customer Profile ONLY -->
         <link href="css/profilestyles.css" rel="stylesheet" />
+        
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
         <style>
             .changepwd-forgotpwd-a {
                 text-decoration:none;
@@ -29,7 +35,12 @@
             }
             .password-error-message {
                 color: red;
+                font-size: 12px;
             }
+            .password-status-message {
+                font-size: 12px;
+            }
+            
         </style>
 
         <!-- Include commonFiles.tag -->
@@ -40,7 +51,7 @@
     <body>
         <header class="text-center">
             <%--header--%>
-            <jsp:include page="components/header.jsp" />
+            <jsp:include page="components/Header.jsp" />
         </header>
 
         <!--start of content-->
@@ -90,9 +101,9 @@
                                     <p>Password must be minimum 8 and maximum 15 characters, at least one uppercase letter, one lowercase letter, one number and one special character from @, $, !, %, *, ?, &.</p>
                                 </div>
 
-                                <div class="col-md-12">
+                                <!--<div class="col-md-12">
                                     <p><a href="#" class="changepwd-forgotpwd-a">Forgot your password?</a></p>
-                                </div>
+                                </div>--->
 
                             </div>
                             <div class="row mt-3">
@@ -272,5 +283,5 @@
         </script>
     </body>
     <%--footer--%>
-    <jsp:include page="components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>

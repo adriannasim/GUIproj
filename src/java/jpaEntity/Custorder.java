@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,7 +19,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -98,8 +99,12 @@ public class Custorder implements Serializable
     @Size(max = 500)
     @Column(name = "remark")
     private String remark;
-    @OneToMany(mappedBy = "custorder", fetch = FetchType.EAGER)
+    
+    @OneToMany(mappedBy = "custorder")
     private List<Orderitem> orderitems;
+
+    @OneToOne(mappedBy = "custorder")
+    private Paymentinfo paymentinfo;
 
     public Custorder()
     {
@@ -266,6 +271,14 @@ public class Custorder implements Serializable
 
     public void setOrderitems(List<Orderitem> orderitems) {
         this.orderitems = orderitems;
+    }
+    
+    public Paymentinfo getPaymentinfo() {
+        return paymentinfo;
+    }
+
+    public void setPaymentinfo(Paymentinfo paymentinfo) {
+        this.paymentinfo = paymentinfo;
     }
 
     @Override

@@ -99,8 +99,7 @@ public class EditCustProfile extends HttpServlet {
             utx.commit();
 
             response.sendRedirect("CustomerProfile.jsp");
-            em.close();
-
+            
         } catch (Exception ex) {
             try {
                 if (utx != null && utx.getStatus() == javax.transaction.Status.STATUS_ACTIVE) {

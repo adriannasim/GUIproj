@@ -5,9 +5,8 @@
 
 <%--imports--%>
 <%@page import="entity.Product,java.util.ArrayList, model.ProductDAO"%> 
-<%@ include file="css/bootstrapStyles.jsp" %>
+
 <%--includes--%>
-      <%-- includes --%>
 <jsp:include page="/RetrieveProducts"/>
 
 <%-- Begin: Retrieve Product List From Session & Retrieve the cart if cart haven't retrieve yet --%>
@@ -47,103 +46,245 @@
         retrieveCartInBackground();
     };
 </script>
-
 <%
     }
 %>
 <%-- End: Retrieve Product List From Session & Retrieve the cart --%>
+
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Home</title>
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <title>Bong Bong</title>
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
     </head>
-    
+
     <body class="text-center mt-0" id="page-top">
+
         <%--header--%>
         <jsp:include page="components/Header.jsp" />
-        <div id="loadingMessage"></div>
-    
-        <!--start of content-->
-        <!-- Masthead-->
-        <header class="masthead" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url('img/home/pic-4.png')">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class="mx-auto my-0 text-white text-uppercase">Bong Bong</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Explore artistic wonders at Bong Bong Art Gallery</h2>
-                        <a href="ProductPage.jsp?all=t"><button class="btn btn-info" id="home-view">View our artworks</button></a>
+
+        <!-- Start Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-lg-5">
+                        <div class="intro-excerpt">
+                            <h1>Modern Art <span clsas="d-block">Gallery</span></h1>
+                            <p class="mb-4">Welcome, where every stroke tells a story. Our journey began decades ago, fueled by a passion for art and a commitment to showcasing the diverse voices of creativity.</p>
+                            <p>
+                                <a href="ProductPage.jsp?all=t" class="btn btn-secondary me-2">Shop Now</a>
+                                <a href="ProductPage.jsp?all=t" class="btn btn-white-outline">Explore</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="hero-img-wrap">
+                            <img src="assets/img/Home/home-art.png" class="img-fluid">
+                        </div>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- About-->
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4">A World of Artistry </h2>
-                        <p class="text-white-50">
-                            From contemporary masterpieces to timeless classics, our gallery showcases the finest creations from talented artists around the world. 
-                            Experience the beauty of art and find your next cherished masterpiece at Bong Bong Art Gallery.
-                        </p>
+        </div>
+        <!-- End Hero Section -->
+
+        <!-- Start Main Product Section -->
+        <div class="product-section">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Start Column 1 -->
+                    <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                        <h2 class="mb-4 section-title">Artistry in Motion.</h2>
+                        <p class="mb-4">Highlighting the dynamic nature of art, introduces a carousel featuring various artworks that come to life with each slide.</p>
+                        <p><a href="shop.jsp" class="btn">Explore</a></p>
                     </div> 
+                    <!-- End Column 1 -->
+
+                    <!-- Three Products Looping -->
+                    <!-- Start Product Column -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="cart.html">
+                            <img src="assets/img/prodImg/Portrait-Paint-1.jpg" class="img-control product-thumbnail">
+                            <h3 class="product-title">Product Name</h3>
+                            <strong class="product-price">Product Price</strong>
+
+                            <span class="icon-cross">
+                                <button type="button" class="btn btn-round" style="font-size:10pt;">
+                                    AddToCart
+                                </button>
+                            </span>
+                        </a>
+                    </div> 
+                    <!-- End Product Column -->
+                    <!-- Three Products Looping -->
+
+                    <!-- Delete when looping done -->
+                    <!-- Start Column 3 -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="cart.html">
+                            <img src="assets/img/prodImg/Landscape-Paint-2.jpg" class="img-control product-thumbnail">
+                            <h3 class="product-title">Kruzo Aero Chair</h3>
+                            <strong class="product-price">$78.00</strong>
+
+                            <span class="icon-cross">
+                                <button type="button" class="btn btn-round" style="font-size:10pt;">
+                                    AddToCart
+                                </button>
+                            </span>
+
+                        </a>
+                    </div>
+                    <!-- End Column 3 -->
+
+                    <!-- Start Column 4 -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="cart.html">
+                            <img src="assets/img/prodImg/Animal-Paint-1.jpg" class="img-control product-thumbnail">
+                            <h3 class="product-title">Ergonomic Chair</h3>
+                            <strong class="product-price">$43.00</strong>
+
+                            <span class="icon-cross">
+                                <button type="button" class="btn btn-round" style="font-size:10pt;">
+                                    AddToCart
+                                </button>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Column 4 -->
+                    <!-- Delete when looping done -->
+
                 </div>
-                <img class="img-fluid" src="img/home/pic-4.png" alt="..." />
             </div>
-        </section>
-        <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <h2 class="text-dark mb-4">About Us</h2>
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="img/home/background1.png" alt="..." /></div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4 class="text-dark">Shoreline</h4>
-                            <p class="text-dark-50 mb-0"> We offer an exquisite selection of artwork for sale, curated to inspire and enrich your living spaces. 
-                                Whether you're seeking a statement piece for your home or a unique gift for a loved one, discover the perfect artwork to complement your style and elevate your surroundings. 
-                            </p>
+        </div>
+        <!-- End Main Product Section -->
+
+        <!-- Start About Us Section -->
+        <div class="about-us-section mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-lg-5 mb-5 mb-lg-0">
+                        <div class="imgs-grid">
+                            <div class="grid grid-1"><img src="assets/img/Home/background1.png" width="550px" alt="Famous Artist"></div>
                         </div>
                     </div>
-                </div>
-                <h2 class="text-dark mb-4">Our Masterpiece</h2>
-                <!-- Project One Row-->
-                <div class="row gx-0 justify-content-center ">
-                    <div class="col-lg-6"><img class="img-fluid" src="img/prodImg/Portrait-Paint-1.jpg" alt="..."></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Picturesque Sceneries</h4>
-                                    <p class="mb-0 text-white-50">Exploration into enigmatic depths of mother nature.</p>
-                                    <a href="ProductDetail.jsp?id=P0001"><button class="btn btn-info mt-4">Browse</button></a>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="col-lg-6 ps-lg-5">
+                        <h2 class="section-title mb-4">About Us</h2>
+                        <p>From contemporary masterpieces to timeless classics, our gallery showcases the finest creations from talented artists around the world. 
+                            We offer an exquisite selection of artwork for sale, curated to inspire and enrich your living spaces. 
+                            Whether you're seeking a statement piece for your home or a unique gift for a loved one, discover the perfect artwork to complement your style and elevate your surroundings.</p>
+                        <p><a herf="contact.jsp" class="btn mt-4">Explore</a></p>
                     </div>
                 </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center projects-item">
-                    <div class="col-lg-6"><img class="img-fluid" src="img/prodImg/Landscape-Paint-1.jpeg" alt="..."></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Portraits</h4>
-                                    <p class="mb-0 text-white-50">A beacon of clarity.</p>
-                                    <a href="ProductDetail.jsp?id=P0001"><button class="btn btn-info mt-4">Browse</button></a>
-                                </div>
+            </div>
+        </div>
+        <!-- End About Us Section -->
+
+        <!-- Start Reviews Slider -->
+        <div class="testimonial-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto text-center">
+                        <h2 class="section-title">Reviews</h2>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="testimonial-slider-wrap text-center">
+
+                            <div id="testimonial-nav">
+                                <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+                                <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
                             </div>
+
+                            <div class="testimonial-slider">
+
+                                <div class="item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 mx-auto">
+
+                                            <div class="testimonial-block text-center">
+                                                <blockquote class="mb-5">
+                                                    <p>&ldquo;Art should be something that liberates your soul, provokes the imagination and encourages people to go further.&rdquo;</p>
+                                                </blockquote>
+
+                                                <div class="author-info">
+                                                    <h3 class="font-weight-bold">Keith Haring</h3>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- END item -->
+
+                                <div class="item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 mx-auto">
+
+                                            <div class="testimonial-block text-center">
+                                                <blockquote class="mb-5">
+                                                    <p>&ldquo;Art evokes the mystery without which the world would not exist.&rdquo;</p>
+                                                </blockquote>
+
+                                                <div class="author-info">
+                                                    <h3 class="font-weight-bold">Ren  Magritte</h3>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- END item -->
+
+                                <div class="item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 mx-auto">
+
+                                            <div class="testimonial-block text-center">
+                                                <blockquote class="mb-5">
+                                                    <p>&ldquo;Before I start carving the idea must be almost complete. I say ?almost' because the really important thing seems to be the sculptor's ability to let his intuition guide him over the gap between conception and realization without compromising the integrity of the original idea.&rdquo;</p>
+                                                </blockquote>
+
+                                                <div class="author-info">
+                                                    <h3 class="font-weight-bold">Barbara Hepworth</h3>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- END item -->
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <h2 class="text-dark mb-4">Latest Artwork</h2>
+        </div>
+        <!-- End Reviews Slider -->
+
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/tiny-slider.js"></script>
+        <script src="assets/js/custom.js"></script>
+
+
+        <h2 class="text-dark mb-4">Latest Artwork</h2>
         <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
             <%
                 Product product = null;
@@ -162,16 +303,16 @@
                             />
                     </div>
                     <div><%= product.getProdName()%></div>
-                    <% String formattedPrice = String.format("%.2f", product.getProdPrice()); %>
+                    <% String formattedPrice = String.format("%.2f", product.getProdPrice());%>
                     <div>RM<%= formattedPrice%></div>
                 </div>
             </a>
             <% }%>
         </div>
         <a href="ProductPage.jsp?all=t"><button class="btn btn-info mt-4 browse-btn">All Artworks</button></a>
-        </section>
-        <!--end of content-->
-    </body>
-    <%--footer--%>
-    <jsp:include page="components/Footer.jsp" />
+    </section>
+    <!--end of content-->
+</body>
+<%--footer--%>
+<jsp:include page="components/Footer.jsp" />
 </html>

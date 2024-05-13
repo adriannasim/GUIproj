@@ -18,13 +18,25 @@
         <!-- Core theme CSS (includes Bootstrap) for Customer Profile ONLY -->
         <link href="css/profilestyles.css" rel="stylesheet" />
 
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+
         <!-- Include commonFiles.tag -->
         <custom:commonFiles />
 
         <style>
             .card-error-message {
                 color: red;
+                font-size: 12px;
             }
+            #btn-usesavedcard {
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+            
         </style>
 
     </head>
@@ -32,7 +44,7 @@
     <body>
         <header class="text-center">
             <%--header--%>
-            <jsp:include page="components/header.jsp" />
+            <jsp:include page="components/Header.jsp" />
         </header>
 
         <!--start of content-->
@@ -145,11 +157,13 @@
 
 
                         <form action="EditPaymentCard" method="post" id="card-form">
-                            
+
                             <!-- REGISTER PAYMENT CARD -->
                             <div id="AddCardDiv" style="display:none;">
-                                 <button class="btn btn-outline-info" id="btn-usesavedcard" 
-                                    type="button" onclick="CardFunction()" style="margin-bottom:10px;">View Saved Card</button>
+                                <% if (paymentCardList != null && !paymentCardList.isEmpty()) { %>
+                                <button class="" id="btn-usesavedcard" 
+                                        type="button" onclick="CardFunction()" style="margin-bottom:10px;">View Saved Card</button>
+                                <% }%>
                                 <div class="row mt-2">
 
                                     <div class="col-md-6"><label class="labels">Card Name</label>
@@ -168,7 +182,7 @@
                                 <div class="row mt-2">
 
                                     <div class="col-md-6"><label class="labels">Date Month / Year</label>
-                                        <input type="text" class="form-control" placeholder="MM/YYYY" id="payment-card-expiration" name="payment-card-expiration"/>
+                                        <input type="text" class="form-control" placeholder="MM/YY" id="payment-card-expiration" name="payment-card-expiration"/>
                                         <div id="card-expiration-error" class="card-error-message"></div>
                                     </div>
 
@@ -388,7 +402,7 @@
                         nameError ||
                         cardNumberError ||
                         expirationError ||
-                        cvvError 
+                        cvvError
                         );
             }
 
@@ -482,5 +496,5 @@
         <!--end of content-->
     </body>
     <%--footer--%>
-    <jsp:include page="components/footer.jsp" />
+    <jsp:include page="components/Footer.jsp" />
 </html>

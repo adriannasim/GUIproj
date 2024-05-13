@@ -23,70 +23,95 @@
 %>
 <%-- End: Retrieve Product List and Main Product From Session (prodList & mainProduct) --%>
 
-<!DOCTYPE html>
-<html>
+
+<!doctype html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>All Products</title>
-        <!-- Include commonFiles.tag -->
-        <custom:commonFiles/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Untree.co">
+        <link rel="shortcut icon" href="favicon.png">
+
+        <meta name="description" content="" />
+        <meta name="keywords" content="bootstrap, bootstrap4" />
+
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link href="assets/css/tiny-slider.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <title>Bong Bong</title>
     </head>
 
-    <body class="text-center">
-        <!--header-->
-        <jsp:include page="components/header.jsp" />
-        
-        <h2 class="prod_title">A R T W O R K S</h2>
+    <%--header--%>
+    <jsp:include page="components/Header.jsp" />
 
-        <!-- Begin: Main Product Section (This part will display the main product in the store based on database settings of main=T) -->
-        <div class="container">
-            <div class="row align-items-center">
-                <%
-                    if (sessMainProduct != null) {
-                        String imageSrc = request.getContextPath() + sessMainProduct.getProdImg()[0];
-                %>
-                <img src="<%= imageSrc%>" width="500px" height="auto" class="col-3 main-prod-img" />
-                <%
-                    }
-                %>
-            
-                <div class="col-3">
-                    <h2 class="ml-3 align-item-start"><%= sessMainProduct.getProdName()%></h2>
-                    <p class="ml-3 main-desc"><%= sessMainProduct.get30WordsDesc()%></p>
-                    <button class="btn btn-info">
-                        <a href="ProductDetail.jsp?id=<%= sessMainProduct.getProdId()%>" style="text-decoration: none; color: white">Learn more</a>
-                    </button>
+    <body>
+
+        <!-- Start Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-5">
+                        <div class="intro-excerpt">
+                            <h1>Our Artworks</h1>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- End: Main Product Section -->
+        <!-- End Hero Section -->
 
-        <!-- Begin: All Products Section (This part will display all the products available in the store) -->
-        <div class="container all-prod-container">
-            <div class="row d-flex flex-row">
-                <% for (int i = 0; i < sessProdList.size(); i++) { %>
-                    <% if (i % 4 == 0) { %>
-                        </div>
-                        <div class="row d-flex flex-row">
-                    <% } %>
+        <div class="untree_co-section product-section before-footer-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3 mb-5">
+                        <a class="product-item" href="ProductDetail.jsp?id=<%= sessMainProduct.getProdId()%>">
+                            <img src="${pageContext.request.contextPath}<%= sessMainProduct.getProdImg()[0]%>" class="img-fluid product-thumbnail">
+                            <h3 class="product-title"><%= sessMainProduct.getProdName()%></h3>
+                            <strong class="product-price"><%= sessMainProduct.get30WordsDesc()%></strong>
 
-                    <div class="col-3">
-                        <div class="card m-4 pb-4" style="width: 250px;">
-                            <% Product product = sessProdList.get(i); %>
-                            <img class="card-img-top prod-img" src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>" alt="Product Image">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= product.getProdName()%></h5>
-                                <p class="card-text"><%= product.get30WordsDesc()%></p>
-                            </div>
-                            <a href="ProductDetail.jsp?id=<%= product.getProdId()%>"><span class="btn btn-info">Read More</span></a>
-                        </div>
+                            <!--<span class="icon-cross">
+                                <button type="button" class="btn btn-round" style="font-size:10pt;">
+                                    View
+                                </button>
+                            </span>-->
+                        </a>
                     </div>
-                <% } %>
+                </div>
+                <div class="row">
+
+                    <% for (int i = 0; i < sessProdList.size(); i++) { %>
+                    <!-- Products Looping Here -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5">
+                        <% Product product = sessProdList.get(i);%>
+                        <a class="product-item" href="ProductDetail.jsp?id=<%= product.getProdId()%>">
+                            <img src="${pageContext.request.contextPath}<%= product.getProdImg()[0]%>" class="img-fluid product-thumbnail">
+                            <h3 class="product-title"><%= product.getProdName()%></h3>
+                            <strong class="product-price"><%= product.get30WordsDesc()%></strong>
+
+                            <!--<span class="icon-cross">
+                                <button type="button" class="btn btn-round" style="font-size:10pt;">
+                                    View
+                                </button>
+                            </span>-->
+                        </a>
+                    </div> 
+                    <!-- Products Looping End Here -->
+                    <% }%>
+                </div>
             </div>
         </div>
-        <!-- End: All Products Section -->
-        
-        <!--footer-->
-        <jsp:include page="components/footer.jsp" />
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/tiny-slider.js"></script>
+        <script src="js/custom.js"></script>
+
+        <%--footer--%>
+        <jsp:include page="components/Footer.jsp" />
     </body>
+
 </html>

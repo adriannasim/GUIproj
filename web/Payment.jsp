@@ -1,261 +1,473 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
-
-<%--tags--%> 
-<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %> 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%> <%--tags--%> 
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags"%> 
 <%--imports--%> 
-
-<%@page import="entity.Product,entity.CartItem,java.util.ArrayList,model.CartItemDAO,java.text.DecimalFormat"%> 
-
+<%@page import="entity.Product,entity.CartItem,java.util.ArrayList,model.CartItemDAO,java.text.DecimalFormat"%>
 <%--includes--%> 
 
-<%-- Begin: Retrieve Product List From Session (cartItemList) --%> 
+<%-- Begin: Retrieve Product List From Session (cartItemList)--%> 
 <% ArrayList<CartItem> cartItemList = new ArrayList<CartItem>();
     if (session.getAttribute("cartItemList") != null) {
         cartItemList
                 = (ArrayList<CartItem>) session.getAttribute("cartItemList");
     }
     int totalQty = 0;
-    Double subtotal = 0.0;
-    Double shippingFee = 0.0;
-    Double salesTax = 0.0;
-    Double total = 0.0;
+    double subtotal = 0.0;
+    double shippingFee = 0.0;
+    double salesTax = 0.0;
+    double total = 0.0;
     DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+    double charges = 0.0;
+
+    // Prevent caching of the page
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+
+    // Check if the user is returning from an external page
+    Boolean redirected = (Boolean) session.getAttribute("redirected");
+    if (redirected != null && redirected) {
+        // User returned from an external page
+        // Call the OrderCreation servlet
+        session.removeAttribute("redirected");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("OrderCreation");
+        dispatcher.forward(request, response);
+    }
 %> 
 <%-- End: Retrieve Product List From Session (cartitemList) --%>
 
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Checkout</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
+        <link rel="shortcut icon" href="favicon.png" />
 
-        <!-- Include commonFiles.tag -->
-        <custom:commonFiles />
+        <!-- Bootstrap CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet"
+            />
+        <link href="assets/css/tiny-slider.css" rel="stylesheet" />
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <title>Bong Bong</title>
+        <!-- Add this line to include the Google Autocomplete script -->
+        <script
+            src="assets/js/GoogleAutocomplete.js"
+            type="text/javascript"
+        ></script>
         <style>
-            .cust-error-message {
+            .error-message {
                 color: red;
+                font-size: 12px;
             }
-            
-            input {
-                padding: 10px;
-                width: 100%;
+
+            .payment-option {
+                border: 1px solid #ccc;
+                padding: 15px;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                height: 80px;
             }
-            
-            label {
-                padding: 5px;
+
+            .custom-radio {
+                display: inline-block;
+                position: relative;
+                padding-left: 40px;
+                margin-bottom: 0;
+                cursor: pointer;
+                font-size: 16px;
             }
-            
-            
+
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #fff;
+                border: 1px solid #000;
+                border-radius: 3px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+                font-size: 14px;
+                color: #000;
+                font-weight: bold;
+            }
+
+            .payment-option input[type="radio"] {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .payment-option input[type="radio"]:checked ~ .custom-radio .checkmark {
+                background-color: #000;
+                color: #fff;
+            }
 
         </style>
+        <script>
+            const paymentOptions = document.querySelectorAll('.payment-option');
 
-
+            paymentOptions.forEach(option => {
+                const radio = option.querySelector('input[type="radio"]');
+                radio.addEventListener('change', () => {
+                    paymentOptions.forEach(opt => opt.style.borderColor = '#ccc');
+                    if (radio.checked) {
+                        option.style.borderColor = '#000';
+                    }
+                });
+            });
+        </script>
 
     </head>
 
+
+
+    <%--header--%>
+    <jsp:include page="components/Header.jsp" />
+
     <body>
-        <%--header--%>
-        <jsp:include page="components/header.jsp" />
-
-        <!--start of content-->
-        <div id="message-box"></div>
-
-        <div class="p-5">
-
-            <h3>Shipping Address</h3>
-            <div class="d-flex flex-row w-100 justify-content-between">
-                <form action="PaymentMethod" method="post" id="shipping-address-form">
-                    <div class="d-flex flex-column w-100">
-                        <b><label>First Name</label></b>
-                        <input name="cust-firstname" id="cust-firstname" type="text"
-                               value="<%= (request.getAttribute("cust-firstname") != null)
-                                       ? request.getAttribute("cust-firstname") : ""%>"/>
-                        <div
-                            id="cust-firstname-error"
-                            class="cust-error-message"
-                            ></div>
-                        <br />
-
-                        <b><label>Last Name</label></b>
-                        <input name="cust-lastname" id="cust-lastname" type="text"
-                               value="<%=(request.getAttribute("cust-lastname") != null)
-                                       ? request.getAttribute("cust-lastname") : ""%>"/>
-                        <div
-                            id="cust-lastname-error"
-                            class="cust-error-message"
-                            ></div>
-                        <br />
-
-                        <form
-                            id="address-form"
-                            action=""
-                            method="get"
-                            autocomplete="off"
-                            >
-                            <label class="full-field">
-                                <b><span class="form-label">Address</span></b></label
-                            >
-                            <input id="ship-address" name="ship-address" required
-                                   autocomplete="off"
-                                   value="<%=(request.getAttribute("cust-address-line1")
-                                           != null) ? request.getAttribute("cust-address-line1") : ""%>"
-                                   />
-                            <br />
-
-                            <label class="full-field">
-                                <b>
-                                <span class="form-label"
-                                      >Apartment, unit, suite, or floor (optional)</span
-                                ></b>
-                            </label>
-                            <input id="address2" name="address2"
-                                   value="<%=(request.getAttribute("cust-address-line2")
-                                           != null) ? request.getAttribute("cust-address-line2") : ""%>"
-                                   readonly/>
-                            <br />
-
-                            <label class="full-field">
-                                <b><span class="form-label">City</span></b>
-                            </label>
-                            <input id="locality" name="locality"
-                                   value="<%=(request.getAttribute("cust-city") != null)
-                                           ? request.getAttribute("cust-city") : ""%>" required readonly
-                                   />
-                            <br />
-
-                            <label class="slim-field-start">
-                                <b><span class="form-label">State</span></b>
-                            </label>
-                            <input id="state" name="state" required
-                                   value="<%=(request.getAttribute("cust-state") != null)
-                                           ? request.getAttribute("cust-state") : ""%>" readonly />
-                            <br />
-
-                            <label class="slim-field-end" for="postal_code">
-                                <b><span class="form-label">Postal code</span></b></label
-                            >
-                            <input id="postcode" name="postcode" required
-                                   value="<%=(request.getAttribute("cust-postcode") != null)
-                                           ? request.getAttribute("cust-postcode") : ""%>" readonly />
-                            <br />
-
-                            <label class="full-field">
-                                <b><span class="form-label">Country</span></b>
-                            </label>
-                            <input id="country" name="country"
-                                   value="<%=(request.getAttribute("cust-country") != null)
-                                           ? request.getAttribute("cust-country") : ""%>" required
-                                   readonly />
-                        </form>
-
-                        <div id="ship-address-error" class="cust-error-message"></div>
-                        <br />
-
-                        <b><label>Contact No</label></b>
-                        <input name="cust-contactNo" id="cust-contactNo" type="text"
-                               value="<%= (request.getAttribute("cust-contactNo") != null)
-                                       ? request.getAttribute("cust-contactNo") : ""%>"/>
-                        <div
-                            id="cust-contactNo-error"
-                            class="cust-error-message"
-                            ></div>
-                        <br />
-
-                        <b><label>Remark</label></b>
-                        <textarea
-                            name="cust-remark"
-                            id="cust-remark"
-                            rows="4"
-                            cols="50"
-                            ></textarea
-                        >
-                        <div id="cust-remark-error" class="cust-error-message"></div>
-                        <br />
-
-                    </div>
-                    <div class="w-50">
-                        <div id="cartContent">
-                            <!-- Display cart items -->
-                            <% for (CartItem cartItem : cartItemList) {%>
-                            <div
-                                class="d-flex flex-row align-items-center w-100 justify-content-between p-5"
-                                id="cartItem<%= cartItem.getProd().getProdId()%>"
-                                >
-                                <!-- Display cart item details -->
-                                <img
-                                    src="<%= request.getContextPath() + cartItem.getProd().getProdImg()[0]%>"
-                                    height="100px"
-                                    width="auto"
-                                    />
-                                <div><%= cartItem.getProd().getProdName()%>&nbsp;</div>
-                                <div>
-                                    <% String formattedPrice = decimalFormat.format(cartItem.getProd().getProdPrice());%> RM
-                                    <%=formattedPrice%> &nbsp;
-                                </div>
-                                x &nbsp; <%= cartItem.getItemQty()%>
-                                <div class="subtotal">
-                                    <% String formattedAmount
-                                                = decimalFormat.format(cartItem.getProd().getProdPrice()
-                                                        * cartItem.getItemQty());%> 
-                                    <b>RM <%=formattedAmount%></b>
-                                </div>
-                            </div>
-                            <%
-                                totalQty += cartItem.getItemQty();
-                                subtotal += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
-                            %> <% }%> 
-
-                            <% if (!cartItemList.isEmpty()) { %>
-                            <div class="text-right p-5">
-                                <%
-                                    String formattedSubtotal = decimalFormat.format(subtotal);
-                                %>
-                                <b>Total item(s) : <%=totalQty%> pcs</b>&nbsp; &nbsp;
-                                <b>Subtotal : RM <%=formattedSubtotal%></b><br />
-                                <hr />
-                                <% if (subtotal >= 1000) {
-                                        shippingFee = 0.0;
-                                    } else {
-                                        shippingFee = 15.00;
-                                    }
-                                    salesTax = subtotal * 0.10;
-                                    total
-                                            = subtotal + shippingFee + salesTax;
-                                    String formattedShippingFee
-                                            = decimalFormat.format(shippingFee);
-                                    String formattedSalesTax = decimalFormat.format(salesTax);
-                                    String formattedTotal = decimalFormat.format(total);%>
-                                <small>
-                                    Shipping Fee : RM <%=formattedShippingFee%>
-                                    <br /><span style="font-size: 10px"
-                                                >(Free shipping if purchase over RM1,000)</span
-                                    ></small
-                                ><br />
-                                <small>
-                                    Sales Tax (10%) : RM <%=formattedSalesTax%> <br
-                                        /></small>
-                                <b>Total: RM <%=formattedTotal%></b><br />
-                                <hr />
-                                <button
-                                    class="w-25 btn btn-dark"
-                                    id="shipping-address-submit-btn"
-                                    type="submit"
-                                    >
-                                    Proceed
-                                </button>
-                            </div>
-                            <% }%>
+        <!-- Start Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-5">
+                        <div class="intro-excerpt">
+                            <h1>Checkout</h1>
                         </div>
                     </div>
-                </form>
+                    <div class="col-lg-7"></div>
+                </div>
             </div>
         </div>
-        <!--end of content-->
 
-        <%--footer--%>
-        <jsp:include page="components/footer.jsp" />
+        <!-- End Hero Section -->
+        <form action="PaymentMethod" method="post" id="shipping-address-form">
+            <div class="untree_co-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mb-5 mb-md-0">
+                            <h2 class="h3 mb-3 text-black">Billing Details</h2>
+                            <div class="p-3 p-lg-5 border bg-white">
+                                <!-- Customer Details -->
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="cust-firstname" class="text-black"
+                                               >First Name
+                                            <span class="text-danger">*</span></label
+                                        >
+                                        <input class="form-control" name="cust-firstname"
+                                               id="cust-firstname" type="text" value="<%=(request.getAttribute("cust-firstname") != null)
+                                                       ? request.getAttribute("cust-firstname") : ""%>"/>
+                                        <div
+                                            id="cust-firstname-error"
+                                            class="error-message"
+                                            ></div>
+                                    </div>
 
+                                    <div class="col-md-6">
+                                        <label for="cust-lastname" class="text-black"
+                                               >Last Name <span class="text-danger">*</span></label
+                                        >
+                                        <input class="form-control" name="cust-lastname"
+                                               id="cust-lastname" type="text"
+                                               value="<%=(request.getAttribute("cust-lastname")
+                                                       != null) ? request.getAttribute("cust-lastname")
+                                                               : ""%>"/>
+                                        <div
+                                            id="cust-lastname-error"
+                                            class="error-message"
+                                            ></div>
+                                    </div>
+                                </div>
+
+                                <form
+                                    id="address-form"
+                                    action=""
+                                    method="get"
+                                    autocomplete="off"
+                                    >
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="ship-address" class="text-black"
+                                                   >Address <span class="text-danger">*</span></label
+                                            >
+                                            <input type="text" class="form-control"
+                                                   id="ship-address" name="ship-address" required
+                                                   autocomplete="off"
+                                                   value="<%=(request.getAttribute("cust-address-line1")
+                                                           != null)
+                                                                   ? request.getAttribute("cust-address-line1") : ""%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12 mt-3">
+                                            <input id="address2" name="address2"
+                                                   class="form-control" placeholder="Apartment, suite, unit etc. (optional)
+                                                   value="<%=(request.getAttribute("cust-address-line2")
+                                                           != null)
+                                                                   ? request.getAttribute("cust-address-line2") : ""%>"
+                                                   readonly/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <label for="locality" class="text-black"
+                                                   >City <span class="text-danger">*</span></label
+                                            >
+                                            <input id="locality" name="locality"
+                                                   class="form-control"
+                                                   value="<%=(request.getAttribute("cust-city")
+                                                           != null) ? request.getAttribute("cust-city") : ""%>"
+                                                   required readonly />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="state" class="text-black"
+                                                   >State <span class="text-danger">*</span></label
+                                            >
+                                            <input id="state" name="state" required
+                                                   class="form-control"
+                                                   value="<%=(request.getAttribute("cust-state")
+                                                           != null) ? request.getAttribute("cust-state") : ""%>"
+                                                   required readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <label for="country" class="text-black"
+                                                   >Country <span class="text-danger">*</span></label
+                                            >
+                                            <input id="country" name="country"
+                                                   class="form-control"
+                                                   value="<%=(request.getAttribute("cust-country")
+                                                           != null) ? request.getAttribute("cust-country") : ""%>"
+                                                   required readonly />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="postcode" class="text-black"
+                                                   >Postal Code
+                                                <span class="text-danger">*</span></label
+                                            >
+                                            <input id="postcode" name="postcode" required
+                                                   class="form-control"
+                                                   value="<%=(request.getAttribute("cust-postcode")
+                                                           != null) ? request.getAttribute("cust-postcode")
+                                                                   : ""%>" readonly />
+                                        </div>
+                                    </div>
+                                </form>
+                                <div id="ship-address-error" class="error-message"></div>
+
+                                <div class="form-group">
+                                    <label for="c_order_notes" class="text-black"
+                                           >Contact No <span class="text-danger">*</span></label
+                                    >
+                                    <input name="cust-contactNo" id="cust-contactNo"
+                                           type="text" value="<%=(request.getAttribute("cust-contactNo") != null)
+                                                   ? request.getAttribute("cust-contactNo") : ""%>"
+                                           class="form-control"/>
+                                    <div
+                                        id="cust-contactNo-error"
+                                        class="error-message"
+                                        ></div>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="c_order_notes" class="text-black"
+                                           >Order Notes</label
+                                    >
+                                    <textarea
+                                        name="cust-remark"
+                                        id="cust-remark"
+                                        cols="30"
+                                        rows="5"
+                                        class="form-control"
+                                        placeholder="Write your notes here..."
+                                        ></textarea>
+                                    <div id="cust-remark-error" class="error-message"></div>
+                                </div>
+                                <!-- Customer Details -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row mb-5">
+                                <div class="col-md-12">
+                                    <h2 class="h3 mb-3 text-black">Coupon Code</h2>
+                                    <div class="p-3 p-lg-5 border bg-white">
+                                        <label for="c_code" class="text-black mb-3"
+                                               >Enter your coupon code if you have one</label
+                                        >
+                                        <div class="input-group w-75 couponcode-wrap">
+                                            <input
+                                                type="text"
+                                                class="form-control me-2"
+                                                id="c_code"
+                                                placeholder="Coupon Code"
+                                                aria-label="Coupon Code"
+                                                aria-describedby="button-addon2"
+                                                />
+                                            <div class="input-group-append">
+                                                <button
+                                                    class="btn btn-black btn-sm"
+                                                    type="button"
+                                                    id="button-addon2"
+                                                    >
+                                                    Apply
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-5">
+                                <div class="col-md-12">
+                                    <h2 class="h3 mb-3 text-black">Your Order</h2>
+                                    <div class="p-3 p-lg-5 border bg-white">
+                                        <table class="table site-block-order-table mb-5">
+                                            <thead>
+                                            <th>Product</th>
+                                            <th>Total</th>
+                                            </thead>
+                                            <tbody>
+                                                <% for (CartItem cartItem : cartItemList) {%>
+                                                <!-- Order Product Looping -->
+                                                <tr>
+                                                    <td>
+                                                        <%= cartItem.getProd().getProdName()%>
+                                                        <strong class="mx-2">x</strong> <%= cartItem.getItemQty()%>
+                                                    </td>
+                                                    <td><% String formattedAmount
+                                                                = decimalFormat.format(cartItem.getProd().getProdPrice()
+                                                                        * cartItem.getItemQty());%> 
+                                                        <b>RM <%=formattedAmount%></b></td>
+                                                </tr>
+                                                <!-- Order Product Looping -->
+                                                <%
+                                                    subtotal += cartItem.getProd().getProdPrice() * cartItem.getItemQty();
+                                                %>
+                                                <% }%> 
+                                                <%
+                                                    String formattedSubtotal = decimalFormat.format(subtotal);
+                                                %>
+
+                                                <tr>
+                                                    <td class="text-black font-weight-bold">
+                                                        <strong>Cart Subtotal</strong>
+                                                    </td>
+                                                    <td class="text-black"><%=formattedSubtotal%></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-black font-weight-bold">
+                                                        <strong>Cart Subtotal</strong>
+                                                    </td>
+                                                    <td class="text-black"><%=formattedSubtotal%></td>
+                                                </tr>
+                                                <% if (subtotal >= 1000) {
+                                                        shippingFee = 0.0;
+                                                    } else {
+                                                        shippingFee = 15.00;
+                                                    }
+                                                    salesTax = subtotal * 0.10;
+                                                    total = subtotal + shippingFee + salesTax;
+                                                    charges = total * 0.01;
+                                                    String formattedShippingFee
+                                                            = decimalFormat.format(shippingFee);
+                                                    String formattedSalesTax = decimalFormat.format(salesTax);
+                                                    String formattedTotal = decimalFormat.format(total);
+                                                    String formattedCharges = decimalFormat.format(charges);%>
+                                                <tr>
+                                                    <td class="text-black font-weight-bold">
+                                                        <strong>Shipping Fee</strong>
+                                                    </td>
+                                                    <td class="text-black"> <%=formattedShippingFee%></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-black font-weight-bold">
+                                                        <strong>Sales Tax (10%)</strong>
+                                                    </td>
+                                                    <td class="text-black"> <%=formattedSalesTax%></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-black font-weight-bold">
+                                                        <strong>Order Total</strong>
+                                                    </td>
+                                                    <td class="text-black font-weight-bold">
+                                                        <strong><%=formattedTotal%></strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="payment-option">
+                                            <input type="radio" name="paymentMethod" id="fpx" value="fpx">
+                                            <label for="fpx" class="custom-radio">
+                                                Direct Bank Transfer
+                                                <span class="checkmark">&#10003;</span>
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="payment-option">
+                                            <input type="radio" name="paymentMethod" id="card" value="card">
+                                            <label for="card" class="custom-radio">
+                                                Card Payment <br/><span style="font-size:12px;"><i>Note: You will be charged 1% (RM <%=formattedCharges%>) if you use a card to pay.</i></span>
+                                                <span class="checkmark">&#10003;</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="payment-option">
+                                            <input type="radio" name="paymentMethod" id="ewallet" value="ewallet">
+                                            <label for="ewallet" class="custom-radio">
+                                                E-wallet
+                                                <span class="checkmark">&#10003;</span>
+                                            </label>
+                                        </div>
+
+                                        <div
+                                            id="payment-method-error"
+                                            class="error-message"
+                                            ></div>
+
+
+                                        <div class="form-group mt-4">
+                                            <button
+                                                class="btn btn-black btn-lg py-3 btn-block"
+                                                id="shipping-address-submit-btn"
+                                                type="submit"
+                                                >
+                                                Proceed
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/tiny-slider.js"></script>
+        <script src="js/custom.js"></script>
         <script>
             function validateFirstName() {
                 var firstname = document.getElementById("cust-firstname").value;
@@ -338,6 +550,28 @@
                 }
             }
 
+            
+            function isPaymentOptionSelected() {
+                const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+                for (const radio of paymentRadios) {
+                    if (radio.checked) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            
+            function validatePaymentMethod() {
+                const errorDiv = document.getElementById('payment-method-error');
+                
+                if (isPaymentOptionSelected()) {
+                    errorDiv.textContent = '';
+                } else {
+                    errorDiv.textContent = 'Please select a payment option.';
+                }
+            }
+
+
             // Add event listeners to trigger validation
             document
                     .getElementById("cust-firstname")
@@ -362,6 +596,7 @@
                 validateContactNo();
                 validateAddress();
                 validateRemark();
+                validatePaymentMethod();
 
                 // Perform form submission if there are no validation errors
                 if (!hasValidationError()) {
@@ -384,6 +619,8 @@
                         document.getElementById("ship-address-error").textContent;
                 var remarkError =
                         document.getElementById("cust-remark-error").textContent;
+                var paymentMethodError =
+                        document.getElementById("payment-method-error").textContent;
 
                 // Check if any validation error exists
                 return (
@@ -391,7 +628,8 @@
                         lastNameError ||
                         contactNoError ||
                         addressError ||
-                        remarkError
+                        remarkError ||
+                        paymentMethodError
                         );
             }
 
@@ -411,6 +649,9 @@
             defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjUgiiuQxHnVKzlXWADiT4T9YxjQda4Q0&callback=initAutocomplete&libraries=places&v=weekly"
         ></script>
+
+        <%--footer--%>
+        <jsp:include page="components/Footer.jsp" />
     </body>
 </html> </CartItem></CartItem
 ></CartItem>
