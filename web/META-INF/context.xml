@@ -1,0 +1,32 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+     Define the company name 
+    <Environment name="companyName" value="Bong Bong Art Gallery" type="java.lang.String" override="false"/>
+
+     Define the company email 
+    <Environment name="companyEmail" value="enquiries@bongbong.com" type="java.lang.String" override="false"/>
+
+     Define the company copyrights 
+    <Environment name="companyCopyrights" value="Copyright© 2024, Bong Bong Art Gallery" type="java.lang.String" override="false"/>
+</Context>-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- Define the company name -->
+    <context-param>
+        <param-name>companyName</param-name>
+        <param-value>Bong Bong Art Gallery</param-value>
+    </context-param>
+
+    <!-- Define the company email -->
+    <context-param>
+        <param-name>companyEmail</param-name>
+        <param-value>enquiries@bongbong.com</param-value>
+    </context-param>
+
+    <!-- Define the company copyrights -->
+    <context-param>
+        <param-name>companyCopyrights</param-name>
+        <param-value>Copyright© 2024, Bong Bong Art Gallery</param-value>
+    </context-param>
+</Context>
