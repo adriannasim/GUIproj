@@ -124,31 +124,36 @@
             <form class="contact-form row" action="AddProducts" method="post" id="editProductForm">
                 <div class="form-field col-lg-6">
                     <input id="id" name="id" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("id") != null)
+                                                           ? request.getParameter("id") : ""%>">
                     <label class="label" for="id">Product ID</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="name" name="name" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("name") != null)
+                                                           ? request.getParameter("name") : ""%>">
                     <label class="label" for="name">Product Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="description" name="description" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("description") != null)
+                                                           ? request.getParameter("description") : ""%>">
                     <label class="label" for="description">Product Description</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="price" name="price" class="input-text js-input" type="text"
-                           value="">
+                           value="<%= (request.getParameter("price") != null)
+                                                           ? request.getParameter("price") : ""%>">
                     <label class="label" for="price">Product Price</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="stock" name="stock" class="input-text js-input" type="number"
-                           value="">
+                           value="<%= (request.getParameter("stock") != null)
+                                                           ? request.getParameter("stock") : ""%>">
                     <label class="label" for="stock">Stock</label>
                 </div>
 
@@ -159,7 +164,8 @@
 
                 <div class="form-field col-lg-12">
                     <input id="keywords" name="keywords" class="input-text js-input" type="text" required
-                           value="">
+                           value="<%= (request.getParameter("keywords") != null)
+                                                           ? request.getParameter("keywords") : ""%>">
                     <label class="label" for="keywords">Keywords</label>
                 </div>
 

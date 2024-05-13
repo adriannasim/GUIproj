@@ -10,13 +10,21 @@
 
 <%--includes--%>
 <jsp:include page="/RetrieveCustomerAdm"/>
-<jsp:include page="/AddCustomers"/>
+<jsp:include page="/EditCustomer"/>
+
+<%
+    Customer cust = new Customer();
+
+    if (session.getAttribute("cust") != null) {
+        cust = (Customer) session.getAttribute("cust");
+    }
+%>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Customer</title>
+        <title>Edit Customer</title>
 
         <!-- Theme -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -107,18 +115,17 @@
     </head>
     <body class="g-sidenav-show bg-gray-100">
         <section class="editStaff">
-            <h1 class="title">Add Customer</h1>
+            <h1 class="title">Edit Customer</h1>
             <div class="errorMsg row" style="position:relative;top:-20px;">
                 <div class="col-sm">
-                    <div id="errorUsernameDiv" style="color:red;font-size:13pt;"></div>
                     <div id="emailError" style="color:red;font-size:13pt;"></div>
                     <div id="errorFirstNameDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorLastNameDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorContactDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorDateOfBirthDiv" style="color:red;font-size:13pt;"></div>
+                    <div id="errorGenderDiv" style="color:red;font-size:13pt;"></div>
                 </div>
                 <div class="col-sm">
-                    <div id="errorGenderDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorAddressDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorStateDiv" style="color:red;font-size:13pt;"></div>
                     <div id="errorCityDiv" style="color:red;font-size:13pt;"></div>
@@ -127,102 +134,93 @@
                 </div>
             </div>
 
-            <form class="contact-form row" action="AddCustomers" id="editCustomerForm">
+            <form class="contact-form row" action="EditCustomer" id="editCustomerForm">
                 <div class="form-field col-lg-6">
-                    <input id="username" name="username" class="input-text js-input" type="text"
-                           value="<%= (request.getParameter("username") != null)
-                                                           ? request.getParameter("username") : ""%>">
-                    <label class="label" for="username">Customer Username</label>
+                    <input id="name" name="name" class="input-text js-input" type="text" readonly
+                           value="<%= cust.getUsername()%>">
+                    <label class="label" for="name">Customer Username:</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="email" name="email" class="input-text js-input" type="email"
-                           value="<%= (request.getParameter("email") != null)
-                                                           ? request.getParameter("email") : ""%>">
+                           value="<%= cust.getEmail()%>">
                     <label class="label" for="email">Customer E-mail</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="firstname" name="firstname" class="input-text js-input" type="text"
-                           value="<%= (request.getParameter("firstname") != null)
-                                                           ? request.getParameter("firstname") : ""%>">
+                           value="<%= cust.getFirstName()%>">
                     <label class="label" for="firstname">First Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="lastname" name="lastname" class="input-text js-input" type="text"
-                           value="<%= (request.getParameter("lastname") != null)
-                                                           ? request.getParameter("lastname") : ""%>">
+                           value="<%= cust.getLastName()%>">
                     <label class="label" for="lastname">Last Name</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="contact" name="contact" class="input-text js-input" type="text"
-                           value="<%= (request.getParameter("contact") != null)
-                                                           ? request.getParameter("contact") : ""%>">
+                           value="<%= cust.getContactNo()%>">
                     <label class="label" for="contact">Contact Number</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="birth" name="birth" class="input-text js-input" type="date"
-                           value="<%= (request.getParameter("birth") != null)
-                                                           ? request.getParameter("birth") : ""%>">
+                           value="<%= cust.getDateOfBirth()%>">
                     <label class="label" for="birth" style="margin-bottom:15px;">Date Of Birth</label>
                 </div>
 
                 <div class="form-field col-lg-12">
                     <label class="label">Gender</label>
                     <div class="inputGender">
-                        <input class="input-gender" type="radio" id="male" name="gender" value="M"
-                               <% if (request.getParameter("gender").equals("M")) { %> checked
+                        <input class="input-gender" type="radio" id="male" name="gender" value="M" 
+                               <% if (cust.getGender().equals("M")) { %> checked
                                <% } %>
                                />
                         <label class="genderField" for="male">Male</label>
                         <input class="input-gender" type="radio" id="female" name="gender" value="F"
-                               <% if (request.getParameter("gender").equals("F")) { %> checked
+                               <% if (cust.getGender().equals("F")) { %> checked
                                <% } %>
                                />
                         <label class="genderField" for="female">Female</label>
                         <input class="input-gender" type="radio" id="nottosay" name="gender" value="-"
-                               <% if (request.getParameter("gender").equals("-")) { %> checked
-                               <% } %>
+                               <% if (cust.getGender().equals("-")) { %> checked
+                               <% }%>
                                />
                         <label class="genderField" for="nottosay">Prefer Not To Say</label>
                     </div>
                 </div>
 
+                <% Address custAdd = cust.getCustAdd();%>
+
                 <div class="form-field col-lg-12">
                     <input id="address" name="address" class="input-text js-input" type="text" required
-                           value="<%= (request.getParameter("address") != null)
-                                                           ? request.getParameter("address") : ""%>">
+                           value="<%= custAdd.getAddress()%>">
                     <label class="label" for="address">Address</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="state" name="state" class="input-text js-input" type="text" required
-                           value="<%= (request.getParameter("address") != null)
-                                                           ? request.getParameter("address") : ""%>">
+                           value="<%= custAdd.getState()%>">
                     <label class="label" for="state">State</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="locality" name="locality" class="input-text js-input" type="text" required
-                           value="<%= (request.getParameter("locality") != null)
-                                                           ? request.getParameter("locality") : ""%>">
+                           value="<%= custAdd.getCity()%>">
                     <label class="label" for="locality">City</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="postalCode" name="postalCode" class="input-text js-input" type="text" required
-                           value="<%= (request.getParameter("postalCode") != null)
-                                                           ? request.getParameter("postalCode") : ""%>">
+                           value="<%= custAdd.getPostalCode()%>">
                     <label class="label" for="postalCode">Postal Code</label>
                 </div>
 
                 <div class="form-field col-lg-6 ">
                     <input id="country" name="country" class="input-text js-input" type="text" required
-                           value="<%= (request.getParameter("country") != null)
-                                                           ? request.getParameter("country") : ""%>">
+                           value="<%= custAdd.getCountry()%>">
                     <label class="label" for="country">Country</label>
                 </div>
 
@@ -233,20 +231,6 @@
         </section>
 
         <script>
-            function validateUsername() {
-                var lastname = document.getElementById("username").value;
-                var errorDiv = document.getElementById("errorUsernameDiv");
-                
-                if (!lastname) {
-                    errorDiv.textContent = "Username is required.";
-                } else if (lastname.length < 2) {
-                    errorDiv.textContent =
-                            "Userame must be at least 2 characters long.";
-                } else {
-                    errorDiv.textContent = "";
-                }
-            }
-
             function validateEmail() {
                 var email = document.getElementById("empemail").value;
                 var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -363,7 +347,7 @@
                     var dob = new Date(dateOfBirth);
                     var difference = today - dob;
                     var age = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
-
+                    
                     if (dob <= today) {
                         errorDiv.textContent = "The date must be after today.";
                     } else if (isNaN(age) || age < 12) {
@@ -406,9 +390,6 @@
 
             // Add event listeners to trigger validation
             document
-                    .getElementById("username")
-                    .addEventListener("blur", validateUsername);
-            document
                     .getElementById("email")
                     .addEventListener("blur", validateEmail);
             document
@@ -450,7 +431,6 @@
 
             function validateAllFields() {
                 // Trigger validation for all fields
-                validateUsername();
                 validateEmail();
                 validateFirstName();
                 validateLastName();
@@ -467,10 +447,6 @@
 
             function hasValidationError() {
                 // Validation error flags for each field
-                var usernameError =
-                        document.getElementById(
-                                "errorUsernameDiv"
-                                ).textContent;
                 var emailError =
                         document.getElementById(
                                 "errorEmailDiv"
@@ -513,7 +489,6 @@
 
                 // Check if any validation error exists
                 return (
-                        usernameError ||
                         emailError ||
                         firstNameError ||
                         lastNameError ||
