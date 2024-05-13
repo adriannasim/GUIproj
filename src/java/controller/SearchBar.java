@@ -32,9 +32,9 @@ public class SearchBar extends HttpServlet
             TypedQuery<Product> query = em.createQuery("SELECT prod FROM Product prod", Product.class);
             List<Product> results = query.getResultList();
             
-            for (int i = 0; i < results.size(); i++)
+            for (Product product : results)
             {
-                autocomplete.set(i, results.get(i).getProdname());
+                autocomplete.add(product.getProdname());
             }
             
             //Convert data to JSON or another suitable format

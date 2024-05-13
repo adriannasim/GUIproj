@@ -76,6 +76,6 @@ public class RetrieveProducts extends HttpServlet {
         // close DB Connection
         prodDA.closeConnection();
 
-        response.sendRedirect("Home.jsp");
+        response.sendRedirect("index.jsp");
     }
 }
