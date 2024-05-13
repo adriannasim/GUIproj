@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Footer
-    Created on : 11 May 2024, 10:38:19 pm
-    Author     : asusvivo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
     String companyName = getServletContext().getInitParameter("companyName");
