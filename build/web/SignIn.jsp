@@ -223,6 +223,6 @@
         </script>
 
         <%--footer--%>
-        <jsp:include page="components/footer.jsp" />
+        <jsp:include page="components/Footer.jsp" />
     </body>
 </html>
