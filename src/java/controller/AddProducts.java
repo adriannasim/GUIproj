@@ -3,6 +3,7 @@ package controller;
 import jpaEntity.Product;
 import java.io.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 import javax.persistence.*;
@@ -24,52 +25,65 @@ public class AddProducts extends HttpServlet
         entity.Product prod = new entity.Product();
         int imgCount = 0;
         
-        String id = request.getParameter("prodid");
-        String name = request.getParameter("prodname");
-        String desc = request.getParameter("prodesc");
-        double price = Double.parseDouble(request.getParameter("prodprice"));
-        int qty = Integer.parseInt(request.getParameter("qtyavailable"));
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String desc = request.getParameter("description");
+        String keywords = request.getParameter("keywords");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int qty = Integer.parseInt(request.getParameter("stock"));
+
+        String dateString = request.getParameter("date");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            // Parse the string into a Date object
+            date = dateFormat.parse(dateString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        String image = request.getParameter("imageInput");
         
         //Keywords
-        String[] keywords = request.getParameterValues("prodkeyword");
-        String keys = prod.concatKeywords(keywords);
+//        String[] keywords = request.getParameterValues("prodkeyword");
+//        String keys = prod.concatKeywords(keywords);
         
         //Product image
         //Get all files
-        Collection<Part> imgs = request.getParts();
-        //Directory to store the image files
-        String imgDir = getServletContext().getRealPath("/img/prodImg");
-        //Array of file urls
-        String[] imgUrls = null;
-        for (Part img : imgs) 
-        {
-            //Check if the file is an image
-            if (img.getContentType() != null && img.getContentType().startsWith("image")) 
-            {
-                //Set filename
-                String filename = id + "-" + new Date() + "-(" + imgCount + ").jpeg";
-                //Store image directly to server image directory
-                img.write(imgDir + File.separator + filename);
-                //Set file url
-                imgUrls[imgCount] = imgDir + "/" + filename;
-                
-                //Convert image to bytes to store in db
-//                InputStream imageInputStream = img.getInputStream();
-//        
-//                //Change input stream to output stream
-//                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//                byte[] buffer = new byte[4096];
-//                int bytesRead;
-//                while ((bytesRead = imageInputStream.read(buffer)) != -1) {
-//                    outputStream.write(buffer, 0, bytesRead);
-//                }
-//                byte[] imgbytes = outputStream.toByteArray();
-                
-                //Add imgcount
-                imgCount++;
-            }
-        }
-        String url = prod.concatImg(imgUrls);
+//        Collection<Part> imgs = request.getParts();
+//        //Directory to store the image files
+//        String imgDir = getServletContext().getRealPath("/img/prodImg");
+//        //Array of file urls
+//        String[] imgUrls = null;
+//        for (Part img : imgs) 
+//        {
+//            //Check if the file is an image
+//            if (img.getContentType() != null && img.getContentType().startsWith("image")) 
+//            {
+//                //Set filename
+//                String filename = id + "-" + new Date() + "-(" + imgCount + ").jpeg";
+//                //Store image directly to server image directory
+//                img.write(imgDir + File.separator + filename);
+//                //Set file url
+//                imgUrls[imgCount] = imgDir + "/" + filename;
+//                
+//                //Convert image to bytes to store in db
+////                InputStream imageInputStream = img.getInputStream();
+////        
+////                //Change input stream to output stream
+////                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+////                byte[] buffer = new byte[4096];
+////                int bytesRead;
+////                while ((bytesRead = imageInputStream.read(buffer)) != -1) {
+////                    outputStream.write(buffer, 0, bytesRead);
+////                }
+////                byte[] imgbytes = outputStream.toByteArray();
+//                
+//                //Add imgcount
+//                imgCount++;
+//            }
+//        }
+//        String url = prod.concatImg(imgUrls);
         
         //Setting varibles into product entity
         jpaprod.setProdid(id);
@@ -77,8 +91,8 @@ public class AddProducts extends HttpServlet
         jpaprod.setProddesc(desc);
         jpaprod.setProdprice(new BigDecimal (price));
         jpaprod.setQtyavailable(qty);
-        jpaprod.setProdimg(url);
-        jpaprod.setProdkeywords(keys);
+        jpaprod.setProdimg(image);
+        jpaprod.setProdkeywords(keywords);
         jpaprod.setProdaddeddate(new Date());
         jpaprod.setProdslug(prod.formatSlug(name));
 
