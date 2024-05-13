@@ -25,14 +25,6 @@
 <%--includes--%>
 <jsp:include page="/RetrieveCustomerAdm"/>
 
-<%
-    ArrayList<Customer> custList = new ArrayList<Customer>();
-
-    if (session.getAttribute("custList") != null) {
-        custList = (ArrayList<Customer>) session.getAttribute("custList");
-    }
-%>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -199,10 +191,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%
-                                                Customer customer = null;
-                                                for (int i = 0; i < custList.size(); i++) {
-                                                    customer = custList.get(i);
+                                            <% if (request.getAttribute("custList") != null) {
+                                                    for (Customer emp : (List<Customer>) request.getAttribute("custList")) {
                                             %>
                                             <tr>
                                                 <td>
