@@ -69,7 +69,6 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-
                     </div>
                 </div>
             </div>
@@ -78,6 +77,10 @@
 
         <div class="untree_co-section product-section before-footer-section">
             <div class="container">
+                <form action="RetriveProducts">
+                    <input class="form-control basicAutoComplete" name="id" id="searchBar" type="text" autocomplete="off" />
+                    <button class="btn btn-outline-info search-btn" type="submit">Search</button>
+                </form>
                 <div class="row prod-btm">
                     <% for (int i = 0; i < sessProdList.size(); i++) {
                         Product product = sessProdList.get(i);

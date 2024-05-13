@@ -15,6 +15,8 @@
         <script src="js/SearchBar.js"></script>
         <script src="js/SaveSessionCartData.js"></script>
         <script src="js/GoogleAutocomplete.js"></script>
+        <script src="bootstrap-autocomplete.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
         
         <!-- Include Bootstrap JS and Popper.js -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
