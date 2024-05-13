@@ -11,45 +11,42 @@ import javax.servlet.http.*;
 import javax.persistence.*;
 
 @WebServlet(name = "EditCustomer", urlPatterns = {"/EditCustomer"})
-public class EditCustomer extends HttpServlet
-{
+public class EditCustomer extends HttpServlet {
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Initializations
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("GUI_AssignmentPU");
         EntityManager em = emf.createEntityManager();
-        
-        String username = request.getParameter("custusername");
-        String email = request.getParameter("custemail");
-        String firstname = request.getParameter("custfirst");
-        String lastname = request.getParameter("custlast");
-        String contact = request.getParameter("custcontact");
-        
-        String dobString = request.getParameter("custdob");
+
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String firstname = request.getParameter("firstName");
+        String lastname = request.getParameter("lastName");
+        String contact = request.getParameter("contact");
+
+        String dobString = request.getParameter("birth");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dob = null;
-        try
-        {
+        try {
             dob = dateFormat.parse(dobString);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
-        
+
         String gender = request.getParameter("gender");
-        String address = request.getParameter("custadd");
-        String city = request.getParameter("custcity");
-        String state = request.getParameter("custstate");
-        String postalcode = request.getParameter("custpost");
-        String country = request.getParameter("custcountry");
-        
+        String address = request.getParameter("address");
+        String city = request.getParameter("locality");
+        String state = request.getParameter("state");
+        String postalcode = request.getParameter("postalCode");
+        String country = request.getParameter("country");
+
         CustomerPK pk = new CustomerPK(username, email);
-        //Find employee based on the username
+
+        //Find customer based on the username
         em.getTransaction().begin();
         Customer cust = em.find(Customer.class, pk);
-        
+
         //Update all properties
         cust.setFirstname(firstname);
         cust.setLastname(lastname);
@@ -61,7 +58,7 @@ public class EditCustomer extends HttpServlet
         cust.setState(state);
         cust.setPostalcode(postalcode);
         cust.setCountry(country);
-        
+
         //Commit changes into db
         em.getTransaction().commit();
 

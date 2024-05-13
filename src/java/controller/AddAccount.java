@@ -20,15 +20,15 @@ public class AddAccount extends HttpServlet
         EntityManager em = emf.createEntityManager();
         Employee emp = new Employee();
         
-        String role = request.getParameter("role");
+        String role = "staff";
         String id = request.getParameter("empid");
-        String username = request.getParameter("empusername");
-        String password = request.getParameter("emppswcon");
-        String email = request.getParameter("empemail");
-        String firstname = request.getParameter("empfirst");
-        String lastname = request.getParameter("emplast");
+        String username = request.getParameter("username");
+        String password = "defaultPassword1@";
+        String email = request.getParameter("email");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
         String gender = request.getParameter("gender");
-        String contact = request.getParameter("empcontact");
+        String contact = request.getParameter("contact");
         
         
         //Setting varibles into product entity
