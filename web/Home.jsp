@@ -79,7 +79,8 @@
             <div class="container">
                 <div class="row justify-content-between">
 
-                    <div class="col-lg-5">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">
                         <div class="intro-excerpt">
                             <h1>Modern Art <span clsas="d-block">Gallery</span></h1>
                             <p class="mb-4">Welcome, where every stroke tells a story. Our journey began decades ago, fueled by a passion for art and a commitment to showcasing the diverse voices of creativity.</p>
@@ -88,8 +89,8 @@
                                 <a href="ProductPage.jsp?all=t" class="btn btn-white-outline">Explore</a></p>
                         </div>
                     </div>
-
-                    <div class="col-lg-7">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-5">
                         <div class="hero-img-wrap">
                             <img src="assets/img/Home/home-art.png" class="img-fluid">
                         </div>
@@ -114,11 +115,18 @@
 
                     <!-- Three Products Looping -->
                     <!-- Start Product Column -->
+                    <%
+                        Product product = null;
+                        for (int i = 0; i < sessProdList.size() && i < 3; i++) {
+                        product = sessProdList.get(i);
+                    %>
                     <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                        <a class="product-item" href="cart.html">
-                            <img src="assets/img/prodImg/Portrait-Paint-1.jpg" class="img-control product-thumbnail">
-                            <h3 class="product-title">Product Name</h3>
-                            <strong class="product-price">Product Price</strong>
+                        
+                        <a class="product-item" href="ProductDetail.jsp?id=<%= product.getProdId()%>">
+                            <img src="<%= request.getContextPath() + product.getProdImg()[0]%>" width="100%" height="350px" class="product-thumbnail">
+                            <h3 class="product-title"><%= product.getProdName()%></h3>
+                    <% String formattedPrice = String.format("%.2f", product.getProdPrice());%>
+                            <strong class="product-price">RM<%= formattedPrice%></strong>
 
                             <span class="icon-cross">
                                 <button type="button" class="btn btn-round" style="font-size:10pt;">
@@ -127,44 +135,8 @@
                             </span>
                         </a>
                     </div> 
+                    <% }%>
                     <!-- End Product Column -->
-                    <!-- Three Products Looping -->
-
-                    <!-- Delete when looping done -->
-                    <!-- Start Column 3 -->
-                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                        <a class="product-item" href="cart.html">
-                            <img src="assets/img/prodImg/Landscape-Paint-2.jpg" class="img-control product-thumbnail">
-                            <h3 class="product-title">Kruzo Aero Chair</h3>
-                            <strong class="product-price">$78.00</strong>
-
-                            <span class="icon-cross">
-                                <button type="button" class="btn btn-round" style="font-size:10pt;">
-                                    AddToCart
-                                </button>
-                            </span>
-
-                        </a>
-                    </div>
-                    <!-- End Column 3 -->
-
-                    <!-- Start Column 4 -->
-                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                        <a class="product-item" href="cart.html">
-                            <img src="assets/img/prodImg/Animal-Paint-1.jpg" class="img-control product-thumbnail">
-                            <h3 class="product-title">Ergonomic Chair</h3>
-                            <strong class="product-price">$43.00</strong>
-
-                            <span class="icon-cross">
-                                <button type="button" class="btn btn-round" style="font-size:10pt;">
-                                    AddToCart
-                                </button>
-                            </span>
-                        </a>
-                    </div>
-                    <!-- End Column 4 -->
-                    <!-- Delete when looping done -->
-
                 </div>
             </div>
         </div>
@@ -278,39 +250,12 @@
             </div>
         </div>
         <!-- End Reviews Slider -->
-
         <script src="assets/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/tiny-slider.js"></script>
         <script src="assets/js/custom.js"></script>
 
 
-        <h2 class="text-dark mb-4">Latest Artwork</h2>
-        <div class="d-flex margin-auto justify-content-center flex-row align-items-center">
-            <%
-                Product product = null;
-                for (int i = 0; i < sessProdList.size(); i++) {
-                    product = sessProdList.get(i);
-            %>
-            <a
-                href="ProductDetail.jsp?id=<%= product.getProdId()%>" style="text-decoration: none"
-                >
-                <div class="home-prod">
-                    <div>
-                        <img
-                            src="<%= request.getContextPath() + product.getProdImg()[0]%>"
-                            width="200px"
-                            height="auto"
-                            />
-                    </div>
-                    <div><%= product.getProdName()%></div>
-                    <% String formattedPrice = String.format("%.2f", product.getProdPrice());%>
-                    <div>RM<%= formattedPrice%></div>
-                </div>
-            </a>
-            <% }%>
-        </div>
-        <a href="ProductPage.jsp?all=t"><button class="btn btn-info mt-4 browse-btn">All Artworks</button></a>
-    </section>
+        
     <!--end of content-->
 </body>
 <%--footer--%>
