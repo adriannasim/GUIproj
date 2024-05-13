@@ -168,7 +168,7 @@
 
                         <div class="row mb-5">
                             <div class="col-md-6">
-                                <a href="Home.jsp"><button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button></a>
+                                <a href="ProductPage.jsp?all=t"><button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button></a>
                             </div>
                         </div>
 
